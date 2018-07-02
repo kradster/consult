@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/cvbuilder" method="POST">
+    <form action="/cvbuilder">
         <h1>CV BUILDER</h1>
     <fieldset>
         <legend>CV BUILDER</legend>
@@ -42,13 +42,21 @@
         </fieldset>
         <fieldset>
             <legend>PROJECTS/INTERNSHIPS/JOBS</legend><br><br>
-            <input type="text" name="collage" placeholder="Collage Name"><br><br>
+            <input type="text" name="pij[]" placeholder="Collage Name"><br><br>
+            <input type="text" name="pij[]" placeholder="Collage Name"><br><br>
+            <input type="text" name="pij[]" placeholder="Collage Name"><br><br>
+            <input type="text" name="pij[]" placeholder="Collage Name"><br><br>
             
         </fieldset>
         <fieldset>
             <legend>SKILLS/ROLLS</legend><br><br>
-            <input type="text" name="collage" placeholder="Collage Name"><br><br>
+            <input type="text" name="sr[]" placeholder="Collage Name"><br><br>
+            <input type="text" name="sr[]" placeholder="Collage Name"><br><br>
+            <input type="text" name="sr[]" placeholder="Collage Name"><br><br>
+            <input type="text" name="sr[]" placeholder="Collage Name"><br><br>
         </fieldset>
+        <br><br>
+        <input type="submit" value="Make CV">
     </fieldset>
     </form>
 </body>
