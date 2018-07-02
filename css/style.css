@@ -1,0 +1,150 @@
+html,
+body {
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: buc;
+}
+
+b {
+    font-family: buc-med;
+}
+
+a,
+p,
+.button {
+    font-family: buc;
+}
+
+.myfont {
+    font-family: buc;
+}
+
+@font-face {
+    font-family: 'buc';
+    src: url('/myfont/Gotham-Light.otf');
+}
+
+@font-face {
+    font-family: 'buc-bold';
+    src: url('/myfont/Gotham-Bold.otf');
+}
+
+@font-face {
+    font-family: 'buc-med';
+    src: url('/myfont/GothamMedium.ttf');
+}
+
+
+.fullScreen {
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+}
+
+.Mycircle {
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    align-self: center;
+    border-radius: 100%;
+    overflow: hidden;
+    line-height: 300px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.cld {
+    position: absolute;
+    align-self: center;
+}
+
+.indicator {
+    height: 5px;
+}
+
+.circular {
+    margin-left: 20px !important;
+}
+
+ul.myappmenu {
+    display: block;
+    padding: 5px;
+    border-radius: 0px;
+    overflow: hidden;
+}
+
+ul.myappmenu li {
+    padding: 0px;
+    border-bottom: 2px solid transparent;
+    transition: all .3s ease-in-out;
+}
+
+ul.myappmenu li:hover {
+    border-bottom: 2px solid #fff;
+}
+
+ul.myappmenu li.active {
+    border-bottom: 2px solid #fff;
+}
+
+nav ul a {}
+
+nav ul a:hover {
+    background: transparent;
+}
+
+button.button-tab {
+    background: -webkit-linear-gradient(180deg, rgb(46, 49, 146) 0%, rgb(41, 171, 226) 100%);
+    border-radius: 20px;
+}
+
+.ref-anim {
+    animation: ref-anim .5s ease-in-out 1 normal;
+}
+
+@keyframes ref-anim {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.myscroll-bar::-webkit-scrollbar {
+    width: 10px;
+    margin-right: 20px;
+}
+
+.myscroll-bar::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 10px;
+
+}
+
+ul.side-nav li.active {
+    border-radius: 50px;
+}
+
+ul.side-nav li.active a {
+    color: #0d47a1;
+}
+
+ul.side-nav li.active a>i {
+    color: #0d47a1;
+}
