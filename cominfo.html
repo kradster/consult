@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.1.0/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/button.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style>
+        
+        input:not([type]), input[type=text]:not(.browser-default){
+    
+            border: none;
+            outline: none;
+            height: 3rem;
+            width: 100%;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            padding: 0;
+            background-color: transparent;
+            box-shadow:0px
+        }
+        input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]){
+            border-bottom:none;
+            -webkit-box-shadow:none;
+            box-shadow:none;
+        }
+        input::-webkit-input-placeholder{
+            color: #eee;
+        } 
+        .no-padd{
+            padding:0px !important;
+        }      
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR START -->
+    <div class="navbar-fixed " style="position: fixed;top:0px;">
+        <nav class="blue accent-4 z-depth-0">
+            <div class="nav-wrapper container">
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+                <a href="#" class="brand-logo">
+                    <b style="font-size:1em">testQ</b>
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Home</b></a>
+                    </li>
+                    <li>
+                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Company</b></a>
+                    </li>
+                    <li>
+                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
+                    </li>
+                    
+            </div>
+        </nav>
+    </div>
+    <!-- NAVIGATION BAR END -->
+
+    <!-- SIDE BAR START -->
+    <ul id="slide-out" class="sidenav" style="background:url('img/cycle.jpg');">
+            <li><div class="user-view">
+              <div class="background">
+                <img style="width:100%;" src="img/cycle.jpg">
+              </div>
+              <a href="#user"><img style="width:90px;" class="circle" src="img/profilepic.jpg"></a>
+              <a href="#name"><span class="indigo-text name"><b>John Doe</b></span></a>
+              <a href="#email"><span class="indigo-text email"><b>jdandturk@gmail.com</b></span></a>
+            </div></li>
+            <li>
+                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Home</b></a>
+                </li>
+                <li>
+                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Company</b></a>
+                </li>
+                <li>
+                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
+                </li>
+          </ul>
+             
+    <!-- SIDE BAR END -->
+    <div class="row" style="height:50px;"></div>
+    <div class="row no-padd">
+            <div class="col s12 no-padd">
+                    <div class="col s2 no-padd">
+                        <center>
+                            <br>
+                            <i class="fas fa-building fa-6x grey-text lighten-2"></i>
+                        </center>
+                    </div>
+                    <div class="col s8 no-padd">
+                        <h5><b>Company Name</b></h5><br>
+                        <div>Location</div><br>
+                        <div class="col s12 no-padd">
+                            <div class="col s2 no-padd"><i class="fas fa-calendar"></i> 0-0 YEAR</div>
+                            <div class="col s2 no-padd"><i class="fas fa-rupee-sign"></i> 0-3 LPA</div>
+                            <div class="col s2 no-padd"><i class="fas fa-map-marker"></i> city,city,city</div>
+                        </div>
+                    </div>
+                    <div class="col s2 no-padd">
+                        <br><br>
+                        <i class="fas fa-certificate fa-4x amber-text"></i>
+                    </div>
+                </div>
+    </div>
+
+    <div class="row grey lighten-2">
+        <div class="col s12 grey lighten-2" style="height:50px;"></div>
+        <div class="col s8 offset-s2 card" style="border-radius:5px;">
+            <div class="col s12">
+                <h5><b>JOBS DESCRIPTION</b></h5>
+                <div class="divider"></div>
+                <br><br>
+                <div class="col s12 no-padd">
+                    <div class="col s12 no-padd">
+                        <div class="col s12">
+                            <h6><b>About the Comany</b></h6><br>
+                            <div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea quos delectus sed, voluptatibus minima excepturi corrupti eos corporis dignissimos omnis. <br><br></div>
+                            </div>
+                            <div>
+                                <div> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis temporibus in neque voluptates assumenda fugit voluptatem velit, ea veritatis non voluptatibus deleniti itaque impedit corrupti obcaecati delectus nulla, excepturi officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea quos delectus sed, voluptatibus minima excepturi corrupti eos corporis dignissimos omnis.  <br> <br></div>
+                            </div>
+                            <div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea quos delectus sed, voluptatibus minima excepturi corrupti Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum amet quisquam a voluptatibus autem alias accusantium laudantium vel facilis tempora. eos corporis dignissimos omnis. <br> <br></div>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <br>
+                            <h6><b>Website <a href="">www.loremepsum.com</a></b></h6>
+                        </div>
+                        <div class="col s12">
+                            <br>
+                            <h6><b>Target Audience</b></h6>
+                            <div>
+                                <br>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, obcaecati iure? Reprehenderit, adipisci, omnis, aliquid totam sed repudiandae unde culpa illum necessitatibus optio pariatur quo laboriosam minus provident dignissimos temporibus?
+                            </div>
+                        </div>
+<div class="col s12">
+                        <br>
+                        <h6><b>Joining</b></h6>
+                        <div>
+                            <br>
+                            The selected candidate will be on-boarded anytime between July 2018 and April 2019.
+                        </div>
+                       </div>
+                        <div class="col s12">
+<br>
+<h6><b>Locations of work</b></h6>
+<div>
+<br>
+    Pune, Bangalore, Chennai
+</div>
+</div>
+<div class="col s12">
+    <br>
+<h6><b>Interview Location</b></h6>
+<div>
+<br>
+    Pune, Bangalore 
+</div>
+</div>
+<div class="col s12">
+<br>
+<h6><b>Pre-requisites:</b></h6>
+<div>
+    <br>
+    Candidate must be an Indian citizen.
+    Minimum 60% marks or 6.3 CGPA in graduation and no current backlogs  The candidate needs to possess good communication skills.
+    The candidate needs to be flexible to get allocated to any Mphasis operating location.
+    The candidate needs to be flexible to take up any technology and the work timings that would be allocated to them for training and deployment there afterwards.
+    Electronics/Communications engineering background, with proven top quartile academic track record will be preferred.
+    Project work in at least one contemporary area of engineering.
+    Awards/recognitions in any field (academics/sports/extra-curricular).
+</div>
+ </div>
+<div class="col s12">
+<br>
+<h6><b>Job Profile:</b></h6>
+<div>
+<br>
+    Splz Associate Infra Engg for our Infra Service Line Teams – For Level 1 Administrator and Monitoring
+</div>
+</div>
+<div class="col s12">
+<br>
+<h6><b>Skill Set Required</b></h6>
+<div>
+<br>
+    Basic knowledge in Unix/Windows/Database/Storage/Backup/Network/Information Security/Cloud configuration/administration.
+    Good interest in various technologies for IT services in the monitoring, Unix/Windows/Database/Storage/Backup/Network/Information Security/Cloud.
+    Excellent analytical and trouble shooting skills.
+    Ability to diagnose, troubleshoot, obtain results, provide solutions for a broad range of technical problems
+    Basic understanding about the IT Service Management processes including Incident, Problem, Change Management, Service Reques
+    Understanding about the different Request Fulfillment
+    Responsible; able to manage time effectively and work efficiently, both with and without direct supervision
+    Any Development experience is plus.
+    Enthusiastic and ready to take up challenges and learn recent technologies
+    Excellent verbal and communication skills.
+    Ready to work in Shift Timing based on Business Need.
+    ITIL experience is a plus.
+    Project work in Cloud/Unix/Windows/Database/Storage/Backup/Network/Information Security technologies will be an added advantage.
+</div>
+ </div>
+<div class="col s12">
+    <br>
+<h6><b>Profile/Designation</b></h6>
+<div>
+    <br>
+    First 6 months- Specialization Trainee at Level-1 <br><br>
+    
+    Post 6 months- Splz Associate Infra Engg at Level-2 <br><br>
+    
+    CTC Details: The selected candidate is eligible for monthly salary of INR 21,000 (Rupees Twenty one thousands including CTC @ INR 1.8 Lakhs per annum and Rupees 6000 monthly allowance). <br><br>
+    
+    Training agreement: Selected candidates have to sign Training agreement at the time of joining to stay with us for minimum 24 Months from the date of joining. In case of default an amount of INR 100,000 in full will be recovered from the employee. <br><br>
+    
+    Candidates should be ready to work in any shift timings including night shifts. <br><br> 
+</div>
+</div>
+<div class="col s12">
+    <br>
+<h6><b>Interview Rounds</b></h6>
+<div>
+    <br>
+    • SVAR (Tool Based Communication Test) <br><br>
+    
+    • Final Round – Panel Interview (Tech & HR) <br>
+</div>
+</div>
+
+<div class="col s12">
+    <br>
+<h6><b>Education</b></h6>
+<div>
+    <br>
+    B.Tech/B.E., MCA
+</div>
+</div>
+
+                            
+                            <div class="col s12">
+                                <br>
+                                <div class="col s2 no-padd"><i class="fas fa-calendar grey-text lighten-2"></i> 0-0 YEAR</div>
+                                <div class="col s2 no-padd"><i class="fas fa-rupee-sign grey-text lighten-2"></i> 0-3 LPA</div>
+                                <div class="col s2 no-padd"><i class="fas fa-map-marker grey-text lighten-2"></i> city,city,city</div>
+                                <div class="col s2 no-padd">
+                                    <center>
+                                            <a href="" class="btn indigo accent-4"><b>APPLY</b></a>
+                                    </center>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col s12">
+                            
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12" style="height:50px;"></div>
+    </div>
+
+   
+    
+    
+
+<!-- Compiled and minified JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script>
+  $(document).ready(function(){
+      M.AutoInit();
+  });
+  function genPDF(){
+      var $RESUME = $("#resumebox");
+    html2canvas(document.querySelector("#resumebox")).then(canvas => {
+        console.log(canvas.toDataURL("image/png"));
+            $("#test").attr("href",canvas.toDataURL("image/png"));
+            $("#test").attr("download","test@.png");
+            $("#test")[0].click();
+    },{
+        
+    });
+      
+  }
+</script>
+</body>
+
+</html>

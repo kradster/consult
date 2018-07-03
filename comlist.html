@@ -116,33 +116,58 @@
                 </div>
                 <div class="col s12 no-padd">
                     <br>
-                    <div class="input-field col l2 m3 s4">
-                        <input type="text" readonly value="software,data" id="a1">
-                        <label for="a1">SKILLS</label>
-                    </div>
-                    <div class="input-field col l2 m3 s4">
-                        <input type="text" readonly value="complete" id="a1">
-                        <label for="a1">STATUS</label>
-                    </div>
-                    <div class="input-field col l3 m2 s4">
-                        <input type="text" readonly value="DELHI" id="a1">
-                        <label for="a1">LOCALITY</label>
-                    </div>
                     <div class="input-field col l3 m3 s10 offset-s1">
+                        <a id="test"></a>
                         <a class="btn blue accent-4 col s12" href="makecv.html"><b>VIEW RESUME</b></a>
                     </div>
-                </div>
-                <div class="col s12">
-                    <a href="comlist.html" class="btn indigo accent-4"><b>JOBS</b></a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row" style="height:100%;background:url('/img/youaregood.jpg');background-position:center;background-repeat: no-repeat;">
-    <center>
-        <br><br><br><br>
-        <a class="btn blue accent-4 btn-large" href="/getscore"><b>GET SCORE</b></a>
-    </center>
+
+    <div class="row grey lighten-2">
+        <div class="col s12 grey lighten-2" style="height:50px;"></div>
+        <div class="col s8 offset-s2 card" style="border-radius:5px;">
+            <div class="col s12">
+                <h5><b>JOBS IN INDIA</b></h5>
+                <div class="divider"></div>
+                <br><br>
+                <div class="col s12 no-padd">
+                    <div class="col s12 no-padd">
+                        <div class="col s2 no-padd">
+                            <center>
+                                <i class="fas fa-building fa-3x grey-text lighten-2"></i>
+                            </center>
+                        </div>
+                        <div class="col s8 no-padd">
+                            <h6><b>Company Name</b></h6><br>
+                            <div>Location</div><br>
+                            <div class="col s12 no-padd">
+                                <div class="col s4 no-padd"><i class="fas fa-calendar"></i> 0-0 YEAR</div>
+                                <div class="col s4 no-padd"><i class="fas fa-rupee-sign"></i> 0-3 LPA</div>
+                                <div class="col s4 no-padd"><i class="fas fa-map-marker"></i> city,city,city</div>
+                            </div>
+                        </div>
+                        <div class="col s2 no-padd">
+                            <i class="fas fa-certificate fa-2x amber-text"></i>
+                        </div>
+                    </div>
+                    <div class="col s10">
+                        <br>
+                        <div>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia vero sint sit ipsa earum sunt maiores possimus, nihil suscipit excepturi.
+                            <a href="cominfo.html"><b>read more..</b></a>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col s2">
+                        <a href="" class="btn indigo accent-4"><b>APPLY</b></a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="col s12" style="height:50px;"></div>
     </div>
 
    
@@ -151,11 +176,25 @@
 
 <!-- Compiled and minified JavaScript -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script>
   $(document).ready(function(){
       M.AutoInit();
   });
+  function genPDF(){
+      var $RESUME = $("#resumebox");
+    html2canvas(document.querySelector("#resumebox")).then(canvas => {
+        console.log(canvas.toDataURL("image/png"));
+            $("#test").attr("href",canvas.toDataURL("image/png"));
+            $("#test").attr("download","test@.png");
+            $("#test")[0].click();
+    },{
+        
+    });
+      
+  }
 </script>
 </body>
 
