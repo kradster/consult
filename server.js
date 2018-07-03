@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 
+let session = require('express-session');
 let bodyParser = require('body-parser');
 let multer = require('multer');
 let upload = multer();
-
+let cookieparser = require('cookie-parser');
 let bcrypt = require('bcrypt-nodejs');
 
 //for parsing application/xwww
@@ -14,11 +15,16 @@ app.use(bodyParser.json());
 //for parsing multipart/form-data
 app.use(upload.array());
 
+app.use(session({ secret: 'kljk' }));
+//app.use(cookieparser);
+
 //serve all static folders
 app.use(express.static('css'));
 app.use('/img', express.static('img'));
 app.use('/myfont', express.static('myfont'));
 app.use("/signup.html", express.static('signup.html'));
+app.use('/login.html', express.static('login.html'));
+app.use('/makecv.html', express.static('makecv.html'));
 
 //Connecting to local database
 const sqlite3 = require('sqlite3').verbose();
@@ -35,6 +41,28 @@ let db = new sqlite3.Database('database.db', err => {
             phoneno text NOT NULL
         );
     `);
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS CV ( 
+            uniqueid text PRIMARY KEY,
+            fullname text,
+            fathersname text,
+            dob text,    
+            city text,
+            aadharno text,
+            school10 text,
+            board10 text,
+            marks10 text,
+            school12 text,
+            board12 text,
+            marks12 text,
+            collegename text,
+            collegeboard text,
+            collegemarks text,
+            projects text,
+            skills
+        );
+    `);
+
 });
 
 app.post('/signup', (req, res) => {
@@ -60,11 +88,11 @@ app.post('/signup', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    if (!req.body) return res.redirect('/login.html');
-    console.log('trying to log in...', req.body);
+
+    console.log('trying to log in...');
     db.get("SELECT * FROM Users WHERE email = ?", req.body.email, (err, row) => {
         if (!row) {
-            console.log("0 rows found");
+            console.log("0 rows found, no user");
             return res.send({ success: false, message: 'Error, No such user exists' });
         }
         //console.log(row);
@@ -72,8 +100,9 @@ app.post('/login', (req, res) => {
             return res.send({ success: false, message: "Err  or, Incorrect password." });
 
         e = { expires: new Date(Date.now() + 1000 * 60 * 24) };
-        console.log('Logged in', row);
 
+        req.session.user = row.uniqueid;
+        console.log('Logged in');
         res = setCookies(res, row, e);
         return res.redirect('/makecv.html');
     });
@@ -81,20 +110,35 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/cvbuilder', (req, res) => {
-    console.log("cookies", req.cookies);
+    if (!req.session.user) return res.redirect('/login.html');
+    console.log("session", req.session.user);
     console.log("cv details", req.body);
-    e = { expires: new Date(Date.now() + 1000 * 60 * 24) };
-    res = setCookies(res, req.body, e);
-    res.send({ success: true, data: req.body, message: "cv details" });
+    data = req.body;
+    data.projects = data.projects.join(", ");
+    data.skills = data.skills.join(" ");
+    data["uniqueid"] = req.session.user;
+    sql = "INSERT INTO CV(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
+    console.log(sql);
+    db.exec(sql, err => {
+        if (err) return res.send(err);
+        return res.send({ success: true, message: "Successfully entered all values" });
+    });
+
+    //res.send({ success: true, data: req.body, message: "cv details" });
 });
 
-app.get('/login.html', (req, res) => {
-    res.sendFile('login.html', { root: __dirname });
+app.get('/getcv', (req, res) => {
+    if (!req.session.user) return res.send({ success: false, message: "You need to login first" });
+    db.get("SELECT * FROM CV WHERE uniqueid = ?", req.session.user, (err, row) => {
+        if (!row) {
+            console.log("No id found");
+            return res.send({ success: false, message: "No such userid exists in the database" });
+        }
+        console.log("Fetching cv details for", req.session.user);
+        return res.send({ success: true, data: row });
+    });
 });
 
-app.get('/makecv.html', (req, res) => {
-    res.sendFile('makecv.html', { root: __dirname });
-});
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('listening on : ' + (process.env.PORT || 3000));
