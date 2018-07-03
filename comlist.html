@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.1.0/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/button.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style>
+        
+        input:not([type]), input[type=text]:not(.browser-default){
+    
+            border: none;
+            outline: none;
+            height: 3rem;
+            width: 100%;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            padding: 0;
+            background-color: transparent;
+            box-shadow:0px
+        }
+        input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]){
+            border-bottom:none;
+            -webkit-box-shadow:none;
+            box-shadow:none;
+        }
+        input::-webkit-input-placeholder{
+            color: #eee;
+        } 
+        .no-padd{
+            padding:0px !important;
+        }      
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR START -->
+    <div class="navbar-fixed " style="position: fixed;top:0px;">
+        <nav class="blue accent-4 z-depth-0">
+            <div class="nav-wrapper container">
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+                <a href="#" class="brand-logo">
+                    <b style="font-size:1em">testQ</b>
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Home</b></a>
+                    </li>
+                    <li>
+                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Company</b></a>
+                    </li>
+                    <li>
+                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
+                    </li>
+                    
+            </div>
+        </nav>
+    </div>
+    <!-- NAVIGATION BAR END -->
+
+    <!-- SIDE BAR START -->
+    <ul id="slide-out" class="sidenav" style="background:url('img/cycle.jpg');">
+            <li><div class="user-view">
+              <div class="background">
+                <img style="width:100%;" src="img/cycle.jpg">
+              </div>
+              <a href="#user"><img style="width:90px;" class="circle" src="img/profilepic.jpg"></a>
+              <a href="#name"><span class="indigo-text name"><b>John Doe</b></span></a>
+              <a href="#email"><span class="indigo-text email"><b>jdandturk@gmail.com</b></span></a>
+            </div></li>
+            <li>
+                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Home</b></a>
+                </li>
+                <li>
+                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Company</b></a>
+                </li>
+                <li>
+                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
+                </li>
+          </ul>
+             
+    <!-- SIDE BAR END -->
+    <div class="row" style="height:50px;"></div>
+    <div class="row no-padd">
+        <div class="col s12 no-padd">
+            <div class="col l3 m3 s12 no-padd">
+                <center>
+                    <img style="width:100%" src="/img/profilepic.jpg" alt="">
+                </center>
+            </div>
+            <div class="col l9 m9 s12 no-padd">
+                <div class="col s12">
+                    <h3><b>Lorem, ipsum.</b></h3>
+                    <div class="col l3 m4 s7 no-padd">
+                        loremepsum@gmail.com
+                    </div>
+                    <div class="col l2 m2 s3 no-padd">
+                        DELHI
+                    </div>
+                    <div class="col l2 m3 s2 no-padd">
+                        B.Tech
+                    </div>
+                </div>
+                <div class="col s12 no-padd">
+                    <br>
+                    <div class="input-field col l3 m3 s10 offset-s1">
+                        <a id="test"></a>
+                        <a class="btn blue accent-4 col s12" href="makecv.html"><b>VIEW RESUME</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row grey lighten-2">
+        <div class="col s12 grey lighten-2" style="height:50px;"></div>
+        <div class="col s8 offset-s2 card" style="border-radius:5px;">
+            <div class="col s12">
+                <h5><b>JOBS IN INDIA</b></h5>
+                <div class="divider"></div>
+                <br><br>
+                <div class="col s12 no-padd">
+                    <div class="col s12 no-padd">
+                        <div class="col s2 no-padd">
+                            <center>
+                                <i class="fas fa-building fa-3x grey-text lighten-2"></i>
+                            </center>
+                        </div>
+                        <div class="col s8 no-padd">
+                            <h6><b>Company Name</b></h6><br>
+                            <div>Location</div><br>
+                            <div class="col s12 no-padd">
+                                <div class="col s4 no-padd"><i class="fas fa-calendar"></i> 0-0 YEAR</div>
+                                <div class="col s4 no-padd"><i class="fas fa-rupee-sign"></i> 0-3 LPA</div>
+                                <div class="col s4 no-padd"><i class="fas fa-map-marker"></i> city,city,city</div>
+                            </div>
+                        </div>
+                        <div class="col s2 no-padd">
+                            <i class="fas fa-certificate fa-2x amber-text"></i>
+                        </div>
+                    </div>
+                    <div class="col s10">
+                        <br>
+                        <div>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia vero sint sit ipsa earum sunt maiores possimus, nihil suscipit excepturi.
+                            <a href="cominfo.html"><b>read more..</b></a>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col s2">
+                        <a href="" class="btn indigo accent-4"><b>APPLY</b></a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="col s12" style="height:50px;"></div>
+    </div>
+
+   
+    
+    
+
+<!-- Compiled and minified JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script>
+  $(document).ready(function(){
+      M.AutoInit();
+  });
+  function genPDF(){
+      var $RESUME = $("#resumebox");
+    html2canvas(document.querySelector("#resumebox")).then(canvas => {
+        console.log(canvas.toDataURL("image/png"));
+            $("#test").attr("href",canvas.toDataURL("image/png"));
+            $("#test").attr("download","test@.png");
+            $("#test")[0].click();
+    },{
+        
+    });
+      
+  }
+</script>
+</body>
+
+</html>
