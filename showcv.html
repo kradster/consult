@@ -117,7 +117,8 @@
                 <div class="col s12 no-padd">
                     <br>
                     <div class="input-field col l3 m3 s10 offset-s1">
-                        <a class="btn blue accent-4 col s12" href="javascript:genPDF()"><b>VIEW RESUME</b></a>
+                        <a id="test"></a>
+                        <a class="btn blue accent-4 col s12" href="makecv.html"><b>VIEW RESUME</b></a>
                     </div>
                 </div>
             </div>
@@ -292,16 +293,13 @@
   });
   function genPDF(){
       var $RESUME = $("#resumebox");
-      var h = $RESUME.height();
-      var w = $RESUME.width();
     html2canvas(document.querySelector("#resumebox")).then(canvas => {
-        var DOC = new jsPDF();
-      var img = canvas.toDataURL('img/png');
-      DOC.addImage(img,"JPEG",10,10);
-      DOC.save('testQ_1234.pdf');
+        console.log(canvas.toDataURL("image/png"));
+            $("#test").attr("href",canvas.toDataURL("image/png"));
+            $("#test").attr("download","test@.png");
+            $("#test")[0].click();
     },{
-        width:w,
-        height:h
+        
     });
       
   }
