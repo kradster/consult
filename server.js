@@ -60,7 +60,40 @@ app.post('/signup', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    res.send('TODO');
+    if (!req.body) return res.redirect('/login.html');
+    console.log('trying to log in...', req.body);
+    db.get("SELECT * FROM Users WHERE email = ?", req.body.email, (err, row) => {
+        if (!row) {
+            console.log("0 rows found");
+            return res.send({ success: false, message: 'Error, No such user exists' });
+        }
+        //console.log(row);
+        if (!bcrypt.compareSync(req.body.password, row.password))
+            return res.send({ success: false, message: "Err  or, Incorrect password." });
+
+        e = { expires: new Date(Date.now() + 1000 * 60 * 24) };
+        console.log('Logged in', row);
+
+        res = setCookies(res, row, e);
+        return res.redirect('/makecv.html');
+    });
+    //res.send('TODO');
+});
+
+app.post('/cvbuilder', (req, res) => {
+    console.log("cookies", req.cookies);
+    console.log("cv details", req.body);
+    e = { expires: new Date(Date.now() + 1000 * 60 * 24) };
+    res = setCookies(res, req.body, e);
+    res.send({ success: true, data: req.body, message: "cv details" });
+});
+
+app.get('/login.html', (req, res) => {
+    res.sendFile('login.html', { root: __dirname });
+});
+
+app.get('/makecv.html', (req, res) => {
+    res.sendFile('makecv.html', { root: __dirname });
 });
 
 app.listen(process.env.PORT || 3000, () => {
@@ -74,3 +107,11 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
     res.send('404 Page Not Found.');
 });
+
+function setCookies(res, row, expiry = 0) {
+    if (row.hasOwnProperty('password')) delete row.password;
+    for (let key in row)
+        if (row[key]) res.cookie(key, row[key], expiry);
+        else res.cookie(key, "", expiry);
+    return res;
+}
