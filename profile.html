@@ -16,9 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <style>
-        
-        input:not([type]), input[type=text]:not(.browser-default){
-    
+        input:not([type]),
+        input[type=text]:not(.browser-default) {
             border: none;
             outline: none;
             height: 3rem;
@@ -27,20 +26,23 @@
             margin: 0 0 8px 0;
             padding: 0;
             background-color: transparent;
-            box-shadow:0px
+            box-shadow: 0px
         }
-        input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]){
-            border-bottom:none;
-            -webkit-box-shadow:none;
-            box-shadow:none;
+        
+        input:not([type]):focus:not([readonly]),
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
-        input::-webkit-input-placeholder{
+        
+        input::-webkit-input-placeholder {
             color: #eee;
-        } 
-        .no-padd{
-            padding:0px !important;
-        }      
-
+        }
+        
+        .no-padd {
+            padding: 0px !important;
+        }
     </style>
 </head>
 
@@ -50,7 +52,7 @@
     <div class="navbar-fixed " style="position: fixed;top:0px;">
         <nav class="blue accent-4 z-depth-0">
             <div class="nav-wrapper container">
-          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
                 <a href="#" class="brand-logo">
                     <b style="font-size:1em">testQ</b>
@@ -65,7 +67,7 @@
                     <li>
                         <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
                     </li>
-                    
+
             </div>
         </nav>
     </div>
@@ -73,25 +75,27 @@
 
     <!-- SIDE BAR START -->
     <ul id="slide-out" class="sidenav" style="background:url('img/cycle.jpg');">
-            <li><div class="user-view">
-              <div class="background">
-                <img style="width:100%;" src="img/cycle.jpg">
-              </div>
-              <a href="#user"><img style="width:90px;" class="circle" src="img/profilepic.jpg"></a>
-              <a href="#name"><span class="indigo-text name"><b>John Doe</b></span></a>
-              <a href="#email"><span class="indigo-text email"><b>jdandturk@gmail.com</b></span></a>
-            </div></li>
-            <li>
-                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Home</b></a>
-                </li>
-                <li>
-                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Company</b></a>
-                </li>
-                <li>
-                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
-                </li>
-          </ul>
-             
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img style="width:100%;" src="img/cycle.jpg">
+                </div>
+                <a href="#user"><img style="width:90px;" class="circle" src="img/profilepic.jpg"></a>
+                <a href="#name"><span class="indigo-text name"><b>John Doe</b></span></a>
+                <a href="#email"><span class="indigo-text email"><b>jdandturk@gmail.com</b></span></a>
+            </div>
+        </li>
+        <li>
+            <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Home</b></a>
+        </li>
+        <li>
+            <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Company</b></a>
+        </li>
+        <li>
+            <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
+        </li>
+    </ul>
+
     <!-- SIDE BAR END -->
     <div class="row" style="height:50px;"></div>
     <div class="row no-padd">
@@ -129,31 +133,31 @@
                         <label for="a1">LOCALITY</label>
                     </div>
                     <div class="input-field col l3 m3 s10 offset-s1">
-                        <a class="btn blue accent-4 col s12" href="makecv.html"><b>VIEW RESUME</b></a>
+                        <a class="btn blue accent-4 col s12" href="/makecv.html"><b>VIEW RESUME</b></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row" style="height:100%;background:url('/img/youaregood.jpg');background-position:center;background-repeat: no-repeat;">
-    <center>
-        <br><br><br><br>
-        <a class="btn blue accent-4 btn-large" href="/getscore"><b>GET SCORE</b></a>
-    </center>
+        <center>
+            <br><br><br><br>
+            <a class="btn blue accent-4 btn-large" href="/getscore"><b>GET SCORE</b></a>
+        </center>
     </div>
 
-   
-    
-    
 
-<!-- Compiled and minified JavaScript -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-<script>
-  $(document).ready(function(){
-      M.AutoInit();
-  });
-</script>
+
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            M.AutoInit();
+        });
+    </script>
 </body>
 
 </html>

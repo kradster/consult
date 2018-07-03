@@ -25,7 +25,8 @@ app.use('/myfont', express.static('myfont'));
 app.use("/signup.html", express.static('signup.html'));
 app.use('/login.html', express.static('login.html'));
 app.use('/makecv.html', express.static('makecv.html'));
-
+app.use('/profile.html', express.static('profile.html'));
+app.use('/showcv.html', express.static('showcv.html'));
 //Connecting to local database
 const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('database.db', err => {
@@ -104,7 +105,7 @@ app.post('/login', (req, res) => {
         req.session.user = row.uniqueid;
         console.log('Logged in');
         res = setCookies(res, row, e);
-        return res.redirect('/makecv.html');
+        return res.redirect('/profile.html');
     });
     //res.send('TODO');
 });
@@ -121,7 +122,7 @@ app.post('/cvbuilder', (req, res) => {
     console.log(sql);
     db.exec(sql, err => {
         if (err) return res.send(err);
-        return res.send({ success: true, message: "Successfully entered all values" });
+        return res.send({ success: true, message: "Successfully entered all values" }).redirect('/profile.html');
     });
 
     //res.send({ success: true, data: req.body, message: "cv details" });
