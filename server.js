@@ -16,8 +16,8 @@ app.use(upload.array());
 
 //serve all static folders
 app.use(express.static('css'));
-app.use(express.static('img'));
-app.use(express.static('myfont'));
+app.use('/img', express.static('img'));
+app.use('/myfont', express.static('myfont'));
 app.use("/signup.html", express.static('signup.html'));
 
 //Connecting to local database
