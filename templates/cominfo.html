@@ -47,28 +47,7 @@
 <body>
 
     <!-- NAVIGATION BAR START -->
-    <div class="navbar-fixed " style="position: fixed;top:0px;">
-        <nav class="blue accent-4 z-depth-0">
-            <div class="nav-wrapper container">
-          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
-                <a href="#" class="brand-logo">
-                    <b style="font-size:1em">testQ</b>
-                </a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li>
-                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Home</b></a>
-                    </li>
-                    <li>
-                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Company</b></a>
-                    </li>
-                    <li>
-                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
-                    </li>
-                    
-            </div>
-        </nav>
-    </div>
+    <div id="navigationbar"></div>
     <!-- NAVIGATION BAR END -->
 
     <!-- SIDE BAR START -->
@@ -277,6 +256,10 @@
         </div>
         <div class="col s12" style="height:50px;"></div>
     </div>
+     <!-- FOOTER START -->
+     <div id="myfooter">
+    </div>
+    <!-- FOOTER END -->
 
    
     
@@ -284,25 +267,12 @@
 
 <!-- Compiled and minified JavaScript -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="../js/myfooter.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script>
   $(document).ready(function(){
       M.AutoInit();
   });
-  function genPDF(){
-      var $RESUME = $("#resumebox");
-    html2canvas(document.querySelector("#resumebox")).then(canvas => {
-        console.log(canvas.toDataURL("image/png"));
-            $("#test").attr("href",canvas.toDataURL("image/png"));
-            $("#test").attr("download","test@.png");
-            $("#test")[0].click();
-    },{
-        
-    });
-      
-  }
 </script>
 </body>
 

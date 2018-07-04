@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.1.0/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/button.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <style>
+        
+        /* input:not([type]), input[type=text]:not(.browser-default),
+        input:not([password]), input[type=password]:not(.browser-default){
+    
+            border: none;
+            outline: none;
+            height: 3rem;
+            width: 100%;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            padding: 0;
+            background-color: transparent;
+            box-shadow:0px
+        }
+        input:not([type]):focus:not([readonly]),
+        input[type=text]:not(.browser-default):focus:not([readonly]),
+        input:not([password]):focus:not([readonly]),
+        input[type=password]:not(.browser-default):focus:not([readonly]){
+            border-bottom:none;
+            -webkit-box-shadow:none;
+            box-shadow:none;
+        }
+        input::-webkit-input-placeholder{
+            color: #aaa;
+        }   */
+   
+
+    </style>
+</head>
+
+<body>
+     <!-- NAVIGATION BAR START -->
+     <div id="navigationbar">
+
+        </div>
+        <!-- NAVIGATION BAR END -->
+    
+    <div class="row">
+        <div class="col s12" style="height:150px;"></div>
+        <form class="col s6 offset-s3" action="/login" method="POST">
+            <div class="card col s8 offset-s2 z-depth-3" style="padding:10px;border-radius:10px; border-top:5px solid #2962ff;">
+                <center>
+                    <h4 class="indigo-text">LOGIN</h4>
+                </center>
+                <br>
+                <div class="input-field col s12">
+                        <input id="email" name="email" type="text" class="blue-text"/> 
+                        <label for="email">Email</label>
+                    </div>
+                <div class="input-field col s12">
+                        <input id="password" name="password" type="password" class="blue-text"/>
+                        <label for="password">Password</label> 
+                    </div><br>
+                     <div class="input-field col s12">
+                         <center>
+                             <input name="loginsubmit" style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="btn btn-large blue accent-4 z-depth-5 white-text" value="Login">
+                         </center>
+                     </div>
+                
+            </div>
+        </form>
+        <div class="col s12" style="height:150px;"></div>
+    </div>
+
+        <!-- FOOTER START -->
+    <div id="myfooter">
+        </div>
+        <!-- FOOTER END -->
+    <!-- Compiled and minified JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="../js/myfooter.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script>
+  $(document).ready(function(){
+      M.AutoInit();
+  });
+</script>
+</body>
+</html>

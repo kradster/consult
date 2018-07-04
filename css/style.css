@@ -28,17 +28,17 @@ p,
 
 @font-face {
     font-family: 'buc';
-    src: url('./myfont/Gotham-Light.otf');
+    src: url('/myfont/Gotham-Light.otf');
 }
 
 @font-face {
     font-family: 'buc-bold';
-    src: url('./myfont/Gotham-Bold.otf');
+    src: url('/myfont/Gotham-Bold.otf');
 }
 
 @font-face {
     font-family: 'buc-med';
-    src: url('./myfont/GothamMedium.ttf');
+    src: url('/myfont/GothamMedium.ttf');
 }
 
 

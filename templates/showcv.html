@@ -291,18 +291,6 @@
   $(document).ready(function(){
       M.AutoInit();
   });
-  function genPDF(){
-      var $RESUME = $("#resumebox");
-    html2canvas(document.querySelector("#resumebox")).then(canvas => {
-        console.log(canvas.toDataURL("image/png"));
-            $("#test").attr("href",canvas.toDataURL("image/png"));
-            $("#test").attr("download","test@.png");
-            $("#test")[0].click();
-    },{
-        
-    });
-      
-  }
 </script>
 </body>
 
