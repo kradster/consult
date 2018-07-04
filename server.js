@@ -27,6 +27,8 @@ app.use('/login.html', express.static('login.html'));
 app.use('/makecv.html', express.static('makecv.html'));
 app.use('/profile.html', express.static('profile.html'));
 app.use('/showcv.html', express.static('showcv.html'));
+app.use('/comlist.html', express.static('/comlist.html'));
+app.use('/cominfo.html', express.static('cominfo.html'));
 
 //Connecting to local database
 const sqlite3 = require('sqlite3').verbose();
