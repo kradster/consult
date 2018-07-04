@@ -27,6 +27,7 @@ app.use('/login.html', express.static('login.html'));
 app.use('/makecv.html', express.static('makecv.html'));
 app.use('/profile.html', express.static('profile.html'));
 app.use('/showcv.html', express.static('showcv.html'));
+
 //Connecting to local database
 const sqlite3 = require('sqlite3').verbose();
 let db = new sqlite3.Database('database.db', err => {
