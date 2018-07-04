@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <style>
-        /* input:not([type]), input[type=text]:not(.browser-default){
+         input:not([type]), input[type=text]:not(.browser-default){
     
-            border: none;
+            border:1px solid #ccc;
             outline: none;
             height: 3rem;
             width: 100%;
@@ -29,13 +29,13 @@
             box-shadow:0px
         }
         input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]){
-            border-bottom:none;
+            border:1px solid #ccc;
             -webkit-box-shadow:none;
             box-shadow:none;
         }
         input::-webkit-input-placeholder{
             color: #eee;
-        }        */
+        }        
     </style>
 </head>
 
@@ -118,16 +118,16 @@
 
                     <div class="ui label">GRADUATION</div><br>
                     <div class="input-field col s4">
-                        <input id="school10" type="text" name="collegename">
-                        <label for="school10">Collage Name</label>
+                        <input id="collegename" type="text" name="collegename">
+                        <label for="collegename">Collage Name</label>
                     </div>
                     <div class="input-field col s4">
-                        <input id="board10" type="text" name="collegeboard">
-                        <label for="board10">Collage Board</label>
+                        <input id="collegeboard" type="text" name="collegeboard">
+                        <label for="collegeboard">Collage Board</label>
                         </div>
                     <div class="input-field col s4">
-                        <input id="marks10" type="text" name="collegemarks">
-                        <label for="marks10">Marks in % / CGPA</label>
+                        <input id="collegemarks" type="text" name="collegemarks">
+                        <label for="collegemarks">Marks in % / CGPA</label>
                     </div>
                     <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
@@ -141,9 +141,17 @@
                     <br>
                     <div id="jobspanel">
                         
-                        <div class="input-field col s12">
+                        <div class="input-field col s6">
                             <input type="text" name="projects[]" id="projects">
                             <label for="projects">Project/Internship/Job</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input class="datepicker" type="text" name="startdate" id="startdate">
+                            <label for="startdate">Star Date</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input class="datepicker" type="text" name="enddate" id="enddate">
+                            <label for="enddate">End Date</label>
                         </div>
                     </div>
                     <div class="col s12">
@@ -158,7 +166,7 @@
 
                 </div>
                 <div id="form4" class="card z-depth-2 col s8 offset-s2" style="padding:10px;display:none;">
-                        <h5><b>PROJECTS/INTERNSHIPS/JOBS</b></h5>
+                        <h5><b>SKILL</b></h5>
                         <br>
                         <div id="skillspanel">
                             
@@ -181,15 +189,18 @@
                     <h5><b>Careers</b></h5>
                     <br>
                     <div class="input-field col s12">
-                        <textarea  name="carObj" id="carObj" class="materialize-textarea"></textarea>
+                        <input type="text"  name="carObj" id="carObj">
                         <label for="carObj">Career objective</label>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
+                        <li>Lorem ipsum dolor sit amet.</li>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="why"  name="why" class="materialize-textarea"></textarea>
+                        <input type="text" id="why"  name="why">
                         <label for="why">Why should we hire you</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="point" name="point" class="materialize-textarea"></textarea>
+                        <input type="text" id="point" name="point">
                         <label for="point">Any information about you</label>
                     </div>
                     <div class="input-field col s12">
