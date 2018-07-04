@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JOBLANA</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -28,16 +28,20 @@
             background-color: transparent;
             box-shadow: 0px
         }
-        
+
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border-bottom: none;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-        
+
         input::-webkit-input-placeholder {
-            color: #eee;
+            color: grey;
+        }
+
+        .no-padd {
+            padding: 0px !important;
         }
     </style>
 </head>
@@ -51,289 +55,407 @@
     <!-- NAVIGATION BAR END -->
 
     <!-- HEADER START -->
-    <div class="row white" style="overflow: hidden;">
-        <div class="col s12">
-            <div class="blue accent-4" style="width:2500px;height:600px;transform:rotate(0deg);position: relative;top:-100px;left:-100px;"></div>
-        </div>
-        <div class="col s12">
-            <h1 class="left-align" style="font-size:9em;position: relative;top:-500px; margin-left:20px"><b>JOB<span class="blue-text text-darken-4">LANA</span></b></h1>
-        </div>
-        <div style="position:absolute; right:100px; top:170px; width:250px; height:200px">
-            <input placeholder="Enter name" style="border-radius:25px; padding-left:20px; border:4px solid white" />
-            <input placeholder="Enter e-mail" style="border-radius:25px; padding-left:20px; border:4px solid white" />
-            <input style="margin-top:10px;border-radius:25px;transition:all .3s ease-in-out; " type="submit " class="btn btn-large blue accent-4 z-depth-5 white-text " value="Get Started">
-        </div>
-        <div class="col s12 center-align" style="padding:40px;">
-            <iframe width="100%" height="500px" src="https://biteable.com/watch/embed/language-tutor-copy-1933615" allowfullscreen="true"></iframe>
-        </div>
-
-
-        <div class="col s8 offset-s2">
-            <h4 class="center-align grey-text text-lighten-1 "><b>India's fastest assessment and recruitment company JOBLANA</b></h4>
-            <br><br>
-            <div class="input-filed col s8 card z-depth-3 " style="border-radius:30px; ">
-                <center> <input placeholder="Enter Email " type="text " class="blue-text center-align " style="padding:5px;font-size:1.5em; "></center>
-            </div>
-            <div class="input-filed col s4 ">
+    <div class="row blue accent-4" style="overflow: hidden;">
+        <div class="col s12 blue accent-4" style="height:100%;">
+            <div class="col s12 no-padd" style="height:100px;"></div>
+            <div class="col l8 s12 no-padd">
+                <div class="col s12 no-padd" style="height: 100px;"></div>
                 <center>
-                    <input style="margin-top:10px;border-radius:25px;transition:all .3s ease-in-out; " type="submit " class="btn btn-large blue accent-4 z-depth-5 white-text " value="Subscribe ">
+                    <h1 style="font-size:9em;" class="hide-on-small-only">
+                        <b>JOB<span class="blue-text text-darken-4 hide-on-small-only">LANA</span></b>
+                    </h1>
+                    <h1 class="hide-on-med-and-up show-on-small-only">
+                        <b>JOB<span class="blue-text text-darken-4">LANA</span>
+                        </b>
+                    </h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, fuga!</p>
                 </center>
             </div>
+            <div class="col s12 l4">
+                <div class="col s12" style="height:50px;"></div>
+                <div class="col s12 no-padd">
+                    <form class="col s12 no-padd" action="/getstarted" method="POST">
+                        <div class="card col s12 z-depth-3" style="padding:10px;border-radius:10px; border-top:5px solid #cccccc;">
+                            <center>
+                                <h4 class="indigo-text">WELCOME</h4>
+                            </center>
+                            <br>
+                            <div class="input-field col s12">
+                                <input placeholder="john doe" id="name" name="name" type="text" class="blue-text" />
+                                <label for="name">
+                                    <b>Name</b>
+                                </label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input placeholder="johndoe@gmail.com" id="email" name="email" type="text" class="blue-text" />
+                                <label for="email">
+                                    <b>Email</b>
+                                </label>
+                            </div>
+                            <br>
+                            <div class="input-field col s12">
+                                <center>
+                                    <input name="getstartsubmit" style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="col s12 btn btn-large blue accent-4 z-depth-5 white-text"
+                                    value="Get Started">
+                                </center>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+        <div class="col s12 no-padd" style="height:100px;"></div>
     </div>
-    <div class="row ">
-        <div class="col s8 offset-s2 ">
-
+    <div class="row" style="padding:0px;overflow: hidden;">
+        <div class="col s6"></div>
+            <div class="col s6">
+                <iframe class="col s12" style="border:none;height:400px;overflow: hidden;" src="https://biteable.com/watch/embed/language-tutor-copy-1933615"
+                allowfullscreen="true"></iframe>
+            </div>
+    </div>
+    <div class="row" style="height:50px;"></div>
+    <div class="row">
+        <div class="col l8 offset-l2 s12">
+            <h4 class="center-align grey-text text-lighten-1 ">
+                <b>India's fastest assessment and recruitment company JOBLANA</b>
+            </h4>
+            <br>
+            <br>
+            <div class="input-field col l8 s12 card z-depth-3 " style="border-radius:30px; padding:10px;">
+                <center>
+                    <input placeholder="Enter Email " type="text " class="blue-text center-align " style="padding:5px;font-size:1.5em;border:none;outline:none;">
+                </center>
+            </div>
+            <div class="input-filed col l4 s12 ">
+                <center>
+                    <input style="margin-top:15px;border-radius:25px;transition:all .3s ease-in-out; " type="submit " class="btn btn-large blue accent-4 z-depth-5 white-text "
+                        value="Subscribe ">
+                </center>
+            </div>
+            <div class="row">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
         </div>
     </div>
     <div class="row " style="overflow: hidden; ">
         <div class="col s12 ">
             <div class="grey lighten-4 " style="width:2500px;height:600px;transform:rotate(-16deg);position: relative;top:-400px;left:-150px; "></div>
         </div>
-        <div class="col s12 " style="margin-top:-600px;top:0px;position:relative; ">
-            <br><br><br><br><br>
-            <h1 class="center-align " style="font-size:5em; "><b>What We <span class="blue-text text-darken-4 ">Do</span></h1>
+        <div class="col s12" style="margin-top:-600px;top:0px;position:relative; ">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 class="center-align " style="font-size:5em; ">
+                <b>What We
+                    <span class="blue-text text-darken-4 ">Do</span>
+                </b>
+            </h1>
+        </div>
+        <div class="col s12 " style="margin-top:-200px;top:0px;position:relative; ">
+            <div class="container ">
+                <div class="col l6 s12">
+                    <p class="grey-text " style="font-size:1.3em;text-align:justify; ">
+                        Joblana is a platform which is solving both sides of this problem effectively. For recruiters, we provide a way to reach
+                        out to suitable candidates from different parts of India, using standardized evaluation criteria
+                        - all without any of the attendant logistical hassles, and with tremendous savings in cost and effort.
+                        For job-seekers, we provide a platform where they have access to hundreds of recruiters from across
+                        the country, based on a completely objective and standardized score, dramatically improving their
+                        chances of getting their dream job, with much less effort.
+                    </p>
+                </div>
+                <div class="col l6 s12">
+                    <img class="hoverable " style="width:100%;border-radius:10px; " src="img/space_shopping.png " alt=" ">
+                </div>
             </div>
-               <div class="col s12 " style="margin-top:-200px;top:0px;position:relative; ">
-                    <div class="container ">
-                            <div class="col s6 ">
-                               <p class="grey-text " style="font-size:1.3em;text-align:justify; ">
-                                    Joblana is a platform which is solving both sides of this problem effectively. For recruiters, we provide a way to reach out to suitable candidates from different parts of India, using standardized evaluation criteria - all without any of the attendant logistical hassles, and with tremendous savings in cost and effort. For job-seekers, we provide a platform where they have access to hundreds of recruiters from across the country, based on a completely objective and standardized score, dramatically improving their chances of getting their dream job, with much less effort.
-                               </p>
-                            </div>
-                            <div class="col s6 ">
-                                <img class="hoverable " style="width:100%;border-radius:10px; " src="img/space_shopping.png " alt=" ">
-                            </div>
-                        </div>
-               </div> 
-                
+        </div>
+
     </div>
-    <div class="col s12 " style="height:100px;; "></div>
+    <div class="col s12 " style="height:100px;"></div>
     <div class="row " style="overflow: hidden; ">
-            <div class="col s12 " >
-                    <div class="blue lighten-4 " style="width:2500px;height:600px;transform:rotate(16deg);position: relative;top:-100px;left:-100px; "></div>
-                </div>
-            <div class="col s12 " style="margin-top:-600px;top:0px;position:relative; ">
-                <br><br><br><br><br>
-                    <h1 class="center-align " style="font-size:5em; "><b>What We Have <span class="blue-text text-darken-4 ">Acheive</span></h1>
-                </div>
-                
-                <div class="col s12 " style="margin-top:-200px;top:0px;position:relative; ">
-                    <div class="col s4 ">
-                        <center>
-                            <img class="z-depth-1 hoverable " style="width:100%; border-radius:10px; " src="img/comp-emx-_recovered_.png " alt=" ">
-                            <h5 class="indigo-text text-lighten-2 ">5K+ Existing Vacancies</h5>
-                        </center>
-                    </div>
-                    <div class="col s4 ">
-                        <center>
-                            <img class="z-depth-1 hoverable " style="width:100%; border-radius:10px; " src="img/student.jpg " alt=" ">
-                            <h5 class="indigo-text text-lighten-2 ">100K+ Job applicants</h5>
-                        </center>
-                    </div>
-                    <div class="col s4 ">
-                        <center>
-                            <img class="z-depth-1 hoverable " style="width:100%; border-radius:10px; " src="img/captain_america.jpg " alt=" ">
-                            <h5 class="indigo-text text-lighten-2 ">500+ Recruiters From Startups and MNCs</h5>
-                        </center>
-                    </div>
-                    <div class="col s12 " style="height:50px; "></div>
-                </div>
+        <div class="col s12 ">
+            <div class="blue lighten-4 " style="width:2500px;height:600px;transform:rotate(16deg);position: relative;top:-100px;left:-100px; "></div>
+        </div>
+        <div class="col s12 " style="margin-top:-600px;top:0px;position:relative; ">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 class="center-align " style="font-size:5em; ">
+                <b>What We Have
+                    <span class="blue-text text-darken-4 ">Acheive</span>
+                </b>
+            </h1>
+        </div>
+
+        <div class="col s12 " style="margin-top:-200px;top:0px;position:relative; ">
+            <div class="col l4 s12 ">
+                <center>
+                    <img class="z-depth-1 hoverable " style="width:100%; border-radius:10px; " src="img/comp-emx-_recovered_.png " alt=" ">
+                    <h5 class="indigo-text text-lighten-2 ">5K+ Existing Vacancies</h5>
+                </center>
+            </div>
+            <div class="col l4 s12 ">
+                <center>
+                    <img class="z-depth-1 hoverable " style="width:100%; border-radius:10px; " src="img/student.jpg " alt=" ">
+                    <h5 class="indigo-text text-lighten-2 ">100K+ Job applicants</h5>
+                </center>
+            </div>
+            <div class="col l4 s12 ">
+                <center>
+                    <img class="z-depth-1 hoverable " style="width:100%; border-radius:10px; " src="img/captain_america.jpg " alt=" ">
+                    <h5 class="indigo-text text-lighten-2 ">500+ Recruiters From Startups and MNCs</h5>
+                </center>
+            </div>
+            <div class="col s12 " style="height:50px; "></div>
+        </div>
     </div>
     <div class="row " style="height:100%;background:url( 'img/howit.png');background-size:cover; ">
-            <div class="col s12 ">
-                    <h1 class="center-align " style="font-size:5em; "><b>How It <span class="blue-text text-darken-4 ">Works</span></h1>
-                </div>
-                <div class="col s12 " style="height:50px; "></div>
-                <div class="col s12 ">
-                    <div class="col s6 offset-s3 ">
-                        <center>
-                            <!-- <img style="width:100%; " src="img/howit.png " alt=" "> -->
-                            <div class="col s12 ui label white blue-text z-depth-5 " style="border-radius:50px; ">
-                               <h5> <b>Registration and schedule test date</b></h5>
+        <div class="col s12 ">
+            <h1 class="center-align " style="font-size:5em; ">
+                <b>How It
+                    <span class="blue-text text-darken-4 ">Works</span>
+                </b>
+            </h1>
         </div>
-        <div class="col s12 " style="height:10px; "></div>
-        <div class="col s12 ui label white blue-text z-depth-5 " style="border-radius:50px; ">
-            <h5><b>Take exam and get score within 1-2 weeks </b></h5>
+        <div class="col s12 " style="height:50px; "></div>
+        <div class="col s12 ">
+            <div class="col l6 offset-l3 s12 ">
+                <center>
+                    <!-- <img style="width:100%; " src="img/howit.png " alt=" "> -->
+                    <div class="col s12 ui label white blue-text z-depth-5 " style="border-radius:50px; ">
+                        <h5>
+                            <b>Registration and schedule test date</b>
+                        </h5>
+                    </div>
+                    <div class="col s12 " style="height:10px; "></div>
+                    <div class="col s12 ui label white blue-text z-depth-5 " style="border-radius:50px; ">
+                        <h5>
+                            <b>Take exam and get score within 1-2 weeks </b>
+                        </h5>
+                    </div>
+                    <div class="col s12 " style="height:10px; "></div>
+                    <div class="col s12 ui label white blue-text z-depth-5 " style="border-radius:50px; ">
+                        <h5>
+                            <b>Get Interview calls within 1 week of result</b>
+                        </h5>
+                    </div>
+                    <div class="col s12 " style="height:10px; "></div>
+                    <div class="col s12 ui label white blue-text z-depth-5 " style="border-radius:50px; ">
+                        <h5>
+                            <b>Get placement</b>
+                        </h5>
+                    </div>
+                    <div class="col s12 " style="height:10px; "></div>
+                </center>
+            </div>
         </div>
-        <div class="col s12 " style="height:10px; "></div>
-        <div class="col s12 ui label white blue-text z-depth-5 " style="border-radius:50px; ">
-            <h5><b>Get Interview calls within 1 week of result</b></h5>
-        </div>
-        <div class="col s12 " style="height:10px; "></div>
-        <div class="col s12 ui label white blue-text z-depth-5 " style="border-radius:50px; ">
-            <h5><b>Get placement</b> </h5>
-        </div>
-        <div class="col s12 " style="height:10px; "></div>
-        </center>
-    </div>
-    </div>
     </div>
     <div class="row ">
         <div class="col s12 ">
-            <br><br><br><br><br>
-            <h1 class="center-align " style="font-size:5em; "><b>Reason To <span class="blue-text text-darken-4 ">Select</span></h1>
-                </div>
-                <div class="col s12 " style="height:50px; "></div>
-                <div class="col s12 ">
-                    <div class="col s6 hoverable " style="border-radius:10px; ">
-                        <center>
-                            <div class="card col s12 z-depth-0 ">
-                                <div class="col s6 ">
-                                    <img style="width:100%; " src="img/ufo-01.png " alt=" ">
-                                </div>
-                                <div class="col s6 ">
-                                    <p class="flow-text light-blue-text text-lighten-3 " style="text-align:justify; ">
-                                            Job offers from Startups and MNCs within 3 months of registration
-                                    </p>
-                                </div>
-                            </div>
-                        </center>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 class="center-align " style="font-size:5em; ">
+                <b>Reason To
+                    <span class="blue-text text-darken-4 ">Select</span>
+                </b>
+            </h1>
+        </div>
+        <div class="col s12 " style="height:50px; "></div>
+        <div class="col s12 ">
+            <div class="col l6 s12 hoverable " style="border-radius:10px; ">
+                <center>
+                    <div class="card col s12 z-depth-0 ">
+                        <div class="col s6 ">
+                            <img style="width:100%; " src="img/ufo-01.png " alt=" ">
+                        </div>
+                        <div class="col s6 ">
+                            <p class="flow-text light-blue-text text-lighten-3 " style="text-align:justify; ">
+                                Job offers from Startups and MNCs within 3 months of registration
+                            </p>
+                        </div>
                     </div>
-                    <div class="col s6 hoverable " style="border-radius:10px; ">
-                        <center>
-                            <div class="card col s12 z-depth-0 ">
-                                <div class="col s6 ">
-                                    <img style="width:100%; " src="img/record.png " alt=" ">
-                                </div>
-                                <div class="col s6 ">
-                                    <p class="flow-text light-blue-text text-lighten-3 " style="text-align:justify; ">
-                                            Better Annual Packages
-                                    </p>
-                                </div>
-                            </div>
-                        </center>
+                </center>
+            </div>
+            <div class="col l6 s12 hoverable " style="border-radius:10px; ">
+                <center>
+                    <div class="card col s12 z-depth-0 ">
+                        <div class="col s6 ">
+                            <img style="width:100%; " src="img/record.png " alt=" ">
+                        </div>
+                        <div class="col s6 ">
+                            <p class="flow-text light-blue-text text-lighten-3 " style="text-align:justify; ">
+                                Better Annual Packages
+                            </p>
+                        </div>
                     </div>
-                    <div class="col s12 " style="height:10px; "></div>
-                    <div class="col s6 hoverable " style="border-radius:10px; ">
-                        <center>
-                            <div class="card col s12 z-depth-0 ">
-                                <div class="col s6 ">
-                                    <img style="width:100%; " src="img/she.jpg " alt=" ">
-                                </div>
-                                <div class="col s6 ">
-                                    <p class="flow-text light-blue-text text-lighten-3 " style="text-align:justify; ">
-                                            Opportunity to get placed in dream company
-                                    </p>
-                                </div>
-                            </div>
-                        </center>
+                </center>
+            </div>
+            <div class="col s12 " style="height:10px; "></div>
+            <div class="col l6 s12 hoverable " style="border-radius:10px; ">
+                <center>
+                    <div class="card col s12 z-depth-0 ">
+                        <div class="col s6 ">
+                            <img style="width:100%; " src="img/she.jpg " alt=" ">
+                        </div>
+                        <div class="col s6 ">
+                            <p class="flow-text light-blue-text text-lighten-3 " style="text-align:justify; ">
+                                Opportunity to get placed in dream company
+                            </p>
+                        </div>
                     </div>
-                    <div class="col s6 hoverable " style="border-radius:10px; ">
-                        <center>
-                            <div class="card col s12 z-depth-0 ">
-                                <div class="col s6 ">
-                                    <img style="width:100%; " src="img/he.jpg " alt=" ">
-                                </div>
-                                <div class="col s6 ">
-                                    <p class="flow-text light-blue-text text-lighten-3 " style="text-align:justify; ">
-                                            Much less effort for off-campus placement
-                                    </p>
-                                </div>
-                            </div>
-                        </center>
+                </center>
+            </div>
+            <div class="col l6 s12 hoverable " style="border-radius:10px; ">
+                <center>
+                    <div class="card col s12 z-depth-0 ">
+                        <div class="col s6 ">
+                            <img style="width:100%; " src="img/he.jpg " alt=" ">
+                        </div>
+                        <div class="col s6 ">
+                            <p class="flow-text light-blue-text text-lighten-3 " style="text-align:justify; ">
+                                Much less effort for off-campus placement
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </center>
+            </div>
+        </div>
     </div>
     <div class="row hide ">
-            <div class="col s12 ">
-                <br><br><br><br><br>
-                    <h1 class="center-align " style="font-size:5em; "><b>Our <span class="blue-text text-darken-4 ">Partners</span></h1>
-                </div>
-                <div class="col s12 " style="height:50px; "></div>
-                <div class="row container ">
-                    <div class="col s3 ">
-                        <center>
-                            <div class="card " style="border-radius:100%; ">
-                                <br>
-                                <h1 style="font-size:7em; "><b>NY</b></h1>
+        <div class="col s12 ">
             <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h1 class="center-align " style="font-size:5em; ">
+                <b>Our
+                    <span class="blue-text text-darken-4 ">Partners</span>
+                </b>
+            </h1>
         </div>
-        </center>
-    </div>
-    <div class="col s3 ">
-        <center>
-            <div class="card " style="border-radius:100%; ">
-                <br>
-                <h1 style="font-size:7em; "><b>NY</b></h1>
-                <br>
+        <div class="col s12 " style="height:50px; "></div>
+        <div class="row container ">
+            <div class="col s3 ">
+                <center>
+                    <div class="card " style="border-radius:100%; ">
+                        <br>
+                        <h1 style="font-size:7em; ">
+                            <b>NY</b>
+                        </h1>
+                        <br>
+                    </div>
+                </center>
             </div>
-        </center>
-    </div>
-    <div class="col s3 ">
-        <center>
-            <div class="card " style="border-radius:100%; ">
-                <br>
-                <h1 style="font-size:7em; "><b>NY</b></h1>
-                <br>
+            <div class="col s3 ">
+                <center>
+                    <div class="card " style="border-radius:100%; ">
+                        <br>
+                        <h1 style="font-size:7em; ">
+                            <b>NY</b>
+                        </h1>
+                        <br>
+                    </div>
+                </center>
             </div>
-        </center>
-    </div>
-    <div class="col s3 ">
-        <center>
-            <div class="card " style="border-radius:100%; ">
-                <br>
-                <h1 style="font-size:7em; "><b>NY</b></h1>
-                <br>
+            <div class="col s3 ">
+                <center>
+                    <div class="card " style="border-radius:100%; ">
+                        <br>
+                        <h1 style="font-size:7em; ">
+                            <b>NY</b>
+                        </h1>
+                        <br>
+                    </div>
+                </center>
             </div>
-        </center>
-    </div>
-    <div class="col s3 ">
-        <center>
-            <div class="card " style="border-radius:100%; ">
-                <br>
-                <h1 style="font-size:7em; "><b>NY</b></h1>
-                <br>
+            <div class="col s3 ">
+                <center>
+                    <div class="card " style="border-radius:100%; ">
+                        <br>
+                        <h1 style="font-size:7em; ">
+                            <b>NY</b>
+                        </h1>
+                        <br>
+                    </div>
+                </center>
             </div>
-        </center>
-    </div>
-    <div class="col s3 ">
-        <center>
-            <div class="card " style="border-radius:100%; ">
-                <br>
-                <h1 style="font-size:7em; "><b>NY</b></h1>
-                <br>
+            <div class="col s3 ">
+                <center>
+                    <div class="card " style="border-radius:100%; ">
+                        <br>
+                        <h1 style="font-size:7em; ">
+                            <b>NY</b>
+                        </h1>
+                        <br>
+                    </div>
+                </center>
             </div>
-        </center>
-    </div>
-    <div class="col s3 ">
-        <center>
-            <div class="card " style="border-radius:100%; ">
-                <br>
-                <h1 style="font-size:7em; "><b>NY</b></h1>
-                <br>
+            <div class="col s3 ">
+                <center>
+                    <div class="card " style="border-radius:100%; ">
+                        <br>
+                        <h1 style="font-size:7em; ">
+                            <b>NY</b>
+                        </h1>
+                        <br>
+                    </div>
+                </center>
             </div>
-        </center>
-    </div>
-    <div class="col s3 ">
-        <center>
-            <div class="card " style="border-radius:100%; ">
-                <br>
-                <h1 style="font-size:7em; "><b>NY</b></h1>
-                <br>
+            <div class="col s3 ">
+                <center>
+                    <div class="card " style="border-radius:100%; ">
+                        <br>
+                        <h1 style="font-size:7em; ">
+                            <b>NY</b>
+                        </h1>
+                        <br>
+                    </div>
+                </center>
             </div>
-        </center>
-    </div>
+            <div class="col s3 ">
+                <center>
+                    <div class="card " style="border-radius:100%; ">
+                        <br>
+                        <h1 style="font-size:7em; ">
+                            <b>NY</b>
+                        </h1>
+                        <br>
+                    </div>
+                </center>
+            </div>
 
-    </div>
+        </div>
     </div>
 
     <!-- HEADER END -->
-    
+
     <!-- FOOTER START -->
     <div id="myfooter">
     </div>
     <!-- FOOTER END -->
-    
 
-<!-- Compiled and minified JavaScript -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="js/myfooter.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-<script>
-  $(document).ready(function(){
-  });
-</script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="js/myfooter.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            M.AutoInit();
+        });
+    </script>
 </body>
 
 </html>

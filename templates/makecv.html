@@ -50,7 +50,7 @@
         <form class="col s8 offset-s2" action="/cvbuilder" method="post">
             <div class="col s12" style="height:100px;"></div>
             <h3 class="indigo-text">CV BUILDER</h3>
-            <div class="card z-depth-1 col s12" style="padding:10px;">
+            <div class="card z-depth-0 col s12" style="padding:10px;">
                 <div id="form1" class="card z-depth-2 col s8 offset-s2" style="padding:10px;">
                     <h5>
                         <b>PERSONAL DETAILS</b>
@@ -83,7 +83,7 @@
                     </div>
                     
                 </div>
-                <div class="card z-depth-2 col s8 offset-s2" style="padding:10px;">
+                <div id="form2" class="card z-depth-2 col s8 offset-s2" style="padding:10px;display:none;">
                     <h5>
                         <b>EDUCATION DETAILS</b>
                     </h5><br>
@@ -129,11 +129,14 @@
                         <input id="marks10" type="text" name="collegemarks">
                         <label for="marks10">Marks in % / CGPA</label>
                     </div>
-                    <div class="input-field col s12">
-                            <input class="btn btn-large indigo col s6 offset-s6" type="button" value="Next" id="step1">
+                    <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
+                        </div>
+                    <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step2">
                         </div>
                 </div>
-                <div class="card z-depth-2 col s8 offset-s2" style="padding:10px;">
+                <div id="form3" class="card z-depth-2 col s8 offset-s2" style="padding:10px;display:none;">
                     <h5><b>PROJECTS/INTERNSHIPS/JOBS</b></h5>
                     <br>
                     <div id="jobspanel">
@@ -146,12 +149,15 @@
                     <div class="col s12">
                         <input type="button" class="btn btn-small blue accent-4" value="Add More">
                     </div>
-                        <div class="input-field col s6 offset-s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step1">
+                    <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
+                        </div>
+                    <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
                         </div>
 
                 </div>
-                <div class="card z-depth-2 col s8 offset-s2" style="padding:10px;">
+                <div id="form4" class="card z-depth-2 col s8 offset-s2" style="padding:10px;display:none;">
                         <h5><b>PROJECTS/INTERNSHIPS/JOBS</b></h5>
                         <br>
                         <div id="skillspanel">
@@ -164,11 +170,14 @@
                         <div class="col s12">
                             <input type="button" class="btn btn-small blue accent-4" value="Add More">
                         </div>
-                            <div class="input-field col s6 offset-s6">
-                                <input class="btn btn-large indigo col s12" type="button" value="Next" id="step1">
+                        <div class="input-field col s6">
+                                <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
+                            </div>
+                        <div class="input-field col s6">
+                                <input class="btn btn-large indigo col s12" type="button" value="Next" id="step4">
                             </div>
                 </div>
-                <div class="card z-depth-2 col s8 offset-s2" style="padding:10px;">
+                <div id="form5" class="card z-depth-2 col s8 offset-s2" style="padding:10px;display:none;">
                     <h5><b>Careers</b></h5>
                     <br>
                     <div class="input-field col s12">
@@ -188,14 +197,23 @@
                         <label for="when">From when you are willing to join the company</label>
 
                     </div>
-                    <div class="input-field col s6 offset-s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step1">
+                    <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back4">
+                        </div>
+                    <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step5">
                         </div>
                 </div>
                 <br>
                 <br>
                 <div class="col s12">
-                    <input type="submit" value="Make CV">
+                        <div class="input-field col s6 offset-s6">
+                                <input class="btn btn-large indigo" type="button" value="Back" id="back5">
+                                <input class="btn btn-large light-blue accent-4" type="submit" value="Make CV">
+                            </div>
+                        <div class="input-field col s6">
+                            </div>
+                        
                 </div>
             </div>
         </form>
@@ -207,6 +225,7 @@
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="../js/myfooter.js"></script>
+    <script src="../js/stepform.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
         $(document).ready(function () {
