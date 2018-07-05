@@ -22,13 +22,8 @@ app.use(session({ secret: 'kljk' }));
 app.use(express.static('css'));
 app.use('/img', express.static('img'));
 app.use('/myfont', express.static('myfont'));
-app.use("/signup.html", express.static('signup.html'));
-app.use('/login.html', express.static('login.html'));
-app.use('/makecv.html', express.static('makecv.html'));
-app.use('/profile.html', express.static('profile.html'));
-app.use('/showcv.html', express.static('showcv.html'));
-app.use('/comlist.html', express.static('/comlist.html'));
-app.use('/cominfo.html', express.static('cominfo.html'));
+app.use('/templates', express.static('templates'));
+app.use('/js', express.static('js'));
 
 //Connecting to local database
 const sqlite3 = require('sqlite3').verbose();
