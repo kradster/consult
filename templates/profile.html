@@ -43,6 +43,11 @@
         .no-padd {
             padding: 0px !important;
         }
+        .profile-active{
+            color: black !important;
+            border-color: #000 !important;
+        }
+        
     </style>
 </head>
 
@@ -99,11 +104,323 @@
             </div>
         </div>
     </div>
-    <div class="row" style="height:100%;background:url('/img/youaregood.jpg');background-position:center;background-repeat: no-repeat;">
-        <center>
-            <br><br><br><br>
-            <a class="btn blue accent-4 btn-large" href="/getscore"><b>GET SCORE</b></a>
-        </center>
+    <div class="row"></div>
+    <div class="row">
+        <div class="col s12">
+            <div class="col s1"></div>
+            <a style="border: 1px solid #aaa;" href="../templates/profile.html" class="profile-active z-depth-0 btn white grey-text grey lighten-4"><b>Profile</b></a>
+            <a style="border: 1px solid #aaa;"href="../templates/myscore.html" class="z-depth-0 btn white grey-text grey lighten-4"><b>My Score</b></a>
+            <a style="border: 1px solid #aaa;"href="../templates/comlist.html" class="z-depth-0 btn white grey-text grey lighten-4"><b>Job Opportunities</b></a>
+            <a style="border: 1px solid #aaa;"href="../templates/myjob.html" class="z-depth-0 btn white grey-text grey lighten-4"><b>My Job</b></a>
+            <a style="border: 1px solid #aaa;"href="../templates/schedule.html" class="z-depth-0 btn white grey-text grey lighten-4"><b>Schedule Test</b></a>
+        </div>
+    </div>
+    <div class="row grey lighten-3">
+        <div class="row">
+            <div class="col s8 offset-s2 card no-padd z-depth-0">
+                <div class="col s12 grey lighten-4">
+                    <br>
+                    <h3><b>My Profile</b></h3>
+                    <br>
+                </div>
+                <div class="col s12 no-padd">
+                    <br>
+                    <div class="col s12 no-padd">
+                            <button id="tab1" class="btn z-depth-0 light-blue white-text">Personal Detials</button>
+                            <button id="tab2" class="btn z-depth-0 blue">Education</button>
+                            <button id="tab3" class="btn z-depth-0 amber accent-4">Profession</button>
+                            <button id="tab4" class="btn z-depth-0 green accent-4">Technical Detials</button>
+                    </div>
+                    
+                        <div id="panel1" class="col s12 light-blue">
+                            <br>
+                            <div class="col s10 offset-s1 white">
+                                <h5><b>PERSONAL DETAILS</b></h5>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Name</b></div>
+                                    <div class="col s8">jhon doe</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Date of birth</b></div>
+                                    <div class="col s8">08/09/1990</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Gender</b></div>
+                                    <div class="col s8">Male</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Email id</b></div>
+                                    <div class="col s8">jhondoe@gmail.com</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Contact no</b></div>
+                                    <div class="col s8">1234567890</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Aadhar no</b></div>
+                                    <div class="col s8">1234-2345-4577</div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
+                                <div class="col s10 offset-s1 white">
+                                    <h5><b>ADDRESS</b></h5>
+                                    <br>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Address</b></div>
+                                        <div class="col s8">huose no-69 lorem</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>State</b></div>
+                                        <div class="col s8">capetown</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>City</b></div>
+                                        <div class="col s8">madagasker</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>ZIP CODE</b></div>
+                                        <div class="col s8">880067</div>
+                                    </div>
+                                    <div class="row"></div>
+                                </div>
+                            <div class="row"></div>
+                        </div>
+                        <div id="panel2" class="col s12 blue" style="display:none;">
+                            <br>
+                            <div class="col s10 offset-s1 white">
+                                <h5><b>EDUCATION DETAILS</b></h5>
+                                <div class="divider"></div>
+                                <br>
+                                <h6><b>10TH</b></h6>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3"><b>School Name</b></div>
+                                    <div class="col s8">loravassa</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Board</b></div>
+                                    <div class="col s8">hullululu</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Passing Year</b></div>
+                                    <div class="col s8">2013</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Marks</b></div>
+                                    <div class="col s8">90%</div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s10 offset-s1 white">
+                                <h5><b>EDUCATION DETAILS</b></h5>
+                                <div class="divider"></div>
+                                <br>
+                                <h6><b>12TH</b></h6>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3"><b>School Name</b></div>
+                                    <div class="col s8">loravassa</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Board</b></div>
+                                    <div class="col s8">hullululu</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Passing Year</b></div>
+                                    <div class="col s8">2013</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Marks</b></div>
+                                    <div class="col s8">90%</div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
+                            
+                            <div class="col s10 offset-s1 white">
+                                    <h5><b>Collage</b></h5>
+                                    <br>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Collage Name</b></div>
+                                        <div class="col s8">IIIT </div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Board</b></div>
+                                        <div class="col s8">AICTE</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Passing Year</b></div>
+                                        <div class="col s8">madagasker</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Marks</b></div>
+                                        <div class="col s8">95%</div>
+                                    </div>
+                                    <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
+                            
+                        </div>
+                        <div id="panel3" class="col s12 amber accent-4" style="display:none;">
+                            <br>
+                            <div class="col s10 offset-s1 white">
+                                <h5><b>PROFESSIONAL DETAILS</b></h5>
+                                <br>
+                                <div class="divider"></div>
+                                <h6><b>EMPLOYEMENT DETAILS</b></h6>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Company Name</b></div>
+                                    <div class="col s8">Google</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>City</b></div>
+                                    <div class="col s8">Delhi</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Job Title</b></div>
+                                    <div class="col s8">Software developer</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Job Profile</b></div>
+                                    <div class="col s8">developing new software and testing</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Salary</b></div>
+                                    <div class="col s8">25 <small>LPA</small></div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
+                                <div class="col s10 offset-s1 white">
+                                    <h5><b>JOB EXPECTATIONS</b></h5>
+                                    <br>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Availabel for internship after</b></div>
+                                        <div class="col s8">21/7/2018</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Availabel to work after</b></div>
+                                        <div class="col s8">capetown</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Preferred City</b></div>
+                                        <div class="col s8">Delhi</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Salary Expected</b></div>
+                                        <div class="col s8">30 <small>LPA</small></div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Hide Profile</b></div>
+                                        <div class="col s8">No</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Job offer from company</b></div>
+                                        <div class="col s8">Yes , from Apple</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3"><b>Salary Offered</b></div>
+                                        <div class="col s8">28 <small>LPA</small></div>
+                                    </div>
+                                    <div class="row"></div>
+                                </div>
+                            <div class="row"></div>
+                        </div>
+                        <div id="panel4" class="col s12 green accent-4" style="display:none;">
+                            <br>
+                            <div class="col s10 offset-s1 white">
+                                <h5><b>TECHNICAL DETAILS</b></h5>
+                                <br>
+                                <div class="divider"></div>
+                                <br>
+                                <h6><b>Project Details</b></h6>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Project Name</b></div>
+                                    <div class="col s8">fortnite game</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Guide name</b></div>
+                                    <div class="col s8">steve jobs</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Duration</b></div>
+                                    <div class="col s8">6 Month</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>Institute Name</b></div>
+                                    <div class="col s8">IIT DELHI</div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3"><b>ProJect Details</b></div>
+                                    <div class="col s8">1234567890</div>
+                                </div>
+                                <div class="row"></div>
+                                
+                            </div>
+                            <div class="row"></div>
+                                <div class="col s10 offset-s1 white">
+                                    <h5><b>TECHNICAL SKILLS</b></h5>
+                                    <br>
+                                    <div class="col s12">
+                                        <div class="ui label">JAVA CORE</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="ui label">JAVA ADVANCED</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="ui label">ANDROID</div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="ui label">NODE JS</div>
+                                    </div>
+                                    <div class="row"></div>
+                                </div>
+                            <div class="row"></div>
+                        </div>
+                        
+                    
+                </div>
+            </div>
+        </div>
     </div>
      <!-- FOOTER START -->
      <div id="myfooter">
@@ -118,12 +435,15 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="../js/mysidebar.js"></script>
 <script src="../js/afterlogin.js"></script>
+<script src="../js/profiletab.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <script>
   $(document).ready(function(){
       M.AutoInit();
+
+
+   });
       
-  });
 </script>
 </body>
 </html>
