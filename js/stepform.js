@@ -1,5 +1,11 @@
 var $RESULT = $('#fullform');
 
+var $ADDMOREJOBS = $('#addmorejobs');
+var $ADDMORESKILLS = $('#addmoreskills');
+
+var $JOBSPANEl = $('#jobspanel');
+var $SKIILSPANEl = $('#skillspanel');
+
 var $FORM1 = $('#form1');
 var $FORM2 = $('#form2');
 var $FORM3 = $('#form3');
@@ -30,6 +36,15 @@ $BACK3.on('click',_funcB3);
 $BACK4.on('click',_funcB4);
 $BACK5.on('click',_funcB5);
 
+$ADDMOREJOBS.on('click',_funcAddJob);
+$ADDMORESKILLS.on('click',_funcAddSkills);
+
+function _funcAddJob(){
+    AddMoreJobs($JOBSPANEl);
+}
+function _funcAddSkills(){
+    AddMoreSkills($SKIILSPANEl);
+}
 
 function nextStep(showform, hideform) {
     showform.css('display', 'block');
@@ -74,6 +89,13 @@ function _funcB4() {
 function _funcB5() {
     nextStep($FORM5, $RESULT)
 
+}
+
+function AddMoreJobs(element){
+    element.append('<div class="col s12"><div class="input-field col s6"><input type="text" name="projects[]" id="projects" placeholder="Project/Internship/Job"></div><div class="input-field col s3"><input class="datepicker" type="text" name="startdate" id="startdate" placeholder="Start Date"></div><div class="input-field col s3"><input class="datepicker" type="text" name="enddate" id="enddate" placeholder="End Date"></div></div>');
+}
+function AddMoreSkills(element){
+    element.append('<div class="input-field col s12"><input type="text" name="skills[]" id="skills" placeholder="Enter Your Skills"></div>');
 }
 
 function Get_All_Page_Data() {
