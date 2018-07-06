@@ -167,6 +167,17 @@ app.post('/addjob', (req, res) => {
     //res.send(req.body);
 });
 
+app.get('/getjoblistings', (req, res) => {
+    db.all("SELECT * FROM JobListings", (err, row) => {
+        if (!row) {
+            console.log("No rows found");
+            return res.send({ success: false, message: "0 job listings" });
+        }
+        console.log("Fetching job listings...", row.length, "rows found");
+        return res.send({ success: true, data: row });
+    });
+});
+
 app.listen(process.env.PORT || 3000, () => {
     console.log('listening on : ' + (process.env.PORT || 3000));
 });
