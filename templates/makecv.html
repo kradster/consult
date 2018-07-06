@@ -24,7 +24,7 @@
             width: 100%;
             font-size: 16px;
             margin: 0 0 8px 0;
-            padding: 0;
+            padding:0px 0px 0px 10px !important;
             background-color: transparent;
             box-shadow:0px
         }
@@ -34,7 +34,7 @@
             box-shadow:none;
         }
         input::-webkit-input-placeholder{
-            color: #eee;
+            color: grey;
         }        
     </style>
 </head>
@@ -58,25 +58,20 @@
                     <br>
                     <br>
                     <div class="input-field col s6">
-                        <input type="text" name="fullname" id="fullname">
-                        <label for="fullname">Full Name</label>
+                        <input placeholder="Full Name" type="text" name="fullname" id="fullname">
                     </div>
                     
                     <div class="input-field col s6">
-                        <input type="text" name="fathersname">
-                        <label for="fathersname">Father Name</label>
+                        <input type="text" name="fathersname" id="ftrname" placeholder="Father Name">
                     </div>
                     <div class="input-field col s6">
-                        <input type="text" name="dob" id="dob">
-                        <label for="dob">DOB</label>
+                        <input class="datepicker" type="text" name="dob" id="dob" placeholder="Date Of Birth">
                     </div>
                     <div class="input-field col s6">
-                        <input type="text" name="city" id="city">
-                        <label for="city">City</label>
+                        <input type="text" name="city" id="city" placeholder="City">
                     </div>
                     <div class="input-field col s6">
-                        <input type="text" name="aadharno" id="aadharno">
-                        <label for="aadharno">Aadhar No</label>
+                        <input type="text" name="aadharno" id="aadharno" placeholder="Aadhar No">
                     </div>
                     <div class="input-field col s6">
                         <input class="btn btn-large indigo col s12" type="button" value="Next" id="step1">
@@ -89,45 +84,36 @@
                     </h5><br>
                     <div class="ui label">10TH</div><br>
                     <div class="input-field col s4">
-                        <input id="school10" type="text" name="school10">
-                        <label for="school10">School Name</label>
+                        <input id="school10" type="text" name="school10" placeholder="School Name">
                     </div>
                     <div class="input-field col s4">
-                        <input id="board10" type="text" name="board10">
-                        <label for="board10">School Board</label>
+                        <input id="board10" type="text" name="board10" placeholder="School Board">
                         </div>
                     <div class="input-field col s4">
-                        <input id="marks10" type="text" name="marks10">
-                        <label for="marks10">Marks in % / CGPA</label>
+                        <input id="marks10" type="text" name="marks10" placeholder="Marks in % / CGPA">
                     </div>
                     
 
                     <div class="ui label">12TH</div><br>
                     <div class="input-field col s4">
-                        <input id="school12" type="text" name="school12">
-                        <label for="school12">School Name</label>
+                        <input id="school12" type="text" name="school12" placeholder="School Name">
                     </div>
                     <div class="input-field col s4">
-                        <input id="board12" type="text" name="board12">
-                        <label for="board12">School Board</label>
+                        <input id="board12" type="text" name="board12" placeholder="School Board">
                         </div>
                     <div class="input-field col s4">
-                        <input id="marks12" type="text" name="marks12">
-                        <label for="marks12">Marks in % / CGPA</label>
+                        <input id="marks12" type="text" name="marks12" placeholder="Marks in % / CGPA">
                     </div>
 
                     <div class="ui label">GRADUATION</div><br>
                     <div class="input-field col s4">
-                        <input id="collegename" type="text" name="collegename">
-                        <label for="collegename">Collage Name</label>
+                        <input id="collegename" type="text" name="collegename" placeholder="Collage Name">
                     </div>
                     <div class="input-field col s4">
-                        <input id="collegeboard" type="text" name="collegeboard">
-                        <label for="collegeboard">Collage Board</label>
+                        <input id="collegeboard" type="text" name="collegeboard" placeholder="Collage Board">
                         </div>
                     <div class="input-field col s4">
-                        <input id="collegemarks" type="text" name="collegemarks">
-                        <label for="collegemarks">Marks in % / CGPA</label>
+                        <input id="collegemarks" type="text" name="collegemarks" placeholder="Marks">
                     </div>
                     <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
@@ -140,22 +126,20 @@
                     <h5><b>PROJECTS/INTERNSHIPS/JOBS</b></h5>
                     <br>
                     <div id="jobspanel">
-                        
+                        <div class="col s12">
                         <div class="input-field col s6">
-                            <input type="text" name="projects[]" id="projects">
-                            <label for="projects">Project/Internship/Job</label>
+                            <input type="text" name="projects[]" id="projects" placeholder="Project/Internship/Job">
                         </div>
                         <div class="input-field col s3">
-                            <input class="datepicker" type="text" name="startdate" id="startdate">
-                            <label for="startdate">Star Date</label>
+                            <input class="datepicker" type="text" name="startdate" id="startdate" placeholder="Start Date">
                         </div>
                         <div class="input-field col s3">
-                            <input class="datepicker" type="text" name="enddate" id="enddate">
-                            <label for="enddate">End Date</label>
+                            <input class="datepicker" type="text" name="enddate" id="enddate" placeholder="End Date">
+                        </div>
                         </div>
                     </div>
                     <div class="col s12">
-                        <input type="button" class="btn btn-small blue accent-4" value="Add More">
+                        <input id="addmorejobs" type="button" class="btn btn-small blue accent-4" value="Add More">
                     </div>
                     <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
@@ -169,14 +153,12 @@
                         <h5><b>SKILL</b></h5>
                         <br>
                         <div id="skillspanel">
-                            
                             <div class="input-field col s12">
-                                <input type="text" name="skills[]" id="skills">
-                                <label for="skills">Skills</label>
+                                <input type="text" name="skills[]" id="skills" placeholder="Enter Your Skills">
                             </div>
                         </div>
                         <div class="col s12">
-                            <input type="button" class="btn btn-small blue accent-4" value="Add More">
+                            <input id="addmoreskills" type="button" class="btn btn-small blue accent-4" value="Add More">
                         </div>
                         <div class="input-field col s6">
                                 <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
@@ -235,7 +217,7 @@
     <!-- FOOTER END -->
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../js/myfooter.js"></script>
+    <script src="../js/afterlogin.js"></script>
     <script src="../js/stepform.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>

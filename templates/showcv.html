@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <style>
-        
-        input:not([type]), input[type=text]:not(.browser-default){
-    
+        input:not([type]),
+        input[type=text]:not(.browser-default) {
+
             border: none;
             outline: none;
             height: 3rem;
@@ -27,110 +27,49 @@
             margin: 0 0 8px 0;
             padding: 0;
             background-color: transparent;
-            box-shadow:0px
+            box-shadow: 0px
         }
-        input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]){
-            border-bottom:none;
-            -webkit-box-shadow:none;
-            box-shadow:none;
-        }
-        input::-webkit-input-placeholder{
-            color: #eee;
-        } 
-        .no-padd{
-            padding:0px !important;
-        }      
 
+        input:not([type]):focus:not([readonly]),
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #eee;
+        }
+
+        .no-padd {
+            padding: 0px !important;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION BAR START -->
-    <div class="navbar-fixed " style="position: fixed;top:0px;">
-        <nav class="blue accent-4 z-depth-0">
-            <div class="nav-wrapper container">
-          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-                <a href="#" class="brand-logo">
-                    <b style="font-size:1em">testQ</b>
-                </a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li>
-                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Home</b></a>
-                    </li>
-                    <li>
-                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Company</b></a>
-                    </li>
-                    <li>
-                        <a class="btn white blue-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
-                    </li>
-                    
-            </div>
-        </nav>
+    <!-- NAVIGATION BAR START -->
+    <div id="navigationbar">
+
     </div>
     <!-- NAVIGATION BAR END -->
 
-    <!-- SIDE BAR START -->
-    <ul id="slide-out" class="sidenav" style="background:url('img/cycle.jpg');">
-            <li><div class="user-view">
-              <div class="background">
-                <img style="width:100%;" src="img/cycle.jpg">
-              </div>
-              <a href="#user"><img style="width:90px;" class="circle" src="img/profilepic.jpg"></a>
-              <a href="#name"><span class="indigo-text name"><b>John Doe</b></span></a>
-              <a href="#email"><span class="indigo-text email"><b>jdandturk@gmail.com</b></span></a>
-            </div></li>
-            <li>
-                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Home</b></a>
-                </li>
-                <li>
-                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="index.html"><b>Company</b></a>
-                </li>
-                <li>
-                    <a class="btn indigo accent-4 white-text z-depth-0" style="border-radius:30px;" href="login.html"><b>Logout</b></a>
-                </li>
-          </ul>
-             
-    <!-- SIDE BAR END -->
     <div class="row" style="height:50px;"></div>
-    <div class="row no-padd">
-        <div class="col s12 no-padd">
-            <div class="col l3 m3 s12 no-padd">
-                <center>
-                    <img style="width:100%" src="/img/profilepic.jpg" alt="">
-                </center>
-            </div>
-            <div class="col l9 m9 s12 no-padd">
-                <div class="col s12">
-                    <h3><b>Lorem, ipsum.</b></h3>
-                    <div class="col l3 m4 s7 no-padd">
-                        loremepsum@gmail.com
-                    </div>
-                    <div class="col l2 m2 s3 no-padd">
-                        DELHI
-                    </div>
-                    <div class="col l2 m3 s2 no-padd">
-                        B.Tech
-                    </div>
-                </div>
-                <div class="col s12 no-padd">
-                    <br>
-                    <div class="input-field col l3 m3 s10 offset-s1">
-                        <a id="test"></a>
-                        <a class="btn blue accent-4 col s12" href="makecv.html"><b>VIEW RESUME</b></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="userprofile" class="row no-padd">
+
     </div>
 
     <div class="row grey lighten-2">
         <div class="col s12 grey lighten-2" style="height:50px;"></div>
         <div class="col s8 offset-s2 card" style="border-radius:5px;">
             <div id="resumebox" class="col s10 offset-s1">
-                <br><br>
-                <h4><b>lorem epsum</b></h4>
+                <br>
+                <br>
+                <h4>
+                    <b>lorem epsum</b>
+                </h4>
                 <div class="ui label blue-text blue">loremepsum@gmailcom</div>
                 <div>+91 1234567890</div>
                 <div>Delhi, Delhi</div>
@@ -138,160 +77,200 @@
                 <div class="divider"></div>
                 <br>
                 <div class="col s12 no-padd">
-                    <div class="col s3"><b style="font-size:1.5em">EDUCATION</b></div>
+                    <div class="col s3">
+                        <b style="font-size:1.5em">EDUCATION</b>
+                    </div>
                     <div class="col s9">
                         <div>DIPLOMA</div>
                         <div>Lorem, ipsum dolor.</div>
                         <div>DELHI</div>
-                        <div>99.99%</div><br>
-                        <div ><a data-html2canvas-ignore id="r1" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a></div>
+                        <div>99.99%</div>
+                        <br>
+                        <div>
+                            <a data-html2canvas-ignore id="r1" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a>
+                        </div>
                     </div>
                 </div>
                 <div>
-                    
-                </div>                
-                <div class="col s12 no-padd">
-                        <div class="divider"></div>
-                    <br>
-                    <div class="col s3"><b style="font-size:1.5em">JOBS</b></div>
-                    <div class="col s9">
-                        <div class="col s12 no-padd">
-                                <div>Demo worker</div>
-                                <div>Lorem comany name</div>
-                                <div>Duration</div>
-                                <div>WORK Lorem ipsum dolor sit amet.</div><br>    
-                        </div>
-                        <div class="col s12 no-padd">
-                                <div>Demo worker</div>
-                                <div>Lorem comany name</div>
-                                <div>Duration</div>
-                                <div>WORK Lorem ipsum dolor sit amet.</div><br>
-                        </div>
-                        
-                        <div  class="col s12 no-padd">
-                                <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a>
-                                
-                            </div>
-                    </div>
+
                 </div>
                 <div class="col s12 no-padd">
-                        
-                        <div class="divider"></div>
+                    <div class="divider"></div>
                     <br>
-                    <div class="col s3"><b style="font-size:1.5em">INTERNSHIPS</b></div>
-                    <div class="col s9">
-                        <div class="col s12 no-padd">
-                                <div>Demo worker</div>
-                                <div>Lorem comany name</div>
-                                <div>Duration</div>
-                                <div>WORK Lorem ipsum dolor sit amet.</div><br>    
-                        </div>
-                        <div class="col s12 no-padd">
-                                <div>Demo worker</div>
-                                <div>Lorem comany name</div>
-                                <div>Duration</div>
-                                <div>WORK Lorem ipsum dolor sit amet.</div><br>    
-                        </div>
-                        <div class="col s12 no-padd">
-                                <div>Demo worker</div>
-                                <div>Lorem comany name</div>
-                                <div>Duration</div>
-                                <div>WORK Lorem ipsum dolor sit amet.</div><br>    
-                        </div>
-                        <div class="col s12 no-padd">
-                                <div>Demo worker</div>
-                                <div>Lorem comany name</div>
-                                <div>Duration</div>
-                                <div>WORK Lorem ipsum dolor sit amet.</div><br>    
-                        </div>
-                        
-                        
-                        <div  class="col s12 no-padd">
-                                <a data-html2canvas-ignore id="r3" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a>
-                                
-                            </div>
+                    <div class="col s3">
+                        <b style="font-size:1.5em">JOBS</b>
                     </div>
-                </div>
-                <div  class="col s12 no-padd">
-                        <div class="divider"></div>
-                    <br>
-                    <div class="col s3"><b style="font-size:1.5em">ROLLS</b></div>
                     <div class="col s9">
-                        
-                        
-                        
                         <div class="col s12 no-padd">
-                                <a data-html2canvas-ignore id="r4" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a>
-                                
-                            </div>
-                    </div>
-                </div>
-                <div class="col s12 no-padd">
-                        
-                        <div class="divider"></div>
-                    <br>
-                    <div class="col s3"><b style="font-size:1.5em">SKILLS</b></div>
-                    <div class="col s9">
-                        <div class="col s6">
-                            <h6><b class="ui label">ANDROID</b></h6>
-                        </div>
-                        <div class="col s6">
-                            <h6><b class="ui label">WEBSITE DEVELOPMENT</b></h6>
-                        </div>
-                        <div class="col s6">
-                            <h6><b class="ui label">NODE JS</b></h6>
-                        </div>
-                        <div class="col s6">
-                            <h6><b class="ui label">NODE JS</b></h6>
-                        </div>
-                        <div class="col s6">
-                            <h6><b class="ui label">NODE JS</b></h6>
-                        </div>
-                        <div class="col s6">
-                            <h6><b class="ui label">NODE JS</b></h6>
-                        </div>
-                        <div class="col s6">
-                            <h6><b class="ui label">NODE JS</b></h6>
-                        </div>
-                        <div class="col s6">
-                            <h6><b class="ui label">NODE JS</b></h6>
-                        </div>
-                        <div class="col s6">
-                            <h6><b class="ui label">NODE JS</b></h6>
-                        </div>
-                        <div class="col s6">
-                            <h6><b class="ui label">NODE JS</b></h6>
-                        </div>
-                        
-                        
-                        <div  class="col s12 no-padd">
-                                
+                            <div>Demo worker</div>
+                            <div>Lorem comany name</div>
+                            <div>Duration</div>
+                            <div>WORK Lorem ipsum dolor sit amet.</div>
                             <br>
-                                <a data-html2canvas-ignore id="r5" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a>
-                                <br><br>
-                            </div>
+                        </div>
+                        <div class="col s12 no-padd">
+                            <div>Demo worker</div>
+                            <div>Lorem comany name</div>
+                            <div>Duration</div>
+                            <div>WORK Lorem ipsum dolor sit amet.</div>
+                            <br>
+                        </div>
+
+                        <div class="col s12 no-padd">
+                            <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a>
+
+                        </div>
                     </div>
                 </div>
-                
+                <div class="col s12 no-padd">
+
+                    <div class="divider"></div>
+                    <br>
+                    <div class="col s3">
+                        <b style="font-size:1.5em">INTERNSHIPS</b>
+                    </div>
+                    <div class="col s9">
+                        <div class="col s12 no-padd">
+                            <div>Demo worker</div>
+                            <div>Lorem comany name</div>
+                            <div>Duration</div>
+                            <div>WORK Lorem ipsum dolor sit amet.</div>
+                            <br>
+                        </div>
+                        <div class="col s12 no-padd">
+                            <div>Demo worker</div>
+                            <div>Lorem comany name</div>
+                            <div>Duration</div>
+                            <div>WORK Lorem ipsum dolor sit amet.</div>
+                            <br>
+                        </div>
+                        <div class="col s12 no-padd">
+                            <div>Demo worker</div>
+                            <div>Lorem comany name</div>
+                            <div>Duration</div>
+                            <div>WORK Lorem ipsum dolor sit amet.</div>
+                            <br>
+                        </div>
+                        <div class="col s12 no-padd">
+                            <div>Demo worker</div>
+                            <div>Lorem comany name</div>
+                            <div>Duration</div>
+                            <div>WORK Lorem ipsum dolor sit amet.</div>
+                            <br>
+                        </div>
+
+
+                        <div class="col s12 no-padd">
+                            <a data-html2canvas-ignore id="r3" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 no-padd">
+                    <div class="divider"></div>
+                    <br>
+                    <div class="col s3">
+                        <b style="font-size:1.5em">ROLLS</b>
+                    </div>
+                    <div class="col s9">
+
+
+
+                        <div class="col s12 no-padd">
+                            <a data-html2canvas-ignore id="r4" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 no-padd">
+
+                    <div class="divider"></div>
+                    <br>
+                    <div class="col s3">
+                        <b style="font-size:1.5em">SKILLS</b>
+                    </div>
+                    <div class="col s9">
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">ANDROID</b>
+                            </h6>
+                        </div>
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">WEBSITE DEVELOPMENT</b>
+                            </h6>
+                        </div>
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">NODE JS</b>
+                            </h6>
+                        </div>
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">NODE JS</b>
+                            </h6>
+                        </div>
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">NODE JS</b>
+                            </h6>
+                        </div>
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">NODE JS</b>
+                            </h6>
+                        </div>
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">NODE JS</b>
+                            </h6>
+                        </div>
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">NODE JS</b>
+                            </h6>
+                        </div>
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">NODE JS</b>
+                            </h6>
+                        </div>
+                        <div class="col s6">
+                            <h6>
+                                <b class="ui label">NODE JS</b>
+                            </h6>
+                        </div>
+
+
+                        <div class="col s12 no-padd">
+
+                            <br>
+                            <a data-html2canvas-ignore id="r5" style="font-family: sans-serif;" href="/makecv/12345">Add More+</a>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="col s12" style="height:50px;"></div>
     </div>
 
-   
-    
-    
 
-<!-- Compiled and minified JavaScript -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-<script>
-  $(document).ready(function(){
-      M.AutoInit();
-  });
-</script>
+
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../js/afterlogin.js"></script>
+    <script src="../js/userprofile.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            M.AutoInit();
+        });
+    </script>
 </body>
 
 </html>
