@@ -86,6 +86,23 @@
                 break;
             }
 
+            var rowid = document.cookie;
+            var uid = rowid.substring(rowid.lastIndexOf('=')+1);
+            if(uid!=null){
+                $.ajax({
+                    url:location.origin+"/getjoblistings",
+                    method:"GET",
+                    data:{"uid":uid},
+                    success:function(res){
+                        console.log(res);
+                    },
+                    error:function(err){
+                        console.log(err);
+                    }
+                });
+            }
+            console.log(uid);
+
             
             
         });
