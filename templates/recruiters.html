@@ -20,7 +20,7 @@
         input[type=text]:not(.browser-default),
         textarea,
         textarea:not(.browser-default) {
-            border:1px solid #eee;
+            border: 1px solid #eee;
             outline: none;
             height: 3rem;
             width: 100%;
@@ -30,18 +30,18 @@
             background-color: transparent;
             box-shadow: 0px
         }
-
+        
         input:not([type]):focus:not([readonly]),
-        input[type=text]:not(.browser-default):focus:not([readonly]){
-            border:1px solid #2962ff;
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            border: 1px solid #2962ff;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-
+        
         input::-webkit-input-placeholder {
             color: grey;
         }
-
+        
         .no-padd {
             padding: 0px !important;
         }
@@ -55,17 +55,19 @@
     </div>
     <!-- NAVIGATION BAR END -->
 
-    <div class="row" style="height:40px;"></div> 
+    <div class="row" style="height:40px;"></div>
 
     <!-- HEADER START -->
-        <div class="row white-text blue darken-4">
-            <div class="col s6 offset-s1">
-                <div class="row" style="height:50px;"></div>
-                <h4><B>Post your job for free - Hire from <br> over 3 million assessed candidates.</B></h4>
-                <div style="font-size:1.5em;">Reach the best candidates by posting a job within 60 seconds on India's largest assessed database.</div>
-                <div class="row" style="height:50px;"></div>
-            </div>
+    <div class="row white-text blue darken-4">
+        <div class="col s6 offset-s1">
+            <div class="row" style="height:50px;"></div>
+            <h4>
+                <B>Post your job for free - Hire from <br> over 3 million assessed candidates.</B>
+            </h4>
+            <div style="font-size:1.5em;">Reach the best candidates by posting a job within 60 seconds on India's largest assessed database.</div>
+            <div class="row" style="height:50px;"></div>
         </div>
+    </div>
     <!-- HEADER END -->
 
     <!-- JOB DETAILS PANEL START -->
@@ -77,43 +79,43 @@
             </div>
             <div class="col s11 offset-s1 card no-padd z-depth-0">
                 <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
-                <i class="fas fa-briefcase fa-2x"></i>  JOB DETAILS
-            </div>
-            <div class="divider"></div>
-            <div class="row" style="height:50px;"></div>
-            <form action="/addjob" method="GET">
-                <div class="col s10 offset-s2">
-                    <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
-                    <div class="col s9">
-                        <input type="text" name="jobtitle" placeholder="Enter Job Title">
-                    </div>
+                    <i class="fas fa-briefcase fa-2x"></i> JOB DETAILS
                 </div>
-                <div class="col s10 offset-s2">
-                    <div class="col s3 right-align" style="padding-top:10px;">Recruiter Email Id</div>
-                    <div class="col s9">
-                        <input type="text" name="jobtitle" placeholder="Enter email address of contact person">
+                <div class="divider"></div>
+                <div class="row" style="height:50px;"></div>
+                <form action="/addjob" method="POST">
+                    <div class="col s10 offset-s2">
+                        <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
+                        <div class="col s9">
+                            <input type="text" name="jobtitle" placeholder="Enter Job Title">
+                        </div>
                     </div>
-                </div>
-                <div class="col s10 offset-s2">
-                    <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
-                    <div class="col s9">
-                        <input type="text" name="jobtitle" placeholder="Company Name">
+                    <div class="col s10 offset-s2">
+                        <div class="col s3 right-align" style="padding-top:10px;">Recruiter Email Id</div>
+                        <div class="col s9">
+                            <input type="text" name="recruiteremail" placeholder="Enter email address of contact person">
+                        </div>
                     </div>
-                </div>
-                <div class="col s10 offset-s2">
-                    <div class="col s3 right-align" style="padding-top:10px;">About the Company</div>
-                    <div class="col s9">
-                        <input style="height:200px;" type="text" name="aboutcompany" placeholder="Enter about you company">
+                    <div class="col s10 offset-s2">
+                        <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
+                        <div class="col s9">
+                            <input type="text" name="companyname" placeholder="Company Name">
+                        </div>
                     </div>
-                </div>
-                <div class="col s10 offset-s2">
-                    <div class="col s3 right-align" style="padding-top:10px;">Location</div>
-                    <div class="col s9">
-                        <input type="text" name="location" placeholder="Enter job location">
+                    <div class="col s10 offset-s2">
+                        <div class="col s3 right-align" style="padding-top:10px;">About the Company</div>
+                        <div class="col s9">
+                            <input style="height:200px;" type="text" name="aboutcompany" placeholder="Enter about you company">
+                        </div>
                     </div>
-                </div>
-                <div class="col s10 offset-s2">
-                    <div class="col s12 no-padd">
+                    <div class="col s10 offset-s2">
+                        <div class="col s3 right-align" style="padding-top:10px;">Location</div>
+                        <div class="col s9">
+                            <input type="text" name="location" placeholder="Enter job location">
+                        </div>
+                    </div>
+                    <div class="col s10 offset-s2">
+                        <div class="col s12 no-padd">
                             <div class="col s3 right-align" style="padding-top:10px;">Salary</div>
                             <div class="col s9">
                                 <div class="col s5 no-padd">
@@ -126,10 +128,10 @@
                                     <input type="text" name="maxsal" placeholder="Maximum in LPA">
                                 </div>
                             </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col s10 offset-s2">
-                    <div class="col s12 no-padd">
+                    <div class="col s10 offset-s2">
+                        <div class="col s12 no-padd">
                             <div class="col s3 right-align" style="padding-top:10px;">Experience</div>
                             <div class="col s9">
                                 <div class="col s5 no-padd">
@@ -142,51 +144,51 @@
                                     <input type="text" name="maxexp" placeholder="Maximum in years">
                                 </div>
                             </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col s10 offset-s2">
+                    <div class="col s10 offset-s2">
                         <div class="col s3 right-align" style="padding-top:10px;">Job Description</div>
                         <div class="col s9">
                             <input style="height:200px;" type="text" name="jobdesc" placeholder="Enter job description">
                         </div>
-                </div>
-                <div class="col s10 offset-s2">
+                    </div>
+                    <div class="col s10 offset-s2">
                         <div class="col s3 right-align" style="padding-top:10px;"></div>
                         <div class="col s9">
                             <b>Do you wish to receive list of applicants by email?</b>
                             <p>
-                                    <label>
+                                <label>
                                       <input class="with-gap" name="listbyemail" type="radio" value="yes" checked />
                                       <span>Yes, update me by mail</span>
                                     </label>
-                                  </p>
-                                  <p>
-                                        <label>
+                            </p>
+                            <p>
+                                <label>
                                           <input class="with-gap" name="listbyemail" value="no" type="radio" />
                                           <span>No, I'll check myself</span>
                                         </label>
-                                      </p>
-                                           
-                                       
+                            </p>
+
+
                         </div>
-                </div>
-                <div class="col s10 offset-s2">
+                    </div>
+                    <div class="col s10 offset-s2">
                         <div class="col s3 right-align" style="padding-top:10px;">Alternate Email</div>
                         <div class="col s9">
                             <input type="text" name="altemail" placeholder="Enter Email id">
                         </div>
-                </div>
-                <div class="col s12" style="height:50px;"></div>
-                <div class="col s12 no-padd">
-                    <div class="divider"></div>
-                </div>
-                <div class="col s12" style="height:50px;"></div>
-                <div class="col s4 offset-s8">
-                    <input style="border:1px solid #ccc;" class="btn btn-large white grey-text z-depth-0" type="reset" value="RESET">
-                    <input class="btn btn-large blue accent-4 z-depth-0" type="submit" value="Post Job">
-                </div>
-                <div class="col s12" style="height:50px;"></div>
-            </form>
+                    </div>
+                    <div class="col s12" style="height:50px;"></div>
+                    <div class="col s12 no-padd">
+                        <div class="divider"></div>
+                    </div>
+                    <div class="col s12" style="height:50px;"></div>
+                    <div class="col s4 offset-s8">
+                        <input style="border:1px solid #ccc;" class="btn btn-large white grey-text z-depth-0" type="reset" value="RESET">
+                        <input class="btn btn-large blue accent-4 z-depth-0" type="submit" value="Post Job">
+                    </div>
+                    <div class="col s12" style="height:50px;"></div>
+                </form>
             </div>
         </div>
         <div class="col s4">
@@ -217,13 +219,13 @@
                     <br>
                 </div>
             </div>
-            
+
         </div>
         <div class="row" style="height:50px;"></div>
 
     </div>
     <!-- JOB DETAILS PANEL END -->
-    
+
     <!-- FOOTER START -->
     <div id="myfooter">
 
@@ -236,7 +238,7 @@
     <script src="../js/myfooter.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             M.AutoInit();
         });
     </script>

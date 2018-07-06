@@ -61,6 +61,22 @@ let db = new sqlite3.Database('database.db', err => {
             skills
         );
     `);
+    db.exec(`
+        CREATE TABLE IF NOT EXISTS JobListings(
+            jobtitle text,
+            recruiteremail text,
+            companyname text,
+            aboutcompany text,
+            location text,
+            minsal text,
+            maxsal text,
+            minexp text,
+            maxexp text,
+            jobdesc text,
+            listbyemail text,
+            altemail text
+        );
+    `);
 
 });
 
@@ -92,6 +108,7 @@ app.post('/login', (req, res) => {
     db.get("SELECT * FROM Users WHERE email = ?", req.body.email, (err, row) => {
         if (!row) {
             console.log("0 rows found, no user");
+            res.cookie('userid', null);
             return res.send({ success: false, message: 'Error, No such user exists' });
         }
         //console.log(row);
@@ -102,8 +119,8 @@ app.post('/login', (req, res) => {
 
         req.session.user = row.uniqueid;
         console.log('Logged in');
-        res = setCookies(res, row, e);
-        return res.redirect('/profile.html');
+        res.cookie('uniqueid', row.uniqueid, e);
+        return res.redirect('/templates/profile.html');
     });
     //res.send('TODO');
 });
@@ -138,6 +155,17 @@ app.get('/getcv', (req, res) => {
     });
 });
 
+app.post('/addjob', (req, res) => {
+
+    data = req.body;
+    sql = "INSERT INTO JobListings(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
+    console.log(sql);
+    db.exec(sql, err => {
+        if (err) return res.send(err);
+        return res.send({ success: true, message: "Job Listing added" });
+    });
+    //res.send(req.body);
+});
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('listening on : ' + (process.env.PORT || 3000));
