@@ -97,7 +97,10 @@ app.post('/signup', (req, res) => {
 
     db.exec(sql, err => {
         if (err) return res.send(err);
-        return res.send({ success: true, message: "Account created" });
+        res.send({ success: true, message: "Account created" });
+        setTimeout(() => {
+            res.redirect('/login');
+        }, 3000);
     });
     //    res.send(req.body);
 });
