@@ -125,9 +125,10 @@ app.post('/login', (req, res) => {
     //res.send('TODO');
 });
 
-app.get('/logout',(req,res)=>{
-    res.cookie('uniqueid',"null");
-    return res.redirect('/templates/login.html');
+app.get('/logout', (req, res) => {
+    res.cookie('uniqueid', "null");
+    req.session = null;
+    return res.redirect('/');
 });
 
 app.post('/cvbuilder', (req, res) => {
