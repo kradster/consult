@@ -88,7 +88,7 @@
 
             var rowid = document.cookie;
             var uid = rowid.substring(rowid.lastIndexOf('=')+1);
-            if(uid!=null){
+            if(uid!=="null"){
                 $.ajax({
                     url:location.origin+"/getjoblistings",
                     method:"GET",

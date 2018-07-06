@@ -125,6 +125,11 @@ app.post('/login', (req, res) => {
     //res.send('TODO');
 });
 
+app.get('/logout',(req,res)=>{
+    res.cookie('uniqueid',"null");
+    return res.redirect('/templates/login.html');
+});
+
 app.post('/cvbuilder', (req, res) => {
     if (!req.session.user) return res.redirect('/login.html');
     console.log("session", req.session.user);
