@@ -7,7 +7,7 @@ let multer = require('multer');
 let upload = multer();
 let cookieparser = require('cookie-parser');
 let bcrypt = require('bcrypt-nodejs');
-let nodemailer = require('node-mailer');
+let nodemailer = require('nodemailer');
 let Config = require('./config.json');
 
 //for parsing application/xwww
@@ -39,7 +39,8 @@ let db = new sqlite3.Database('database.db', err => {
             lastname text NOT NULL,
             email text NOT NULL,    
             password text NOT NULL,
-            phoneno text NOT NULL
+            phoneno text NOT NULL,
+            verified text NOT NULL
         );
     `);
     db.exec(`
@@ -82,12 +83,50 @@ let db = new sqlite3.Database('database.db', err => {
 
 });
 
-// let smtptransport = nodemailer.createTransport('SMTP', {
-//    service:"Gmail",
-//    auth:{
+let smtptransport = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: Config.GMAIL_USER,
+        pass: Config.GMAIL_PASS
+    }
+});
+let rand, mailoptions, host, link;
 
-//    } 
-// });
+app.get('/send', (req, res) => {
+    rand = Math.floor((Math.random() * 100) + 54);
+    host = req.get('host');
+    link = "http://" + req.get('host') + "/verify?id=" + rand;
+    mailoptions = {
+        to: req.body.email,
+        subject: "Confirm your e-mail account",
+        html: "Hello,<br> Please click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+    };
+    console.log(mailoptions);
+    smtptransport.sendMail(mailoptions, (err, response) => {
+        if (err) {
+            console.log(err);
+            res.end("error");
+        } else {
+            console.log(err);
+            res.end("Message sent:", response.message);
+            res.end('sent');
+        }
+    });
+});
+
+app.get('/verify', (req, res) => {
+    console.log(req.protocol + ":/" + req.get('host'));
+    if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
+        console.log("Domain is matched. Information is from Authentic email");
+        if (req.query.id == rand) {
+            console.log("email is verified");
+            res.end("<h1>Email " + mailOptions.to + " is been Successfully verified");
+        } else {
+            console.log("email is not verified");
+            res.end("<h1>Bad Request</h1>");
+        }
+    }
+});
 
 app.post('/signup', (req, res) => {
     console.log("signup", req.body);
@@ -96,17 +135,21 @@ app.post('/signup', (req, res) => {
         return res.send({ success: false, message: "Error, one or more fields are empty." });
     if (data.password !== data.cpassword)
         return res.send({ success: false, message: "Error, passwords dont match" });
-
+    db.get("SELECT * FROM Users WHERE email = ?", data.email, (err, row) => {
+        if (row) return res.send({ success: false, message: "The account associated with the email already exists." });
+    });
     delete data.cpassword;
     data["uniqueid"] = Date.now();
+    data["verified"] = "no";
     data.password = bcrypt.hashSync(data.password);
-
     //console.log(data);
     sql = "INSERT INTO Users(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
 
     db.exec(sql, err => {
         if (err) return res.send(err);
         res.send({ success: true, message: "Account created" });
+
+
         setTimeout(() => {
             res.redirect('/login');
         }, 3000);
@@ -137,14 +180,8 @@ app.post('/login', (req, res) => {
     //res.send('TODO');
 });
 
-app.get('/logout', (req, res) => {
-    res.cookie('uniqueid', "null");
-    req.session = null;
-    return res.redirect('/');
-});
-
 app.post('/cvbuilder', (req, res) => {
-    if (!req.session.user) return res.redirect('/login.html');
+    if (!req.session.user) return res.redirect('/templates/login.html');
     console.log("session", req.session.user);
     console.log("cv details", req.body);
     data = req.body;
@@ -155,7 +192,7 @@ app.post('/cvbuilder', (req, res) => {
     console.log(sql);
     db.exec(sql, err => {
         if (err) return res.send(err);
-        return res.send({ success: true, message: "Successfully entered all values" }).redirect('/profile.html');
+        return res.send({ success: true, message: "Successfully entered all values" }).redirect('/templates/profile.html');
     });
 
     //res.send({ success: true, data: req.body, message: "cv details" });
@@ -196,6 +233,15 @@ app.get('/getjoblistings', (req, res) => {
     });
 });
 
+app.get('/adminpanel', (req, res) => {
+    if (req.session.user === "") {
+        db.all('SELECT * FROM Users', (err, row) => {
+            res.send({ success: true, data: row });
+        });
+    } else
+        res.redirect('/login');
+});
+
 app.listen(process.env.PORT || 3000, () => {
     console.log('listening on : ' + (process.env.PORT || 3000));
 });
@@ -203,6 +249,13 @@ app.listen(process.env.PORT || 3000, () => {
 app.get('/', (req, res) => {
     res.sendFile('index.html', { root: __dirname });
 });
+
+app.get('/logout', (req, res) => {
+    res.cookie('uniqueid', "null");
+    req.session = null;
+    return res.redirect('/');
+});
+
 app.get('/signup', (req, res) => {
     res.sendFile('/templates/signup.html', { root: __dirname });
 });
@@ -210,6 +263,7 @@ app.get('/login', (req, res) => {
     res.sendFile('/templates/login.html', { root: __dirname });
 });
 app.get('/dashboard', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/profile.html', { root: __dirname });
 });
 app.get('/schedule', (req, res) => {
@@ -219,15 +273,19 @@ app.get('/recruiters', (req, res) => {
     res.sendFile('/templates/recruiters.html', { root: __dirname });
 });
 app.post('/showcv', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/showcv.html', { root: __dirname });
 });
 app.post('/myscore', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/myscore.html', { root: __dirname });
 });
 app.post('/myjob', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/myjob.html', { root: __dirname });
 });
 app.post('/editcv', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/makecv.html', { root: __dirname });
 });
 app.post('/jobs', (req, res) => {
@@ -238,10 +296,10 @@ app.get('*', (req, res) => {
     res.send('404 Page Not Found.');
 });
 
-function setCookies(res, row, expiry = 0) {
-    if (row.hasOwnProperty('password')) delete row.password;
-    for (let key in row)
-        if (row[key]) res.cookie(key, row[key], expiry);
-        else res.cookie(key, "", expiry);
-    return res;
-}
+// function setCookies(res, row, expiry = 0) {
+//     if (row.hasOwnProperty('password')) delete row.password;
+//     for (let key in row)
+//         if (row[key]) res.cookie(key, row[key], expiry);
+//         else res.cookie(key, "", expiry);
+//     return res;
+// }
