@@ -7,6 +7,8 @@ let multer = require('multer');
 let upload = multer();
 let cookieparser = require('cookie-parser');
 let bcrypt = require('bcrypt-nodejs');
+let nodemailer = require('node-mailer');
+let Config = require('./config.json');
 
 //for parsing application/xwww
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,7 +17,7 @@ app.use(bodyParser.json());
 //for parsing multipart/form-data
 app.use(upload.array());
 
-app.use(session({ secret: 'kljk' }));
+app.use(session({ secret: Config.SESSION_KEY }));
 //app.use(cookieparser);
 
 //serve all static folders
@@ -79,6 +81,13 @@ let db = new sqlite3.Database('database.db', err => {
     `);
 
 });
+
+// let smtptransport = nodemailer.createTransport('SMTP', {
+//    service:"Gmail",
+//    auth:{
+
+//    } 
+// });
 
 app.post('/signup', (req, res) => {
     console.log("signup", req.body);
