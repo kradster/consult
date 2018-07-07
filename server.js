@@ -194,6 +194,36 @@ app.listen(process.env.PORT || 3000, () => {
 app.get('/', (req, res) => {
     res.sendFile('index.html', { root: __dirname });
 });
+app.get('/signup', (req, res) => {
+    res.sendFile('/templates/signup.html', { root: __dirname });
+});
+app.get('/login', (req, res) => {
+    res.sendFile('/templates/login.html', { root: __dirname });
+});
+app.get('/dashboard', (req, res) => {
+    res.sendFile('/templates/profile.html', { root: __dirname });
+});
+app.get('/schedule', (req, res) => {
+    res.sendFile('/templates/schedule.html', { root: __dirname });
+});
+app.get('/recruiters', (req, res) => {
+    res.sendFile('/templates/recruiters.html', { root: __dirname });
+});
+app.post('/showcv', (req, res) => {
+    res.sendFile('/templates/showcv.html', { root: __dirname });
+});
+app.post('/myscore', (req, res) => {
+    res.sendFile('/templates/myscore.html', { root: __dirname });
+});
+app.post('/myjob', (req, res) => {
+    res.sendFile('/templates/myjob.html', { root: __dirname });
+});
+app.post('/editcv', (req, res) => {
+    res.sendFile('/templates/makecv.html', { root: __dirname });
+});
+app.post('/jobs', (req, res) => {
+    res.sendFile('/templates/comlist.html', { root: __dirname });
+});
 
 app.get('*', (req, res) => {
     res.send('404 Page Not Found.');
