@@ -84,10 +84,12 @@ let db = new sqlite3.Database('database.db', err => {
 });
 
 let smtptransport = nodemailer.createTransport({
-    service: "Gmail",
+    host: 'smtp.zoho.com',
+    port: 587,
+    secure: false,
     auth: {
-        user: Config.GMAIL_USER,
-        pass: Config.GMAIL_PASS
+        user: Config.USER,
+        pass: Config.PASS
     }
 });
 let rand, mailoptions, host, link;
@@ -97,17 +99,16 @@ app.get('/send', (req, res) => {
     host = req.get('host');
     link = "http://" + req.get('host') + "/verify?id=" + rand;
     mailoptions = {
+        from: Config.EMAIL_ADDRESS,
         to: req.body.email,
         subject: "Confirm your e-mail account",
         html: "Hello,<br> Please click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
     };
-    console.log(mailoptions);
     smtptransport.sendMail(mailoptions, (err, response) => {
         if (err) {
             console.log(err);
             res.end("error");
         } else {
-            console.log(err);
             res.end("Message sent:", response.message);
             res.end('sent');
         }
@@ -121,6 +122,7 @@ app.get('/verify', (req, res) => {
         if (req.query.id == rand) {
             console.log("email is verified");
             res.end("<h1>Email " + mailOptions.to + " is been Successfully verified");
+            db.exec("UPDATE TABLE Users SET verified=")
         } else {
             console.log("email is not verified");
             res.end("<h1>Bad Request</h1>");
@@ -235,11 +237,19 @@ app.get('/getjoblistings', (req, res) => {
 
 app.get('/adminpanel', (req, res) => {
     if (req.session.user === "") {
-        db.all('SELECT * FROM Users', (err, row) => {
-            res.send({ success: true, data: row });
-        });
+        res.sendFile('/templates/adminpanel.html', { root: __dirname });
     } else
         res.redirect('/login');
+});
+
+app.post('/adminpanel', (req, res) => {
+    if (req.session.user === "") {
+        db.all('SELECT * FROM JobListings', (err, row) => {
+            res.send({ success: true, data: row });
+
+        });
+    } else
+        res.send({ success: false, message: "Incorrect login" });
 });
 
 app.listen(process.env.PORT || 3000, () => {
@@ -262,16 +272,22 @@ app.get('/signup', (req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile('/templates/login.html', { root: __dirname });
 });
-app.get('/dashboard', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
-    res.sendFile('/templates/profile.html', { root: __dirname });
-});
+
 app.get('/schedule', (req, res) => {
     res.sendFile('/templates/schedule.html', { root: __dirname });
 });
 app.get('/recruiters', (req, res) => {
     res.sendFile('/templates/recruiters.html', { root: __dirname });
 });
+app.get('/dashboard', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
+    res.sendFile('/templates/profile.html', { root: __dirname });
+});
+app.get('/jobs', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
+    res.sendFile('/templates/comlist.html', { root: __dirname });
+});
+
 app.post('/showcv', (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/showcv.html', { root: __dirname });
@@ -287,9 +303,6 @@ app.post('/myjob', (req, res) => {
 app.post('/editcv', (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/makecv.html', { root: __dirname });
-});
-app.post('/jobs', (req, res) => {
-    res.sendFile('/templates/comlist.html', { root: __dirname });
 });
 
 app.get('*', (req, res) => {
