@@ -93,9 +93,10 @@ let smtptransport = nodemailer.createTransport({
     }
 });
 let rand, mailoptions, host, link;
-
+let runtime_obj = {};
 app.get('/send', (req, res) => {
     rand = Math.floor((Math.random() * 100) + 54);
+
     host = req.get('host');
     link = "http://" + req.get('host') + "/verify?id=" + rand;
     mailoptions = {
@@ -114,6 +115,8 @@ app.get('/send', (req, res) => {
         }
     });
 });
+
+
 
 app.get('/verify', (req, res) => {
     console.log(req.protocol + ":/" + req.get('host'));
