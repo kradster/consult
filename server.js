@@ -92,45 +92,25 @@ let smtptransport = nodemailer.createTransport({
         pass: Config.PASS
     }
 });
+
 let rand, mailoptions, host, link;
 let runtime_obj = {};
-app.get('/send', (req, res) => {
-    rand = Math.floor((Math.random() * 100) + 54);
-
-    host = req.get('host');
-    link = "http://" + req.get('host') + "/verify?id=" + rand;
-    mailoptions = {
-        from: Config.EMAIL_ADDRESS,
-        to: req.body.email,
-        subject: "Confirm your e-mail account",
-        html: "Hello,<br> Please click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
-    };
-    smtptransport.sendMail(mailoptions, (err, response) => {
-        if (err) {
-            console.log(err);
-            res.end("error");
-        } else {
-            res.end("Message sent:", response.message);
-            res.end('sent');
-        }
-    });
-});
-
-
 
 app.get('/verify', (req, res) => {
     console.log(req.protocol + ":/" + req.get('host'));
     if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
         console.log("Domain is matched. Information is from Authentic email");
-        if (req.query.id == rand) {
+        if (runtime_obj.hasOwnProperty(req.query.id)) {
             console.log("email is verified");
-            res.end("<h1>Email " + mailOptions.to + " is been Successfully verified");
-            db.exec("UPDATE TABLE Users SET verified=")
+            email = runtime_obj[req.query.id];
+            db.exec("UPDATE Users SET verified='yes' WHERE email=?", email, err => {
+                res.end("<h1>Email " + mailOptions.to + " has been Successfully verified");
+            });
         } else {
             console.log("email is not verified");
             res.end("<h1>Bad Request</h1>");
         }
-    }
+    } else res.end('<h1>Bad request</h1>');
 });
 
 app.post('/signup', (req, res) => {
@@ -149,15 +129,11 @@ app.post('/signup', (req, res) => {
     data.password = bcrypt.hashSync(data.password);
     //console.log(data);
     sql = "INSERT INTO Users(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
-
     db.exec(sql, err => {
         if (err) return res.send(err);
-        res.send({ success: true, message: "Account created" });
-
-
-        setTimeout(() => {
-            res.redirect('/login');
-        }, 3000);
+        sendVerificatonEmail(req, res);
+        console.log("Account created");
+        res.redirect('/login');
     });
     //    res.send(req.body);
 });
@@ -312,6 +288,27 @@ app.get('*', (req, res) => {
     res.send('404 Page Not Found.');
 });
 
+function sendVerificatonEmail(req, res) {
+    rand = Math.floor((Math.random() * 10000000) + 342132);
+    console.log(req.body);
+    runtime_obj[rand] = req.body.email;
+    console.log(runtime_obj);
+    host = req.get('host');
+    link = "http://" + req.get('host') + "/verify?id=" + rand;
+    mailoptions = {
+        from: Config.EMAIL_ADDRESS,
+        to: req.body.email,
+        subject: "Confirm your e-mail account",
+        html: "Hello,<br> Please click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+    };
+    smtptransport.sendMail(mailoptions, (err, response) => {
+        if (err) {
+            console.log("Error sending verification email:", err);
+        } else {
+            console.log("Message sent:", response.message);
+        }
+    });
+}
 // function setCookies(res, row, expiry = 0) {
 //     if (row.hasOwnProperty('password')) delete row.password;
 //     for (let key in row)
