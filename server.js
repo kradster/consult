@@ -215,13 +215,16 @@ app.get('/getjoblistings', (req, res) => {
 });
 
 app.post('/getuserdata', (req, res) => {
-    console.log(req.body);
     if (!req.body.uid) return res.send({ success: false, message: "Userid uid required" });
     db.get("SELECT * FROM Users WHERE uniqueid = ?", req.body.uid, (err, row) => {
         if (!row) return res.send({ success: false, message: 'No User with the particular id found' });
         data = row;
         delete data.password;
-        res.send({ success: true, data: data });
+        db.get("SELECT * FROM CV WHERE uniqueid = ?", req.body.uid, (err, row) => {
+            if (!row) return res.send({ success: true, data: data });
+            data["CV"] = row;
+            res.send({ success: true, data: data });
+        });
     });
 });
 
