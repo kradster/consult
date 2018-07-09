@@ -16,26 +16,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <style>
-         input:not([type]), input[type=text]:not(.browser-default){
-    
-            border:1px solid #ccc;
+        input:not([type]),
+        input[type=text]:not(.browser-default) {
+
+            border: 1px solid #ccc;
             outline: none;
             height: 3rem;
             width: 100%;
             font-size: 16px;
             margin: 0 0 8px 0;
-            padding:0px 0px 0px 10px !important;
+            padding: 0px 0px 0px 10px !important;
             background-color: transparent;
-            box-shadow:0px
+            box-shadow: 0px
         }
-        input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]){
-            border:1px solid #ccc;
-            -webkit-box-shadow:none;
-            box-shadow:none;
+
+        input:not([type]):focus:not([readonly]),
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            border: 1px solid #ccc;
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
-        input::-webkit-input-placeholder{
+
+        input::-webkit-input-placeholder {
             color: grey;
-        }        
+        }
     </style>
 </head>
 
@@ -60,7 +64,7 @@
                     <div class="input-field col s6">
                         <input placeholder="Full Name" type="text" name="fullname" id="fullname">
                     </div>
-                    
+
                     <div class="input-field col s6">
                         <input type="text" name="fathersname" id="ftrname" placeholder="Father Name">
                     </div>
@@ -76,137 +80,120 @@
                     <div class="input-field col s6">
                         <input class="btn btn-large indigo col s12" type="button" value="Next" id="step1">
                     </div>
-                    
+
                 </div>
                 <div id="form2" class="card z-depth-2 col s8 offset-s2" style="padding:10px;display:none;">
                     <h5>
                         <b>EDUCATION DETAILS</b>
-                    </h5><br>
-                    <div class="ui label">10TH</div><br>
+                    </h5>
+                    <br>
+                    <div class="ui label">10TH</div>
+                    <br>
                     <div class="input-field col s4">
                         <input id="school10" type="text" name="school10" placeholder="School Name">
                     </div>
                     <div class="input-field col s4">
                         <input id="board10" type="text" name="board10" placeholder="School Board">
-                        </div>
+                    </div>
                     <div class="input-field col s4">
                         <input id="marks10" type="text" name="marks10" placeholder="Marks in % / CGPA">
                     </div>
-                    
 
-                    <div class="ui label">12TH</div><br>
+
+                    <div class="ui label">12TH</div>
+                    <br>
                     <div class="input-field col s4">
                         <input id="school12" type="text" name="school12" placeholder="School Name">
                     </div>
                     <div class="input-field col s4">
                         <input id="board12" type="text" name="board12" placeholder="School Board">
-                        </div>
+                    </div>
                     <div class="input-field col s4">
                         <input id="marks12" type="text" name="marks12" placeholder="Marks in % / CGPA">
                     </div>
 
-                    <div class="ui label">GRADUATION</div><br>
+                    <div class="ui label">GRADUATION</div>
+                    <br>
                     <div class="input-field col s4">
                         <input id="collegename" type="text" name="collegename" placeholder="Collage Name">
                     </div>
                     <div class="input-field col s4">
                         <input id="collegeboard" type="text" name="collegeboard" placeholder="Collage Board">
-                        </div>
+                    </div>
                     <div class="input-field col s4">
                         <input id="collegemarks" type="text" name="collegemarks" placeholder="Marks">
                     </div>
                     <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
-                        </div>
+                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
+                    </div>
                     <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step2">
-                        </div>
+                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step2">
+                    </div>
                 </div>
                 <div id="form3" class="card z-depth-2 col s8 offset-s2" style="padding:10px;display:none;">
-                    <h5><b>PROJECTS/INTERNSHIPS/JOBS</b></h5>
+                    <h5>
+                        <b>PROJECTS/INTERNSHIPS/JOBS</b>
+                    </h5>
                     <br>
                     <div id="jobspanel">
                         <div class="col s12">
-                        <div class="input-field col s6">
-                            <input type="text" name="projects[]" id="projects" placeholder="Project/Internship/Job">
-                        </div>
-                        <div class="input-field col s3">
-                            <input class="datepicker" type="text" name="startdate" id="startdate" placeholder="Start Date">
-                        </div>
-                        <div class="input-field col s3">
-                            <input class="datepicker" type="text" name="enddate" id="enddate" placeholder="End Date">
-                        </div>
+                            <div class="input-field col s6">
+                                <input type="text" name="projects[]" id="projects" placeholder="Project/Internship/Job">
+                            </div>
+                            <div class="input-field col s3">
+                                <input class="datepicker" type="text" name="startdate" id="startdate" placeholder="Start Date">
+                            </div>
+                            <div class="input-field col s3">
+                                <input class="datepicker" type="text" name="enddate" id="enddate" placeholder="End Date">
+                            </div>
                         </div>
                     </div>
                     <div class="col s12">
                         <input id="addmorejobs" type="button" class="btn btn-small blue accent-4" value="Add More">
                     </div>
                     <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
-                        </div>
+                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
+                    </div>
                     <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
-                        </div>
+                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
+                    </div>
 
                 </div>
                 <div id="form4" class="card z-depth-2 col s8 offset-s2" style="padding:10px;display:none;">
-                        <h5><b>SKILL</b></h5>
-                        <br>
-                        <div id="skillspanel">
-                            <div class="input-field col s12">
-                                <input type="text" name="skills[]" id="skills" placeholder="Enter Your Skills">
-                            </div>
-                        </div>
-                        <div class="col s12">
-                            <input id="addmoreskills" type="button" class="btn btn-small blue accent-4" value="Add More">
-                        </div>
-                        <div class="input-field col s6">
-                                <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
-                            </div>
-                        <div class="input-field col s6">
-                                <input class="btn btn-large indigo col s12" type="button" value="Next" id="step4">
-                            </div>
-                </div>
-                <div id="form5" class="card z-depth-2 col s8 offset-s2" style="padding:10px;display:none;">
-                    <h5><b>Careers</b></h5>
+                    <h5>
+                        <b>SKILL</b>
+                    </h5>
                     <br>
-                    <div class="input-field col s12">
-                        <input type="text"  name="carObj" id="carObj">
-                        <label for="carObj">Career objective</label>
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem ipsum dolor sit amet.</li>
-                        <li>Lorem ipsum dolor sit amet.</li>
+                    <div id="skillspanel">
+                        <div class="input-field col s12">
+                            <input type="text" name="skills[]" placeholder="Enter Your Skills">
+                        </div>
                     </div>
-                    <div class="input-field col s12">
-                        <input type="text" id="why"  name="why">
-                        <label for="why">Why should we hire you</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <input type="text" id="point" name="point">
-                        <label for="point">Any information about you</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <input type="text" id="when" name="whenjoin" class="datepicker" />
-                        <label for="when">From when you are willing to join the company</label>
-
+                    <div class="col s12">
+                        <input id="addmoreskills" type="button" class="btn btn-small blue accent-4" value="Add More">
                     </div>
                     <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back4">
-                        </div>
+                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
+                    </div>
                     <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step5">
-                        </div>
+                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step4">
+                    </div>
                 </div>
                 <br>
                 <br>
-                <div class="col s12">
-                        <div class="input-field col s6 offset-s6">
-                                <input class="btn btn-large indigo" type="button" value="Back" id="back5">
-                                <input class="btn btn-large light-blue accent-4" type="submit" value="Make CV">
-                            </div>
-                        <div class="input-field col s6">
-                            </div>
-                        
+                <div id="fulldetials" class="col s12 no-padd" style="padding:10px;display:none;">
+                    <div class="card col s8 offset-s2">
+                       <h5> YOUR GIVEN DETAILS</h5>
+                       <ul id="alldetailsul">
+                       </ul>
+                    </div>
+                    <div class="input-field col s6 offset-s6">
+                        <input class="btn btn-large indigo" type="button" value="Back" id="back4">
+                        <input class="btn btn-large light-blue accent-4" type="submit" value="Make CV">
+                    </div>
+                    <div class="input-field col s6">
+                    </div>
+
                 </div>
             </div>
         </form>
@@ -223,6 +210,10 @@
     <script>
         $(document).ready(function () {
             M.AutoInit();
+            $('body').on('focus', ".datepicker", function () {
+                $(this).datepicker();
+            });
+            //$(document).on('click','.datapicker',M.datepicker);
         });
     </script>
 </body>
