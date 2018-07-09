@@ -325,7 +325,7 @@ app.post('/editcv', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.send('404 Page Not Found.');
+    res.render('alert', { title: "404. The page you are looking for doesn't exist", link: "/", linkname: "Go back to home" });
 });
 
 function sendVerificatonEmail(req, res) {
