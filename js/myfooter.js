@@ -19,6 +19,8 @@ $(document).ready(function(){
 
     }
 
+    
+
 });
 function getCookie(cname) {
     var name = cname + "=";

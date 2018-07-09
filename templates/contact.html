@@ -30,18 +30,18 @@
             background-color: transparent;
             box-shadow: 0px
         }
-        
+
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border: 1px solid #2962ff;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-        
+
         input::-webkit-input-placeholder {
             color: grey;
         }
-        
+
         .no-padd {
             padding: 0px !important;
         }
@@ -63,7 +63,9 @@
             <h4>
                 <b>Contact Us</b>
             </h4>
-            
+            <div class="col s12">
+
+            </div>
             <div class="row" style="height:50px;"></div>
         </div>
     </div>
@@ -74,46 +76,40 @@
         <div class="row" style="height:50px;"></div>
         <div class="col l8 s12">
             <div class="col l11 offset-l1 s12">
-                <b class="grey-text">Post a Job For Free</b>
+                <b class="grey-text">Feedback Form</b>
             </div>
             <div class="col l11 offset-l1 s12 card no-padd z-depth-0">
-                <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
-                    <i class="fas fa-briefcase fa-2x"></i> JOB DETAILS
+                <div class="col s12">
+                    <div>
+                        <script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
+                        <style type="text/css" media="screen, projection">
+                            @import url(http://assets.freshdesk.com/widget/freshwidget.css);
+                        </style>
+                        <iframe title="Feedback Form" class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://joblana.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Support+%26+Query&submitTitle=Send+Query&submitThanks=We'll+get+back+to+you+soon!+&screenshot=No"
+                            scrolling="no" height="500px" width="100%" frameborder="0">
+                        </iframe>
+                    </div>
                 </div>
-                <div class="divider"></div>
                 <div class="row" style="height:50px;"></div>
-                
+
             </div>
         </div>
         <div class="col l4 s12">
             <div class="col s12 no-padd">
-                <b class="grey-text">Recruitment Solutions for Employers</b>
+                <b class="grey-text">Feel free to contact our world class customer support.</b>
             </div>
             <div class="col s11 card z-depth-0 no-padd">
                 <div class="col s12">
                     <br>
-                    <h6><b>Hire Software Developers</b></h6>
-                    <div style="font-size:1.2em">Assessed Database of 1 Lakh+ Software developers added every year.</div>
+                    <h6><b>Address</b></h6>
+                    <div style="font-size:1.2em">7/3-B EASE PATEL NAGAR DELIH-110008</div>
+                    <h6><b>Phone no</b></h6>
+                    <div style="font-size:1.2em">1234567890</div>
+                    <h6><b>Email Address</b></h6>
+                    <div style="font-size:1.2em">no-reply@joblana.com</div>
                     <br>
                 </div>
             </div>
-            <div class="col s11 card z-depth-0 no-padd">
-                <div class="col s12">
-                    <br>
-                    <h6><b>Hire Software Developers</b></h6>
-                    <div style="font-size:1.2em">Assessed Database of 1 Lakh+ Software developers added every year.</div>
-                    <br>
-                </div>
-            </div>
-            <div class="col s11 card z-depth-0 no-padd">
-                <div class="col s12">
-                    <br>
-                    <h6><b>Hire Software Developers</b></h6>
-                    <div style="font-size:1.2em">Assessed Database of 1 Lakh+ Software developers added every year.</div>
-                    <br>
-                </div>
-            </div>
-
         </div>
         <div class="row" style="height:50px;"></div>
 
@@ -132,10 +128,17 @@
     <script src="../js/myfooter.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             M.AutoInit();
         });
     </script>
+    <script src="https://wchat.freshchat.com/js/widget.js"></script>
+    <script>
+            window.fcWidget.init({
+              token: "4281856b-8aa2-4b5e-8108-4171813716e5",
+              host: "https://wchat.freshchat.com"
+            });
+          </script>
 </body>
 
 </html>
