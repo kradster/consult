@@ -214,6 +214,17 @@ app.get('/getjoblistings', (req, res) => {
     });
 });
 
+app.post('/getuserdata', (req, res) => {
+    console.log(req.body);
+    if (!req.body.uid) return res.send({ success: false, message: "Userid uid required" });
+    db.get("SELECT * FROM Users WHERE uniqueid = ?", req.body.uid, (err, row) => {
+        if (!row) return res.send({ success: false, message: 'No User with the particular id found' });
+        data = row;
+        delete data.password;
+        res.send({ success: true, data: data });
+    });
+});
+
 app.get('/adminpanel', (req, res) => {
     if (req.session.user === "") {
         res.sendFile('/templates/adminpanel.html', { root: __dirname });
@@ -263,7 +274,7 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('/templates/profile.html', { root: __dirname });
 });
 app.get('/jobs', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
+
     res.sendFile('/templates/comlist.html', { root: __dirname });
 });
 
