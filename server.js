@@ -145,11 +145,11 @@ app.post('/login', (req, res) => {
         if (!row) {
             console.log("0 rows found, no user");
             res.cookie('userid', null);
-            return res.send({ success: false, message: 'Error, No such user exists' });
+            return res.render('alert', { title: "One or more fields are incorrect", link: "/login", linkname: "Go Back" });
         }
         //console.log(row);
         if (!bcrypt.compareSync(req.body.password, row.password))
-            return res.send({ success: false, message: "Err  or, Incorrect password." });
+            return res.render('alert', { title: "Incorrect password", link: "/login", linkname: "Go Back" });
 
         e = { expires: new Date(Date.now() + 1000 * 60 * 24) };
 
@@ -173,11 +173,12 @@ app.post('/cvbuilder', (req, res) => {
     console.log(sql);
     db.exec(sql, err => {
         if (err) return res.send(err);
-        return res.send({ success: true, message: "Successfully entered all values" }).redirect('/templates/profile.html');
+        return res.render('alert', { title: "Successfully entered all values", link: "/templates/profile.html", linkname: "Goto Profile" });
     });
 
     //res.send({ success: true, data: req.body, message: "cv details" });
 });
+
 
 app.get('/getcv', (req, res) => {
     if (!req.session.user) return res.send({ success: false, message: "You need to login first" });
@@ -198,7 +199,8 @@ app.post('/addjob', (req, res) => {
     console.log(sql);
     db.exec(sql, err => {
         if (err) return res.send(err);
-        return res.send({ success: true, message: "Job Listing added" });
+        return res.render('alert', { title: "Job Listing added", link: "/recruiters", linkname: "Goto recruiters" });
+        //return res.send({ success: true, message: "Job Listing added" });
     });
     //res.send(req.body);
 });
@@ -330,3 +332,19 @@ function sendVerificatonEmail(req, res) {
 //         else res.cookie(key, "", expiry);
 //     return res;
 // }
+
+let fs = require('fs');
+
+app.set('views', './templates');
+app.set('view engine', 'html');
+
+app.engine('html', (filepath, options, callback) => {
+    fs.readFile(filepath, (err, content) => {
+        if (err) return callback(err);
+        let rendered = content.toString()
+            .replace("{{ message }}", options.title)
+            .replace("{{ link }}", options.link)
+            .replace("{{ linkname }}", options.linkname);
+        return callback(null, rendered);
+    });
+});
