@@ -13,15 +13,15 @@
         </div>
         <div class="col l9 m9 s12 no-padd">
             <div class="col s12">
-                <h3><b>{{user}}</b></h3>
+                <h3><b id="u_name">Username</b></h3>
                 <div class="col l3 m4 s7 no-padd">
-                    loremepsum@gmail.com
+                    <span id="u_email">loremepsum@gmail.com</span>
                 </div>
                 <div class="col l2 m2 s3 no-padd">
-                    DELHI
+                    <span id="u_city">DELHI</span>
                 </div>
                 <div class="col l2 m3 s2 no-padd">
-                    B.Tech
+                    <span id="u_edu">B.Tech</span>
                 </div>
             </div>
             <div class="col s12 no-padd">
@@ -101,9 +101,11 @@
             if(uid!=="null"){
                 $.ajax({
                     url:location.origin+"/getuserdata",
-                    method:"GET",
+                    method:"POST",
                     data:{"uid":uid},
                     success:function(res){
+                        $('#u_email').text(res.data.email);
+                        $('#u_name').text(res.data.firstname+"  "+res.data.lastname);
                         console.log(res);
                     },
                     error:function(err){
