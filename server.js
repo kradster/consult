@@ -114,7 +114,7 @@ app.get('/verify', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-    console.log("signup", req.body);
+    console.log("signup");
     data = req.body;
     if (!data.firstname || !data.lastname || !data.phoneno || !data.email || !data.password || !data.cpassword)
         return res.send({ success: false, message: "Error, one or more fields are empty." });
@@ -122,18 +122,18 @@ app.post('/signup', (req, res) => {
         return res.send({ success: false, message: "Error, passwords dont match" });
     db.get("SELECT * FROM Users WHERE email = ?", data.email, (err, row) => {
         if (row) return res.send({ success: false, message: "The account associated with the email already exists." });
-    });
-    delete data.cpassword;
-    data["uniqueid"] = Date.now();
-    data["verified"] = "no";
-    data.password = bcrypt.hashSync(data.password);
-    //console.log(data);
-    sql = "INSERT INTO Users(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
-    db.exec(sql, err => {
-        if (err) return res.send(err);
-        sendVerificatonEmail(req, res);
-        console.log("Account created");
-        res.redirect('/login');
+        delete data.cpassword;
+        data["uniqueid"] = Date.now();
+        data["verified"] = "no";
+        data.password = bcrypt.hashSync(data.password);
+        //console.log(data);
+        sql = "INSERT INTO Users(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
+        db.exec(sql, err => {
+            if (err) return res.send(err);
+            sendVerificatonEmail(req, res);
+            console.log("Account created");
+            res.redirect('/login');
+        });
     });
     //    res.send(req.body);
 });
@@ -304,7 +304,7 @@ app.get('*', (req, res) => {
 
 function sendVerificatonEmail(req, res) {
     rand = Math.floor((Math.random() * 10000000) + 342132);
-    console.log(req.body);
+    console.log("Sending verification email...");
     runtime_obj[rand] = req.body.email;
     console.log(runtime_obj);
     host = req.get('host');
