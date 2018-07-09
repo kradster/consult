@@ -5,6 +5,7 @@
         }
 </style>
 <div class="col s12 no-padd">
+    <div ng-controller="controller">
         <div class="col l3 m3 s12 no-padd">
             <center>
                 <img style="width:100%" src="/img/profilepic.jpg" alt="">
@@ -12,7 +13,7 @@
         </div>
         <div class="col l9 m9 s12 no-padd">
             <div class="col s12">
-                <h3><b>Lorem, ipsum.</b></h3>
+                <h3><b>{{user}}</b></h3>
                 <div class="col l3 m4 s7 no-padd">
                     loremepsum@gmail.com
                 </div>
@@ -45,6 +46,7 @@
                 <a href="../templates/makecv.html" class="col s10 offset-s1 l3 btn green accent-4"><b>EDIT RESUME</b></a>
             </div>
         </div>
+    </div>
     </div>
     <div class="row"></div>
     <div class="row hide-on-small-only">
@@ -98,7 +100,7 @@
             var uid = rowid.substring(rowid.lastIndexOf('=')+1);
             if(uid!=="null"){
                 $.ajax({
-                    url:location.origin+"/getjoblistings",
+                    url:location.origin+"/getuserdata",
                     method:"GET",
                     data:{"uid":uid},
                     success:function(res){
