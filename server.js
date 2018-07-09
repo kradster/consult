@@ -26,6 +26,8 @@ app.use('/img', express.static('img'));
 app.use('/myfont', express.static('myfont'));
 app.use('/templates', express.static('templates'));
 app.use('/js', express.static('js'));
+//app.use('/admin', express.static('admin'));
+
 
 //Connecting to local database
 const sqlite3 = require('sqlite3').verbose();
@@ -61,7 +63,7 @@ let db = new sqlite3.Database('database.db', err => {
             collegeboard text,
             collegemarks text,
             projects text,
-            skills
+            skills text
         );
     `);
     db.exec(`
@@ -71,13 +73,18 @@ let db = new sqlite3.Database('database.db', err => {
             companyname text,
             aboutcompany text,
             location text,
-            minsal text,
-            maxsal text,
             minexp text,
             maxexp text,
             jobdesc text,
             listbyemail text,
-            altemail text
+            altemail text,
+            contactno text,
+            companywebsite text,
+            noofvac text,
+            salary text,
+            experience text,
+            anytime text
+            dateofjoin text
         );
     `);
 
@@ -192,17 +199,34 @@ app.get('/getcv', (req, res) => {
     });
 });
 
-app.post('/addjob', (req, res) => {
+app.post('/adminlogin', (req, res) => {
+    if (req.body.password === Config.ADMIN_KEY) {
+        req.session.admin = "admin" + Config.ADMIN_KEY;
+        res.redirect('/admin/jobadd');
+    } else
+        res.render('alert', { title: "Incorrect login attempt", link: "/", linkname: "Go back to home" });
+});
 
-    data = req.body;
-    sql = "INSERT INTO JobListings(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
-    console.log(sql);
-    db.exec(sql, err => {
-        if (err) return res.send(err);
-        return res.render('alert', { title: "Job Listing added", link: "/recruiters", linkname: "Goto recruiters" });
-        //return res.send({ success: true, message: "Job Listing added" });
-    });
-    //res.send(req.body);
+app.get('/admin/jobadd', (req, res) => {
+    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
+        res.sendFile('/admin/jobadd.html', { root: __dirname });
+    } else
+        res.redirect('/');
+
+});
+
+app.post('/addjob', (req, res) => {
+    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
+        data = req.body;
+        sql = "INSERT INTO JobListings(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
+        console.log(sql);
+        console.log(req.body);
+        db.exec(sql, err => {
+            if (err) return res.send(err);
+            return res.render('alert', { title: "Job Listing added", link: "/jobs", linkname: "Goto Jobs" });
+        });
+    } else
+        res.render('alert', { title: "Incorrect login activity", link: "/", linkname: "Go to Home" });
 });
 
 app.get('/getjoblistings', (req, res) => {
