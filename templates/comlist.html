@@ -35,9 +35,8 @@
     </script>
     <!-- End Google Tag Manager -->
     <style>
-        
-        input:not([type]), input[type=text]:not(.browser-default){
-    
+        input:not([type]),
+        input[type=text]:not(.browser-default) {
             border: none;
             outline: none;
             height: 3rem;
@@ -46,26 +45,29 @@
             margin: 0 0 8px 0;
             padding: 0;
             background-color: transparent;
-            box-shadow:0px
+            box-shadow: 0px
         }
-        input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]){
-            border-bottom:none;
-            -webkit-box-shadow:none;
-            box-shadow:none;
+        
+        input:not([type]):focus:not([readonly]),
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
-        input::-webkit-input-placeholder{
+        
+        input::-webkit-input-placeholder {
             color: #eee;
-        } 
-        .no-padd{
-            padding:0px !important;
-        }      
-
+        }
+        
+        .no-padd {
+            padding: 0px !important;
+        }
     </style>
 </head>
 
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -74,10 +76,10 @@
     <div id="navigationbar"></div>
     <!-- NAVIGATION BAR END -->
 
-    
+
     <div class="row" style="height:50px;"></div>
     <div id="userprofile" class="row no-padd">
-        
+
     </div>
 
     <div class="row grey lighten-2">
@@ -88,54 +90,55 @@
                 <div class="divider"></div>
                 <br>
                 <div id="joblistcon">
-                
+
                 </div>
             </div>
         </div>
         <div class="col s12" style="height:50px;"></div>
     </div>
-     <!-- FOOTER START -->
-     <div id="myfooter">
+    <!-- FOOTER START -->
+    <div id="myfooter">
     </div>
     <!-- FOOTER END -->
 
-   
-    
-    
 
-<!-- Compiled and minified JavaScript -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="../js/myfooter.js"></script>
-<script src="../js/userprofile.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-<script>
-  $(document).ready(function(){
-      M.AutoInit();
-      //getJobList();
-      setInterval(getJobList,2000);
 
-  });
-    function getJobList(){
-        $.ajax({
-            url:window.location.origin+"/getjoblistings",
-            method:"GET",
-            dataType:"json",
-            success:function(response){
-                let fulldata = response.data;
-                console.log(fulldata);
-                joblistmaker(fulldata);
-            },
-            error:function(err){
-                console.log(err);
-            }
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../js/myfooter.js"></script>
+    <script src="../js/userprofile.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            M.AutoInit();
+            //getJobList();
+            getJobList();
+
         });
-    }
 
-    function joblistmaker(data){
-        let JOBLISTCON = $('#joblistcon');
-        JOBLISTCON.empty();
-        for(d in data){
-        let template = `
+        function getJobList() {
+            $.ajax({
+                url: window.location.origin + "/getjoblistings",
+                method: "GET",
+                dataType: "json",
+                success: function(response) {
+                    let fulldata = response.data;
+                    console.log(fulldata);
+                    joblistmaker(fulldata);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        function joblistmaker(data) {
+            let JOBLISTCON = $('#joblistcon');
+            JOBLISTCON.empty();
+            for (d in data) {
+                let template = `
         <div class="col s12 no-padd">
                     <div class="col s12 no-padd">
                         <div class="col l2 s12 no-padd">
@@ -144,42 +147,41 @@
                             </center>
                         </div>
                         <div class="col l10 s10 no-padd">
-                            <h5><b>`+data[d].jobtitle+`</b> <i class="fas fa-certificate  amber-text"></i></h5>
-                            <h6>`+data[d].companyname+`</h6>
+                            <h5><b>` + data[d].jobtitle + `</b> <i class="fas fa-certificate  amber-text"></i></h5>
+                            <h6>` + data[d].companyname + `</h6>
                             <div class="col s12 no-padd">
-                                <div class="col l3 s12 no-padd"><i class="fas fa-calendar"></i> `+data[d].minexp+`-`+data[d].maxexp+` YEAR</div>
-                                <div class="col l3 s12 no-padd"><i class="fas fa-rupee-sign"></i>`+data[d].minsal+`-`+data[d].maxsal+` LPA</div>
-                                <div class="col l3 s12 no-padd"><i class="fas fa-map-marker"></i>`+data[d].location+`</div>
+                                <div class="col l3 s12 no-padd"><i class="fas fa-calendar"></i> ` + data[d].minexp + `-` + data[d].maxexp + ` YEAR</div>
+                                <div class="col l3 s12 no-padd"><i class="fas fa-rupee-sign"></i>` + data[d].minsal + `-` + data[d].maxsal + ` LPA</div>
+                                <div class="col l3 s12 no-padd"><i class="fas fa-map-marker"></i>` + data[d].location + `</div>
                             </div>
                         </div>
                     </div>
                     <div class="col l8 offset-l2 s12 no-padd">
                         <br>
                         <div>
-                            `+data[d].jobdesc+`
-                            <a href="/companyinfo/`+data[d].companyname+`"><b>read more..</b></a>
+                            ` + data[d].jobdesc + `
+                            <a href="/companyinfo/` + data[d].companyname + `"><b>read more..</b></a>
                         </div>
                         <br>
                     </div>
                     <div class="col l2 s12">
-                        <a href="" class="btn indigo accent-4"><b>APPLY</b></a>
+                        <a href="/schedule" class="btn indigo accent-4"><b>APPLY</b></a>
                         <div class="col s12 show-on-small-only" style="height:10px;"></div>
                     </div>
                     <br>
                 </div>
         `;
-        JOBLISTCON.append(template);
+                JOBLISTCON.append(template);
             }
-    }
-
-</script>
-<script src="https://wchat.freshchat.com/js/widget.js"></script>
-<script>
+        }
+    </script>
+    <script src="https://wchat.freshchat.com/js/widget.js"></script>
+    <script>
         window.fcWidget.init({
-          token: "4281856b-8aa2-4b5e-8108-4171813716e5",
-          host: "https://wchat.freshchat.com"
+            token: "4281856b-8aa2-4b5e-8108-4171813716e5",
+            host: "https://wchat.freshchat.com"
         });
-      </script>
+    </script>
 </body>
 
 </html>
