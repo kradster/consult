@@ -15,38 +15,60 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TGKGPG3');
+    </script>
+    <!-- End Google Tag Manager -->
     <style>
         
-        /* input:not([type]), input[type=text]:not(.browser-default),
-        input:not([password]), input[type=password]:not(.browser-default){
+        input:not([type]), input[type=text]:not(.browser-default),
+         input:not([type]), input[type=password]:not(.browser-default){
     
-            border: none;
+            border:1px solid #ccc;
             outline: none;
             height: 3rem;
             width: 100%;
             font-size: 16px;
             margin: 0 0 8px 0;
-            padding: 0;
+            padding:0px 0px 0px 10px !important;
             background-color: transparent;
-            box-shadow:0px
+            box-shadow:0px;
+            margin-left:-5px;
         }
-        input:not([type]):focus:not([readonly]),
-        input[type=text]:not(.browser-default):focus:not([readonly]),
-        input:not([password]):focus:not([readonly]),
-        input[type=password]:not(.browser-default):focus:not([readonly]){
-            border-bottom:none;
+        input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]),input[type=password]:not(.browser-default):focus:not([readonly]){
+            border:1px solid #aaa;
             -webkit-box-shadow:none;
             box-shadow:none;
         }
         input::-webkit-input-placeholder{
             color: #aaa;
-        }   */
+            font-size:.8em;
+        }       
    
 
     </style>
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    
      <!-- NAVIGATION BAR START -->
      <div id="navigationbar">
 
@@ -62,12 +84,10 @@
                 </center>
                 <br>
                 <div class="input-field col s12">
-                        <input id="email" name="email" type="text" class="blue-text"/> 
-                        <label for="email">Email</label>
+                        <input placeholder="Email" id="email" name="email" type="text" class="blue-text"/> 
                     </div>
                 <div class="input-field col s12">
-                        <input id="password" name="password" type="password" class="blue-text"/>
-                        <label for="password">Password</label> 
+                        <input placeholder="password" id="password" name="password" type="password" class="blue-text"/>
                     </div><br>
                      <div class="input-field col s12">
                          <center>
@@ -93,5 +113,12 @@
       M.AutoInit();
   });
 </script>
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+<script>
+        window.fcWidget.init({
+          token: "4281856b-8aa2-4b5e-8108-4171813716e5",
+          host: "https://wchat.freshchat.com"
+        });
+      </script>
 </body>
 </html>

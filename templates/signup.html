@@ -16,115 +16,117 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <style>
-        /* input:not([type]), input[type=text]:not(.browser-default),
-            input:not([password]), input[type=password]:not(.browser-default){
-        
-                border: none;
-                outline: none;
-                height: 3rem;
-                width: 100%;
-                font-size: 16px;
-                margin: 0 0 8px 0;
-                padding: 0;
-                background-color: transparent;
-                box-shadow:0px
-            }
-            input:not([type]):focus:not([readonly]),
-            input[type=text]:not(.browser-default):focus:not([readonly]),
-            input:not([password]):focus:not([readonly]),
-            input[type=password]:not(.browser-default):focus:not([readonly]){
-                border-bottom:none;
-                -webkit-box-shadow:none;
-                box-shadow:none;
-            }
-            input::-webkit-input-placeholder{
-                color: #aaa;
-            }   */
+        input:not([type]),
+        input[type=text]:not(.browser-default),
+        input:not([type]),
+        input[type=password]:not(.browser-default) {
+
+            border: 1px solid #ccc;
+            outline: none;
+            height: 3rem;
+            width: 100%;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            padding: 0px 0px 0px 10px !important;
+            background-color: transparent;
+            box-shadow: 0px;
+            margin-left: -5px;
+        }
+
+        input:not([type]):focus:not([readonly]),
+        input[type=text]:not(.browser-default):focus:not([readonly]),
+        input[type=password]:not(.browser-default):focus:not([readonly]) {
+            border: 1px solid #aaa;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #aaa;
+            font-size: .8em;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    
     <!-- NAVIGATION BAR START -->
     <div id="navigationbar">
 
     </div>
     <!-- NAVIGATION BAR END -->
-    <!DOCTYPE html>
-    <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
-    </head>
-
-    <body>
-
-        <div class="row">
-            <div class="col s12" style="height:100px;"></div>
-            <form class="col l6 offset-l3 s12" action="/signup" method="POST">
-                <div class="card col l8 offset-l2 s12 z-depth-3" style="padding:10px;border-radius:10px; border-top:5px solid #2962ff;">
-                    <center>
-                        <h4 class="indigo-text">Signup</h4>
-                    </center>
-                    <br>
-                    <div class="input-field col s6" style="border-radius:10px;">
-                        <input name="firstname" id=: "firstname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
-                        <label for="firstname">Firstname</label>
-                    </div>
-                    <div class="input-field col s6" style="border-radius:10px;">
-                        <input name="lastname" id=: "lastname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
-                        <label for="lastname">Lastname</label>
-                    </div>
-                    <div class="input-field col s12" style="border-radius:10px;">
-                        <input name="phoneno" id=: "phoneno" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
-                        <label for="phoneno">Phone no</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <input name="email" id=: "email" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="input-field col s6" style="border-radius:10px;">
-                        <input name="password" id=: "password" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
-                        <label for="password">Password</label>
-                    </div>
-
-                    <div class="input-field col s6" style="border-radius:10px;">
-                        <input name="cpassword" id=: "cpassword" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
-                        <label for="cpassword">Confirm Password</label>
-                    </div>
-
-                    <div class="input-filed col s12">
-                        <center>
-                            <input style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="col s12 btn btn-large indigo accent-4 z-depth-5 white-text" value="Signup">
-                        </center>
-                    </div>
-                    <div class="row">
-                        <br>
-                    </div>
-
+    <div class="row">
+        <div class="col s12" style="height:100px;"></div>
+        <form class="col l6 offset-l3 s12" action="/signup" method="POST">
+            <div class="card col l8 offset-l2 s12 z-depth-3" style="padding:10px;border-radius:10px; border-top:5px solid #2962ff;">
+                <center>
+                    <h4 class="indigo-text">Signup</h4>
+                </center>
+                <br>
+                <div class="input-field col s6" style="border-radius:10px;">
+                    <input placeholder="First Name" name="firstname" id=: "firstname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
                 </div>
-            </form>
-            <div class="col s12" style="height:150px;"></div>
-        </div>
+                <div class="input-field col s6" style="border-radius:10px;">
+                    <input placeholder="Last Name" name="lastname" id=: "lastname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                </div>
+                <div class="input-field col s12" style="border-radius:10px;">
+                    <input placeholder="Phone No" name="phoneno" id=: "phoneno" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                </div>
+                <div class="input-field col s12">
+                    <input placeholder="Email" name="email" id=: "email" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                </div>
+                <div class="input-field col s6" style="border-radius:10px;">
+                    <input placeholder="Passowrd" name="password" id=: "password" type="password" class="blue-text" style="padding:5px;font-size:1.5em;">
+                </div>
+
+                <div class="input-field col s6" style="border-radius:10px;">
+                    <input placeholder="Confirm Passowrd" name="cpassword" id=: "cpassword" type="password" class="blue-text" style="padding:5px;font-size:1.5em;">
+                </div>
+
+                <div class="input-filed col s12">
+                    <center>
+                        <input style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="col s12 btn btn-large indigo accent-4 z-depth-5 white-text"
+                            value="Signup">
+                    </center>
+                </div>
+                <div class="row">
+                    <br>
+                </div>
+
+            </div>
+        </form>
+        <div class="col s12" style="height:150px;"></div>
+    </div>
 
 
 
 
-        <!-- FOOTER START -->
-        <div id="myfooter">
-        </div>
-        <!-- FOOTER END -->
-        <!-- Compiled and minified JavaScript -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="../js/myfooter.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                M.AutoInit();
-            });
-        </script>
-    </body>
+    <!-- FOOTER START -->
+    <div id="myfooter">
+    </div>
+    <!-- FOOTER END -->
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../js/myfooter.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            M.AutoInit();
+        });
+    </script>
+    <script src="https://wchat.freshchat.com/js/widget.js"></script>
+    <script>
+        window.fcWidget.init({
+            token: "4281856b-8aa2-4b5e-8108-4171813716e5",
+            host: "https://wchat.freshchat.com"
+        });
+    </script>
+</body>
 
-    </html>
+</html>

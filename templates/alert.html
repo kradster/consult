@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JOBLANA</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -34,87 +34,79 @@
     <!-- End Google Tag Manager -->
     <style>
         input:not([type]),
-        input[type=text]:not(.browser-default),
-        textarea,
-        textarea:not(.browser-default) {
-            border:1px solid #eee;
+        input[type=text]:not(.browser-default) {
+            border: none;
             outline: none;
             height: 3rem;
             width: 100%;
             font-size: 16px;
             margin: 0 0 8px 0;
-            padding: 0px 0px 0px 10px;
+            padding: 0;
             background-color: transparent;
             box-shadow: 0px
         }
-
+        
         input:not([type]):focus:not([readonly]),
-        input[type=text]:not(.browser-default):focus:not([readonly]){
-            border:1px solid #2962ff;
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            border-bottom: none;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-
+        
         input::-webkit-input-placeholder {
-            color: grey;
+            color: #eee;
         }
-
+        
         .no-padd {
             padding: 0px !important;
         }
     </style>
 </head>
 
-<body class="grey lighten-4">
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    
 
     <!-- NAVIGATION BAR START -->
     <div id="navigationbar">
+
     </div>
     <!-- NAVIGATION BAR END -->
 
-    <div class="row" style="height:40px;"></div> 
-
-    <!-- TEST SCHEDULE DETAILS PANEL START -->
-    <div class="row">
-        <div class="row" style="height:50px;"></div>
-        <div class="col s10">
-            <div class="col s11 offset-s1">
-                <b class="grey-text">Post a Job For Free</b>
-            </div>
-            <div class="col s11 offset-s1 card no-padd z-depth-0">
-                <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
-                <i class="fas fa-briefcase fa-2x"></i>  <span style="font-size:1.7em">Choose your Slot.</span>
-            </div>
-            <div class="divider"></div>
-            <div class="row" style="height:50px;"></div>
-            
-            </div>
+    <div class="row" style="height:50px;"></div>
+    <div class="col s12">
+        <div class="container">
+            <h3 class="center">{{ message }}</h3>
+            <a href="{{ link }}" class="btn btn-large blue accent-4">{{ linkname }}</a>
         </div>
-       
-        <div class="row" style="height:50px;"></div>
-
     </div>
-    <!-- JOB DETAILS PANEL END -->
-    
+    <div class="row" style="height:50px;"></div>
     <!-- FOOTER START -->
     <div id="myfooter">
-
     </div>
     <!-- FOOTER END -->
 
 
+
+
+
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="../js/mysidebar.js"></script>
+    <script src="../js/userprofile.js"></script>
     <script src="../js/myfooter.js"></script>
+    <script src="../js/profiletab.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             M.AutoInit();
+
+
         });
     </script>
     <script src="https://wchat.freshchat.com/js/widget.js"></script>

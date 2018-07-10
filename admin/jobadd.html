@@ -15,23 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-TGKGPG3');
-    </script>
-    <!-- End Google Tag Manager -->
     <style>
         input:not([type]),
         input[type=text]:not(.browser-default),
@@ -66,11 +49,6 @@
 </head>
 
 <body class="grey lighten-4">
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     <!-- NAVIGATION BAR START -->
     <div id="navigationbar">
@@ -106,10 +84,10 @@
                 <div class="row" style="height:50px;"></div>
                 <form action="/addjob" method="POST">
                     <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
-                            <div class="col s9">
-                                <input type="text" name="companyname" placeholder="Company Name">
-                            </div>
+                        <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
+                        <div class="col s9">
+                            <input type="text" name="companyname" placeholder="Company Name">
+                        </div>
                     </div>
                     <div class="col l10 offset-l2 s12">
                         <div class="col s3 right-align" style="padding-top:10px;">Recruiter Email Id</div>
@@ -118,21 +96,21 @@
                         </div>
                     </div>
                     <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Alternate Email</div>
-                            <div class="col s9">
-                                <input type="text" name="altemail" placeholder="Enter Email id">
-                            </div>
+                        <div class="col s3 right-align" style="padding-top:10px;">Alternate Email</div>
+                        <div class="col s9">
+                            <input type="text" name="altemail" placeholder="Enter Email id">
+                        </div>
                     </div>
                     <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Contact No</div>
-                            <div class="col s9">
-                                <input type="text" name="contactno" placeholder="Enter comapny contact no">
-                            </div>
+                        <div class="col s3 right-align" style="padding-top:10px;">Contact No</div>
+                        <div class="col s9">
+                            <input type="text" name="contactno" placeholder="Enter comapny contact no">
+                        </div>
                     </div>
                     <div class="col l10 offset-l2 s12">
                         <div class="col s3 right-align" style="padding-top:10px;">Company Website</div>
                         <div class="col s9">
-                            <input type="text" name="companyname" placeholder="Website link">
+                            <input type="text" name="companywebsite" placeholder="Website link">
                         </div>
                     </div>
                     <div class="col l10 offset-l2 s12">
@@ -142,9 +120,9 @@
                         </div>
                     </div>
                     <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
-                            <div class="col s9">
-                                    <select name="jobtitle">
+                        <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
+                        <div class="col s9">
+                            <select name="jobtitle">
                                             <option value="" disabled selected>Choose your option</option>
                                             <option value="hr">HR</option>
                                             <option value="operations">OPERATIONS</option>
@@ -155,18 +133,18 @@
                                             <option value="office">OFFICE JOBS</option>
                                             <option value="accounting">ACCOUNTING</option>
                                           </select>
-                            </div>
                         </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">No of Vacancies</div>
-                            <div class="col s9">
-                                <input type="text" name="noofvac" placeholder="Enter no vacancies">
-                            </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">No of Vacancies</div>
+                        <div class="col s9">
+                            <input type="text" name="noofvac" placeholder="Enter no vacancies">
                         </div>
+                    </div>
                     <div class="col l10 offset-l2 s12">
                         <div class="col s3 right-align" style="padding-top:10px;">Location</div>
                         <div class="col s9">
-                                <select name="location">
+                            <select name="location">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="newDelhi">New Delhi</option>
@@ -191,7 +169,7 @@
                         <div class="col s12 no-padd">
                             <div class="col s3 right-align" style="padding-top:10px;">Salary</div>
                             <div class="col s9">
-                                    <select name="sallary">
+                                <select name="salary">
                                             <option value="" disabled selected>Choose your option</option>
                                             <option value="2">Less than 2 lac</option>
                                             <option value="2-3">2-3 lac</option>
@@ -208,7 +186,7 @@
                         <div class="col s12 no-padd">
                             <div class="col s3 right-align" style="padding-top:10px;">Experience</div>
                             <div class="col s9">
-                                    <select name="experience">
+                                <select name="experience">
                                             <option value="" disabled selected>Choose your option</option>
                                             <option value="ef">FRESHER</option>
                                             <option value="e12"> < 12 MOTHNS</option>
@@ -225,19 +203,19 @@
                         </div>
                     </div>
                     <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Joining Date</div>
-                            <div class="col s9">
-                                <input class="datepicker" type="text" name="dateofjoin" placeholder="Enter date of joining">
-                                <p>
-                                    <label>
+                        <div class="col s3 right-align" style="padding-top:10px;">Joining Date</div>
+                        <div class="col s9">
+                            <input class="datepicker" type="text" name="dateofjoin" placeholder="Enter date of joining">
+                            <p>
+                                <label>
                                         <input type="checkbox" class="filled-in" name="anytime"/>
                                         <span>Any time</span>
                                     </label>
-                                </p>
-                            </div>
+                            </p>
+                        </div>
                     </div>
                     <div class="col s12"></div>
-                    
+
                     <div class="col s12" style="height:50px;"></div>
                     <div class="col s12 no-padd">
                         <div class="divider"></div>
@@ -302,13 +280,6 @@
             M.AutoInit();
         });
     </script>
-    <script src="https://wchat.freshchat.com/js/widget.js"></script>
-    <script>
-            window.fcWidget.init({
-              token: "4281856b-8aa2-4b5e-8108-4171813716e5",
-              host: "https://wchat.freshchat.com"
-            });
-          </script>
 </body>
 
 </html>

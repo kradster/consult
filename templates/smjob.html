@@ -32,7 +32,7 @@
         })(window, document, 'script', 'dataLayer', 'GTM-TGKGPG3');
     </script>
     <!-- End Google Tag Manager -->
-    <style>
+   <style>
         
         input:not([type]), input[type=text]:not(.browser-default){
     
@@ -62,11 +62,12 @@
 </head>
 
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    
 
     <!-- NAVIGATION BAR START -->
     <div id="navigationbar"></div>
@@ -74,23 +75,54 @@
 
     
     <div class="row" style="height:50px;"></div>
-    <div id="userprofile" class="row no-padd">
-        
+    <div class="row">
+        <div class="col s10 offset-s2">
+            <h1><b>SALES AND MARKITING JOBS</b></h1>
+        </div>
     </div>
 
     <div class="row grey lighten-2">
         <div class="col s12 grey lighten-2" style="height:50px;"></div>
         <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
             <div class="col s12">
-                <h5><b>JOBS IN INDIA</b></h5>
+                <h5><b>Job Responsibilities</b></h5>
                 <div class="divider"></div>
-                <br>
-                <div id="joblistcon">
-                
+                <br><br>
+                <div class="col s12">
+                    <li class="ui message">
+                    Working and implementing new ideas and strategies
+                    </li>
+                    <li class="ui message">
+                    coordinating with internal marketing
+                    </li>
+                    <li class="ui message">
+                    monitoring performance of Action, managing campaigns on Online/Offline and making Report for both Overseeing and developing marketing campaign
+                    </li>
+                    <li class="ui message">
+                    compiling and distributing financial and statistical information
+                    </li>
+                    <li class="ui message">
+                    Meets marketing and sales financial objectives.
+                    </li> 
+                    <li class="ui message">
+                    preparing an annual budget and scheduling expenditures
+                    </li>
+                    <li class="ui message">
+                    analyzing variances; initiating corrective actions.
+                    </li>
+                    <li class="ui message">
+                    organising events and product exhibitions
+                    </li>
+                    <li class="ui message">
+                    Improves product marketability and profitability by researching, identifying, and capitalizing on market opportunities, improving product packaging, coordinating new product development
+                    </li>
+                    <li class="ui message">
+                    updating databases and using a customer relationship management (CRM) system
+                    </li>
                 </div>
             </div>
+            <div class="col s12" style="height:50px;"></div>
         </div>
-        <div class="col s12" style="height:50px;"></div>
     </div>
      <!-- FOOTER START -->
      <div id="myfooter">
@@ -109,75 +141,8 @@
 <script>
   $(document).ready(function(){
       M.AutoInit();
-      //getJobList();
-      setInterval(getJobList,2000);
-
   });
-    function getJobList(){
-        $.ajax({
-            url:window.location.origin+"/getjoblistings",
-            method:"GET",
-            dataType:"json",
-            success:function(response){
-                let fulldata = response.data;
-                console.log(fulldata);
-                joblistmaker(fulldata);
-            },
-            error:function(err){
-                console.log(err);
-            }
-        });
-    }
-
-    function joblistmaker(data){
-        let JOBLISTCON = $('#joblistcon');
-        JOBLISTCON.empty();
-        for(d in data){
-        let template = `
-        <div class="col s12 no-padd">
-                    <div class="col s12 no-padd">
-                        <div class="col l2 s12 no-padd">
-                            <center>
-                                <i class="fas fa-building fa-3x grey-text lighten-2"></i>
-                            </center>
-                        </div>
-                        <div class="col l10 s10 no-padd">
-                            <h5><b>`+data[d].jobtitle+`</b> <i class="fas fa-certificate  amber-text"></i></h5>
-                            <h6>`+data[d].companyname+`</h6>
-                            <div class="col s12 no-padd">
-                                <div class="col l3 s12 no-padd"><i class="fas fa-calendar"></i> `+data[d].minexp+`-`+data[d].maxexp+` YEAR</div>
-                                <div class="col l3 s12 no-padd"><i class="fas fa-rupee-sign"></i>`+data[d].minsal+`-`+data[d].maxsal+` LPA</div>
-                                <div class="col l3 s12 no-padd"><i class="fas fa-map-marker"></i>`+data[d].location+`</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l8 offset-l2 s12 no-padd">
-                        <br>
-                        <div>
-                            `+data[d].jobdesc+`
-                            <a href="/companyinfo/`+data[d].companyname+`"><b>read more..</b></a>
-                        </div>
-                        <br>
-                    </div>
-                    <div class="col l2 s12">
-                        <a href="" class="btn indigo accent-4"><b>APPLY</b></a>
-                        <div class="col s12 show-on-small-only" style="height:10px;"></div>
-                    </div>
-                    <br>
-                </div>
-        `;
-        JOBLISTCON.append(template);
-            }
-    }
-
 </script>
-<script src="https://wchat.freshchat.com/js/widget.js"></script>
-<script>
-        window.fcWidget.init({
-          token: "4281856b-8aa2-4b5e-8108-4171813716e5",
-          host: "https://wchat.freshchat.com"
-        });
-      </script>
 </body>
 
 </html>

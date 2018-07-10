@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "/adminpanel",
+                method: "POST",
+                success: function(data) {
+                    $("#app").html(JSON > stringify(data));
+                },
+                error: function(error) {
+                    $("#app").html("An Error Occured");
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <form action="/adminpanel" , method="POST">
+        <div id="app">
+
+        </div>
+    </form>
+</body>
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+    <script>
+            window.fcWidget.init({
+              token: "4281856b-8aa2-4b5e-8108-4171813716e5",
+              host: "https://wchat.freshchat.com"
+            });
+          </script>
+</html>
