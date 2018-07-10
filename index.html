@@ -107,7 +107,7 @@
             <div class="col s12 l4">
                 <div class="col s12" style="height:50px;"></div>
                 <div class="col s12 no-padd">
-                    <form class="col s12 no-padd" action="/getstarted" method="POST">
+                    <form class="col s12 no-padd" action="/signup" method="GET">
                         <div class="card col s12 z-depth-5" style="padding:10px;border-radius:10px;">
 
                             <div class="input-field col s12">
@@ -122,7 +122,7 @@
                             <br>
                             <div class="input-field col s12">
                                 <center>
-                                    <input name="getstartsubmit" style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="col s12 btn btn-large blue accent-4 z-depth-2 white-text"
+                                    <input id="GetStarted" name="getstartsubmit" style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="col s12 btn btn-large blue accent-4 z-depth-2 white-text"
                                         value="Get Started">
                                 </center>
                             </div>
@@ -429,6 +429,10 @@
     <script>
         $(document).ready(function () {
             M.AutoInit();
+            $('#GetStarted').on('click',function(e){
+                e.preventDefault();
+                
+            });
         });
     </script>
     <script src="https://wchat.freshchat.com/js/widget.js"></script>

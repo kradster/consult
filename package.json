@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kradster/consult#readme",
   "dependencies": {
+    "@angular/cli": "^6.0.8",
     "@angular/core": "^6.0.7",
     "bcrypt-nodejs": "0.0.3",
     "cookie-parser": "^1.4.3",
