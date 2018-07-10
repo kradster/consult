@@ -205,7 +205,8 @@ app.get('/admin/jobadd', (req, res) => {
 
 app.post('/addjob', (req, res) => {
     if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
-        vals = Object.values(data).map(x => x.replace("'", "''"));
+        data = req.body;
+        let vals = Object.values(data).map(x => x.replace("'", "''"));
         sql = "INSERT INTO JobListings(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
 
         console.log(sql);
@@ -214,6 +215,13 @@ app.post('/addjob', (req, res) => {
             if (err) return res.render('alert', { title: err + "", link: "/", linkname: "Goto home" });
             return res.render('alert', { title: "Job Listing added", link: "/jobs", linkname: "Goto Jobs" });
         });
+    } else
+        res.render('alert', { title: "Incorrect login activity", link: "/", linkname: "Go to Home" });
+});
+
+app.post('/removejob', (req, res) => {
+    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
+
     } else
         res.render('alert', { title: "Incorrect login activity", link: "/", linkname: "Go to Home" });
 });
