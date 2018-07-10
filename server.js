@@ -210,7 +210,7 @@ app.post('/addjob', (req, res) => {
         console.log(sql);
         //console.log(req.body);
         db.exec(sql, err => {
-            if (err) return res.send(err);
+            if (err) return res.render('alert', { title: err + "\n" + sql, link: "/", linkname: "Goto home" });
             return res.render('alert', { title: "Job Listing added", link: "/jobs", linkname: "Goto Jobs" });
         });
     } else
@@ -291,7 +291,7 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('/templates/profile.html', { root: __dirname });
 });
 app.get('/jobs', (req, res) => {
-
+    if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/comlist.html', { root: __dirname });
 });
 
