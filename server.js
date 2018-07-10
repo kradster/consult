@@ -90,18 +90,6 @@ let db = new sqlite3.Database('database.db', err => {
 
 });
 
-let smtptransport = nodemailer.createTransport({
-    host: 'smtp.zoho.com',
-    port: 587,
-    secure: false,
-    auth: {
-        user: Config.USER,
-        pass: Config.PASS
-    }
-});
-
-let rand, mailoptions, host, link;
-let runtime_obj = {};
 
 app.get('/verify', (req, res) => {
     console.log(req.protocol + ":/" + req.get('host'));
@@ -220,7 +208,7 @@ app.post('/addjob', (req, res) => {
         data = req.body;
         sql = "INSERT INTO JobListings(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
         console.log(sql);
-        console.log(req.body);
+        //console.log(req.body);
         db.exec(sql, err => {
             if (err) return res.send(err);
             return res.render('alert', { title: "Job Listing added", link: "/jobs", linkname: "Goto Jobs" });
@@ -328,6 +316,22 @@ app.get('*', (req, res) => {
     res.render('alert', { title: "404. The page you are looking for doesn't exist", link: "/", linkname: "Go back to home" });
 });
 
+
+let smtptransport = nodemailer.createTransport({
+    host: 'smtp.elasticmail.com',
+    port: 2525,
+    secure: false,
+    auth: {
+        user: Config.USER,
+        pass: Config.PASS
+    }
+});
+
+let rand, mailoptions, host, link;
+let runtime_obj = {};
+
+//sendVerificatonEmail({ body: { email: "priyanshbalyan@gmail.com" } });
+
 function sendVerificatonEmail(req, res) {
     rand = Math.floor((Math.random() * 10000000) + 342132);
     console.log("Sending verification email...");
@@ -335,6 +339,7 @@ function sendVerificatonEmail(req, res) {
     console.log(runtime_obj);
     host = req.get('host');
     link = "http://" + req.get('host') + "/verify?id=" + rand;
+    //link = "asa";
     mailoptions = {
         from: Config.EMAIL_ADDRESS,
         to: req.body.email,
@@ -349,13 +354,7 @@ function sendVerificatonEmail(req, res) {
         }
     });
 }
-// function setCookies(res, row, expiry = 0) {
-//     if (row.hasOwnProperty('password')) delete row.password;
-//     for (let key in row)
-//         if (row[key]) res.cookie(key, row[key], expiry);
-//         else res.cookie(key, "", expiry);
-//     return res;
-// }
+
 
 let fs = require('fs');
 
