@@ -85,7 +85,31 @@ function _funcB4() {
 }
 
 function AddMoreJobs(element){
-    element.append('<div class="col s12"><div class="input-field col s6"><input type="text" name="projects[]" id="projects" placeholder="Project/Internship/Job"></div><div class="input-field col s3"><input class="datepicker" type="text" name="startdate" placeholder="Start Date"></div><div class="input-field col s3"><input class="datepicker" type="text" name="enddate" placeholder="End Date"></div></div>');
+    element.append(`<div class="col s12">
+    <div class="input-field col s2">
+        <select class="no-autoinit" name="ptype[]">
+            <option value="" disabled selected>Choose your course</option>
+            <option value="internship"  selected>Internship</option>
+            <option value="job"  selected>Job</option>
+            <option value="projects"  selected>Project</option>
+        </select>
+    </div>
+    <div class="input-field col s2">
+        <input type="text" name="ptitlerole[]" id="projects" placeholder="title/role">
+    </div>
+    <div class="input-field col s2">
+        <input type="text" name="pinstorg[]" id="projects" placeholder="institute/organization">
+    </div>
+    <div class="input-field col s2">
+        <input type="text" name="pdetials[]" id="projects" placeholder="About work">
+    </div>
+    <div class="input-field col s2">
+        <input class="datepicker" type="text" name="pstartdate" id="startdate" placeholder="Start Date">
+    </div>
+    <div class="input-field col s2">
+        <input class="datepicker" type="text" name="penddate" id="enddate" placeholder="End Date">
+    </div>
+</div>`);
 }
 function AddMoreSkills(element){
     element.append('<div class="input-field col s12"><input type="text" name="skills[]" placeholder="Enter Your Skills"></div>');

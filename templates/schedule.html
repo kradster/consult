@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JOBLANA</title>
+    <title>Upcoming JL Tests | Schedule your JL test Now</title>
+    <meta name='description' content='Book your seat now for the next test and get the chance to highlight yourself in front of 500+ recruiters.'>    '>
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
@@ -65,7 +66,7 @@
         .no-padd {
             padding: 0px !important;
         }
-    </style>
+    </style> 
 </head>
 
 <body class="grey lighten-4">
@@ -95,27 +96,42 @@
             </div>
             <div class="divider"></div>
             <br>
-            <div class="col s12">
-                <div class="col s2 offset-s1">ALL TEST</div>
-                <div class="col s2">DELHI</div>
-                <div class="col s2">18/08/2018</div>
-                <div class="col s3 offset-s2"><a href="/applytest/23556" class="btn blue accent-4 z-depth-0"><b>APPLY</b></a></div>
+            <form action="/scheduletest" class="col s12" method="POST">
+                <div class="col s3">
+                        <select name="testrole">
+                                <option value="" disabled selected>Choose your role</option>
+                                <option value="hr">HR</option>
+                                <option value="operations">OPERATIONS</option>
+                                <option value="calling">CALLING</option>
+                                <option value="sallesmkt">SALES AND MARKETING</option>
+                                <option value="digitalmkt">DIGITAL MARKETING</option>
+                                <option value="it">IT JOBS</option>
+                                <option value="office">OFFICE JOBS</option>
+                                <option value="accounting">ACCOUNTING</option>
+                              </select>
+                </div>
+                <div class="col s3">
+                        <select name="testlocation">
+                                <option value="" disabled selected>Choose location</option>
+                                <option value="hr">DELHI</option>
+                               
+                              </select>
+                </div>
+                <div class="col s3">
+                        <select name="testdate">
+                                <option value="" disabled selected>Choose Date</option>
+                                <option value="19/08/2018">19/08/2018</option>
+                                <option value="23/09/2018">23/09/2018</option>
+                                <option value="28/10/2018">28/10/2018</option>
+                               
+                              </select>
+                </div>
+                <div class="col s3">
+                   <input class="btn blue accent-4 z-depth-0" type="submit" value="SCHEDULE TEST">
+                </div>
                 <div class="row"></div>
-            </div>
-            <div class="col s12">
-                <div class="col s2 offset-s1">ALL TEST</div>
-                <div class="col s2">DELHI</div>
-                <div class="col s2">18/08/2018</div>
-                <div class="col s3 offset-s2"><a href="/applytest/23556" class="btn blue accent-4 z-depth-0"><b>APPLY</b></a></div>
-                <div class="row"></div>
-            </div>
-            <div class="col s12">
-                <div class="col s2 offset-s1">ALL TEST</div>
-                <div class="col s2">DELHI</div>
-                <div class="col s2">18/08/2018</div>
-                <div class="col s3 offset-s2"><a href="/applytest/23556" class="btn blue accent-4 z-depth-0"><b>APPLY</b></a></div>
-                <div class="row"></div>
-            </div>
+            </>
+           
             <div class="row" style="height:50px;"></div>
             
             </div>
