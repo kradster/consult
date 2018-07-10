@@ -431,7 +431,9 @@
             M.AutoInit();
             $('#GetStarted').on('click',function(e){
                 e.preventDefault();
-                
+                localStorage.setItem('name',$('#name').val());
+                localStorage.setItem('email',$('#email').val());
+                location.href = location.origin+"/signup"
             });
         });
     </script>

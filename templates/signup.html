@@ -70,23 +70,23 @@
                 </center>
                 <br>
                 <div class="input-field col s6" style="border-radius:10px;">
-                    <input placeholder="First Name" name="firstname" id=: "firstname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                    <input placeholder="First Name" name="firstname" id="firstname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
                 </div>
                 <div class="input-field col s6" style="border-radius:10px;">
-                    <input placeholder="Last Name" name="lastname" id=: "lastname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                    <input placeholder="Last Name" name="lastname" id="lastname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
                 </div>
                 <div class="input-field col s12" style="border-radius:10px;">
-                    <input placeholder="Phone No" name="phoneno" id=: "phoneno" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                    <input placeholder="Phone No" name="phoneno" id="phoneno" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
                 </div>
                 <div class="input-field col s12">
-                    <input placeholder="Email" name="email" id=: "email" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                    <input placeholder="Email" name="email" id="email" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
                 </div>
                 <div class="input-field col s6" style="border-radius:10px;">
-                    <input placeholder="Passowrd" name="password" id=: "password" type="password" class="blue-text" style="padding:5px;font-size:1.5em;">
+                    <input placeholder="Passowrd" name="password" id="password" type="password" class="blue-text" style="padding:5px;font-size:1.5em;">
                 </div>
 
                 <div class="input-field col s6" style="border-radius:10px;">
-                    <input placeholder="Confirm Passowrd" name="cpassword" id=: "cpassword" type="password" class="blue-text" style="padding:5px;font-size:1.5em;">
+                    <input placeholder="Confirm Passowrd" name="cpassword" id="cpassword" type="password" class="blue-text" style="padding:5px;font-size:1.5em;">
                 </div>
 
                 <div class="input-filed col s12">
@@ -118,6 +118,9 @@
     <script>
         $(document).ready(function () {
             M.AutoInit();
+            $('#firstname').val(localStorage.getItem('name'));
+            $('#email').val(localStorage.getItem('email'));
+            
         });
     </script>
     <script src="https://wchat.freshchat.com/js/widget.js"></script>
