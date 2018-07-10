@@ -205,12 +205,13 @@ app.get('/admin/jobadd', (req, res) => {
 
 app.post('/addjob', (req, res) => {
     if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
-        data = req.body;
-        sql = "INSERT INTO JobListings(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
+        vals = Object.values(data).map(x => x.replace("'", "''"));
+        sql = "INSERT INTO JobListings(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
+
         console.log(sql);
         //console.log(req.body);
         db.exec(sql, err => {
-            if (err) return res.render('alert', { title: err + "\n" + sql, link: "/", linkname: "Goto home" });
+            if (err) return res.render('alert', { title: err + "", link: "/", linkname: "Goto home" });
             return res.render('alert', { title: "Job Listing added", link: "/jobs", linkname: "Goto Jobs" });
         });
     } else
