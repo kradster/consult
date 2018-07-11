@@ -8,7 +8,7 @@
     <title>Freshers job in India , Job opportunity in India , Job offers in India | JobLana</title>
     <meta name='description' content="Find latest freshers jobs in India. Search for best suitable job vacancies in India' s
         top companies and apply for IT, MBA, accounting, BPO, marketing and sales & other jobs in India.">
-    
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="../js/myfooter.js"></script>
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Google Tag Manager -->
-    <script> 
+    <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
@@ -52,18 +52,18 @@
             background-color: transparent;
             box-shadow: 0px
         }
-        
+
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border-bottom: none;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-        
+
         input::-webkit-input-placeholder {
             color: #eee;
         }
-        
+
         .no-padd {
             padding: 0px !important;
         }
@@ -91,7 +91,9 @@
         <div class="col s12 grey lighten-2" style="height:50px;"></div>
         <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
             <div class="col s12">
-                <h5><b>JOBS IN INDIA</b></h5>
+                <h5>
+                    <b>JOBS IN INDIA</b>
+                </h5>
                 <div class="divider"></div>
                 <br>
                 <div id="joblistcon">
@@ -114,7 +116,7 @@
     <script src="../js/userprofile.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             M.AutoInit();
             //getJobList();
             getJobList();
@@ -126,64 +128,97 @@
                 url: window.location.origin + "/getjoblistings",
                 method: "GET",
                 dataType: "json",
-                success: function(response) {
+                success: function (response) {
                     let fulldata = response.data;
                     console.log(fulldata);
                     joblistmaker(fulldata);
                 },
-                error: function(err) {
+                error: function (err) {
                     console.log(err);
                 }
             });
         }
 
         function joblistmaker(data) {
+            console.log(data);
             let JOBLISTCON = $('#joblistcon ');
             JOBLISTCON.empty();
             for (d in data) {
-                let template = `
-        <div class="col s12 no-padd">
+                var EXP = expToMonth(data[d].experience);
+                let template =
+                    `
+        <div class="col s12 no-padd" style="border-bottom:1px solid #aaa;">
                     <div class="col s12 no-padd">
-                        <div class="col l2 s12 no-padd">
-                            <center>
-                                <i class="fas fa-building fa-3x grey-text lighten-2"></i>
-                            </center>
-                        </div>
-                        <div class="col l10 s10 no-padd">
-                            <h5><b>` + data[d].jobtitle + `</b> <i class="fas fa-certificate  amber-text"></i></h5>
-                            <h6>` + data[d].companyname + `</h6>
+                        <div class="col l10 offset-l1 s10 no-padd">
+                            <h5 style="text-transform:uppercase;"><b>
+                                <i class="fas fa-building fa-1x grey-text lighten-2"></i>
+                                ` +
+                    data[d].jobtitle +
+                    `</b> <i class="fas fa-certificate  amber-text"></i></h5>
+                            <h6>` + data[
+                        d].companyname +
+                    `</h6>
                             <div class="col s12 no-padd">
-                                <div class="col l3 s12 no-padd"><i class="fas fa-calendar"></i> ` + data[d].minexp + `-` + data[d].maxexp + ` YEAR</div>
-                                <div class="col l3 s12 no-padd"><i class="fas fa-rupee-sign"></i>` + data[d].minsal + `-` + data[d].maxsal + ` LPA</div>
-                                <div class="col l3 s12 no-padd"><i class="fas fa-map-marker"></i>` + data[d].location + `</div>
+                                <div class="col l3 s12 no-padd"><i class="fas fa-calendar"></i> ` +
+                    EXP +
+                    `</div>
+                                <div class="col l3 s12 no-padd"><i class="fas fa-rupee-sign"></i>` +
+                    data[d].salary +
+                    ` LPA</div>
+                                <div class="col l3 s12 no-padd"><i class="fas fa-map-marker"></i>` +
+                    data[d].location +
+                    `</div>
+                                <div class="col l3 s12 no-padd">
+                        <a href="/schedule" class="btn indigo accent-4"><b>APPLY</b></a>
+
+                    </div>
+                    
                             </div>
                         </div>
                     </div>
-                    <div class="col l8 offset-l2 s12 no-padd">
+                    <div class="col s12 no-padd">
                         <br>
                         <div>
                             <ul class="collapsible z-depth-0">
                                 <li>
                                     <div class="collapsible-header">Job Description</div>
-                                    <div class="collapsible-body"><span> ` + data[d].jobdesc + `</span></div>
+                                    <div class="collapsible-body"><span> ` +
+                    data[d].jobdesc +
+                    `</span></div>
                                 </li>
                             </ul>
                            
-                            <a href="/companyinfo/` + data[d].companyname + `"><b>read more..</b></a>
                         </div>
                         <br>
                     </div>
                     <div class="col l2 s12">
-                        <a href="/schedule" class="btn indigo accent-4"><b>APPLY</b></a>
                         <div class="col s12 show-on-small-only" style="height:10px;"></div>
                     </div>
+                    
                     <br>
                 </div>
         `;
                 JOBLISTCON.append(template);
-                $('body').on('click', ".collapsible", function () {
-                $(this).collapsible();
-            });
+                $(document).on('click', ".collapsible", function () {
+                    $(this).collapsible();
+                });
+            }
+
+            function expToMonth(exp) {
+                switch (exp) {
+                    case 'ef':
+                        return '>12 MONTH';
+                        break;
+                    case 'e12':
+                        return '+12 MONTH';
+                        break;
+                    case 'e24':
+                        return '+24 MONTH';
+                        break;
+                    case 'e24p':
+                        return '>24 MONTH';
+                        break;
+                }
             }
         }
     </script>
