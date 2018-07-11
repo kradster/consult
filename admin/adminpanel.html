@@ -1,35 +1,100 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $.ajax({
-                url: "/adminpanel",
-                method: "POST",
-                success: function(data) {
-                    $("#app").html(JSON > stringify(data));
-                },
-                error: function(error) {
-                    $("#app").html("An Error Occured");
-                }
-            });
-        });
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.1.0/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/button.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <style>
+        input:not([type]),
+        input[type=text]:not(.browser-default) {
+            border: none;
+            outline: none;
+            height: 3rem;
+            width: 100%;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            padding: 0;
+            background-color: transparent;
+            box-shadow: 0px
+        }
+        
+        input:not([type]):focus:not([readonly]),
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        
+        input::-webkit-input-placeholder {
+            color: #eee;
+        }
+        
+        .no-padd {
+            padding: 0px !important;
+        }
+    </style>
 </head>
 
 <body>
-    <form action="/adminpanel" , method="POST">
-        <div id="app">
 
+    <!-- NAVIGATION BAR START -->
+    <div id="navigationbar"></div>
+    <!-- NAVIGATION BAR END -->
+
+
+    <div class="row" style="height:50px;"></div>
+    <div id="userprofile" class="row no-padd">
+
+    </div>
+
+    <div class="row grey lighten-2">
+        <div class="col s12 grey lighten-2" style="height:50px;"></div>
+        <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
+            <div class="col s12">
+                <h5><b>OPERATIONS</b></h5>
+                <div class="divider"></div>
+                <br>
+                <div id="joblistcon">
+                    <a href="/admin/jobadd" class="btn indigo accent-4"><b>ADD JOB</b></a>
+                    <a href="/admin/editjobs" class="btn indigo accent-4"><b>EDIT JOBS</b></a>
+                    <a href="/admin/download" class="btn indigo accent-4"><b>DOWNLOAD DB</b></a>
+                    <br><br>
+                </div>
+            </div>
         </div>
-    </form>
-</body>
-<script src="https://wchat.freshchat.com/js/widget.js"></script>
+        <div class="col s12" style="height:50px;"></div>
+    </div>
+    <!-- FOOTER START -->
+    <div id="myfooter">
+    </div>
+    <!-- FOOTER END -->
+
+
+
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../js/myfooter.js"></script>
+    <script src="../js/userprofile.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-            window.fcWidget.init({
-              token: "4281856b-8aa2-4b5e-8108-4171813716e5",
-              host: "https://wchat.freshchat.com"
-            });
-          </script>
+        $(document).ready(function() {
+            M.AutoInit();
+        });
+    </script>
+</body>
+
 </html>

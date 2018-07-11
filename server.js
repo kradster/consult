@@ -191,7 +191,14 @@ app.get('/getcv', (req, res) => {
 app.post('/adminlogin', (req, res) => {
     if (req.body.password === Config.ADMIN_KEY) {
         req.session.admin = "admin" + Config.ADMIN_KEY;
-        res.redirect('/admin/jobadd');
+        res.redirect('/admin');
+    } else
+        res.render('alert', { title: "Incorrect login attempt", link: "/", linkname: "Go back to home" });
+});
+
+app.get('/admin', (req, res) => {
+    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
+        res.sendFile('/admin/adminpanel.html', { root: __dirname });
     } else
         res.render('alert', { title: "Incorrect login attempt", link: "/", linkname: "Go back to home" });
 });
@@ -227,17 +234,17 @@ app.get('/admin/editjobs', (req, res) => {
     db.all("SELECT * FROM JobListings", (err, rows) => {
         console.log("Fetched ", rows.length, "rows");
         rows = rows.slice(0, 3);
-        res.render('comlist', rows[0]);
+        res.render('comlist', { data: rows });
     });
 
 });
 
-app.post('/removejob', (req, res) => {
+app.get('/admin/download', (req, res) => {
     if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
-        //    db.exec('DELETE FROM JobListings WHERE ')
+        res.download(process.cwd() + '/database.db');
     } else
         res.render('alert', { title: "Incorrect login activity", link: "/", linkname: "Go to Home" });
-});
+})
 
 app.get('/getjoblistings', (req, res) => {
     db.all("SELECT * FROM JobListings", (err, row) => {
@@ -436,10 +443,12 @@ app.engine('html', (filepath, options, callback) => {
     fs.readFile(filepath, (err, content) => {
         if (err) return callback(err);
         let rendered = content.toString();
-        // console.log(options.data.length);
-        for (let key in options) {
-            if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache") {
-                rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive
+        console.log("trigger", options.data);
+        if (options.hasOwnProperty('data')) {
+            for (let key in options) {
+                if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache") {
+                    rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive
+                }
             }
         }
         return callback(null, rendered);
