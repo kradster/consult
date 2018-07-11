@@ -345,7 +345,7 @@ app.get('/how-it-works-joblana', (req, res) => {
     res.sendFile('/templates/how.html', { root: __dirname });
 });
 app.get('/joblana-sample-paper-jl-test', (req, res) => {
-    res.sendFile('/templates/how.html', { root: __dirname });
+    res.sendFile('/templates/samplepaper.html', { root: __dirname });
 });
 app.get('/post-a-job-joblana', (req, res) => {
     res.sendFile('/templates/recruiters.html', { root: __dirname });
