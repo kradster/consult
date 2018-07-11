@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MAKE CV</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script src="../js/myfooter.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -57,6 +60,9 @@
         input::-webkit-input-placeholder {
             color: grey;
         }
+        select{
+            display:block !important;
+        }
     </style>
 </head>
 
@@ -74,7 +80,7 @@
     <!-- NAVIGATION BAR END -->
     <div class="row">
 
-        <form class="col s8 offset-s2" action="/cvbuilder" method="post">
+        <form class="col s10 offset-s1" action="/cvbuilder" method="post">
             <div class="col s12" style="height:100px;"></div>
             <h3 class="indigo-text">CV BUILDER</h3>
             <div class="card z-depth-0 col s12" style="padding:10px;">
@@ -122,7 +128,33 @@
                     </div>
 
                 </div>
-                <div id="form2" class="card z-depth-2 col s12" style="padding:10px;display:none;">
+                <div id="form2" class="card z-depth-2 col s12" style="padding:10px;">
+                    <h5>
+                        <b>ADDRESS DETAILS</b>
+                    </h5>
+                    <br>
+                    <br>
+                    <div class="input-field col s6">
+                        <input placeholder="Full Address" type="text" name="fulladdress" id="fulladdress">
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" name="city" id="ftrname" placeholder="City">
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" name="state" id="state" placeholder="State">
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="text" name="zipcode" id="zipcode" placeholder="Zip Code">
+                    </div>
+                    <div class="input-field col s6">
+                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
+                    </div>
+                    <div class="input-field col s6">
+                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step2">
+                    </div>
+
+                </div>
+                <div id="form3" class="card z-depth-2 col s12" style="padding:10px;display:none;">
                     <h5>
                         <b>EDUCATION DETAILS</b>
                     </h5>
@@ -167,7 +199,7 @@
                         <input id="collegeboard" type="text" name="collegeboard" placeholder="Collage Board">
                     </div>
                     <div class="input-field col s3">
-                        <select>
+                        <select class="no-autoinit" name="clgcourse">
                             <option value="" disabled selected>Choose your course</option>
                             <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
                             <option value="Bachelor of Education ( B.Ed)">Bachelor of Education ( B.Ed)</option>
@@ -219,27 +251,41 @@
                     </div>
 
                     <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
+                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
                     </div>
                     <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step2">
+                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
                     </div>
                 </div>
-                <div id="form3" class="card z-depth-2 col s12" style="padding:10px;display:none;">
+                <div id="form4" class="card z-depth-2 col s12" style="padding:10px;display:none;">
                     <h5>
                         <b>PROJECTS/INTERNSHIPS/JOBS</b>
                     </h5>
                     <br>
                     <div id="jobspanel">
                         <div class="col s12">
-                            <div class="input-field col s6">
-                                <input type="text" name="projects[]" id="projects" placeholder="Project/Internship/Job">
+                            <div class="input-field col s2">
+                                <select class="no-autoinit" name="ptype[]">
+                                    <option value="" disabled selected>Choose your course</option>
+                                    <option value="internship"  selected>Internship</option>
+                                    <option value="job"  selected>Job</option>
+                                    <option value="projects"  selected>Project</option>
+                                </select>
                             </div>
-                            <div class="input-field col s3">
-                                <input class="datepicker" type="text" name="startdate" id="startdate" placeholder="Start Date">
+                            <div class="input-field col s2">
+                                <input type="text" name="ptitlerole[]" id="projects" placeholder="title/role">
                             </div>
-                            <div class="input-field col s3">
-                                <input class="datepicker" type="text" name="enddate" id="enddate" placeholder="End Date">
+                            <div class="input-field col s2">
+                                <input type="text" name="pinstorg[]" id="projects" placeholder="institute/organization">
+                            </div>
+                            <div class="input-field col s2">
+                                <input type="text" name="pdetials[]" id="projects" placeholder="About work">
+                            </div>
+                            <div class="input-field col s2">
+                                <input class="datepicker" type="text" name="pstartdate" id="startdate" placeholder="Start Date">
+                            </div>
+                            <div class="input-field col s2">
+                                <input class="datepicker" type="text" name="penddate" id="enddate" placeholder="End Date">
                             </div>
                         </div>
                     </div>
@@ -247,14 +293,14 @@
                         <input id="addmorejobs" type="button" class="btn btn-small blue accent-4" value="Add More">
                     </div>
                     <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
+                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
                     </div>
                     <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
+                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step4">
                     </div>
 
                 </div>
-                <div id="form4" class="card z-depth-2 col s12" style="padding:10px;display:none;">
+                <div id="form5" class="card z-depth-2 col s12" style="padding:10px;display:none;">
                     <h5>
                         <b>SKILL</b>
                     </h5>
@@ -268,27 +314,21 @@
                         <input id="addmoreskills" type="button" class="btn btn-small blue accent-4" value="Add More">
                     </div>
                     <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
+                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back4">
                     </div>
                     <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step4">
+                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step5">
                     </div>
                 </div>
                 <br>
                 <br>
                 <div id="fulldetials" class="col s12 no-padd" style="padding:10px;display:none;">
-                    <div class="card col s8 offset-s2">
-                        <h5> YOUR GIVEN DETAILS</h5>
-                        <ul id="alldetailsul">
-                        </ul>
+                    <div class="input-field col s12">
+                        <center>
+                            <input class="btn btn-large indigo" type="button" value="Back" id="back5">
+                            <input class="btn btn-large light-blue accent-4" type="submit" value="Make CV">
+                        </center>
                     </div>
-                    <div class="input-field col s6 offset-s6">
-                        <input class="btn btn-large indigo" type="button" value="Back" id="back4">
-                        <input class="btn btn-large light-blue accent-4" type="submit" value="Make CV">
-                    </div>
-                    <div class="input-field col s6">
-                    </div>
-
                 </div>
             </div>
         </form>
@@ -298,8 +338,6 @@
     </div>
     <!-- FOOTER END -->
     <!-- Compiled and minified JavaScript -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="../js/afterlogin.js"></script>
     <script src="../js/stepform.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
@@ -308,8 +346,15 @@
             $('body').on('focus', ".datepicker", function () {
                 $(this).datepicker();
             });
+            $('body').on('focus',"select", function() {
+                 M.AutoInit();
+            });
+
             //$(document).on('click','.datapicker',M.datepicker);
-        });
+        });$('select').on('contentChanged', function() {
+  $(this).material_select();
+});
+
     </script>
 </body>
 
