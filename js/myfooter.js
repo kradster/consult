@@ -16,6 +16,7 @@ $(document).ready(function() {
         $('#myfooter').load('/templates/footer.html');
 
     }
+    
 
 });
 
