@@ -42,8 +42,9 @@
         .body {
             background-image: url('/img/header.jpg');
             background-position: center;
-            background-size: contain;
+            background-size: cover;
             background-attachment: fixed;
+            background-repeat: no-repeat;
         }
         
         input:not([type]),
@@ -77,6 +78,11 @@
         #name:focus,
         #name:active {
             box-shadow: 0px 2px 0px 0px blue !important;
+        }
+        
+        p {
+            font-family: sans-serif;
+            font-size: 1.5em;
         }
     </style>
 
@@ -147,9 +153,9 @@
     <div class="row" style="padding:0px;overflow: hidden;">
         <div class="col l6 s12">
             <div class="col l8 offset-l2 s12">
-                <h4 class="center-align grey-text text-lighten-1 ">
-                    <b>India's fastest assessment and recruitment company</b>
-                </h4>
+                <h1 class="center-align grey-text text-lighten-1 " style="font-size:2.8em">
+                    <b>India's Fastest skill assessment for freshers job offering and recruitment</b>
+                </h1>
                 <br>
                 <br>
                 <div class="input-field col l12 s12 card z-depth-3 " style="border-radius:30px; padding:10px;">
@@ -159,8 +165,9 @@
                 </div>
                 <div class="input-filed col l12  s12 ">
                     <center>
-                        <input style="margin-top:15px;border-radius:25px;transition:all .3s ease-in-out; " type="submit " class="btn btn-large blue accent-4 z-depth-3 white-text " value="Get job alerts">
+                        <input style="margin-top:15px;border-radius:25px;transition:all .3s ease-in-out;" type="submit " class="btn btn-large blue accent-4 z-depth-3 white-text " value="Get job alerts">
                     </center>
+                    <br>
                 </div>
 
             </div>
@@ -186,15 +193,15 @@
         <div class="col s12 " style="margin-top:-400px;top:0px;position:relative; ">
             <div class="container">
                 <div class="col l6 s12">
-                    <p class="grey-text " style="font-size:1em;text-align:justify; ">
+                    <p class="black-text " style="font-size:1.2em;text-align:justify; ">
                         Whether you’re a professional looking for jobs, or an employer searching for the best talents for your organisation, we’re here to help! Committed to our mission to find jobs for people they’ll love and connect companies with the talent they need.
 
                     </p>
-                    <p class="grey-text " style="font-size:1em;text-align:justify; ">
+                    <p class="black-text " style="font-size:1.2em;text-align:justify; ">
                         For job-seekers, Joblana provides a platform to build your CV and help you to get a call from hundreds of recruiters based on your JL Test score plus you have access to apply for regular job openings from our partner companies that dramatically improving
                         your chances of getting your dream job, with much less effort.
                     </p>
-                    <p class="grey-text " style="font-size:1em;text-align:justify; ">
+                    <p class="black-text " style="font-size:1.2em;text-align:justify; ">
                         For recruiters, Joblana provide best way to reach out more than 40,000+ qualified candidates evaluated using standardised evaluation criteria with the ease of JL Test and getting the best candidate without any of the hassle but with huge savings in cost
                         and effort.
 
@@ -214,16 +221,9 @@
     </div>
     <div class="row " style="overflow: hidden; ">
         <div class="col s12 ">
-            <div class="blue lighten-4 " style="width:2500px;height:600px;transform:rotate(16deg);position: relative;top:-100px;left:-100px; "></div>
+            <div class="blue lighten-4 " style="width:2500px;height:400px;transform:rotate(16deg);position: relative;top:-100px;left:-100px; "></div>
         </div>
-        <div class="col s12 " style="margin-top:-550px;top:0px;position:relative; ">
 
-            <h1 class="center-align " style="font-size:5em; ">
-                <b>What Have
-                    <span class="blue-text text-darken-4 ">Acheived</span>
-                </b>
-            </h1>
-        </div>
         <div class="col s12 hide-on-med-and-up show-on-small-only" style="height:100px;"></div>
         <div class="col s12 " style="margin-top:-300px;top:0px;position:relative; ">
             <div>
@@ -265,6 +265,7 @@
     </div>
     <div class="row">
         <div class="col s12 ">
+            <hr>
             <h1 class="center-align " style="font-size:5em; ">
                 <b>How It
                     <span class="blue-text text-darken-4 ">Works</span>
@@ -288,16 +289,17 @@
                 </b>
             </h1>
             <div class="col l8 offset-l2 s12">
-                <h5 class="grey-text" style="text-align:justify;">
-                    JL Test(JobLana Test) is India's Largest Employability Assessment Test conducted by JobLana in most of metro cities in india and is recognized by over 500 companies.JL Test is a platform where job-seekers have access to hundreds of recruiters from across
+                <h5 class="black-text" style="text-align:justify;">
+                    JL Test (JobLana Test) is India's Fastest Employability Assessment Test conducted by JobLana in most of metro cities in india and is recognized by over 500 companies.JL Test is a platform where job-seekers have access to hundreds of recruiters from across
                     the country, based on a completely objective and standardized score, dramatically improving their chances of getting their dream job, with much less effort.
 
                 </h5>
                 <center>
                     <br>
-                    <a class="btn btn-large blue accent-4 z-depth-0" href="">
-                        <b>FAQ related to JL TEST</b>
+                    <a class="btn btn-large blue accent-4 z-depth-0" href="/about-jl-test">
+                        <b>READ MORE</b>
                     </a>
+
                 </center>
             </div>
         </div>
@@ -314,7 +316,7 @@
         <div class="col s12 ">
 
             <h1 class="center-align " style="font-size:5em; ">
-                <b>Reason To Give
+                <b>Reasons To Give
                     <span class="blue-text text-darken-4 ">JL TEST</span>
                 </b>
             </h1>
@@ -329,7 +331,7 @@
                         </div>
                         <div class="card-content">
                             <p>
-                                Job offers from Startups and MNCs within 3 months of registration
+                                Get Job Offers from enterprises directly
                             </p>
                         </div>
                     </div>
@@ -372,7 +374,7 @@
                         </div>
                         <div class="card-content">
                             <p>
-                                Much less effort for off-campus placement
+                                Highlight yourself among recruiters
                             </p>
                         </div>
                     </div>
@@ -381,7 +383,8 @@
         </div>
 
     </div>
-    <div class="row">
+    <hr style="border:1px solid rgb(204, 204, 204)">
+    <div class=" row ">
         <div class="col s12 ">
 
             <h1 class="center-align " style="font-size:5em; ">
@@ -395,36 +398,36 @@
             <div class="col s3 ">
                 <center>
 
-                    <img style="width:50%;" src="./img/partner1.png" alt="">
+                    <img style="width:50%; " src="./img/partner1.png " alt=" ">
 
                 </center>
             </div>
             <div class="col s3 ">
                 <center>
-                    <img style="width:50%;" src="./img/partner2.png" alt="">
+                    <img style="width:50%; " src="./img/partner2.png " alt=" ">
                 </center>
             </div>
             <div class="col s3 ">
                 <center>
-                    <img style="width:50%;" src="./img/partner3.png" alt="">
+                    <img style="width:50%; " src="./img/partner3.png " alt=" ">
                 </center>
             </div>
             <div class="col s3 ">
                 <center>
-                    <img style="width:110%;" src="./img/partner4.png" alt="">
+                    <img style="width:110%; " src="./img/partner4.png " alt=" ">
                 </center>
             </div>
             <div class="col s3 ">
                 <center>
-                    <img style="width:100%;" src="./img/partner5.png" alt="">
+                    <img style="width:100%; " src="./img/partner5.png " alt=" ">
                 </center>
             </div>
             <div class="col s3 ">
                 <center>
-                    <div class="card z-depth-0" style="border-radius:5px;">
+                    <div class="card z-depth-0 " style="border-radius:5px; ">
                         <br>
-                        <h1 style="font-size:3em;">
-                            <a href="/parters">More+</a>
+                        <h1 style="font-size:3em; ">
+                            <a href="/parters ">More+</a>
                         </h1>
                         <br>
                     </div>
@@ -438,15 +441,15 @@
     <!-- HEADER END -->
 
     <!-- FOOTER START -->
-    <div id="myfooter">
+    <div id="myfooter ">
     </div>
     <!-- FOOTER END -->
 
 
     <!-- Compiled and minified JavaScript -->
-    <script src="js/myfooter.js">
+    <script src="js/myfooter.js ">
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js "></script>
     <script>
         $(document).ready(function() {
             M.AutoInit();
@@ -454,15 +457,15 @@
                 e.preventDefault();
                 localStorage.setItem('name', $('#name').val());
                 localStorage.setItem('email', $('#email').val());
-                location.href = location.origin + "/signup"
+                location.href = location.origin + "/signup "
             });
         });
     </script>
-    <script src="https://wchat.freshchat.com/js/widget.js"></script>
+    <script src="https://wchat.freshchat.com/js/widget.js "></script>
     <script>
         window.fcWidget.init({
-            token: "4281856b-8aa2-4b5e-8108-4171813716e5",
-            host: "https://wchat.freshchat.com"
+            token: "4281856b-8aa2-4b5e-8108-4171813716e5 ",
+            host: "https://wchat.freshchat.com "
         });
     </script>
 </body>
