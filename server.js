@@ -309,7 +309,7 @@ app.get('/login', (req, res) => {
     res.sendFile('/templates/login.html', { root: __dirname });
 });
 
-app.get('/schedule', (req, res) => {
+app.get('/upcoming-jl-test', (req, res) => {
     res.sendFile('/templates/schedule.html', { root: __dirname });
 });
 app.get('/recruiters', (req, res) => {
@@ -323,53 +323,62 @@ app.get('/jobs', (req, res) => {
     //if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/comlist.html', { root: __dirname });
 });
-app.get('/about', (req, res) => {
+app.get('/about-joblana', (req, res) => {
     res.sendFile('/templates/about.html', { root: __dirname });
 });
-app.get('/faq', (req, res) => {
+app.get('/faq-joblana', (req, res) => {
     res.sendFile('/templates/faq.html', { root: __dirname });
 });
-app.get('/contactus', (req, res) => {
+app.get('/contact-joblana', (req, res) => {
     res.sendFile('/templates/contactus.html', { root: __dirname });
 });
-app.get('/whyjl', (req, res) => {
+app.get('/why-joblana-jl-test', (req, res) => {
     res.sendFile('/templates/whyjl.html', { root: __dirname });
 });
-app.get('/partners', (req, res) => {
+app.get('/joblana-recruiting-partners', (req, res) => {
     res.sendFile('/templates/partners.html', { root: __dirname });
 });
-app.get('/jltest', (req, res) => {
+app.get('/about-jl-test', (req, res) => {
     res.sendFile('/templates/jltest.html', { root: __dirname });
 });
-app.get('/how', (req, res) => {
+app.get('/how-it-works-joblana', (req, res) => {
     res.sendFile('/templates/how.html', { root: __dirname });
 });
-app.get('/joblist', (req, res) => {
+app.get('/joblana-sample-paper-jl-test', (req, res) => {
+    res.sendFile('/templates/how.html', { root: __dirname });
+});
+app.get('/post-a-job-joblana', (req, res) => {
+    res.sendFile('/templates/recruiters.html');
+});
+app.get('/freshers-job-listings', (req, res) => {
     res.sendFile('/templates/joblist.html', { root: __dirname });
 });
-app.get('/itjob', (req, res) => {
+app.get('/it-jobs-for-freshers', (req, res) => {
     res.sendFile('/templates/itjob.html', { root: __dirname });
 });
-app.get('/hrjob', (req, res) => {
+app.get('/human-resources-jobs-for-freshers', (req, res) => {
     res.sendFile('/templates/hrjob.html', { root: __dirname });
 });
-app.get('/smjob', (req, res) => {
+app.get('/sales-and-marketing-jobs-for-freshers', (req, res) => {
     res.sendFile('/templates/smjob.html', { root: __dirname });
 });
-app.get('/accjob', (req, res) => {
+app.get('/accounting-jobs-for-freshers', (req, res) => {
     res.sendFile('/templates/accjob.html', { root: __dirname });
 });
-app.get('/dmjob', (req, res) => {
+app.get('/digital-marketing-jobs-for-freshers', (req, res) => {
     res.sendFile('/templates/dmjob.html', { root: __dirname });
 });
-app.get('/osjob', (req, res) => {
+app.get('/office-support-jobs-for-freshers', (req, res) => {
     res.sendFile('/templates/osjob.html', { root: __dirname });
 });
-app.get('/calljob', (req, res) => {
+app.get('/calling-jobs-for-freshers', (req, res) => {
     res.sendFile('/templates/.html', { root: __dirname });
 });
-app.get('/opjob', (req, res) => {
+app.get('/operations-jobs-for-freshers', (req, res) => {
     res.sendFile('/templates/opjob.html', { root: __dirname });
+});
+app.get('/privacy-policy', (req, res) => {
+    res.sendFile('/templates/policy.html', { root: __dirname });
 });
 
 app.post('/showcv', (req, res) => {
@@ -444,13 +453,12 @@ app.engine('html', (filepath, options, callback) => {
         if (err) return callback(err);
         let rendered = content.toString();
         console.log("trigger", options.data);
-        if (options.hasOwnProperty('data')) {
-            for (let key in options) {
-                if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache") {
-                    rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive
-                }
+        for (let key in options) {
+            if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache") {
+                rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive
             }
         }
+
         return callback(null, rendered);
     });
 });
