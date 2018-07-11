@@ -436,7 +436,7 @@ app.engine('html', (filepath, options, callback) => {
     fs.readFile(filepath, (err, content) => {
         if (err) return callback(err);
         let rendered = content.toString();
-        console.log(options.data.length);
+        // console.log(options.data.length);
         for (let key in options) {
             if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache") {
                 rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive
