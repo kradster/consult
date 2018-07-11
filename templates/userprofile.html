@@ -10,7 +10,16 @@
         <div class="col l2 m3 s12 no-padd">
             <center>
                 <br>
-                <img style="width:70%" src="/img/profilepic.jpg" alt="">
+                <img id="myimg" style="width:70%" src="/img/profilepic.jpg" alt="">
+                <form action="/picupload" method="GET">
+                    <input name="pic" type="file" id="picfile" style="display:none" onchange="previewFile()">
+                    <label id="plab" for="picfile" class="btn btn-small">Choose File</label><br>
+                    <div id="panel" style="display:none;">
+                        <input id="psub" type="submit" class="btn btn-small amber" value="upload"><br>
+                        <input id="pcan" type="button" class="btn btn-small red" value="cancel">
+                    </div>
+                    
+                </form>
             </center>
         </div>
         <div class="col l10 m9 s12 no-padd">
@@ -129,3 +138,28 @@
 
     });
 </script>
+<script>
+        function previewFile(){
+            var preview = $('#myimg'); //selects the query named img
+            var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+            var reader  = new FileReader();
+     
+            reader.onloadend = function () {
+                preview.attr("src",reader.result);
+                $('#plab').hide();
+                $('#panel').show();
+            }
+     
+            if (file) {
+                reader.readAsDataURL(file); //reads the data as a URL
+            } else {
+                preview.attr("src","");
+            }
+       }
+       $('#pcan').on('click',function(){
+           $('#panel').hide();
+           $('#plab').show();
+       });
+     
+       //previewFile();  //calls the function named previewFile()
+       </script>
