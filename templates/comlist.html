@@ -198,6 +198,7 @@
                     <br>
                 </div>
         `;
+                template = template.replace(/null/gi, "Not Specified");
                 JOBLISTCON.append(template);
                 $(document).on('click', ".collapsible", function () {
                     $(this).collapsible();

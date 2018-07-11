@@ -83,11 +83,12 @@ let db = new sqlite3.Database('database.db', err => {
             noofvac text,
             salary text,
             experience text,
-            anytime text
-            dateofjoin text
+            anytime text,
+            dateofjoin text,
+            listingid text,
+            approved text
         );
     `);
-
 });
 
 
@@ -190,7 +191,14 @@ app.get('/getcv', (req, res) => {
 app.post('/adminlogin', (req, res) => {
     if (req.body.password === Config.ADMIN_KEY) {
         req.session.admin = "admin" + Config.ADMIN_KEY;
-        res.redirect('/admin/jobadd');
+        res.redirect('/admin');
+    } else
+        res.render('alert', { title: "Incorrect login attempt", link: "/", linkname: "Go back to home" });
+});
+
+app.get('/admin', (req, res) => {
+    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
+        res.sendFile('/admin/adminpanel.html', { root: __dirname });
     } else
         res.render('alert', { title: "Incorrect login attempt", link: "/", linkname: "Go back to home" });
 });
@@ -206,6 +214,8 @@ app.get('/admin/jobadd', (req, res) => {
 app.post('/addjob', (req, res) => {
     if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
         data = req.body;
+        data["listingid"] = Date.now() + "";
+        data["approved"] = "no";
         let vals = Object.values(data).map(x => x.replace("'", "''"));
         sql = "INSERT INTO JobListings(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
 
@@ -213,18 +223,28 @@ app.post('/addjob', (req, res) => {
         //console.log(req.body);
         db.exec(sql, err => {
             if (err) return res.render('alert', { title: err + "", link: "/", linkname: "Goto home" });
+            console.log('Job Listing added');
             return res.render('alert', { title: "Job Listing added", link: "/jobs", linkname: "Goto Jobs" });
         });
     } else
         res.render('alert', { title: "Incorrect login activity", link: "/", linkname: "Go to Home" });
 });
 
-app.post('/removejob', (req, res) => {
-    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
+app.get('/admin/editjobs', (req, res) => {
+    db.all("SELECT * FROM JobListings", (err, rows) => {
+        console.log("Fetched ", rows.length, "rows");
+        rows = rows.slice(0, 3);
+        res.render('comlist', { data: rows });
+    });
 
+});
+
+app.get('/admin/download', (req, res) => {
+    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
+        res.download(process.cwd() + '/database.db');
     } else
         res.render('alert', { title: "Incorrect login activity", link: "/", linkname: "Go to Home" });
-});
+})
 
 app.get('/getjoblistings', (req, res) => {
     db.all("SELECT * FROM JobListings", (err, row) => {
@@ -300,8 +320,56 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('/templates/profile.html', { root: __dirname });
 });
 app.get('/jobs', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
+    //if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/comlist.html', { root: __dirname });
+});
+app.get('/about', (req, res) => {
+    res.sendFile('/templates/about.html', { root: __dirname });
+});
+app.get('/faq', (req, res) => {
+    res.sendFile('/templates/faq.html', { root: __dirname });
+});
+app.get('/contactus', (req, res) => {
+    res.sendFile('/templates/contactus.html', { root: __dirname });
+});
+app.get('/whyjl', (req, res) => {
+    res.sendFile('/templates/whyjl.html', { root: __dirname });
+});
+app.get('/partners', (req, res) => {
+    res.sendFile('/templates/partners.html', { root: __dirname });
+});
+app.get('/jltest', (req, res) => {
+    res.sendFile('/templates/jltest.html', { root: __dirname });
+});
+app.get('/how', (req, res) => {
+    res.sendFile('/templates/how.html', { root: __dirname });
+});
+app.get('/joblist', (req, res) => {
+    res.sendFile('/templates/joblist.html', { root: __dirname });
+});
+app.get('/itjob', (req, res) => {
+    res.sendFile('/templates/itjob.html', { root: __dirname });
+});
+app.get('/hrjob', (req, res) => {
+    res.sendFile('/templates/hrjob.html', { root: __dirname });
+});
+app.get('/smjob', (req, res) => {
+    res.sendFile('/templates/smjob.html', { root: __dirname });
+});
+app.get('/accjob', (req, res) => {
+    res.sendFile('/templates/accjob.html', { root: __dirname });
+});
+app.get('/dmjob', (req, res) => {
+    res.sendFile('/templates/dmjob.html', { root: __dirname });
+});
+app.get('/osjob', (req, res) => {
+    res.sendFile('/templates/osjob.html', { root: __dirname });
+});
+app.get('/calljob', (req, res) => {
+    res.sendFile('/templates/.html', { root: __dirname });
+});
+app.get('/opjob', (req, res) => {
+    res.sendFile('/templates/opjob.html', { root: __dirname });
 });
 
 app.post('/showcv', (req, res) => {
@@ -320,6 +388,7 @@ app.post('/editcv', (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     res.sendFile('/templates/makecv.html', { root: __dirname });
 });
+
 
 app.get('*', (req, res) => {
     res.render('alert', { title: "404. The page you are looking for doesn't exist", link: "/", linkname: "Go back to home" });
@@ -364,19 +433,24 @@ function sendVerificatonEmail(req, res) {
     });
 }
 
-
+//render engine
 let fs = require('fs');
 
-app.set('views', './templates');
+app.set('views', './render');
 app.set('view engine', 'html');
 
 app.engine('html', (filepath, options, callback) => {
     fs.readFile(filepath, (err, content) => {
         if (err) return callback(err);
-        let rendered = content.toString()
-            .replace("{{ message }}", options.title)
-            .replace("{{ link }}", options.link)
-            .replace("{{ linkname }}", options.linkname);
+        let rendered = content.toString();
+        console.log("trigger", options.data);
+        if (options.hasOwnProperty('data')) {
+            for (let key in options) {
+                if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache") {
+                    rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive
+                }
+            }
+        }
         return callback(null, rendered);
     });
 });

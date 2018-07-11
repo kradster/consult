@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
     <style>
         input:not([type]),
         input[type=text]:not(.browser-default) {
@@ -63,14 +62,48 @@
         <div class="col s12 grey lighten-2" style="height:50px;"></div>
         <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
             <div class="col s12">
-                <h5><b>OPERATIONS</b></h5>
+                <h5><b>JOBS IN INDIA</b></h5>
                 <div class="divider"></div>
                 <br>
                 <div id="joblistcon">
-                    <a href="/admin/jobadd" class="btn indigo accent-4"><b>ADD JOB</b></a>
-                    <a href="/admin/editjobs" class="btn indigo accent-4"><b>EDIT JOBS</b></a>
-                    <a href="/admin/download" class="btn indigo accent-4"><b>DOWNLOAD DB</b></a>
-                    <br><br>
+                    <!--section to be repeated-->
+
+                    <div class="col s12 no-padd">
+                        <div class="col s12 no-padd">
+                            <div class="col l2 s12 no-padd">
+                                <center>
+                                    <i class="fas fa-building fa-3x grey-text lighten-2"></i>
+                                </center>
+                            </div>
+                            <div class="col l10 s10 no-padd">
+                                <h5><b>{{ jobtitle }}</b> <i class="fas fa-certificate  amber-text"></i></h5>
+                                <h6>{{ companyname }}</h6>
+                                <div class="col s12 no-padd">
+                                    <div class="col l3 s12 no-padd"><i class="fas fa-calendar"></i>{{ experience }} YEAR</div>
+                                    <div class="col l3 s12 no-padd"><i class="fas fa-rupee-sign"></i>{{ salary }} LPA</div>
+                                    <div class="col l3 s12 no-padd"><i class="fas fa-map-marker"></i>{{ location }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col l8 offset-l2 s12 no-padd">
+                            <br>
+                            <div>
+                                {{ jobdesc }}
+                                <a href="/companyinfo/` + data[d].companyname + `"><b>read more..</b></a>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col l2 s12" style="display:flex;flex-direction: column;">
+                            <a href="/editjob?id={{ listingid }}?mode=0" class="btn indigo accent-4"><b>EDIT</b></a>
+                            <a href="/editjob?id={{ listingid }}?mode=1" class="btn indigo accent-4"><b>DELETE</b></a>
+                            <a href="/editjob?id={{ listingid }}?mode=2" class="btn indigo accent-4"><b>APPROVE</b></a>
+                            <div class="col s12 show-on-small-only" style="height:10px;"></div>
+                        </div>
+                        <br>
+                    </div>
+
+
+                    <!--repeat section end-->
                 </div>
             </div>
         </div>
