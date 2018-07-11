@@ -330,7 +330,7 @@ app.get('/faq-joblana', (req, res) => {
     res.sendFile('/templates/faq.html', { root: __dirname });
 });
 app.get('/contact-joblana', (req, res) => {
-    res.sendFile('/templates/contactus.html', { root: __dirname });
+    res.sendFile('/templates/contact.html', { root: __dirname });
 });
 app.get('/why-joblana-jl-test', (req, res) => {
     res.sendFile('/templates/whyjl.html', { root: __dirname });
@@ -345,10 +345,10 @@ app.get('/how-it-works-joblana', (req, res) => {
     res.sendFile('/templates/how.html', { root: __dirname });
 });
 app.get('/joblana-sample-paper-jl-test', (req, res) => {
-    res.sendFile('/templates/how.html', { root: __dirname });
+    res.sendFile('/templates/samplepaper.html', { root: __dirname });
 });
 app.get('/post-a-job-joblana', (req, res) => {
-    res.sendFile('/templates/recruiters.html');
+    res.sendFile('/templates/recruiters.html', { root: __dirname });
 });
 app.get('/freshers-job-listings', (req, res) => {
     res.sendFile('/templates/joblist.html', { root: __dirname });

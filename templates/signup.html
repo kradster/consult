@@ -22,7 +22,6 @@
         input[type=text]:not(.browser-default),
         input:not([type]),
         input[type=password]:not(.browser-default) {
-
             border: 1px solid #ccc;
             outline: none;
             height: 3rem;
@@ -34,7 +33,7 @@
             box-shadow: 0px;
             margin-left: -5px;
         }
-
+        
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]),
         input[type=password]:not(.browser-default):focus:not([readonly]) {
@@ -42,7 +41,7 @@
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-
+        
         input::-webkit-input-placeholder {
             color: #aaa;
             font-size: .8em;
@@ -55,8 +54,8 @@
     <noscript>
             <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
         </noscript>
-        <!-- End Google Tag Manager (noscript) -->
-    
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- NAVIGATION BAR START -->
     <div id="navigationbar">
 
@@ -90,18 +89,18 @@
                 <div class="input-field col s6" style="border-radius:10px;">
                     <input placeholder="Confirm Passowrd" name="cpassword" id="cpassword" type="password" class="blue-text" style="padding:5px;font-size:1.5em;">
                 </div>
-
+                <br> You agree to <a href="/terms-and-conditions">terms and conditions</a> and <a href="/privacy-policy">Privacy Policy</a> on Sign up.
+                <br><br>
                 <div class="input-filed col s12">
                     <center>
-                        <input style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="col s12 btn btn-large indigo accent-4 z-depth-5 white-text"
-                            value="Signup">
+                        <input style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="col s12 btn btn-large indigo accent-4 z-depth-5 white-text" value="Signup">
                     </center>
                 </div>
                 <div class="row">
                     <br>
                 </div>
 
-            </div>  
+            </div>
         </form>
         <div class="col s12" style="height:150px;"></div>
     </div>
@@ -118,11 +117,11 @@
     <script src="../js/myfooter.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             M.AutoInit();
             $('#firstname').val(localStorage.getItem('name'));
             $('#email').val(localStorage.getItem('email'));
-            
+
         });
     </script>
     <script src="https://wchat.freshchat.com/js/widget.js"></script>

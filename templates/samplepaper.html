@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Google Tag Manager -->
     <script>
-        (function (w, d, s, l, i) {
+        (function(w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
                 'gtm.start': new Date().getTime(),
@@ -47,20 +47,27 @@
             background-color: transparent;
             box-shadow: 0px
         }
-
+        
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border: 1px solid #2962ff;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-
+        
         input::-webkit-input-placeholder {
             color: grey;
         }
-
+        
         .no-padd {
             padding: 0px !important;
+        }
+        
+        .bar {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
         }
     </style>
 </head>
@@ -101,15 +108,13 @@
                 <div class="row"></div>
                 <div class="col s12">
                     <ul class="collapsible z-depth-0">
-                        <li>
-                            <div class="collapsible-header">Logical Reasoning,</div>
-                            <div class="collapsible-body">
-                            </div>
+                        <li class="bar">
+                            <div>Logical Reasoning</div><a class="btn" href="#">Download Now</a>
                         </li>
                         <li>
                             <div class="collapsible-header">English Proficiency</div>
                             <div class="collapsible-body">
-                                
+
                             </div>
                         </li>
                         <li>
@@ -161,7 +166,7 @@
                             <div class="collapsible-body">
                             </div>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -183,7 +188,7 @@
     <script src="../js/myfooter.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             M.AutoInit();
         });
     </script>
