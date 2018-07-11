@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Freshers job in India , Job opportunity in India , Job offers in India | JobLana</title>
-    <meta name='description' content='Find latest freshers jobs in India. Search for best suitable job vacancies in India's top companies and apply for IT, MBA, accounting, BPO, marketing and sales & other jobs in India.
-    '>
+    <meta name='description' content="Find latest freshers jobs in India. Search for best suitable job vacancies in India' s
+        top companies and apply for IT, MBA, accounting, BPO, marketing and sales & other jobs in India.">
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="../js/myfooter.js"></script>
+
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
@@ -25,16 +27,16 @@
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
+                'gtm.start ': new Date().getTime(),
+                event: 'gtm.js '
             });
             var f = d.getElementsByTagName(s)[0],
                 j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
+                dl = l != 'dataLayer ' ? '&l=' + l : ' ';
             j.async = true;
             j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-TGKGPG3');
+        })(window, document, ' script ', 'dataLayer ', 'GTM-TGKGPG3 ');
     </script>
     <!-- End Google Tag Manager -->
     <style>
@@ -136,7 +138,7 @@
         }
 
         function joblistmaker(data) {
-            let JOBLISTCON = $('#joblistcon');
+            let JOBLISTCON = $('#joblistcon ');
             JOBLISTCON.empty();
             for (d in data) {
                 let template = `
@@ -160,7 +162,13 @@
                     <div class="col l8 offset-l2 s12 no-padd">
                         <br>
                         <div>
-                            ` + data[d].jobdesc + `
+                            <ul class="collapsible z-depth-0">
+                                <li>
+                                    <div class="collapsible-header">Job Description</div>
+                                    <div class="collapsible-body"><span> ` + data[d].jobdesc + `</span></div>
+                                </li>
+                            </ul>
+                           
                             <a href="/companyinfo/` + data[d].companyname + `"><b>read more..</b></a>
                         </div>
                         <br>
@@ -173,6 +181,9 @@
                 </div>
         `;
                 JOBLISTCON.append(template);
+                $('body').on('click', ".collapsible", function () {
+                $(this).collapsible();
+            });
             }
         }
     </script>
