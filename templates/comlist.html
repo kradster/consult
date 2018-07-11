@@ -149,7 +149,7 @@
                             <h6>` + data[d].companyname + `</h6>
                             <div class="col s12 no-padd">
                                 <div class="col l3 s12 no-padd"><i class="fas fa-calendar"></i> ` + data[d].minexp + `-` + data[d].maxexp + ` YEAR</div>
-                                <div class="col l3 s12 no-padd"><i class="fas fa-rupee-sign"></i>` + data[d].minsal + `-` + data[d].maxsal + ` LPA</div>
+                                <div class="col l3 s12 no-padd"><i class="fas fa-rupee-sign"></i>` + data[d].salary + ` LPA</div>
                                 <div class="col l3 s12 no-padd"><i class="fas fa-map-marker"></i>` + data[d].location + `</div>
                             </div>
                         </div>
@@ -169,6 +169,7 @@
                     <br>
                 </div>
         `;
+                template = template.replace(/null/gi, "Not Specified");
                 JOBLISTCON.append(template);
             }
         }
