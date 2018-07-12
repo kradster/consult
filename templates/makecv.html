@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Google Tag Manager -->
     <script>
-        (function (w, d, s, l, i) {
+        (function(w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
                 'gtm.start': new Date().getTime(),
@@ -38,7 +38,6 @@
     <style>
         input:not([type]),
         input[type=text]:not(.browser-default) {
-
             border: 1px solid #ccc;
             outline: none;
             height: 3rem;
@@ -49,19 +48,20 @@
             background-color: transparent;
             box-shadow: 0px
         }
-
+        
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border: 1px solid #ccc;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-
+        
         input::-webkit-input-placeholder {
             color: grey;
         }
-        select{
-            display:block !important;
+        
+        select {
+            display: block !important;
         }
     </style>
 </head>
@@ -101,7 +101,7 @@
                         <input class="datepicker" type="text" name="dob" id="dob" placeholder="Date Of Birth">
                     </div>
                     <div class="input-field col s6">
-                        <input type="text" name="city" id="city" placeholder="City">
+                        <input type="text" id="city" placeholder="City">
                     </div>
                     <div class="input-field col s6">
                         <input type="text" name="aadharno" id="aadharno" placeholder="Aadhar No">
@@ -109,13 +109,13 @@
                     <div class="input-field col s6">
                         <div class="col s4">
                             <label>
-                                <input name="sex" value="male" type="radio" checked />
+                                <input name="gender" value="male" type="radio" checked />
                                 <span>Male</span>
                             </label>
                         </div>
                         <div class="col s4">
                             <label>
-                                <input name="sex" value="female" type="radio" />
+                                <input name="gender" value="female" type="radio" />
                                 <span>Female</span>
                             </label>
                         </div>
@@ -265,7 +265,7 @@
                     <div id="jobspanel">
                         <div class="col s12">
                             <div class="input-field col s2">
-                                <select class="no-autoinit" name="ptype[]">
+                                <select class="no-autoinit" name="projecttype[]">
                                     <option value="" disabled selected>Choose your course</option>
                                     <option value="internship"  selected>Internship</option>
                                     <option value="job"  selected>Job</option>
@@ -273,19 +273,19 @@
                                 </select>
                             </div>
                             <div class="input-field col s2">
-                                <input type="text" name="ptitlerole[]" id="projects" placeholder="title/role">
+                                <input type="text" name="projectrole[]" id="projects" placeholder="title/role">
                             </div>
                             <div class="input-field col s2">
-                                <input type="text" name="pinstorg[]" id="projects" placeholder="institute/organization">
+                                <input type="text" name="projectinstitute[]" id="projects" placeholder="institute/organization">
                             </div>
                             <div class="input-field col s2">
-                                <input type="text" name="pdetials[]" id="projects" placeholder="About work">
+                                <input type="text" name="projectdetails[]" id="projects" placeholder="About work">
                             </div>
                             <div class="input-field col s2">
-                                <input class="datepicker" type="text" name="pstartdate" id="startdate" placeholder="Start Date">
+                                <input class="datepicker" type="text" name="projectstartdate" id="startdate" placeholder="Start Date">
                             </div>
                             <div class="input-field col s2">
-                                <input class="datepicker" type="text" name="penddate" id="enddate" placeholder="End Date">
+                                <input class="datepicker" type="text" name="projectenddate" id="enddate" placeholder="End Date">
                             </div>
                         </div>
                     </div>
@@ -341,20 +341,20 @@
     <script src="../js/stepform.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             M.AutoInit();
-            $('body').on('focus', ".datepicker", function () {
+            $('body').on('focus', ".datepicker", function() {
                 $(this).datepicker();
             });
-            $('body').on('focus',"select", function() {
-                 M.AutoInit();
+            $('body').on('focus', "select", function() {
+                M.AutoInit();
             });
 
             //$(document).on('click','.datapicker',M.datepicker);
-        });$('select').on('contentChanged', function() {
-  $(this).material_select();
-});
-
+        });
+        $('select').on('contentChanged', function() {
+            $(this).material_select();
+        });
     </script>
 </body>
 

@@ -150,6 +150,7 @@ app.post('/login', (req, res) => {
         e = { expires: new Date(Date.now() + 1000 * 60 * 24) };
 
         req.session.user = row.uniqueid;
+        req.session.email = row.email;
         console.log('Logged in');
         res.cookie('uniqueid', row.uniqueid, e);
         return res.redirect('/templates/profile.html');
@@ -157,15 +158,26 @@ app.post('/login', (req, res) => {
     //res.send('TODO');
 });
 
+
 app.post('/cvbuilder', (req, res) => {
     if (!req.session.user) return res.redirect('/templates/login.html');
     console.log("session", req.session.user);
     console.log("cv details", req.body);
     data = req.body;
-    data.projects = data.projects.join(", ");
-    data.skills = data.skills.join(" ");
+    data["projects"] = data.projecttype.map((x, i) => {
+        return data.projecttype[i] + ", " + data.projectrole[i] + ", " + data.projectinstitute[i] + ", " + data.projectdetails + ", " + data.projectstartdate + " to " + data.projectenddate;
+    }).join(";\n");
+    delete data.projecttype;
+    delete data.projectrole;
+    delete data.projectinstitute;
+    delete data.projectdetails;
+    delete data.projectstartdate;
+    delete data.projectenddate;
+    data.skills = data.skills.join(", ");
     data["uniqueid"] = req.session.user;
-    sql = "INSERT INTO CV(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
+    console.log(data.projects, data.skills);
+    let vals = Object.values(data).map(x => { if (typeof(x) == "string") return x.replace("'", "''") });
+    sql = "INSERT INTO CV(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
     console.log(sql);
     db.exec(sql, err => {
         if (err) return res.send(err);
@@ -186,6 +198,17 @@ app.get('/getcv', (req, res) => {
         console.log("Fetching cv details for", req.session.user);
         return res.send({ success: true, data: row });
     });
+});
+
+app.post('/subscribe', (req, res) => {
+
+    if (req.body.subscriptionemail)
+        if (req.body.subscriptionemail != "") {
+            db.exec("INSERT INTO JobAlerts(email) VALUES('" + req.body.subscriptionemail + "')", (err, row) => {
+                if (err) console.log(err);
+                return res.render('alert', { title: "Subscribed to Joblana Job Alerts!!", link: '/', linkname: 'Go back to home' });
+            });
+        }
 });
 
 app.post('/adminlogin', (req, res) => {
@@ -268,6 +291,17 @@ app.post('/getuserdata', (req, res) => {
             data["CV"] = row;
             res.send({ success: true, data: data });
         });
+    });
+});
+
+app.post('/scheduletest', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
+    data = req.body;
+    data["userid"] = req.session.user;
+    sql = "INSERT INTO Tests(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
+    db.exec(sql, (err, row) => {
+        if (err) console.log(err);
+        return res.render('alert', { title: "Successfully booked for the test ", link: "/templates/profile.html", linkname: "Goto Profile" });
     });
 });
 
@@ -448,11 +482,12 @@ let fs = require('fs');
 app.set('views', './render');
 app.set('view engine', 'html');
 
-app.engine('html', (filepath, options, callback) => {
+app.engine('html', (filepath, options, callback, array = null) => {
     fs.readFile(filepath, (err, content) => {
         if (err) return callback(err);
         let rendered = content.toString();
-        console.log("trigger", options.data);
+        //console.log("trigger", options.data);
+        console.log
         for (let key in options) {
             if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache") {
                 rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive

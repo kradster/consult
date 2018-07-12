@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="../js/myfooter.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.1.0/font-awesome-animation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/button.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TGKGPG3');
+    </script>
+    <!-- End Google Tag Manager -->
+    <style>
+        input:not([type]),
+        input[type=text]:not(.browser-default) {
+            border: none;
+            outline: none;
+            height: 3rem;
+            width: 100%;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            padding: 0;
+            background-color: transparent;
+            box-shadow: 0px
+        }
+        
+        input:not([type]):focus:not([readonly]),
+        input[type=text]:not(.browser-default):focus:not([readonly]) {
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        
+        input::-webkit-input-placeholder {
+            color: #eee;
+        }
+        
+        .no-padd {
+            padding: 0px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+    <!-- NAVIGATION BAR START -->
+    <div id="navigationbar">
+
+    </div>
+    <!-- NAVIGATION BAR END -->
+
+    <div class="row" style="height:50px;"></div>
+    <div id="userprofile" class="row no-padd">
+
+    </div>
+    <div class="row no-padd grd">
+        <div class="row no-padd">
+            <div class="col  s12 card no-padd z-depth-0">
+                <div class="col s12 grey lighten-4 no-padd">
+                    <h5 style="padding-left:10px;">
+                        <b>My Profile</b>
+                    </h5>
+                </div>
+                <div class="col s12 no-padd">
+                    <div class="col s12 no-padd">
+                        <button style="border-radius:0px;" id="tab1" class="no-padd col l3 s12 btn z-depth-0 light-blue white-text">Personal Detials</button>
+                        <button style="border-radius:0px;" id="tab2" class="no-padd col l3 s12 btn z-depth-0 blue">Education</button>
+                        <button style="border-radius:0px;" id="tab3" class="no-padd col l3 s12 btn z-depth-0 amber accent-4">Profession</button>
+                        <button style="border-radius:0px;" id="tab4" class="no-padd col l3 s12 btn z-depth-0 green accent-4">Technical Detials</button>
+                    </div>
+
+                    <div id="panel1" class="col s12 light-blue">
+                        <br>
+                        <div class="col l10 offset-l1 s12 white">
+                            <h5>
+                                <b>PERSONAL DETAILS</b>
+                            </h5>
+                            <br>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Name</b>
+                                </div>
+                                <div class="col s8">{{ fullname }}</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Date of birth</b>
+                                </div>
+                                <div class="col s8">{{ dob }}</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Gender</b>
+                                </div>
+                                <div class="col s8">{{ gender }}</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Email id</b>
+                                </div>
+                                <div class="col s8">{{ email }}</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Contact no</b>
+                                </div>
+                                <div class="col s8">{{ contactno }}</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Aadhar no</b>
+                                </div>
+                                <div class="col s8">{{ aadharno }}</div>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="col l10 offset-l1 s12 white">
+                            <h5>
+                                <b>ADDRESS</b>
+                            </h5>
+                            <br>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Address</b>
+                                </div>
+                                <div class="col s8">huose no-69 lorem</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>State</b>
+                                </div>
+                                <div class="col s8">{{ state }}</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>City</b>
+                                </div>
+                                <div class="col s8">{{ city }}</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>ZIP CODE</b>
+                                </div>
+                                <div class="col s8">{{ pincode }}</div>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="row"></div>
+                    </div>
+                    <div id="panel2" class="col s12 blue" style="display:none;">
+                        <br>
+                        <div class="col l10 offset-l1 s12 white">
+                            <h5>
+                                <b>EDUCATION DETAILS</b>
+                            </h5>
+                            <div class="divider"></div>
+                            <br>
+                            <h6>
+                                <b>10TH</b>
+                            </h6>
+                            <br>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>School Name</b>
+                                </div>
+                                <div class="col s8">{{ school10 }}</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Board</b>
+                                </div>
+                                <div class="col s8">hullululu</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Passing Year</b>
+                                </div>
+                                <div class="col s8">2013</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Marks</b>
+                                </div>
+                                <div class="col s8">90%</div>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="col l10 offset-l1 s12 white">
+                            <h5>
+                                <b>EDUCATION DETAILS</b>
+                            </h5>
+                            <div class="divider"></div>
+                            <br>
+                            <h6>
+                                <b>12TH</b>
+                            </h6>
+                            <br>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>School Name</b>
+                                </div>
+                                <div class="col s8">loravassa</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Board</b>
+                                </div>
+                                <div class="col s8">hullululu</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Passing Year</b>
+                                </div>
+                                <div class="col s8">2013</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Marks</b>
+                                </div>
+                                <div class="col s8">90%</div>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="row"></div>
+
+                        <div class="col l10 offset-l1 s12 white">
+                            <h5>
+                                <b>Collage</b>
+                            </h5>
+                            <br>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Collage Name</b>
+                                </div>
+                                <div class="col s8">IIIT </div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Board</b>
+                                </div>
+                                <div class="col s8">AICTE</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Passing Year</b>
+                                </div>
+                                <div class="col s8">madagasker</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Marks</b>
+                                </div>
+                                <div class="col s8">95%</div>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="row"></div>
+
+                    </div>
+                    <div id="panel3" class="col s12 amber accent-4" style="display:none;">
+                        <br>
+                        <div class="col l10 offset-l1 s12 white">
+                            <h5>
+                                <b>PROFESSIONAL DETAILS</b>
+                            </h5>
+                            <br>
+                            <div class="divider"></div>
+                            <h6>
+                                <b>EMPLOYEMENT DETAILS</b>
+                            </h6>
+                            <br>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Company Name</b>
+                                </div>
+                                <div class="col s8">Google</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>City</b>
+                                </div>
+                                <div class="col s8">Delhi</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Job Title</b>
+                                </div>
+                                <div class="col s8">Software developer</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Job Profile</b>
+                                </div>
+                                <div class="col s8">developing new software and testing</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Salary</b>
+                                </div>
+                                <div class="col s8">25
+                                    <small>LPA</small>
+                                </div>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="col l10  offset-l1 s12 white">
+                            <h5>
+                                <b>JOB EXPECTATIONS</b>
+                            </h5>
+                            <br>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Availabel for internship after</b>
+                                </div>
+                                <div class="col s8">21/7/2018</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Availabel to work after</b>
+                                </div>
+                                <div class="col s8">capetown</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Preferred City</b>
+                                </div>
+                                <div class="col s8">Delhi</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Salary Expected</b>
+                                </div>
+                                <div class="col s8">30
+                                    <small>LPA</small>
+                                </div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Hide Profile</b>
+                                </div>
+                                <div class="col s8">No</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Job offer from company</b>
+                                </div>
+                                <div class="col s8">Yes , from Apple</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Salary Offered</b>
+                                </div>
+                                <div class="col s8">28
+                                    <small>LPA</small>
+                                </div>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="row"></div>
+                    </div>
+                    <div id="panel4" class="col s12 green accent-4" style="display:none;">
+                        <br>
+                        <div class="col l10 offset-l1 s12 white">
+                            <h5>
+                                <b>TECHNICAL DETAILS</b>
+                            </h5>
+                            <br>
+                            <div class="divider"></div>
+                            <br>
+                            <h6>
+                                <b>Project Details</b>
+                            </h6>
+                            <br>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Project Name</b>
+                                </div>
+                                <div class="col s8">fortnite game</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Guide name</b>
+                                </div>
+                                <div class="col s8">steve jobs</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Duration</b>
+                                </div>
+                                <div class="col s8">6 Month</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>Institute Name</b>
+                                </div>
+                                <div class="col s8">IIT DELHI</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="col s3">
+                                    <b>ProJect Details</b>
+                                </div>
+                                <div class="col s8">1234567890</div>
+                            </div>
+                            <div class="row"></div>
+
+                        </div>
+                        <div class="row"></div>
+                        <div class="col l10 offset-l1 s12 white">
+                            <h5>
+                                <b>TECHNICAL SKILLS</b>
+                            </h5>
+                            <br>
+                            <div class="col s12">
+                                <div class="ui label">JAVA CORE</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="ui label">JAVA ADVANCED</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="ui label">ANDROID</div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col s12">
+                                <div class="ui label">NODE JS</div>
+                            </div>
+                            <div class="row"></div>
+                        </div>
+                        <div class="row"></div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER START -->
+    <div id="myfooter">
+    </div>
+    <!-- FOOTER END -->
+
+
+
+
+
+    <!-- Compiled and minified JavaScript -->
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="../js/mysidebar.js"></script>
+    <script src="../js/userprofile.js"></script>
+    <script src="../js/profiletab.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            M.AutoInit();
+
+
+        });
+    </script>
+    <script src="https://wchat.freshchat.com/js/widget.js"></script>
+    <script>
+        window.fcWidget.init({
+            token: "4281856b-8aa2-4b5e-8108-4171813716e5",
+            host: "https://wchat.freshchat.com"
+        });
+    </script>
+</body>
+
+</html>

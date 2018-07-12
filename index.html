@@ -157,17 +157,19 @@
                 </h1>
                 <br>
                 <br>
-                <div class="input-field col l12 s12 card z-depth-3 " style="border-radius:30px; padding:10px;">
-                    <center>
-                        <input placeholder="Enter Email " type="text " class="blue-text center-align " style="padding:5px;font-size:1.5em;border:none;outline:none;">
-                    </center>
-                </div>
-                <div class="input-filed col l12  s12 ">
-                    <center>
-                        <input style="margin-top:15px;border-radius:25px;transition:all .3s ease-in-out;" type="submit " class="btn btn-large blue accent-4 z-depth-3 white-text " value="Get job alerts">
-                    </center>
-                    <br>
-                </div>
+                <form action="/subscribe" method="POST">
+                    <div class="input-field col l12 s12 card z-depth-3 " style="border-radius:30px; padding:10px;">
+                        <center>
+                            <input name="subscriptionemail" placeholder="Enter Email " type="text " class="blue-text center-align " style="padding:5px;font-size:1.5em;border:none;outline:none;">
+                        </center>
+                    </div>
+                    <div class=" col l12  s12 ">
+                        <center>
+                            <input type="submit" style="margin-top:15px;border-radius:25px;transition:all .3s ease-in-out;" class="btn btn-large blue accent-4 white-text " value="Get job alerts">
+                        </center>
+                        <br>
+                    </div>
+                </form>
 
             </div>
         </div>

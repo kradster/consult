@@ -2,3 +2,4 @@ node_modules
 database.db
 ngrok.exe
 .vscode
+config.json
