@@ -82,25 +82,23 @@
     <!-- NAVIGATION BAR END -->
     <!-- HEADER START -->
     <div class="row white-text blue darken-4">
-        <div class="col offset-l1 s12">
+        <div class="col s12">
             <div class="row" style="height:50px;"></div>
-            <h1>
+            <h2>
                 <b>FRESHERS JOBS IN INDIA - APPLY NOW</b>
-            </h1>
-
+            </h2>
             <div class="row" style="height:50px;"></div>
         </div>
     </div>
     <!-- HEADER END -->
 
-    <div class="row" style="height:50px;"></div>
+    <!-- <div class="row" style="height:50px;"></div> -->
     <!--  <div id="userprofile" class="row no-padd">
 
     </div>
 -->
     <div class="row">
-        <div class="col s12" style="height:50px;"></div>
-        <div class="col l8 offset-l2 s12" style="border-radius:5px;border:1px solid #aaa;">
+        <div class="col l10 offset-l1 s12">
             <div class="col s12">
                 <h3>
                     <b>JOB OPPORTUNITIES IN INDIA</b>
@@ -159,40 +157,36 @@
                 var EXP = expToMonth(data[d].experience);
                 let template =
                     `
-        <div class="col s12 " >
-                    <div class="col s12 card no-padd" >
+        <div class="col l3 s12 " style="cursor:pointer;">
+                    <div class="col s12 ui white card no-padd hoverable animated bounceIn" style="animation-delay:`+Math.random()*1+`s;border-radius:0px 0px 10px 10px;border-top:2px solid indigo">
                         <div class="col s12">
-                            <h4 style="text-transform:uppercase;"><b>
+                            <h6 style="text-transform:uppercase;"><b>
                                 <i class="fas fa-building fa-1x grey-text lighten-2"></i>&nbsp;` + data[d].jobtitle + ` JOB</b>
                                 
-                            </h4>
-                            <h5><i>` + data[d].companyname + `</i></h5>
+                            </h6>
+                            <small><i>` + data[d].companyname + `</i></small><br/>
                             <div class="col s12 no-padd">
-                                <div class="col l3 s12 no-padd">
-                                   <div class="ui label"> EXP : ` + EXP + `</div>
+                                <div class="col s12 no-padd">
+                                   <strong> EXP : ` + EXP + `</strong>
                                 </div>
-                                <div class="col l3 s12 no-padd">
-                                    <div class="ui label">  SALARY : ` + data[d].salary + `LPA </div>
+                                <div class="col s12 no-padd">
+                                    <strong>  SALARY : ` + data[d].salary + `LPA </strong>
                                 </div>
-                                <div class="col l3 s12 no-padd">
-                                    <div class="ui label">  LOCATION : ` + data[d].location + `</div> 
+                                <div class="col s12 no-padd">
+                                    <strong>  LOCATION : ` + data[d].location + `</strong> 
                                 </div>
-                                <div class="col l3 s12 no-padd">
-                                    <a href="/schedule" class="btn indigo accent-4 z-depth-0">
+                            </div>
+                            <div class="col s12 no-padd">
+                                
+                            <a href="/company-info/`+data[d].jobid+`">Read More</a>
+                                
+    
+                            </div>
+                                <div class="col s12 no-padd">
+                                    <a href="/schedule" class="btn white indigo-text right accent-4 z-depth-0">
                                         <b>APPLY</b>
                                     </a>
                                 </div>
-                            </div>
-                            <div class="col s12">
-                            <ul class="collapsible z-depth-0">
-                                <li>
-                                    <div class="collapsible-header"><p>` + data[d].jobdesc.substr(0, 120) + `...<a>Read More</a></p></div>
-                                    <div class="collapsible-body">
-                                        <span>` + data[d].jobdesc + `</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            </div>
                             
                             </div>
                             </div>

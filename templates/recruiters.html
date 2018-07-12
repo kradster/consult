@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Google Tag Manager -->
     <script>
-        (function(w, d, s, l, i) {
+        (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
                 'gtm.start': new Date().getTime(),
@@ -49,20 +49,24 @@
             background-color: transparent;
             box-shadow: 0px
         }
-        
+
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border: 1px solid #2962ff;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-        
+
         input::-webkit-input-placeholder {
             color: grey;
         }
-        
+
         .no-padd {
             padding: 0px !important;
+        }
+
+        select {
+            display: block !important;
         }
     </style>
 </head>
@@ -85,7 +89,8 @@
         <div class="col l6 offset-l1 s12">
             <div class="row" style="height:50px;"></div>
             <h4>
-                <B>Post your job for free - Hire from <br> over 3 million assessed candidates.</B>
+                <B>Post your job for free - Hire from
+                    <br> over 3 million assessed candidates.</B>
             </h4>
             <div style="font-size:1.5em;">Reach the best candidates by posting a job within 60 seconds on India's largest assessed database.</div>
             <div class="row" style="height:50px;"></div>
@@ -99,7 +104,9 @@
             <div class="row" style="height:50px;"></div>
             <div class="col l10 offset-l1 s12">
                 <div class="col s12">
-                    <h2><b class="grey-text">Post a Job For Free</b></h2>
+                    <h2>
+                        <b class="grey-text">Post a Job For Free</b>
+                    </h2>
                 </div>
                 <div class="col s12 card no-padd z-depth-0">
                     <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
@@ -147,17 +154,17 @@
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
                             <div class="col s9">
-                                <select name="jobtitle">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="hr">HR</option>
-                                            <option value="Operations">OPERATIONS</option>
-                                            <option value="Calling">CALLING</option>
-                                            <option value="Sales and Marketing">SALLES AND MARKITING</option>
-                                            <option value="Digital Marketing">DIGITAL MARKITING</option>
-                                            <option value="IT">IT JOBS</option>
-                                            <option value="Office">OFFICE JOBS</option>
-                                            <option value="Accounting">ACCOUNTING</option>
-                                          </select>
+                                <select name="jobtitle" class="no-autoinit">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="hr">HR</option>
+                                    <option value="Operations">OPERATIONS</option>
+                                    <option value="Calling">CALLING</option>
+                                    <option value="Sales and Marketing">SALLES AND MARKITING</option>
+                                    <option value="Digital Marketing">DIGITAL MARKITING</option>
+                                    <option value="IT">IT JOBS</option>
+                                    <option value="Office">OFFICE JOBS</option>
+                                    <option value="Accounting">ACCOUNTING</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
@@ -166,10 +173,11 @@
                                 <input type="text" name="noofvac" placeholder="Enter no vacancies">
                             </div>
                         </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Location</div>
-                            <div class="col s9">
-                                <select name="location">
+                        <div id="location-container" class="col l10 offset-l2 s12">
+                            <div id="location-parent">
+                                <div class="col s3 right-align" style="padding-top:10px;">Location</div>
+                                <div class="col s8">
+                                    <select name="location[]" class="no-autoinit">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="New Delhi">New Delhi</option>
@@ -187,23 +195,29 @@
                                         <option value="Agra">Agra</option>
                                         <option value="Dehradun">Dehradun</option>
                                         <option value="Chandigarh">Chandigarh</option>
-                                      </select>
+                                    </select>
+                                </div>
+                                <div class="col s1">
+                                    <input id="add-location" onclick="javascript:AddMoreLocation()" type="button" class="ui button mini light-blue white-text"
+                                        value="ADD">
+                                </div>
+                                <div class="col s12" style="height:5px;"></div>
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s12 no-padd">
                                 <div class="col s3 right-align" style="padding-top:10px;">Salary</div>
                                 <div class="col s9">
-                                    <select name="sallary">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="2">Less than 2 lac</option>
-                                            <option value="2-3">2-3 lac</option>
-                                            <option value="3-4">3-4 lac</option>
-                                            <option value="4-5">4-5 lac</option>
-                                            <option value="5-6">5-6 lac</option>
-                                            <option value="7">More than 6 lac</option>
-                                            
-                                        </select>
+                                    <select name="sallary" class="no-autoinit">
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="2">Less than 2 lac</option>
+                                        <option value="2-3">2-3 lac</option>
+                                        <option value="3-4">3-4 lac</option>
+                                        <option value="4-5">4-5 lac</option>
+                                        <option value="5-6">5-6 lac</option>
+                                        <option value="7">More than 6 lac</option>
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -211,13 +225,14 @@
                             <div class="col s12 no-padd">
                                 <div class="col s3 right-align" style="padding-top:10px;">Experience</div>
                                 <div class="col s9">
-                                    <select name="experience">
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="ef">FRESHER</option>
-                                            <option value="e12"> < 12 MOTHNS</option>
-                                            <option value="e24">12 TO 24 MONTHS</option>
-                                            <option value="e24p">+24 MONTHS</option>
-                                        </select>
+                                    <select name="experience" class="no-autoinit">
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="ef">FRESHER</option>
+                                        <option value="e12">
+                                            < 12 MOTHNS</option>
+                                                <option value="e24">12 TO 24 MONTHS</option>
+                                                <option value="e24p">+24 MONTHS</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -233,7 +248,7 @@
                                 <input class="datepicker" type="text" name="dateofjoin" placeholder="Enter date of joining">
                                 <p>
                                     <label>
-                                        <input type="checkbox" class="filled-in" name="anytime"/>
+                                        <input type="checkbox" class="filled-in" name="anytime" />
                                         <span>Any time</span>
                                     </label>
                                 </p>
@@ -244,7 +259,9 @@
                         <div class="col s12" style="height:50px;"></div>
                         <div class="col s12 no-padd">
                             <div class="divider"></div>
-                            <div style="text-align: center">You agree to <a href="/terms-and-conditions">terms and conditions</a> and <a href="/privacy-policy">Privacy Policy</a> on posting jobs on our platform.</div>
+                            <div style="text-align: center">You agree to
+                                <a href="/terms-and-conditions">terms and conditions</a> and
+                                <a href="/privacy-policy">Privacy Policy</a> on posting jobs on our platform.</div>
                         </div>
                         <div class="col s12" style="height:50px;"></div>
                         <div class="col l4 offset-l8 s12">
@@ -272,9 +289,10 @@
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="../js/myfooter.js"></script>
+    <script src="../js/addmorefield.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             M.AutoInit();
         });
     </script>

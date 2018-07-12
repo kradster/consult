@@ -3,14 +3,38 @@
         color: black !important;
         border-color: #000 !important;
     }
-    
+    .upload-form{
+        transition:all .3s ease-in-out !important;
+        opacity:0;
+    }
+    .mypic-con:hover  .upload-form{
+        opacity: 1;
+    }
 </style>
-<div class="col s12 no-padd">
+<div class="col s12 no-padd animated fadeIn">
     <div ng-controller="controller">
         <div class="col l2 m3 s12 no-padd">
             <center>
                 <br>
-                <img style="width:70%" src="/img/profilepic.jpg" alt="">
+                <div  class="black mypic-con" style="width:150px; height:150px; overflow:hidden;border-radius:100%;display:flex;position: relative;">
+                    <img id="myimg" style="width:100%;margin:auto;" src="/img/profilepic.jpg" alt="">
+                    <br>
+                    <div class="upload-form" style="width:100%;height:100%;margin:auto;position: absolute;background-color:rgba(0,0,0,0.5);">
+
+                        <form action="/picupload" method="GET" >
+                            <input name="pic" type="file" id="picfile" style="display:none" onchange="previewFile()">
+                            <label id="plab" for="picfile" class="ui button white mini" style="margin-top:50px;">Choose File</label><br>
+                            <div id="panel" style="display:none;margin-top:50px;">
+                                <div style="display:flex;">
+                                    <input style="flex: 1" id="psub" type="submit" class="ui button mini amber" value="upload"><br>
+                                    <input style="flex: 1" id="pcan" type="button" class="ui button mini red" value="cancel">
+                                </div>
+                                
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
             </center>
         </div>
         <div class="col l10 m9 s12 no-padd">
@@ -54,10 +78,10 @@
                             <b>My Job</b>
                         </a>
                         <a id="l5" style="border: 1px solid #aaa;" class="z-depth-0 btn  red" href="../templates/showcv.html">
-                            <b>VIEW RESUME</b>
+                            <b>VIEW PROFILE</b>
                         </a>
                         <a id="l6" style="border: 1px solid #aaa;" href="../templates/makecv.html" class="z-depth-0 btn green accent-4">
-                            <b>EDIT RESUME</b>
+                            <b>EDIT PROFILE</b>
                         </a>
                     </div>
                 </div>
@@ -129,3 +153,28 @@
 
     });
 </script>
+<script>
+        function previewFile(){
+            var preview = $('#myimg'); //selects the query named img
+            var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+            var reader  = new FileReader();
+     
+            reader.onloadend = function () {
+                preview.attr("src",reader.result);
+                $('#plab').hide();
+                $('#panel').show();
+            }
+     
+            if (file) {
+                reader.readAsDataURL(file); //reads the data as a URL
+            } else {
+                preview.attr("src","");
+            }
+       }
+       $('#pcan').on('click',function(){
+           $('#panel').hide();
+           $('#plab').show();
+       });
+     
+       //previewFile();  //calls the function named previewFile()
+       </script>

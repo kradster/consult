@@ -1,10 +1,6 @@
 var $RESULT = $('#fullform');
 
-var $ADDMOREJOBS = $('#addmorejobs');
-var $ADDMORESKILLS = $('#addmoreskills');
 
-var $JOBSPANEl = $('#jobspanel');
-var $SKIILSPANEl = $('#skillspanel');
 
 
 
@@ -40,19 +36,16 @@ $BACK3.on('click', _funcB3);
 $BACK4.on('click', _funcB4);
 $BACK5.on('click', _funcB5);
 
-$ADDMOREJOBS.on('click', _funcAddJob);
-$ADDMORESKILLS.on('click', _funcAddSkills);
-
-function _funcAddJob() {
-    AddMoreJobs($JOBSPANEl);
-}
-
-function _funcAddSkills() {
-    AddMoreSkills($SKIILSPANEl);
-}
 
 function nextStep(showform, hideform) {
     showform.css('display', 'block');
+    showform.addClass('animated zoomIn');
+    hideform.css('display', 'none');
+}
+
+function backStep(showform, hideform) {
+    showform.css('display', 'block');
+    showform.addClass('animated zoomIn');
     hideform.css('display', 'none');
 }
 
@@ -78,26 +71,26 @@ function _funcN5() {
 
 
 function _funcB1() {
-    nextStep($FORM1, $FORM2);
+    backStep($FORM1, $FORM2);
 }
 
 function _funcB2() {
-    nextStep($FORM2, $FORM3);
+    backStep($FORM2, $FORM3);
 
 }
 
 function _funcB3() {
-    nextStep($FORM3, $FORM4);
+    backStep($FORM3, $FORM4);
 
 }
 
 function _funcB4() {
-    nextStep($FORM4, $FORM5);
+    backStep($FORM4, $FORM5);
 
 }
 
 function _funcB5() {
-    nextStep($FORM5, $FULLDETAILS);
+    backStep($FORM5, $FULLDETAILS);
 
 }
 
