@@ -84,7 +84,7 @@
             <div class="col s12" style="height:100px;"></div>
             <h3 class="indigo-text">CV BUILDER</h3>
             <div class="card z-depth-0 col s12" style="padding:10px;">
-                <div id="form1" class="card z-depth-2 col s12" style="padding:10px;">
+                <div id="form1" class="card z-depth-0 col s12" style="padding:10px;">
                     <h5>
                         <b>PERSONAL DETAILS</b>
                     </h5>
@@ -128,7 +128,7 @@
                     </div>
 
                 </div>
-                <div id="form2" class="card z-depth-2 col s12" style="padding:10px;display:none;">
+                <div id="form2" class="card z-depth-0 col s12" style="padding:10px;display:none;">
                     <h5>
                         <b>ADDRESS DETAILS</b>
                     </h5>
@@ -154,7 +154,7 @@
                     </div>
 
                 </div>
-                <div id="form3" class="card z-depth-2 col s12" style="padding:10px;display:none;">
+                <div id="form3" class="card z-depth-0 col s12" style="padding:10px;display:none;">
                     <h5>
                         <b>EDUCATION DETAILS</b>
                     </h5>
@@ -317,7 +317,7 @@
                         <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
                     </div>
                 </div>
-                <div id="form4" class="card z-depth-2 col s12" style="padding:10px;display:none;">
+                <div id="form4" class="card z-depth-0 col s12" style="padding:10px;display:none;">
                     <h5>
                         <b>PROJECTS/INTERNSHIPS/JOBS</b>
                     </h5>
@@ -341,16 +341,16 @@
                             <div class="input-field col s2">
                                 <input type="text" name="pdetials[]" id="projects" placeholder="About work">
                             </div>
-                            <div class="input-field col s2">
-                                <input class="datepicker" type="text" name="pstartdate" id="startdate" placeholder="Start Date">
+                            <div class="input-field col s3">
+                                <input class="datepicker col s5" type="text" name="pstartdate" id="startdate" placeholder="Start Date">
+                                <input class="datepicker col s5" type="text" name="penddate" id="enddate" placeholder="End Date">
                             </div>
-                            <div class="input-field col s2">
-                                <input class="datepicker" type="text" name="penddate" id="enddate" placeholder="End Date">
+                            <div class="input-field col s1">
+                                <input id="addmorejobs" type="button" class="ui button mini white-text blue accent-4" value="Add More">
                             </div>
                         </div>
                     </div>
                     <div class="col s12">
-                        <input id="addmorejobs" type="button" class="btn btn-small blue accent-4" value="Add More">
                     </div>
                     <div class="input-field col s6">
                         <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
@@ -360,18 +360,20 @@
                     </div>
 
                 </div>
-                <div id="form5" class="card z-depth-2 col s12" style="padding:10px;display:none;">
+                <div id="form5" class="card z-depth-0 col s12" style="padding:10px;display:none;">
                     <h5>
                         <b>SKILL</b>
                     </h5>
                     <br>
                     <div id="skillspanel">
-                        <div class="input-field col s12">
-                            <input type="text" name="skills[]" placeholder="Enter Your Skills">
+                        <div class="col s12">
+                            <div class="input-field col s10">
+                                <input type="text" name="skills[]" placeholder="Enter Your Skills">
+                            </div>
+                            <div class="input-field col s2">
+                                <input id="addmoreskills" type="button" class="ui button white-text mini blue accent-4" value="Add More">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col s12">
-                        <input id="addmoreskills" type="button" class="btn btn-small blue accent-4" value="Add More">
                     </div>
                     <div class="input-field col s6">
                         <input class="btn btn-large indigo col s12" type="button" value="Back" id="back4">
@@ -383,7 +385,7 @@
                 <br>
                 <br>
                 <div id="fulldetials" class="col s12 no-padd" style="padding:10px;display:none;">
-                        <div class="card z-depth-2 col s12" style="padding:10px;">
+                        <div class="card z-depth-0 col s12" style="padding:10px;">
                                 <h5>
                                     <b>JOB EXPECTATIONS</b>
                                 </h5>
@@ -415,6 +417,7 @@
     <!-- FOOTER END -->
     <!-- Compiled and minified JavaScript -->
     <script src="../js/stepform.js"></script>
+    <script src="../js/addmoreskills.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
         $(document).ready(function () {

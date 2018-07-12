@@ -1,10 +1,6 @@
 var $RESULT = $('#fullform');
 
-var $ADDMOREJOBS = $('#addmorejobs');
-var $ADDMORESKILLS = $('#addmoreskills');
 
-var $JOBSPANEl = $('#jobspanel');
-var $SKIILSPANEl = $('#skillspanel');
 
 
 
@@ -40,18 +36,15 @@ $BACK3.on('click',_funcB3);
 $BACK4.on('click',_funcB4);
 $BACK5.on('click',_funcB5);
 
-$ADDMOREJOBS.on('click',_funcAddJob);
-$ADDMORESKILLS.on('click',_funcAddSkills);
-
-function _funcAddJob(){
-    AddMoreJobs($JOBSPANEl);
-}
-function _funcAddSkills(){
-    AddMoreSkills($SKIILSPANEl);
-}
 
 function nextStep(showform, hideform) {
     showform.css('display', 'block');
+    showform.addClass('animated zoomIn');
+    hideform.css('display', 'none');
+}
+function backStep(showform, hideform) {
+    showform.css('display', 'block');
+    showform.addClass('animated zoomIn');
     hideform.css('display', 'none');
 }
 
@@ -77,55 +70,25 @@ function _funcN5() {
 
 
 function _funcB1() {
-    nextStep($FORM1, $FORM2);
+    backStep($FORM1, $FORM2);
 }
 function _funcB2() {
-    nextStep($FORM2, $FORM3);
+    backStep($FORM2, $FORM3);
 
 }
 function _funcB3() {
-    nextStep($FORM3, $FORM4);
+    backStep($FORM3, $FORM4);
 
 }
 function _funcB4() {
-    nextStep($FORM4, $FORM5);
+    backStep($FORM4, $FORM5);
 
 }
 function _funcB5() {
-    nextStep($FORM5, $FULLDETAILS);
+    backStep($FORM5, $FULLDETAILS);
 
 }
 
-function AddMoreJobs(element){
-    element.append(`<div class="col s12">
-    <div class="input-field col s2">
-        <select class="no-autoinit" name="ptype[]">
-            <option value="" disabled selected>Choose your course</option>
-            <option value="internship"  selected>Internship</option>
-            <option value="job"  selected>Job</option>
-            <option value="projects"  selected>Project</option>
-        </select>
-    </div>
-    <div class="input-field col s2">
-        <input type="text" name="ptitlerole[]" id="projects" placeholder="title/role">
-    </div>
-    <div class="input-field col s2">
-        <input type="text" name="pinstorg[]" id="projects" placeholder="institute/organization">
-    </div>
-    <div class="input-field col s2">
-        <input type="text" name="pdetials[]" id="projects" placeholder="About work">
-    </div>
-    <div class="input-field col s2">
-        <input class="datepicker" type="text" name="pstartdate" id="startdate" placeholder="Start Date">
-    </div>
-    <div class="input-field col s2">
-        <input class="datepicker" type="text" name="penddate" id="enddate" placeholder="End Date">
-    </div>
-</div>`);
-}
-function AddMoreSkills(element){
-    element.append('<div class="input-field col s12"><input type="text" name="skills[]" placeholder="Enter Your Skills"></div>');
-}
 
 function Get_All_Page_Data() {
     var All_Page_Data = {};
