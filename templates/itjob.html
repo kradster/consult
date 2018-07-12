@@ -93,8 +93,9 @@
 
 
     <div class="row" style="height:50px;"></div>
+    <div class="row" style="height:50px;"></div>
     <div class="row">
-
+        
         <div class="col s8 offset-s2">
             Over the years, Indian IT companies feverishly built their so-called pyramid model that involved hiring thousands of fresh
             engineering graduates annually and quickly deploying them on software projects to ensure overall costs remained
@@ -106,7 +107,6 @@
             that work on these products to provide service to the client. For Example: TCS, Wipro etc are service-based companies.
         </div>
     </div>
-
     <div class="row lighten-2">
         <div class="col s12 lighten-2" style="height:50px;"></div>
         <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
@@ -152,6 +152,14 @@
             <div class="col s12" style="height:50px;"></div>
         </div>
     </div>
+
+    <div class="row">
+        <h3 class="col l8 offset-l2">Latest Jobs</h3>
+        <div id="joblistcon" class="col l8 offset-l2 s12">
+
+        </div>
+    </div>
+
     <!-- FOOTER START -->
     <div id="myfooter">
     </div>
@@ -169,7 +177,96 @@
     <script>
         $(document).ready(function () {
             M.AutoInit();
+            getJobList();
         });
+    </script>
+    <script>
+        function getJobList() {
+            $.ajax({
+                url: window.location.origin + "/getjoblistings",
+                method: "GET",
+                dataType: "json",
+                success: function(response) {
+                    let fulldata = response.data.filter(d=>d.jobtitle=="it").slice(0,3);
+
+                    console.log(fulldata);
+                    joblistmaker(fulldata);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        function joblistmaker(data) {
+            console.log(data);
+            let JOBLISTCON = $('#joblistcon ');
+            JOBLISTCON.empty();
+            for (d in data) {
+                var EXP = expToMonth(data[d].experience);
+                let template =
+                    `
+        <div class="col l4 s12 " style="cursor:pointer;">
+                    <div class="col s12 ui white card no-padd hoverable animated bounceIn" style="animation-delay:`+Math.random()*1+`s;border-radius:0px 0px 10px 10px;border-top:2px solid indigo">
+                        <div class="col s12">
+                            <h6 style="text-transform:uppercase;"><b>
+                                <i class="fas fa-building fa-1x grey-text lighten-2"></i>&nbsp;` + data[d].jobtitle + ` JOB</b>
+                                
+                            </h6>
+                            <small><i>` + data[d].companyname + `</i></small><br/>
+                            <div class="col s12 no-padd">
+                                <div class="col s12 no-padd">
+                                   <strong> EXP : ` + EXP + `</strong>
+                                </div>
+                                <div class="col s12 no-padd">
+                                    <strong>  SALARY : ` + data[d].salary + `LPA </strong>
+                                </div>
+                                <div class="col s12 no-padd">
+                                    <strong>  LOCATION : ` + data[d].location + `</strong> 
+                                </div>
+                            </div>
+                            <div class="col s12 no-padd">
+                                
+                            <a href="/company-info/`+data[d].jobid+`">Read More</a>
+                                
+    
+                            </div>
+                                <div class="col s12 no-padd">
+                                    <a href="/schedule" class="btn white indigo-text right accent-4 z-depth-0">
+                                        <b>APPLY</b>
+                                    </a>
+                                </div>
+                            
+                            </div>
+                            </div>
+                            <div class="row"></div>
+                </div>
+        `;
+                template = template.replace(/null/gi, "Not Specified");
+                JOBLISTCON.append(template);
+                $(document).on('click', ".collapsible", function() {
+                    $(this).collapsible();
+                });
+            }
+
+            function expToMonth(exp) {
+                switch (exp) {
+                    case 'ef':
+                        return '>12 MONTH';
+                        break;
+                    case 'e12':
+                        return '+12 MONTH';
+                        break;
+                    case 'e24':
+                        return '+24 MONTH';
+                        break;
+                    case 'e24p':
+                        return '>24 MONTH';
+                        break;
+                }
+            }
+        }
+    
     </script>
 </body>
 
