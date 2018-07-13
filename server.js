@@ -129,7 +129,10 @@ app.post('/signup', (req, res) => {
             if (err) return res.send(err);
             sendVerificatonEmail(req, res);
             console.log("Account created");
-            res.redirect('/login');
+            db.exec("INSERT INTO CV(uniqueid) VALUES('" + data.uniqueid + "')", (err, row) => {
+                if (err) return res.send(err);
+                res.redirect('/login');
+            });
         });
     });
     //    res.send(req.body);
@@ -183,11 +186,15 @@ app.post('/cvbuilder', (req, res) => {
     delete data.projectstartdate;
     delete data.projectenddate;
     data.skills = data.skills.join(", ");
-    data["uniqueid"] = req.session.user;
     data["email"] = req.session.email;
     console.log(data);
+    let keys = Object.keys(data);
     let vals = Object.values(data).map(x => { if (typeof(x) == "string") return x.replace("'", "''") });
-    sql = "INSERT INTO CV(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
+    sql = [];
+    for (let i = 0; i < keys.length; i++)
+        sql.push(keys[i] + " = '" + vals[i] + "'");
+    sql = "UPDATE CV SET " + sql.join(", ") + " WHERE uniqueid = '" + req.session.user + "'";
+    //sql = "INSERT INTO CV(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
     console.log(sql);
     db.exec(sql, err => {
         if (err) return res.send(err);
@@ -424,6 +431,9 @@ app.get('/operations-jobs-for-freshers', (req, res) => {
 app.get('/privacy-policy', (req, res) => {
     res.sendFile('/templates/policy.html', { root: __dirname });
 });
+app.get('/terms-and-conditions', (req, res) => {
+    res.sendFile('/templates/terms.html', { root: __dirname });
+});
 app.get('/job-opportunities', (req, res) => {
     res.sendFile('/templates/comlist.html', { root: __dirname });
 });
@@ -445,7 +455,7 @@ app.post('/editcv', (req, res) => {
     res.sendFile('/templates/makecv.html', { root: __dirname });
 });
 
-app.post('/uploadresume',(req, res)=>{
+app.post('/uploadresume', (req, res) => {
     if (!req.session.user) return res.redirect('/login');
     res.send(req.body);
 });
@@ -513,7 +523,7 @@ app.engine('html', (filepath, options, callback) => {
                 rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive
             }
         }
-        if (options._removetags) rendered = rendered.replace(/{{\s\w+\s}}/gi, "Not Specified");
+        if (options._removetags) rendered = rendered.replace(/{{\s\w+\s}}/gi, "N/A");
 
         return callback(null, rendered);
     });

@@ -3,22 +3,26 @@
         color: black !important;
         border-color: #000 !important;
     }
-    .upload-form{
-        transition:all .3s ease-in-out !important;
-        opacity:0;
+    
+    .upload-form {
+        transition: all .3s ease-in-out !important;
+        opacity: 0;
     }
-    .mypic-con:hover  .upload-form{
+    
+    .mypic-con:hover .upload-form {
         opacity: 1;
     }
-    .uploadIn{
+    
+    .uploadIn {
         animation: upload 1s linear infinite normal forwards;
     }
+    
     @keyframes upload {
-        to{
-        transform: rotateZ(0deg);
+        to {
+            transform: rotateZ(0deg);
         }
-        from{
-        transform: rotateZ(360deg);
+        from {
+            transform: rotateZ(360deg);
         }
     }
 </style>
@@ -27,12 +31,12 @@
         <div class="col l2 m3 s12 no-padd">
             <center>
                 <br>
-                <div  class="black mypic-con" style="width:150px; height:150px; overflow:hidden;border-radius:100%;display:flex;position: relative;">
+                <div class="black mypic-con" style="width:150px; height:150px; overflow:hidden;border-radius:100%;display:flex;position: relative;">
                     <img id="myimg" style="width:100%;margin:auto;" src="/img/profilepic.jpg" alt="">
                     <br>
                     <div class="upload-form" style="width:100%;height:100%;margin:auto;position: absolute;background-color:rgba(0,0,0,0.5);">
 
-                        <form action="/picupload" method="GET" >
+                        <form action="/picupload" method="GET">
                             <input name="pic" type="file" id="picfile" style="display:none" onchange="previewFile()">
                             <label id="plab" for="picfile" class="ui button white mini" style="margin-top:50px;">Choose File</label><br>
                             <div id="panel" style="display:none;margin-top:50px;">
@@ -40,9 +44,9 @@
                                     <input style="flex: 1" id="psub" type="submit" class="ui button mini amber" value="upload"><br>
                                     <input style="flex: 1" id="pcan" type="button" class="ui button mini red" value="cancel">
                                 </div>
-                                
+
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
@@ -67,13 +71,13 @@
                 <div class=" hide-on-small-only">
                     <div class="col s12 no-padd">
                         <br>
-                        <a id="l1" style="border: 1px solid #aaa;" href="../templates/profile.html" class="z-depth-0 btn white grey-text grey lighten-4">
+                        <a id="l1" style="border: 1px solid #aaa;" href="/" class="z-depth-0 btn white grey-text grey lighten-4">
                             <b>Profile</b>
                         </a>
-                        <a id="l3" style="border: 1px solid #aaa;" href="../templates/Schedule.html" class="z-depth-0 btn white grey-text grey lighten-4">
+                        <a id="l3" style="border: 1px solid #aaa;" href="/upcoming-jl-test" class="z-depth-0 btn white grey-text grey lighten-4">
                             <b>Schedule Test</b>
                         </a>
-                        <a id="l2" style="border: 1px solid #aaa;" href='#' data-target='dropdown1' class=" dropdown-trigger z-depth-0 btn white grey-text grey lighten-4">
+                        <a id="l2" style="border: 1px solid #aaa;" href='/templates/myscore.html' data-target='dropdown1' class=" dropdown-trigger z-depth-0 btn white grey-text grey lighten-4">
                             <b>JL TEST</b>
                         </a>
                         <!-- Dropdown Structure -->
@@ -94,25 +98,25 @@
                         <a id="l6" style="border: 1px solid #aaa;" href="../templates/makecv.html" class="z-depth-0 btn green accent-4">
                             <b>EDIT PROFILE</b>
                         </a>
-                       
-                                        <form class="z-depth-0 btn white" action="/picupload" method="GET" enctype="multipart/form-data">
-                                            <input name="resume" type="file" id="resume" style="display:none" onchange="previewFile()">
-                                            <label id="resume-label" for="resume" class="ui button blue white-text">
+
+                        <form class="z-depth-0 btn white" action="/picupload" method="GET" enctype="multipart/form-data">
+                            <input name="resume" type="file" id="resume" style="display:none" onchange="previewFile()">
+                            <label id="resume-label" for="resume" class="ui button blue white-text">
                                                 Upload Resume
                                                 <i id="f1" class="fas fa-circle-notch uploadIn" style="display:none"></i>
                                                 <i id="f2" class="fas fa-check" style="display:none"></i>
                                                 <i id="f3" class="fas fa-times" style="display:none"></i>
                                             </label>
-                                        </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         M.AutoInit();
 
         var l1 = $("#l1");
@@ -149,7 +153,7 @@
         }
 
         //var rowid = document.cookie;
-        var rowid  = Cookies.get().uniqueid;
+        var rowid = Cookies.get().uniqueid;
         console.log(rowid);
         var uid = rowid;
         if (uid !== "null") {
@@ -159,12 +163,12 @@
                 data: {
                     "uid": uid
                 },
-                success: function (res) {
+                success: function(res) {
                     console.log(res);
                     $('#u_email').text(res.data.email);
                     $('#u_name').text(res.data.firstname + "  " + res.data.lastname);
                 },
-                error: function (err) {
+                error: function(err) {
                     console.log(err);
                 }
             });
@@ -176,106 +180,112 @@
     });
 </script>
 <script>
-        function previewFile(){
-            var preview = $('#myimg'); //selects the query named img
-            var file    = document.querySelector('input[type=file]').files[0]; //sames as here
-            var reader  = new FileReader();
-     
-            reader.onloadend = function () {
-                preview.attr("src",reader.result);
-                $('#plab').hide();
-                $('#panel').show();
-            }
-     
-            if (file) {
-                reader.readAsDataURL(file); //reads the data as a URL
-            } else {
-                preview.attr("src","");
-            }
-       }
-       $('#pcan').on('click',function(){
-           $('#panel').hide();
-           $('#plab').show();
-       });
-     
-       //previewFile();  //calls the function named previewFile()
+    function previewFile() {
+        var preview = $('#myimg'); //selects the query named img
+        var file = document.querySelector('input[type=file]').files[0]; //sames as here
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+            preview.attr("src", reader.result);
+            $('#plab').hide();
+            $('#panel').show();
+        }
+
+        if (file) {
+            reader.readAsDataURL(file); //reads the data as a URL
+        } else {
+            preview.attr("src", "");
+        }
+    }
+    $('#pcan').on('click', function() {
+        $('#panel').hide();
+        $('#plab').show();
+    });
+
+    //previewFile();  //calls the function named previewFile()
 </script>
 <script>
-    var Upload = function (file) {
-    this.file = file;
-};
+    var Upload = function(file) {
+        this.file = file;
+    };
 
-Upload.prototype.getType = function() {
-    return this.file.type;
-};
-Upload.prototype.getSize = function() {
-    return this.file.size;
-};
-Upload.prototype.getName = function() {
-    return this.file.name;
-};
-Upload.prototype.doUpload = function () {
-    var that = this;
-    var formData = new FormData();
+    Upload.prototype.getType = function() {
+        return this.file.type;
+    };
+    Upload.prototype.getSize = function() {
+        return this.file.size;
+    };
+    Upload.prototype.getName = function() {
+        return this.file.name;
+    };
+    Upload.prototype.doUpload = function() {
+        var that = this;
+        var formData = new FormData();
 
-    // add assoc key values, this will be posts values
-    formData.append("file", this.file, this.getName());
-    formData.append("upload_file", true);
+        // add assoc key values, this will be posts values
+        formData.append("file", this.file, this.getName());
+        formData.append("upload_file", true);
 
-    $.ajax({
-        type: "POST",
-        data:{'resume':'resume'},
-        processData:false,
-        caches:false,
-        contentType:false,
-        url: location.origin+"/uploadresume",
-        success: function (data) {
-            // your callback here
-            $('#f1').hide();
-            $('#f2').show();
-            setTimeout(m=>{$('#f2').hide();},3000);
-        },
-        error: function (error) {
-            // handle error
-            $('#f1').hide();
-            $('#f3').show();
-            setTimeout(m=>{$('#f3').hide();},3000);
-        },
-        beforeSend:function(){
-            $('#f1').show();
-        },
-        async: true,
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-        timeout: 60000
+        $.ajax({
+            type: "POST",
+            data: {
+                'resume': 'resume'
+            },
+            processData: false,
+            caches: false,
+            contentType: false,
+            url: location.origin + "/uploadresume",
+            success: function(data) {
+                // your callback here
+                $('#f1').hide();
+                $('#f2').show();
+                setTimeout(m => {
+                    $('#f2').hide();
+                }, 3000);
+            },
+            error: function(error) {
+                // handle error
+                $('#f1').hide();
+                $('#f3').show();
+                setTimeout(m => {
+                    $('#f3').hide();
+                }, 3000);
+            },
+            beforeSend: function() {
+                $('#f1').show();
+            },
+            async: true,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+    };
+
+    // Upload.prototype.progressHandling = function (event) {
+    //     var percent = 0;
+    //     var position = event.loaded || event.position;
+    //     var total = event.total;
+    //     var progress_bar_id = "#progress-wrp";
+    //     if (event.lengthComputable) {
+    //         percent = Math.ceil(position / total * 100);
+    //     }
+    //     // update progressbars classes so it fits your code
+    //     $(progress_bar_id + " .progress-bar").css("width", +percent + "%");
+    //     $(progress_bar_id + " .status").text(percent + "%");
+    // };
+
+
+    //Change id to your id
+    $("#resume").on("change", function(e) {
+        var file = $(this)[0].files[0];
+        var upload = new Upload(file);
+
+        // maby check size or type here with upload.getSize() and upload.getType()
+        // alert(upload.getType(),upload.getName());
+
+        // execute upload
+        upload.doUpload();
     });
-};
-
-// Upload.prototype.progressHandling = function (event) {
-//     var percent = 0;
-//     var position = event.loaded || event.position;
-//     var total = event.total;
-//     var progress_bar_id = "#progress-wrp";
-//     if (event.lengthComputable) {
-//         percent = Math.ceil(position / total * 100);
-//     }
-//     // update progressbars classes so it fits your code
-//     $(progress_bar_id + " .progress-bar").css("width", +percent + "%");
-//     $(progress_bar_id + " .status").text(percent + "%");
-// };
-
-
-//Change id to your id
-$("#resume").on("change", function (e) {
-    var file = $(this)[0].files[0];
-    var upload = new Upload(file);
-
-    // maby check size or type here with upload.getSize() and upload.getType()
-   // alert(upload.getType(),upload.getName());
-
-    // execute upload
-    upload.doUpload();
-});
 </script>

@@ -3,3 +3,4 @@ database.db
 ngrok.exe
 .vscode
 config.json
+package-lock.json
