@@ -2,8 +2,9 @@ $(document).ready(function() {
     $('#myfooter').load('/templates/footer.html');
     var rowid = document.cookie;
     var uid = rowid.substring(rowid.lastIndexOf('=') + 1);
+    //  console.log(getCookie("uniqueid"), uid);
     if (getCookie("uniqueid") != "") {
-        if (uid !== "null") {
+        if (getCookie("uniqueid") !== "null") {
             $('#navigationbar').load('/templates/navigationbar2.html');
             $('#myfooter').load('/templates/footer2.html');
         } else {
@@ -16,7 +17,7 @@ $(document).ready(function() {
         $('#myfooter').load('/templates/footer.html');
 
     }
-    
+
 
 });
 

@@ -4,19 +4,21 @@ var $ADDMORESKILLS = $('#addmoreskills');
 var $JOBSPANEl = $('#jobspanel');
 var $SKIILSPANEl = $('#skillspanel');
 
-$ADDMOREJOBS.on('click',_funcAddJob);
-$ADDMORESKILLS.on('click',_funcAddSkills);
+$ADDMOREJOBS.on('click', _funcAddJob);
+$ADDMORESKILLS.on('click', _funcAddSkills);
 
-function _funcAddJob(){
+function _funcAddJob() {
     AddMoreJobs($JOBSPANEl);
 }
-function _funcAddSkills(){
+
+function _funcAddSkills() {
     AddMoreSkills($SKIILSPANEl);
 }
-function AddMoreJobs(element){
+
+function AddMoreJobs(element) {
     element.append(`<div class="col s12">
     <div class="input-field col s2">
-        <select class="no-autoinit" name="ptype[]">
+        <select class="no-autoinit" name="projecttype[]">
             <option value="" disabled selected>Choose your course</option>
             <option value="internship"  selected>Internship</option>
             <option value="job"  selected>Job</option>
@@ -24,24 +26,25 @@ function AddMoreJobs(element){
         </select>
     </div>
     <div class="input-field col s2">
-        <input type="text" name="ptitlerole[]" id="projects" placeholder="title/role">
+        <input type="text" name="projectrole[]" id="projects" placeholder="title/role">
     </div>
     <div class="input-field col s2">
-        <input type="text" name="pinstorg[]" id="projects" placeholder="institute/organization">
+        <input type="text" name="projectinstitute[]" id="projects" placeholder="institute/organization">
     </div>
     <div class="input-field col s2">
-        <input type="text" name="pdetials[]" id="projects" placeholder="About work">
+        <input type="text" name="projectdetails[]" id="projects" placeholder="About work">
     </div>
     <div class="input-field col s3">
-        <input class="datepicker col s5" type="text" name="pstartdate" id="startdate" placeholder="Start Date">
-        <input class="datepicker col s5" type="text" name="penddate" id="enddate" placeholder="End Date">
+        <input class="datepicker col s5" type="text" name="projectstartdate[]" id="startdate" placeholder="Start Date">
+        <input class="datepicker col s5" type="text" name="projectenddate[]" id="enddate" placeholder="End Date">
     </div>
     <div class="input-field col s1">
         <input id="removeMoreJobs" type="button" class="ui button mini white-text red accent-4" value="X">
     </div>
 </div>`);
 }
-function AddMoreSkills(element){
+
+function AddMoreSkills(element) {
     element.append(`
     <div class="col s12">
                         <div class="input-field col s10">
@@ -54,9 +57,9 @@ function AddMoreSkills(element){
     `);
 }
 
-$(document).on('click',"#removeMoreJobs",function(){
+$(document).on('click', "#removeMoreJobs", function() {
     $(this).parent().parent().remove();
 });
-$(document).on('click',"#removeMoreskills",function(){
+$(document).on('click', "#removeMoreskills", function() {
     $(this).parent().parent().remove();
 });

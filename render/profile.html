@@ -80,10 +80,104 @@
     </div>
     <!-- NAVIGATION BAR END -->
 
+    <!-- USER BANNER-->
+    <style>
+        .profile-active {
+            color: black !important;
+            border-color: #000 !important;
+        }
+        
+        .upload-form {
+            transition: all .3s ease-in-out !important;
+            opacity: 0;
+        }
+        
+        .mypic-con:hover .upload-form {
+            opacity: 1;
+        }
+    </style>
+
     <div class="row" style="height:50px;"></div>
-    <div id="userprofile" class="row no-padd">
+    <div class="row no-padd">
+
+        <div class="col s12 no-padd animated fadeIn">
+            <div ng-controller="controller">
+                <div class="col l2 m3 s12 no-padd">
+                    <center>
+                        <br>
+                        <div class="black mypic-con" style="width:150px; height:150px; overflow:hidden;border-radius:100%;display:flex;position: relative;">
+                            <img id="myimg" style="width:100%;margin:auto;" src="/img/profilepic.jpg" alt="">
+                            <br>
+                            <div class="upload-form" style="width:100%;height:100%;margin:auto;position: absolute;background-color:rgba(0,0,0,0.5);">
+
+                                <form action="/picupload" method="GET">
+                                    <input name="pic" type="file" id="picfile" style="display:none" onchange="previewFile()">
+                                    <label id="plab" for="picfile" class="ui button white mini" style="margin-top:50px;">Choose File</label><br>
+                                    <div id="panel" style="display:none;margin-top:50px;">
+                                        <div style="display:flex;">
+                                            <input style="flex: 1" id="psub" type="submit" class="ui button mini amber" value="upload"><br>
+                                            <input style="flex: 1" id="pcan" type="button" class="ui button mini red" value="cancel">
+                                        </div>
+
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                <div class="col l10 m9 s12 no-padd">
+                    <div class="col s12">
+                        <h5>
+                            <b id="u_name">{{ fullname }}</b>
+                        </h5>
+                        <div class="col l3 m4 s7 no-padd">
+                            <span id="u_email" class="blue-text">{{ email }}</span>
+                        </div>
+                        <div class="col l2 m2 s3 no-padd">
+                            <span id="u_city">{{ city }}</span>
+                        </div>
+                        <div class="col l2 m3 s2 no-padd">
+                            <span id="u_edu">{{ state }}</span>
+                        </div>
+                    </div>
+                    <div class="col s12 no-padd">
+                        <div class=" hide-on-small-only">
+                            <div class="col s12 no-padd">
+                                <br>
+                                <a id="l3" style="border: 1px solid #aaa;" href="/upcoming-jl-test" class="z-depth-0 btn white grey-text grey lighten-4">
+                                    <b>Schedule Test</b>
+                                </a>
+                                <a id="l2" style="border: 1px solid #aaa;" href='#' data-target='dropdown1' class=" dropdown-trigger z-depth-0 btn white grey-text grey lighten-4">
+                                    <b>JL TEST</b>
+                                </a>
+                                <!-- Dropdown Structure -->
+                                <ul id='dropdown1' class='dropdown-content'>
+                                    <li>
+                                        <a href="#">Admit Card</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">JL Score</a>
+                                    </li>
+                                </ul>
+                                <a id="l4" style="border: 1px solid #aaa;" href="../templates/myjob.html" class="z-depth-0 btn white grey-text grey lighten-4">
+                                    <b>My Job</b>
+                                </a>
+                                <a id="l6" style="border: 1px solid #aaa;" href="/templates/makecv.html" class="z-depth-0 btn green accent-4">
+                                    <b>EDIT PROFILE</b>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
+    <!-- USER BANNER END-->
+
+
+
     <div class="row no-padd grd">
         <div class="row no-padd">
             <div class="col  s12 card no-padd z-depth-0">
@@ -94,10 +188,10 @@
                 </div>
                 <div class="col s12 no-padd">
                     <div class="col s12 no-padd">
-                        <button style="border-radius:0px;" id="tab1" class="no-padd col l3 s12 btn z-depth-0 light-blue white-text">Personal Detials</button>
+                        <button style="border-radius:0px;" id="tab1" class="no-padd col l3 s12 btn z-depth-0 light-blue white-text">Personal Details</button>
                         <button style="border-radius:0px;" id="tab2" class="no-padd col l3 s12 btn z-depth-0 blue">Education</button>
                         <button style="border-radius:0px;" id="tab3" class="no-padd col l3 s12 btn z-depth-0 amber accent-4">Profession</button>
-                        <button style="border-radius:0px;" id="tab4" class="no-padd col l3 s12 btn z-depth-0 green accent-4">Technical Detials</button>
+                        <button style="border-radius:0px;" id="tab4" class="no-padd col l3 s12 btn z-depth-0 green accent-4">Technical Details</button>
                     </div>
 
                     <div id="panel1" class="col s12 light-blue">
@@ -160,7 +254,7 @@
                                 <div class="col s3">
                                     <b>Address</b>
                                 </div>
-                                <div class="col s8">huose no-69 lorem</div>
+                                <div class="col s8">{{ fulladdress }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
@@ -181,7 +275,7 @@
                                 <div class="col s3">
                                     <b>ZIP CODE</b>
                                 </div>
-                                <div class="col s8">{{ pincode }}</div>
+                                <div class="col s8">{{ zipcode }}</div>
                             </div>
                             <div class="row"></div>
                         </div>
@@ -210,21 +304,21 @@
                                 <div class="col s3">
                                     <b>Board</b>
                                 </div>
-                                <div class="col s8">hullululu</div>
+                                <div class="col s8">{{ board10 }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Passing Year</b>
                                 </div>
-                                <div class="col s8">2013</div>
+                                <div class="col s8">{{ year10 }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Marks</b>
                                 </div>
-                                <div class="col s8">90%</div>
+                                <div class="col s8">{{ marks10 }}</div>
                             </div>
                             <div class="row"></div>
                         </div>
@@ -243,28 +337,28 @@
                                 <div class="col s3">
                                     <b>School Name</b>
                                 </div>
-                                <div class="col s8">loravassa</div>
+                                <div class="col s8">{{ school12 }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Board</b>
                                 </div>
-                                <div class="col s8">hullululu</div>
+                                <div class="col s8">{{ board12 }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Passing Year</b>
                                 </div>
-                                <div class="col s8">2013</div>
+                                <div class="col s8">{{ year12 }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Marks</b>
                                 </div>
-                                <div class="col s8">90%</div>
+                                <div class="col s8">{{ marks12 }}</div>
                             </div>
                             <div class="row"></div>
                         </div>
@@ -279,28 +373,28 @@
                                 <div class="col s3">
                                     <b>Collage Name</b>
                                 </div>
-                                <div class="col s8">IIIT </div>
+                                <div class="col s8">{{ collegename }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Board</b>
                                 </div>
-                                <div class="col s8">AICTE</div>
+                                <div class="col s8">{{ collegeboard }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Passing Year</b>
                                 </div>
-                                <div class="col s8">madagasker</div>
+                                <div class="col s8">{{ collegeyear }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Marks</b>
                                 </div>
-                                <div class="col s8">95%</div>
+                                <div class="col s8">{{ collegemarks }}</div>
                             </div>
                             <div class="row"></div>
                         </div>
@@ -311,19 +405,19 @@
                         <br>
                         <div class="col l10 offset-l1 s12 white">
                             <h5>
-                                <b>PROFESSIONAL DETAILS</b>
+                                <b>PROJECT DETAILS</b>
                             </h5>
                             <br>
                             <div class="divider"></div>
                             <h6>
-                                <b>EMPLOYEMENT DETAILS</b>
+                                <b>PROJECTS</b>
                             </h6>
                             <br>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Company Name</b>
                                 </div>
-                                <div class="col s8">Google</div>
+                                <div class="col s8">{{ projects }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
@@ -365,23 +459,17 @@
                             <br>
                             <div class="col s12">
                                 <div class="col s3">
-                                    <b>Availabel for internship after</b>
+                                    <b>Availabel for work after</b>
                                 </div>
-                                <div class="col s8">21/7/2018</div>
+                                <div class="col s8">{{ jobavailability }}</div>
                             </div>
                             <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Availabel to work after</b>
-                                </div>
-                                <div class="col s8">capetown</div>
-                            </div>
                             <div class="row"></div>
                             <div class="col s12">
                                 <div class="col s3">
                                     <b>Preferred City</b>
                                 </div>
-                                <div class="col s8">Delhi</div>
+                                <div class="col s8">{{ joblocation }}</div>
                             </div>
                             <div class="row"></div>
                             <div class="col s12">
@@ -389,29 +477,6 @@
                                     <b>Salary Expected</b>
                                 </div>
                                 <div class="col s8">30
-                                    <small>LPA</small>
-                                </div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Hide Profile</b>
-                                </div>
-                                <div class="col s8">No</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Job offer from company</b>
-                                </div>
-                                <div class="col s8">Yes , from Apple</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Salary Offered</b>
-                                </div>
-                                <div class="col s8">28
                                     <small>LPA</small>
                                 </div>
                             </div>
@@ -476,19 +541,7 @@
                             </h5>
                             <br>
                             <div class="col s12">
-                                <div class="ui label">JAVA CORE</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="ui label">JAVA ADVANCED</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="ui label">ANDROID</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="ui label">NODE JS</div>
+                                <div class="ui label">{{ skills }}</div>
                             </div>
                             <div class="row"></div>
                         </div>
@@ -519,8 +572,6 @@
     <script>
         $(document).ready(function() {
             M.AutoInit();
-
-
         });
     </script>
     <script src="https://wchat.freshchat.com/js/widget.js"></script>

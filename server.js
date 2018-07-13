@@ -26,6 +26,7 @@ app.use('/img', express.static('img'));
 app.use('/myfont', express.static('myfont'));
 app.use('/templates', express.static('templates'));
 app.use('/js', express.static('js'));
+app.use('/downloads', express.static('downloads'));
 //app.use('/admin', express.static('admin'));
 
 
@@ -137,23 +138,31 @@ app.post('/signup', (req, res) => {
 app.post('/login', (req, res) => {
 
     console.log('trying to log in...');
-    db.get("SELECT * FROM Users WHERE email = ?", req.body.email, (err, row) => {
-        if (!row) {
+    db.get("SELECT * FROM Users WHERE email = ?", req.body.email, (err, userrow) => {
+        if (!userrow) {
             console.log("0 rows found, no user");
             res.cookie('userid', null);
             return res.render('alert', { title: "One or more fields are incorrect", link: "/login", linkname: "Go Back" });
         }
         //console.log(row);
-        if (!bcrypt.compareSync(req.body.password, row.password))
+        if (!bcrypt.compareSync(req.body.password, userrow.password))
             return res.render('alert', { title: "Incorrect password", link: "/login", linkname: "Go Back" });
 
         e = { expires: new Date(Date.now() + 1000 * 60 * 24) };
 
-        req.session.user = row.uniqueid;
-        req.session.email = row.email;
+        req.session.user = userrow.uniqueid;
+        req.session.email = userrow.email;
         console.log('Logged in');
-        res.cookie('uniqueid', row.uniqueid, e);
-        return res.redirect('/templates/profile.html');
+        res.cookie('uniqueid', userrow.uniqueid, e);
+        db.get('SELECT * FROM CV WHERE uniqueid = ?', userrow.uniqueid, (err, cvrow) => {
+            if (err) console.log(err);
+            if (!cvrow) return res.render('profile', {});
+            data = cvrow;
+            data["contactno"] = userrow.phoneno;
+            //  console.log(cvrow);
+            data["_removetags"] = true;
+            return res.render('profile', data);
+        });
     });
     //res.send('TODO');
 });
@@ -162,7 +171,7 @@ app.post('/login', (req, res) => {
 app.post('/cvbuilder', (req, res) => {
     if (!req.session.user) return res.redirect('/templates/login.html');
     console.log("session", req.session.user);
-    console.log("cv details", req.body);
+    console.log("cv details");
     data = req.body;
     data["projects"] = data.projecttype.map((x, i) => {
         return data.projecttype[i] + ", " + data.projectrole[i] + ", " + data.projectinstitute[i] + ", " + data.projectdetails + ", " + data.projectstartdate + " to " + data.projectenddate;
@@ -175,7 +184,8 @@ app.post('/cvbuilder', (req, res) => {
     delete data.projectenddate;
     data.skills = data.skills.join(", ");
     data["uniqueid"] = req.session.user;
-    console.log(data.projects, data.skills);
+    data["email"] = req.session.email;
+    console.log(data);
     let vals = Object.values(data).map(x => { if (typeof(x) == "string") return x.replace("'", "''") });
     sql = "INSERT INTO CV(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
     console.log(sql);
@@ -482,17 +492,17 @@ let fs = require('fs');
 app.set('views', './render');
 app.set('view engine', 'html');
 
-app.engine('html', (filepath, options, callback, array = null) => {
+app.engine('html', (filepath, options, callback) => {
     fs.readFile(filepath, (err, content) => {
         if (err) return callback(err);
         let rendered = content.toString();
         //console.log("trigger", options.data);
-        console.log
         for (let key in options) {
-            if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache") {
+            if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache" && key != "_removetags") {
                 rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive
             }
         }
+        if (options._removetags) rendered = rendered.replace(/{{\s\w+\s}}/gi, "Not Specified");
 
         return callback(null, rendered);
     });
