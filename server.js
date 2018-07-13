@@ -450,9 +450,12 @@ app.get('*', (req, res) => {
     res.render('alert', { title: "404. The page you are looking for doesn't exist", link: "/", linkname: "Go back to home" });
 });
 
+let rand, host, link = "sada";
+let runtime_obj = {};
 
-let smtptransport = nodemailer.createTransport({
-    host: 'smtp.elasticmail.com',
+//sendVerificatonEmail({ body: { email: "priyanshbalyan@gmail.com" } });
+let transporter = nodemailer.createTransport({
+    host: 'smtp.elasticemail.com',
     port: 2525,
     secure: false,
     auth: {
@@ -460,11 +463,10 @@ let smtptransport = nodemailer.createTransport({
         pass: Config.PASS
     }
 });
-
-let rand, mailoptions, host, link;
-let runtime_obj = {};
-
-//sendVerificatonEmail({ body: { email: "priyanshbalyan@gmail.com" } });
+transporter.verify(function(error, success) {
+    if (error) console.log(error);
+    else console.log('E-mail server ready.');
+});
 
 function sendVerificatonEmail(req, res) {
     rand = Math.floor((Math.random() * 10000000) + 342132);
@@ -473,20 +475,21 @@ function sendVerificatonEmail(req, res) {
     console.log(runtime_obj);
     host = req.get('host');
     link = "http://" + req.get('host') + "/verify?id=" + rand;
-    //link = "asa";
-    mailoptions = {
+
+    let mailoptions = {
         from: Config.EMAIL_ADDRESS,
         to: req.body.email,
-        subject: "Confirm your e-mail account",
-        html: "Hello,<br> Please click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+        subject: "Confirm your e-mail",
+        text: "Hello, Please click on the link to verify your email. " + link,
+        html: "<b>Hello</b>, <br> Please click on the link to verify your email. <br><a href=" + link + ">Click here to verify</a>",
     };
-    smtptransport.sendMail(mailoptions, (err, response) => {
-        if (err) {
-            console.log("Error sending verification email:", err);
-        } else {
-            console.log("Message sent:", response.message);
-        }
+
+    transporter.sendMail(mailoptions, (err, info) => {
+        if (err) return console.log(err);
+        console.log('Message sent:', info.messageid);
+        console.log('Preview URL: ', nodemailer.getTestMessageUrl(info));
     });
+
 }
 
 //render engine
