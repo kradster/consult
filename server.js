@@ -157,15 +157,7 @@ app.post('/login', (req, res) => {
         req.session.email = userrow.email;
         console.log('Logged in');
         res.cookie('uniqueid', userrow.uniqueid, e);
-        db.get('SELECT * FROM CV WHERE uniqueid = ?', userrow.uniqueid, (err, cvrow) => {
-            if (err) console.log(err);
-            if (!cvrow) return res.render('profile', {});
-            data = cvrow;
-            data["contactno"] = userrow.phoneno;
-            //  console.log(cvrow);
-            data["_removetags"] = true;
-            return res.render('profile', data);
-        });
+        res.redirect('/profile');
     });
     //res.send('TODO');
 });
@@ -214,6 +206,23 @@ app.get('/getcv', (req, res) => {
         }
         console.log("Fetching cv details for", req.session.user);
         return res.send({ success: true, data: row });
+    });
+});
+
+app.get('/profile', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
+    db.get("SELECT * FROM Users WHERE email = ?", req.session.email, (err, userrow) => {
+        if (err) return console.log(err);
+        db.get('SELECT * FROM CV WHERE uniqueid = ?', userrow.uniqueid, (err, cvrow) => {
+            if (err) console.log(err);
+            if (!cvrow) return res.render('profile', {});
+            data = cvrow;
+            data["contactno"] = userrow.phoneno;
+            //  console.log(cvrow);
+            data["_removetags"] = true;
+            console.log(data);
+            return res.render('profile', data);
+        });
     });
 });
 
@@ -520,10 +529,12 @@ app.engine('html', (filepath, options, callback) => {
         //console.log("trigger", options.data);
         for (let key in options) {
             if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache" && key != "_removetags") {
-                rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), options[key]); //replace all {{ key }} case insensitive
+                val = options[key];
+                if (val == "") val = "N/A";
+                rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), val); //replace all {{ key }} case insensitive
             }
         }
-        if (options._removetags) rendered = rendered.replace(/{{\s\w+\s}}/gi, "N/A");
+        if (options._removetags) rendered = rendered.replace(/{{\s\w+\s}}/gi, "N/A (Unspecified)");
 
         return callback(null, rendered);
     });
