@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Google Tag Manager -->
     <script>
-        (function(w, d, s, l, i) {
+        (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
                 'gtm.start': new Date().getTime(),
@@ -51,18 +51,18 @@
             background-color: transparent;
             box-shadow: 0px
         }
-        
+
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border: 1px solid #2962ff;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-        
+
         input::-webkit-input-placeholder {
             color: grey;
         }
-        
+
         .no-padd {
             padding: 0px !important;
         }
@@ -82,7 +82,7 @@
     <!-- NAVIGATION BAR END -->
     <!-- HEADER START -->
     <div class="row white-text blue darken-4">
-        <div class="col offset-l1 s12">
+        <div class="col  s12">
             <div class="row" style="height:50px;"></div>
             <h1>
                 <b>SCHEDULE YOUR JL TEST NOW</b>
@@ -107,9 +107,11 @@
                 </div>
                 <div class="divider"></div>
                 <br>
-                <form action="/scheduletest" class="col s12" method="POST">
-                    <div class="col s3">
-                        <select name="testname">
+                <div class="col s12">
+
+                    <form action="/scheduletest" class="col s12" method="POST">
+                        <div class="col s3">
+                            <select name="testname">
                                 <option value="" disabled selected>Choose your role</option>
                                 <option value="hr">HR</option>
                                 <option value="operations">OPERATIONS</option>
@@ -119,31 +121,91 @@
                                 <option value="it">IT JOBS</option>
                                 <option value="office">OFFICE JOBS</option>
                                 <option value="accounting">ACCOUNTING</option>
-                              </select>
-                    </div>
-                    <div class="col s3">
-                        <select name="testlocation">
-                                <option value="" disabled selected>Choose location</option>
-                                <option value="Delhi">DELHI</option>
-                               
-                              </select>
-                    </div>
-                    <div class="col s3">
-                        <select name="testdate">
-                                <option value="" disabled selected>Choose Date</option>
-                                <option value="19/08/2018">19/08/2018</option>
-                                <option value="23/09/2018">23/09/2018</option>
-                                <option value="28/10/2018">28/10/2018</option>
-                               
-                              </select>
-                    </div>
-                    <div class="col s3">
-                        <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
-                    </div>
-                    <div class="row"></div>
-                    </>
+                            </select>
+                        </div>
+                        <div class="col s3">
 
-                    <div class="row" style="height:50px;"></div>
+                            <input type="text" name="testlocation" id="dob" value="Delhi" readonly>
+
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testdate" id="dob" value="18/08/2018" readonly>
+
+                        </div>
+                        <div class="col s3">
+                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                        </div>
+                        <div class="row"></div>
+                    </form>
+                </div>
+                <div class="col s12">
+
+                    <form action="/scheduletest" class="col s12" method="POST">
+                        <div class="col s3">
+                            <select name="testname">
+                                <option value="" disabled selected>Choose your role</option>
+                                <option value="hr">HR</option>
+                                <option value="operations">OPERATIONS</option>
+                                <option value="calling">CALLING</option>
+                                <option value="sallesmkt">SALES AND MARKETING</option>
+                                <option value="digitalmkt">DIGITAL MARKETING</option>
+                                <option value="it">IT JOBS</option>
+                                <option value="office">OFFICE JOBS</option>
+                                <option value="accounting">ACCOUNTING</option>
+                            </select>
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testlocation" id="dob" value="Banglore" readonly>
+
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testdate" id="dob" value="23/09/2018" readonly>
+
+                        </div>
+
+                        <div class="col s3">
+                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                        </div>
+                        <div class="row"></div>
+                    </form>
+                </div>
+                <div class="col s12">
+
+                    <form action="/scheduletest" class="col s12" method="POST">
+                        <div class="col s3">
+                            <select name="testname">
+                                <option value="" disabled selected>Choose your role</option>
+                                <option value="hr">HR</option>
+                                <option value="operations">OPERATIONS</option>
+                                <option value="calling">CALLING</option>
+                                <option value="sallesmkt">SALES AND MARKETING</option>
+                                <option value="digitalmkt">DIGITAL MARKETING</option>
+                                <option value="it">IT JOBS</option>
+                                <option value="office">OFFICE JOBS</option>
+                                <option value="accounting">ACCOUNTING</option>
+                            </select>
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testlocation" id="dob" value="Bombay" readonly>
+
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testdate" id="dob" value="28/10/2018" readonly>
+
+                        </div>
+                        <div class="col s3">
+                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                        </div>
+                        <div class="row"></div>
+                    </form>
+                </div>
+
+                <div class="row" style="height:50px;"></div>
 
             </div>
         </div>
@@ -163,7 +225,7 @@
     <!-- Compiled and minified JavaScript -->
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             M.AutoInit();
         });
     </script>
