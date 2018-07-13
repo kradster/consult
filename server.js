@@ -424,6 +424,9 @@ app.get('/operations-jobs-for-freshers', (req, res) => {
 app.get('/privacy-policy', (req, res) => {
     res.sendFile('/templates/policy.html', { root: __dirname });
 });
+app.get('/job-opportunities', (req, res) => {
+    res.sendFile('/templates/comlist.html', { root: __dirname });
+});
 
 app.post('/showcv', (req, res) => {
     if (!req.session.user) return res.redirect('/login');

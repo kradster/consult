@@ -1,3 +1,4 @@
+
 html,
 body {
     height: 100%;
@@ -26,7 +27,7 @@ p,
     font-family: buc;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'buc';
     src: url('/myfont/Gotham-Light.otf');
 }
@@ -39,7 +40,7 @@ p,
 @font-face {
     font-family: 'buc-med';
     src: url('/myfont/GothamMedium.ttf');
-}
+} */
 
 
 .fullScreen {
