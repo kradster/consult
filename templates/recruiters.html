@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Google Tag Manager -->
     <script>
-        (function (w, d, s, l, i) {
+        (function(w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
                 'gtm.start': new Date().getTime(),
@@ -49,22 +49,22 @@
             background-color: transparent;
             box-shadow: 0px
         }
-
+        
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border: 1px solid #2962ff;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-
+        
         input::-webkit-input-placeholder {
             color: grey;
         }
-
+        
         .no-padd {
             padding: 0px !important;
         }
-
+        
         select {
             display: block !important;
         }
@@ -86,13 +86,11 @@
     <div class="row" style="height:30px;"></div>
     <!-- HEADER START -->
     <div class="row white-text blue darken-4">
-        <div class="col l6 offset-l1 s12">
+        <div class="col s12" style="padding-left:50px;padding-right:50px">
             <div class="row" style="height:50px;"></div>
-            <h4>
-                <B>Post your job for free - Hire from
-                    <br> over 3 million assessed candidates.</B>
-            </h4>
-            <div style="font-size:1.5em;">Reach the best candidates by posting a job within 60 seconds on India's largest assessed database.</div>
+            <h1>
+                <B>Just a step away from assessing India's largest job applicant database
+            </h1>
             <div class="row" style="height:50px;"></div>
         </div>
     </div>
@@ -106,55 +104,55 @@
                 <div class="col s12">
                     <h2>
                         <b class="grey-text">Post a Job For Free</b>
-                    </h2>
-                </div>
-                <div class="col s12 card no-padd z-depth-0">
-                    <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
-                        <i class="fas fa-briefcase fa-2x"></i> POST YOUR JOB REQUIREMENTS
+                </h2>
+        </div>
+        <div class="col s12 card no-padd z-depth-0">
+            <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
+                <i class="fas fa-briefcase fa-2x"></i> POST YOUR JOB REQUIREMENTS
+            </div>
+            <div class="divider"></div>
+            <div class="row" style="height:50px;"></div>
+            <form action="/addjob" method="POST">
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
+                    <div class="col s9">
+                        <input type="text" name="companyname" placeholder="Company Name">
                     </div>
-                    <div class="divider"></div>
-                    <div class="row" style="height:50px;"></div>
-                    <form action="/addjob" method="POST">
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
-                            <div class="col s9">
-                                <input type="text" name="companyname" placeholder="Company Name">
-                            </div>
-                        </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Recruiter Email Id</div>
-                            <div class="col s9">
-                                <input type="text" name="recruiteremail" placeholder="Enter email address of contact person">
-                            </div>
-                        </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Alternate Email</div>
-                            <div class="col s9">
-                                <input type="text" name="altemail" placeholder="Enter Email id">
-                            </div>
-                        </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Contact No</div>
-                            <div class="col s9">
-                                <input type="text" name="contactno" placeholder="Enter comapny contact no">
-                            </div>
-                        </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Company Website</div>
-                            <div class="col s9">
-                                <input type="text" name="companyname" placeholder="Website link">
-                            </div>
-                        </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">About the Company</div>
-                            <div class="col s9">
-                                <textarea style="height:200px;" type="text" name="aboutcompany" placeholder="Enter about you company"></textarea>
-                            </div>
-                        </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
-                            <div class="col s9">
-                                <select name="jobtitle" class="no-autoinit">
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">Recruiter Email Id</div>
+                    <div class="col s9">
+                        <input type="text" name="recruiteremail" placeholder="Enter email address of contact person">
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">Alternate Email</div>
+                    <div class="col s9">
+                        <input type="text" name="altemail" placeholder="Enter Email id">
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">Contact No</div>
+                    <div class="col s9">
+                        <input type="text" name="contactno" placeholder="Enter comapny contact no">
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">Company Website</div>
+                    <div class="col s9">
+                        <input type="text" name="companyname" placeholder="Website link">
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">About the Company</div>
+                    <div class="col s9">
+                        <textarea style="height:200px;" type="text" name="aboutcompany" placeholder="Enter about you company"></textarea>
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
+                    <div class="col s9">
+                        <select name="jobtitle" class="no-autoinit">
                                     <option value="" disabled selected>Choose your option</option>
                                     <option value="hr">HR</option>
                                     <option value="Operations">OPERATIONS</option>
@@ -165,19 +163,19 @@
                                     <option value="Office">OFFICE JOBS</option>
                                     <option value="Accounting">ACCOUNTING</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">No of Vacancies</div>
-                            <div class="col s9">
-                                <input type="text" name="noofvac" placeholder="Enter no vacancies">
-                            </div>
-                        </div>
-                        <div id="location-container" class="col l10 offset-l2 s12">
-                            <div id="location-parent">
-                                <div class="col s3 right-align" style="padding-top:10px;">Location</div>
-                                <div class="col s8">
-                                    <select name="location[]" class="no-autoinit">
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">No of Vacancies</div>
+                    <div class="col s9">
+                        <input type="text" name="noofvac" placeholder="Enter no vacancies">
+                    </div>
+                </div>
+                <div id="location-container" class="col l10 offset-l2 s12">
+                    <div id="location-parent">
+                        <div class="col s3 right-align" style="padding-top:10px;">Location</div>
+                        <div class="col s8">
+                            <select name="location[]" class="no-autoinit">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="New Delhi">New Delhi</option>
@@ -196,19 +194,18 @@
                                         <option value="Dehradun">Dehradun</option>
                                         <option value="Chandigarh">Chandigarh</option>
                                     </select>
-                                </div>
-                                <div class="col s1">
-                                    <input id="add-location" onclick="javascript:AddMoreLocation()" type="button" class="ui button mini light-blue white-text"
-                                        value="ADD">
-                                </div>
-                                <div class="col s12" style="height:5px;"></div>
-                            </div>
                         </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s12 no-padd">
-                                <div class="col s3 right-align" style="padding-top:10px;">Salary</div>
-                                <div class="col s9">
-                                    <select name="sallary" class="no-autoinit">
+                        <div class="col s1">
+                            <input id="add-location" onclick="javascript:AddMoreLocation()" type="button" class="ui button mini light-blue white-text" value="ADD">
+                        </div>
+                        <div class="col s12" style="height:5px;"></div>
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s12 no-padd">
+                        <div class="col s3 right-align" style="padding-top:10px;">Salary</div>
+                        <div class="col s9">
+                            <select name="sallary" class="no-autoinit">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="2">Less than 2 lac</option>
                                         <option value="2-3">2-3 lac</option>
@@ -218,14 +215,14 @@
                                         <option value="7">More than 6 lac</option>
 
                                     </select>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s12 no-padd">
-                                <div class="col s3 right-align" style="padding-top:10px;">Experience</div>
-                                <div class="col s9">
-                                    <select name="experience" class="no-autoinit">
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s12 no-padd">
+                        <div class="col s3 right-align" style="padding-top:10px;">Experience</div>
+                        <div class="col s9">
+                            <select name="experience" class="no-autoinit">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="ef">FRESHER</option>
                                         <option value="e12">
@@ -233,51 +230,51 @@
                                                 <option value="e24">12 TO 24 MONTHS</option>
                                                 <option value="e24p">+24 MONTHS</option>
                                     </select>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Job Description</div>
-                            <div class="col s9">
-                                <input style="height:200px;" type="text" name="jobdesc" placeholder="Enter job description">
-                            </div>
-                        </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Joining Date</div>
-                            <div class="col s9">
-                                <input class="datepicker" type="text" name="dateofjoin" placeholder="Enter date of joining">
-                                <p>
-                                    <label>
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">Job Description</div>
+                    <div class="col s9">
+                        <input style="height:200px;" type="text" name="jobdesc" placeholder="Enter job description">
+                    </div>
+                </div>
+                <div class="col l10 offset-l2 s12">
+                    <div class="col s3 right-align" style="padding-top:10px;">Joining Date</div>
+                    <div class="col s9">
+                        <input class="datepicker" type="text" name="dateofjoin" placeholder="Enter date of joining">
+                        <p>
+                            <label>
                                         <input type="checkbox" class="filled-in" name="anytime" />
                                         <span>Any time</span>
                                     </label>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col s12"></div>
-
-                        <div class="col s12" style="height:50px;"></div>
-                        <div class="col s12 no-padd">
-                            <div class="divider"></div>
-                            <div style="text-align: center">You agree to
-                                <a href="/terms-and-conditions">terms and conditions</a> and
-                                <a href="/privacy-policy">Privacy Policy</a> on posting jobs on our platform.</div>
-                        </div>
-                        <div class="col s12" style="height:50px;"></div>
-                        <div class="col l4 offset-l8 s12">
-                            <input style="border:1px solid #ccc;" class="btn btn-large white grey-text z-depth-0" type="reset" value="RESET">
-                            <input class="btn btn-large blue accent-4 z-depth-0" type="submit" value="Post Job">
-                        </div>
-
-                        <div class="col s12" style="height:50px;"></div>
-                    </form>
+                        </p>
+                    </div>
                 </div>
-            </div>
+                <div class="col s12"></div>
 
-            <div class="row" style="height:50px;"></div>
+                <div class="col s12" style="height:50px;"></div>
+                <div class="col s12 no-padd">
+                    <div class="divider"></div>
+                    <div style="text-align: center">You agree to
+                        <a href="/terms-and-conditions">terms and conditions</a> and
+                        <a href="/privacy-policy">Privacy Policy</a> on posting jobs on our platform.</div>
+                </div>
+                <div class="col s12" style="height:50px;"></div>
+                <div class="col l4 offset-l8 s12">
+                    <input style="border:1px solid #ccc;" class="btn btn-large white grey-text z-depth-0" type="reset" value="RESET">
+                    <input class="btn btn-large blue accent-4 z-depth-0" type="submit" value="Post Job">
+                </div>
 
+                <div class="col s12" style="height:50px;"></div>
+            </form>
         </div>
-        <!-- JOB DETAILS PANEL END -->
+    </div>
+
+    <div class="row" style="height:50px;"></div>
+
+    </div>
+    <!-- JOB DETAILS PANEL END -->
     </div>
     <!-- FOOTER START -->
     <div id="myfooter">
@@ -292,7 +289,7 @@
     <script src="../js/addmorefield.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             M.AutoInit();
         });
     </script>
