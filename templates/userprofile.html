@@ -10,6 +10,17 @@
     .mypic-con:hover  .upload-form{
         opacity: 1;
     }
+    .uploadIn{
+        animation: upload 1s linear infinite normal forwards;
+    }
+    @keyframes upload {
+        to{
+        transform: rotateZ(0deg);
+        }
+        from{
+        transform: rotateZ(360deg);
+        }
+    }
 </style>
 <div class="col s12 no-padd animated fadeIn">
     <div ng-controller="controller">
@@ -83,6 +94,17 @@
                         <a id="l6" style="border: 1px solid #aaa;" href="../templates/makecv.html" class="z-depth-0 btn green accent-4">
                             <b>EDIT PROFILE</b>
                         </a>
+                       
+                                        <form class="z-depth-0 btn white" action="/picupload" method="GET" enctype="multipart/form-data">
+                                            <input name="resume" type="file" id="resume" style="display:none" onchange="previewFile()">
+                                            <label id="resume-label" for="resume" class="ui button blue white-text">
+                                                Upload Resume
+                                                <i id="f1" class="fas fa-circle-notch uploadIn" style="display:none"></i>
+                                                <i id="f2" class="fas fa-check" style="display:none"></i>
+                                                <i id="f3" class="fas fa-times" style="display:none"></i>
+                                            </label>
+                                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,4 +199,83 @@
        });
      
        //previewFile();  //calls the function named previewFile()
-       </script>
+</script>
+<script>
+    var Upload = function (file) {
+    this.file = file;
+};
+
+Upload.prototype.getType = function() {
+    return this.file.type;
+};
+Upload.prototype.getSize = function() {
+    return this.file.size;
+};
+Upload.prototype.getName = function() {
+    return this.file.name;
+};
+Upload.prototype.doUpload = function () {
+    var that = this;
+    var formData = new FormData();
+
+    // add assoc key values, this will be posts values
+    formData.append("file", this.file, this.getName());
+    formData.append("upload_file", true);
+
+    $.ajax({
+        type: "POST",
+        data:{'resume':'resume'},
+        processData:false,
+        caches:false,
+        contentType:false,
+        url: location.origin+"/uploadresume",
+        success: function (data) {
+            // your callback here
+            $('#f1').hide();
+            $('#f2').show();
+            setTimeout(m=>{$('#f2').hide();},3000);
+        },
+        error: function (error) {
+            // handle error
+            $('#f1').hide();
+            $('#f3').show();
+            setTimeout(m=>{$('#f3').hide();},3000);
+        },
+        beforeSend:function(){
+            $('#f1').show();
+        },
+        async: true,
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        timeout: 60000
+    });
+};
+
+// Upload.prototype.progressHandling = function (event) {
+//     var percent = 0;
+//     var position = event.loaded || event.position;
+//     var total = event.total;
+//     var progress_bar_id = "#progress-wrp";
+//     if (event.lengthComputable) {
+//         percent = Math.ceil(position / total * 100);
+//     }
+//     // update progressbars classes so it fits your code
+//     $(progress_bar_id + " .progress-bar").css("width", +percent + "%");
+//     $(progress_bar_id + " .status").text(percent + "%");
+// };
+
+
+//Change id to your id
+$("#resume").on("change", function (e) {
+    var file = $(this)[0].files[0];
+    var upload = new Upload(file);
+
+    // maby check size or type here with upload.getSize() and upload.getType()
+   // alert(upload.getType(),upload.getName());
+
+    // execute upload
+    upload.doUpload();
+});
+</script>

@@ -445,6 +445,11 @@ app.post('/editcv', (req, res) => {
     res.sendFile('/templates/makecv.html', { root: __dirname });
 });
 
+app.post('/uploadresume',(req, res)=>{
+    if (!req.session.user) return res.redirect('/login');
+    res.send(req.body);
+});
+
 
 app.get('*', (req, res) => {
     res.render('alert', { title: "404. The page you are looking for doesn't exist", link: "/", linkname: "Go back to home" });
