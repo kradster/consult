@@ -197,7 +197,7 @@ app.post('/cvbuilder', (req, res) => {
     console.log(sql);
     db.exec(sql, err => {
         if (err) return res.send(err);
-        return res.render('alert', { title: "Successfully entered all values", link: "/templates/profile.html", linkname: "Goto Profile" });
+        return res.render('alert', { title: "Successfully entered all values", link: "/profile", linkname: "Goto Profile" });
     });
 
     //res.send({ success: true, data: req.body, message: "cv details" });
