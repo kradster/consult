@@ -98,16 +98,23 @@ app.get('/verify', (req, res) => {
     if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
         console.log("Domain is matched. Information is from Authentic email");
         if (runtime_obj.hasOwnProperty(req.query.id)) {
-            console.log("email is verified");
             email = runtime_obj[req.query.id];
-            db.exec("UPDATE Users SET verified='yes' WHERE email=?", email, err => {
-                res.end("<h1>Email " + mailOptions.to + " has been Successfully verified");
+            db.exec("UPDATE Users SET verified='yes' WHERE email = '" + email + "'", err => {
+                if (err) console.log(err);
+                console.log("email is verified");
+                return res.render('alert', { title: "Successfully verified your E-mail", link: "/login", linkname: "Login" });
             });
         } else {
             console.log("email is not verified");
-            res.end("<h1>Bad Request</h1>");
+            return res.render('alert', { title: 'Bad request', link: "/", linkname: "Go to Home" });
         }
-    } else res.end('<h1>Bad request</h1>');
+    } else return res.render('alert', { title: 'Bad request', link: "/", linkname: "Go to Home" });
+});
+
+app.get('/resendemail', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
+    sendVerificatonEmail(req, res);
+    return res.render('alert', { title: "A verification link has been sent to your email. Please check your mail.", link: "/", linkname: "Go to Home" });
 });
 
 app.post('/signup', (req, res) => {
@@ -218,6 +225,7 @@ app.get('/profile', (req, res) => {
             if (!cvrow) return res.render('profile', {});
             data = cvrow;
             data["contactno"] = userrow.phoneno;
+            data["verified"] = userrow.verified == "yes" ? "E-mail is verified." : "E-mail not verified. <a href='/resendemail'>Resend verification E-mail</a>";
             //  console.log(cvrow);
             data["_removetags"] = true;
             console.log(data);
@@ -495,14 +503,15 @@ transporter.verify(function(error, success) {
 function sendVerificatonEmail(req, res) {
     rand = Math.floor((Math.random() * 10000000) + 342132);
     console.log("Sending verification email...");
-    runtime_obj[rand] = req.body.email;
+    email = req.body.email || req.session.email;
+    runtime_obj[rand] = email;
     console.log(runtime_obj);
     host = req.get('host');
     link = "http://" + req.get('host') + "/verify?id=" + rand;
 
     let mailoptions = {
         from: Config.EMAIL_ADDRESS,
-        to: req.body.email,
+        to: email,
         subject: "Confirm your e-mail",
         text: "Hello, Please click on the link to verify your email. " + link,
         html: "<b>Hello</b>, <br> Please click on the link to verify your email. <br><a href=" + link + ">Click here to verify</a>",
