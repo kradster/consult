@@ -106,7 +106,7 @@ app.get('/verify', (req, res) => {
             });
         } else {
             console.log("email is not verified");
-            return res.render('alert', { title: 'Bad request', link: "/", linkname: "Go to Home" });
+            return res.render('alert', { title: 'Link expired.', link: "/", linkname: "Go to Home" });
         }
     } else return res.render('alert', { title: 'Bad request', link: "/", linkname: "Go to Home" });
 });
@@ -175,8 +175,9 @@ app.post('/cvbuilder', (req, res) => {
     console.log("session", req.session.user);
     console.log("cv details");
     data = req.body;
+
     data["projects"] = data.projecttype.map((x, i) => {
-        return data.projecttype[i] + ", " + data.projectrole[i] + ", " + data.projectinstitute[i] + ", " + data.projectdetails + ", " + data.projectstartdate + " to " + data.projectenddate;
+        return data.projecttype[i] + ", " + data.projectrole[i] + ", " + data.projectinstitute[i] + ", " + data.projectdetails[i] + ", " + data.projectstartdate[i] + " to " + data.projectenddate[i];
     }).join(";\n");
     delete data.projecttype;
     delete data.projectrole;

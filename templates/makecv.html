@@ -63,6 +63,14 @@
         select {
             display: block !important;
         }
+        
+        .holder {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
     </style>
 </head>
 
@@ -168,35 +176,45 @@
                     <br>
                     <div class="ui label">10TH</div>
                     <br>
-                    <div class="input-field col s3">
-                        <input id="school10" type="text" name="school10" placeholder="School Name">
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="board10" type="text" name="board10" placeholder="School Board">
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="board10" type="text" name="course10" placeholder="Course">
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="marks10" type="text" name="marks10" placeholder="Marks in % / CGPA">
-                    </div>
 
+                    <div class="holder">
+                        <div class="input-field">
+                            <input id="school10" type="text" name="school10" placeholder="School Name">
+                        </div>
+                        <div class="input-field">
+                            <input id="board10" type="text" name="board10" placeholder="School Board">
+                        </div>
+                        <div class="input-field">
+                            <input id="board10" type="text" name="course10" placeholder="Course">
+                        </div>
+                        <div class="input-field">
+                            <input id="marks10" type="text" name="marks10" placeholder="Marks in % / CGPA">
+                        </div>
+                        <div class="input-field">
+                            <input id="year10" type="text" name="year10" placeholder="Passing Year">
+                        </div>
+                    </div>
+                    <br>
 
                     <div class="ui label">12TH</div>
                     <br>
-                    <div class="input-field col s3">
-                        <input id="school12" type="text" name="school12" placeholder="School Name">
+                    <div class="holder">
+                        <div class="input-field">
+                            <input id="school12" type="text" name="school12" placeholder="School Name">
+                        </div>
+                        <div class="input-field">
+                            <input id="board12" type="text" name="board12" placeholder="School Board">
+                        </div>
+                        <div class="input-field">
+                            <input id="board10" type="text" name="course12" placeholder="Course">
+                        </div>
+                        <div class="input-field">
+                            <input id="marks12" type="text" name="marks12" placeholder="Marks in % / CGPA">
+                        </div>
+                        <div class="input-field">
+                            <input id="year12" type="text" name="year12" placeholder="Passing Year">
+                        </div>
                     </div>
-                    <div class="input-field col s3">
-                        <input id="board12" type="text" name="board12" placeholder="School Board">
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="board10" type="text" name="course12" placeholder="Course">
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="marks12" type="text" name="marks12" placeholder="Marks in % / CGPA">
-                    </div>
-
                     <div class="ui label">GRADUATION</div>
                     <br>
                     <div class="input-field col s3">
@@ -431,6 +449,7 @@
             M.AutoInit();
             $('body').on('focus', ".datepicker", function() {
                 $(this).datepicker();
+
             });
             $('body').on('focus', "select", function() {
                 M.AutoInit();
@@ -440,6 +459,13 @@
         });
         $('select').on('contentChanged', function() {
             $(this).material_select();
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems, {
+                minDate: new Date(1950, 1, 1),
+                maxDate: new Date(2010, 1, 1)
+            });
         });
     </script>
 </body>
