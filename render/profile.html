@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Google Tag Manager -->
     <script>
-        (function(w, d, s, l, i) {
+        (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
                 'gtm.start': new Date().getTime(),
@@ -48,18 +48,18 @@
             background-color: transparent;
             box-shadow: 0px
         }
-        
+
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border-bottom: none;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-        
+
         input::-webkit-input-placeholder {
             color: #eee;
         }
-        
+
         .no-padd {
             padding: 0px !important;
         }
@@ -86,12 +86,12 @@
             color: black !important;
             border-color: #000 !important;
         }
-        
+
         .upload-form {
             transition: all .3s ease-in-out !important;
             opacity: 0;
         }
-        
+
         .mypic-con:hover .upload-form {
             opacity: 1;
         }
@@ -99,9 +99,8 @@
 
     <div class="row" style="height:50px;"></div>
     <div class="row no-padd">
-
         <div class="col s12 no-padd animated fadeIn">
-            <div ng-controller="controller">
+            
                 <div class="col l2 m3 s12 no-padd">
                     <center>
                         <br>
@@ -112,10 +111,12 @@
 
                                 <form action="/picupload" method="GET">
                                     <input name="pic" type="file" id="picfile" style="display:none" onchange="previewFile()">
-                                    <label id="plab" for="picfile" class="ui button white mini" style="margin-top:50px;">Choose File</label><br>
+                                    <label id="plab" for="picfile" class="ui button white mini" style="margin-top:50px;">Choose File</label>
+                                    <br>
                                     <div id="panel" style="display:none;margin-top:50px;">
                                         <div style="display:flex;">
-                                            <input style="flex: 1" id="psub" type="submit" class="ui button mini amber" value="upload"><br>
+                                            <input style="flex: 1" id="psub" type="submit" class="ui button mini amber" value="upload">
+                                            <br>
                                             <input style="flex: 1" id="pcan" type="button" class="ui button mini red" value="cancel">
                                         </div>
 
@@ -127,6 +128,45 @@
                     </center>
                 </div>
                 <div class="col l10 m9 s12 no-padd">
+                        <div class="col s12 no-padd">
+                                <div>
+                                    <div class="col s12 no-padd">
+                                        <br>
+                                        <a id="l3" style="border: 1px solid #aaa;" href="/upcoming-jl-test" class="z-depth-0 btn white grey-text grey lighten-4 col s6 l2">
+                                            <b>Schedule Test</b>
+                                        </a>
+                                        <a id="l2" style="border: 1px solid #aaa;" href='/profile' data-target='dropdown1' class=" dropdown-trigger z-depth-0 btn white grey-text grey lighten-4 col s6 l2 offset-l1">
+                                            <b>JL TEST</b>
+                                        </a>
+                                        <!-- Dropdown Structure -->
+                                        <ul id='dropdown1' style="position: fixed;z-index:9999999;" class='dropdown-content'>
+                                            <li>
+                                                <a onclick="M.toast({html: 'You haven\'t given the JL Test yet.' })">Admit Card</a>
+                                            </li>
+                                            <li>
+                                                <a onclick="M.toast({html: 'You haven\'t given the JL Test yet.' })">My JL Score</a>
+                                            </li>
+                                        </ul>
+                                        <!-- <a id="l4" style="border: 1px solid #aaa;" href="../templates/myjob.html" class="z-depth-0 btn white grey-text grey lighten-4">
+                                            <b>My Job</b>
+                                        </a> -->
+                                        <a id="l6" style="border: 1px solid #aaa;" href="/templates/makecv.html" class="z-depth-0 btn green accent-4 col s12 l2 offset-l1">
+                                            <b>EDIT PROFILE</b>
+                                        </a>
+                                        <form action="/picupload" method="GET" enctype="multipart/form-data">
+                                            <input name="resume" type="file" id="resume" style="display:none" onchange="previewFile()">
+                                            <label id="resume-label" for="resume" class="ui button blue white-text col s12 l2 offset-l1">
+                                                Upload Resume
+                                                <i id="f1" class="fas fa-circle-notch uploadIn" style="display:none"></i>
+                                                <i id="f2" class="fas fa-check" style="display:none"></i>
+                                                <i id="f3" class="fas fa-times" style="display:none"></i>
+                                            </label>
+                                        </form>
+        
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
                     <div class="col s12">
                         <h5>
                             <b id="u_name">{{ fullname }}</b>
@@ -142,44 +182,9 @@
                             <span id="u_edu">{{ state }}</span>
                         </div>
                     </div>
-                    <div class="col s12 no-padd">
-                        <div class=" hide-on-small-only">
-                            <div class="col s12 no-padd">
-                                <br>
-                                <a id="l3" style="border: 1px solid #aaa;" href="/upcoming-jl-test" class="z-depth-0 btn white grey-text grey lighten-4">
-                                    <b>Schedule Test</b>
-                                </a>
-                                <a id="l2" style="border: 1px solid #aaa;" href='/profile' data-target='dropdown1' class=" dropdown-trigger z-depth-0 btn white grey-text grey lighten-4">
-                                    <b>JL TEST</b>
-                                </a>
-                                <!-- Dropdown Structure -->
-                                <ul id='dropdown1' class='dropdown-content'>
-
-                                    <li>
-                                        <a onclick="M.toast({html: 'You haven\'t given the JL Test yet.' })">Admit Card</a>
-                                    </li>
-                                </ul>
-                                <!-- <a id="l4" style="border: 1px solid #aaa;" href="../templates/myjob.html" class="z-depth-0 btn white grey-text grey lighten-4">
-                                    <b>My Job</b>
-                                </a> -->
-                                <a id="l6" style="border: 1px solid #aaa;" href="/templates/makecv.html" class="z-depth-0 btn green accent-4">
-                                    <b>EDIT PROFILE</b>
-                                </a>
-                                <form class="z-depth-0 btn white" action="/picupload" method="GET" enctype="multipart/form-data">
-                                    <input name="resume" type="file" id="resume" style="display:none" onchange="previewFile()">
-                                    <label id="resume-label" for="resume" class="ui button blue white-text">
-                                                        Upload Resume
-                                                        <i id="f1" class="fas fa-circle-notch uploadIn" style="display:none"></i>
-                                                        <i id="f2" class="fas fa-check" style="display:none"></i>
-                                                        <i id="f3" class="fas fa-times" style="display:none"></i>
-                                                    </label>
-                                </form>
-
-                            </div><br>
-                        </div>
-                    </div>
+                    
                 </div>
-            </div>
+            
         </div>
 
     </div>
@@ -203,7 +208,7 @@
                         <button style="border-radius:0px;" id="tab4" class="no-padd col l3 s12 btn z-depth-0 red accent-4">View CV</button>
                     </div>
 
-                    <div id="panel1" class="col s12 light-blue">
+                    <div id="panel1" class="col s12 light-blue" style="display:none;">
                         <br>
                         <div class="col l10 offset-l1 s12 white">
                             <h5>
@@ -493,11 +498,11 @@
 
                         <div class="row"></div>
                     </div>
-                    <div id="panel4" class="col s12 amber accent-4" style="display:none;">
-                        <div class="row grey lighten-2">
-                            <div class="col s12 grey lighten-2" style="height:50px;"></div>
-                            <div class="col s8 offset-s2 card" style="border-radius:5px;">
-                                <div id="resumebox" class="col s10 offset-s1">
+                    <div id="panel4" class="col s12 amber accent-4">
+                        <div class="row red accent-4">
+                            <div class="col s12 grey lighten-2 hide-on-small-only" style="height:50px;"></div>
+                            <div class="col s12 card" style="border-radius:5px;">
+                                <div id="resumebox">
                                     <br>
                                     <br>
                                     <h4>
@@ -510,10 +515,10 @@
                                     <div class="divider"></div>
                                     <br>
                                     <div class="col s12 no-padd">
-                                        <div class="col s3">
+                                        <div class="col l3 s12">
                                             <b style="font-size:1.5em">EDUCATION</b>
                                         </div>
-                                        <div class="col s9">
+                                        <div class="col s12">
                                             <div>High School</div>
                                             <div>{{ school10 }}</div>
                                             <div>{{ board10 }}</div>
@@ -537,10 +542,10 @@
                                     <div class="col s12 no-padd">
                                         <div class="divider"></div>
                                         <br>
-                                        <div class="col s3">
+                                        <div class="col l3 s12">
                                             <b style="font-size:1.5em">COLLEGE EDUCATION</b>
                                         </div>
-                                        <div class="col s9">
+                                        <div class="col l9 s12">
                                             <div class="col s12 no-padd">
                                                 <div>{{ collegename }}</div>
                                                 <div>{{ collegeboard }}</div>
@@ -557,7 +562,7 @@
                                             </div>
 
                                             <div class="col s12 no-padd">
-                                                <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/{{ uniqueid }}">Add More+</a>
+                                                <a id="r2" style="font-family: sans-serif;" href="/makecv/{{ uniqueid }}">Add More+</a>
 
                                             </div>
                                         </div>
@@ -565,10 +570,10 @@
                                     <div class="col s12 no-padd">
                                         <div class="divider"></div>
                                         <br>
-                                        <div class="col s3">
+                                        <div class="col l3 s12">
                                             <b style="font-size:1.5em">PROJECTS / INTERNSHIPS</b>
                                         </div>
-                                        <div class="col s9">
+                                        <div class="col l9 s12">
                                             <div class="col s12 no-padd">
                                                 <div>{{ projects }}</div>
                                                 <br>
@@ -587,10 +592,10 @@
                                     <div class="col s12 no-padd">
                                         <div class="divider"></div>
                                         <br>
-                                        <div class="col s3">
+                                        <div class="col l3 s12">
                                             <b style="font-size:1.5em">ROLES / SKILLS</b>
                                         </div>
-                                        <div class="col s9">
+                                        <div class="col l9 s12">
                                             <div class="col s12 no-padd">
                                                 <div>{{ skills }}</div>
                                                 <br>
@@ -608,10 +613,10 @@
                                     <div class="col s12 no-padd">
                                         <div class="divider"></div>
                                         <br>
-                                        <div class="col s3">
+                                        <div class="col l3 s12">
                                             <b style="font-size:1.5em">PREFFERED LOCATION</b>
                                         </div>
-                                        <div class="col s9">
+                                        <div class="col l9 s12">
                                             <div class="col s12 no-padd">
                                                 <div>{{ joblocation }}</div>
                                                 <br>
@@ -628,31 +633,34 @@
                                     <div class="col s12 no-padd">
                                         <div class="divider"></div>
                                         <br>
-                                        <div class="col s3">
+                                        <div class="col l3 s12">
                                             <b style="font-size:1.5em">AVAILABLE FROM</b>
                                         </div>
-                                        <div class="col s9">
+                                        <div class="col l9 s12">
                                             <div class="col s12 no-padd">
                                                 <div>{{ jobavailability }}</div>
                                                 <br>
                                             </div>
                                             <br>
                                         </div>
-                                        <br><br><br><br>
+                                        <br class="hide-on-small-only">
+                                        <br class="hide-on-small-only">
+                                        <br class="hide-on-small-only">
+                                        <br class="hide-on-small-only">
                                     </div>
                                 </div>
 
 
                             </div>
-                            <br>
-                            <br>
+                            <br class="hide-on-small-only">
+                            <br class="hide-on-small-only">
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
-        <div class="col s12" style="height:50px;"></div>
+        <div class="col s12 hide-on-small-only" style="height:50px;"></div>
     </div>
     </div>
 
@@ -677,7 +685,7 @@
     <script src="../js/profiletab.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             M.AutoInit();
             data = $('#proj').html().split(";\n");
             str = "";
@@ -685,11 +693,14 @@
                 key = d.split(", ");
                 str += `
                 <div class="col s12">
-                        ` + (i + 1) + `.<br>
+                        ` + (i + 1) +
+                    `.<br>
                                     <div class="col s3">
                                         <b>Project Name</b>
                                     </div>
-                                    <div class="col s8" id="proj">` + key[0] + `<br>` + key[1] + `</div>
+                                    <div class="col s8" id="proj">` +
+                    key[0] + `<br>` + key[1] +
+                    `</div>
                                     
                                 </div>
                                 <div class="row"></div>
@@ -697,14 +708,18 @@
                                     <div class="col s3">
                                         <b>Institute/Organisation</b>
                                     </div>
-                                    <div class="col s8">` + key[2] + `</div>
+                                    <div class="col s8">` +
+                    key[2] +
+                    `</div>
                                 </div>
                                 <div class="row"></div>
                                 <div class="col s12">
                                     <div class="col s3">
                                         <b>Duration</b>
                                     </div>
-                                    <div class="col s8">` + key[4] + ` to ` + key[5] + `</div>
+                                    <div class="col s8">` +
+                    key[4] + ` to ` + key[5] +
+                    `</div>
                                 </div>
                                 <div class="row"></div>
                                 <div class="row"></div>
@@ -713,7 +728,9 @@
                                     <div class="col s3">
                                         <b>Project Details</b>
                                     </div>
-                                    <div class="col s8">` + key[3] + `</div>
+                                    <div class="col s8">` +
+                    key[3] +
+                    `</div>
                                 </div>
                                 <div class="row"></div>
                 `;
@@ -728,6 +745,31 @@
             host: "https://wchat.freshchat.com"
         });
     </script>
+    <script>
+            function previewFile() {
+                var preview = $('#myimg'); //selects the query named img
+                var file = document.querySelector('input[type=file]').files[0]; //sames as here
+                var reader = new FileReader();
+        
+                reader.onloadend = function() {
+                    preview.attr("src", reader.result);
+                    $('#plab').hide();
+                    $('#panel').show();
+                }
+        
+                if (file) {
+                    reader.readAsDataURL(file); //reads the data as a URL
+                } else {
+                    preview.attr("src", "");
+                }
+            }
+            $('#pcan').on('click', function() {
+                $('#panel').hide();
+                $('#plab').show();
+            });
+        
+            //previewFile();  //calls the function named previewFile()
+        </script>
 </body>
 
 </html>
