@@ -508,7 +508,7 @@ function sendVerificatonEmail(req, res) {
     runtime_obj[rand] = email;
     console.log(runtime_obj);
     host = req.get('host');
-    link = "http://" + req.get('host') + "/verify?id=" + rand;
+    link = "http://joblana.com/verify?id=" + rand;
 
     let mailoptions = {
         from: Config.EMAIL_ADDRESS,
