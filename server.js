@@ -340,6 +340,16 @@ app.post('/scheduletest', (req, res) => {
     });
 });
 
+app.get('/viewjob', (req, res) => {
+    if (req.query.id)
+        db.get('SELECT * FROM JobListings WHERE listingid=?', req.query.id, (err, row) => {
+            if (err) console.log(err);
+            return res.render('cominfo', row);
+        });
+    else
+        res.redirect('/job-opportunities');
+});
+
 app.get('/adminpanel', (req, res) => {
     if (req.session.user === "") {
         res.sendFile('/templates/adminpanel.html', { root: __dirname });

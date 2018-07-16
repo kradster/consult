@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- Google Tag Manager -->
     <script>
-        (function (w, d, s, l, i) {
+        (function(w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
                 'gtm.start': new Date().getTime(),
@@ -35,7 +35,6 @@
     <style>
         input:not([type]),
         input[type=text]:not(.browser-default) {
-
             border: none;
             outline: none;
             height: 3rem;
@@ -46,18 +45,18 @@
             background-color: transparent;
             box-shadow: 0px
         }
-
+        
         input:not([type]):focus:not([readonly]),
         input[type=text]:not(.browser-default):focus:not([readonly]) {
             border-bottom: none;
             -webkit-box-shadow: none;
             box-shadow: none;
         }
-
+        
         input::-webkit-input-placeholder {
             color: #eee;
         }
-
+        
         .no-padd {
             padding: 0px !important;
         }
@@ -65,8 +64,8 @@
 </head>
 
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -87,21 +86,21 @@
             <div class="col l8 s12 no-padd">
                 <h5>
                     <b class="show-on-small-only">&nbsp;</b>
-                    <b>Company Name</b>
+                    <b>{{ companyname }}</b>
                 </h5>
                 <br>
                 <div>
-                    <b class="show-on-small-only">&nbsp;</b>Location</div>
+                    <b class="show-on-small-only">&nbsp;</b>{{ jobtitle }}</div>
                 <br>
                 <div class="col s12 no-padd">
 
                     <div class="col l2 s4 no-padd">
                         <b class="show-on-small-only">&nbsp;</b>
-                        <i class="fas fa-calendar"></i> 0-0 YEAR</div>
+                        <i class="fas fa-calendar"></i>{{ experience }} YEAR</div>
                     <div class="col l2 s4 no-padd">
-                        <i class="fas fa-rupee-sign"></i> 0-3 LPA</div>
+                        <i class="fas fa-rupee-sign"></i>{{ salary }} LPA</div>
                     <div class="col l2 s4 no-padd">
-                        <i class="fas fa-map-marker"></i> city,city,city</div>
+                        <i class="fas fa-map-marker"></i>{{ location }}</div>
                 </div>
             </div>
             <div class="col l2 s12 no-padd">
@@ -117,8 +116,9 @@
         <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
             <div class="col s12">
                 <h5>
-                    <b>JOBS DESCRIPTION</b>
+                    <b>JOB DESCRIPTION</b>
                 </h5>
+                <p>{{ jobdesc }}</p>
                 <div class="divider"></div>
                 <br>
                 <br>
@@ -128,19 +128,15 @@
                             <h6>
                                 <b>About the Comany</b>
                             </h6>
+                            <p>{{ aboutcompany }}</p>
                             <br>
-                            <div>
-                                <div>Lorem ipsum dolor sit 
-                                    <br>
-                                    <br>
-                                </div>
-                            </div> 
+
                         </div>
                         <div class="col s12">
                             <br>
                             <h6>
                                 <b>Contact no:
-                                    <a href="">5678903457</a>
+                                    <a href="">{{ contactno }}</a>
                                 </b>
                             </h6>
                         </div>
@@ -148,7 +144,7 @@
                             <br>
                             <h6>
                                 <b>Email
-                                    <a href="">myjob@loremepsum.com</a>
+                                    <a href="">{{ recruiteremail }}</a>
                                 </b>
                             </h6>
                         </div>
@@ -156,62 +152,27 @@
                             <br>
                             <h6>
                                 <b>Website
-                                    <a href="">www.loremepsum.com</a>
+                                    <a href="{{ companywebsite }}">{{ companywebsite }}</a>
                                 </b>
                             </h6>
                         </div>
-                        <!-- <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Target Audience</b>
-                            </h6>
-                            <div>
-                                <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, obcaecati iure? Reprehenderit,
-                                adipisci, omnis, aliquid totam sed repudiandae unde culpa illum necessitatibus optio pariatur
-                                quo laboriosam minus provident dignissimos temporibus?
-                            </div>
-                        </div> -->
                         <div class="col s12">
                             <br>
                             <h6>
-                                <b>Job Title</b>
+                                <b>{{ jobtitle }}</b>
                             </h6>
                             <div>
-                                <br> The selected candidate will be on-boarded anytime between July 2018 and April 2019.
+                                <br> {{ jobdesc }}
                             </div>
                         </div>
-                        <!-- <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Interview Location</b>
-                            </h6>
-                            <div>
-                                <br> Pune, Bangalore
-                            </div>
-                        </div> -->
-                        <!-- <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Pre-requisites:</b>
-                            </h6>
-                            <div>
-                                <br> Candidate must be an Indian citizen. Minimum 60% marks or 6.3 CGPA in graduation and no
-                                current backlogs  The candidate needs to possess good communication skills. The candidate
-                                needs to be flexible to get allocated to any Mphasis operating location. The candidate needs
-                                to be flexible to take up any technology and the work timings that would be allocated to
-                                them for training and deployment there afterwards. Electronics/Communications engineering
-                                background, with proven top quartile academic track record will be preferred. Project work
-                                in at least one contemporary area of engineering. Awards/recognitions in any field (academics/sports/extra-curricular).
-                            </div>
-                        </div> -->
+
                         <div class="col s12">
                             <br>
                             <h6>
-                                <b>Job Profile:</b>
+                                <b>About Company</b>
                             </h6>
                             <div>
-                                <br> Splz Associate Infra Engg for our Infra Service Line Teams – For Level 1 Administrator and
-                                Monitoring
+                                <br> {{ aboutcompany }}
                             </div>
                         </div>
                         <div class="col s12">
@@ -220,74 +181,22 @@
                                 <b>Locations of work</b>
                             </h6>
                             <div>
-                                <br> Pune, Bangalore, Chennai
+                                <br> {{ location }}
                             </div>
                         </div>
                         <div class="col s12">
                             <br>
-                            <h6>
-                                <b>About Job</b>
-                            </h6>
-                            <div>
-                                <br>  Timing based on Business Need. ITIL
-                                experience is a plus. Project work in Cloud/Unix/Windows/Database/Storage/Backup/Network/Information
-                                Security technologies will be an added advantage.
-                            </div>
+
                         </div>
-                        <!-- <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Profile/Designation</b>
-                            </h6>
-                            <div>
-                                <br> First 6 months- Specialization Trainee at Level-1
-                                <br>
-                                <br> Post 6 months- Splz Associate Infra Engg at Level-2
-                                <br>
-                                <br> CTC Details: The selected candidate is eligible for monthly salary of INR 21,000 (Rupees
-                                Twenty one thousands including CTC @ INR 1.8 Lakhs per annum and Rupees 6000 monthly allowance).
-                                <br>
-                                <br> Training agreement: Selected candidates have to sign Training agreement at the time of joining
-                                to stay with us for minimum 24 Months from the date of joining. In case of default an amount
-                                of INR 100,000 in full will be recovered from the employee.
-                                <br>
-                                <br> Candidates should be ready to work in any shift timings including night shifts.
-                                <br>
-                                <br>
-                            </div>
-                        </div> -->
-                        <!-- <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Interview Rounds</b>
-                            </h6>
-                            <div>
-                                <br> • SVAR (Tool Based Communication Test)
-                                <br>
-                                <br> • Final Round – Panel Interview (Tech & HR)
-                                <br>
-                            </div>
-                        </div> -->
-
-                        <!-- <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Education</b>
-                            </h6>
-                            <div>
-                                <br> B.Tech/B.E., MCA
-                            </div>
-                        </div> -->
-
 
                         <div class="col s12">
                             <br>
                             <div class="col l2 s4 no-padd">
-                                <i class="fas fa-calendar grey-text lighten-2"></i> 0-0 YEAR</div>
+                                <i class="fas fa-calendar grey-text lighten-2"></i>{{ experience }} YEAR</div>
                             <div class="col l2  s4 no-padd">
-                                <i class="fas fa-rupee-sign grey-text lighten-2"></i> 0-3 LPA</div>
+                                <i class="fas fa-rupee-sign grey-text lighten-2"></i>{{ salary }} LPA</div>
                             <div class="col l2 s4 no-padd">
-                                <i class="fas fa-map-marker grey-text lighten-2"></i> city,city,city</div>
+                                <i class="fas fa-map-marker grey-text lighten-2"></i>{{ location }}</div>
                             <div class="col l2 s12 no-padd">
                                 <div class="row" class="show-on-small-only hide-on-med-and-up"></div>
                                 <center>
@@ -323,17 +232,17 @@
     <script src="../js/myfooter.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             M.AutoInit();
         });
     </script>
     <script src="https://wchat.freshchat.com/js/widget.js"></script>
     <script>
-            window.fcWidget.init({
-              token: "4281856b-8aa2-4b5e-8108-4171813716e5",
-              host: "https://wchat.freshchat.com"
-            });
-          </script>
+        window.fcWidget.init({
+            token: "4281856b-8aa2-4b5e-8108-4171813716e5",
+            host: "https://wchat.freshchat.com"
+        });
+    </script>
 </body>
 
 </html>
