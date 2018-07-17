@@ -5,7 +5,7 @@ var mainRouter = express.Router();
 var sendEmail = require('../utils/email');
 
 mainRouter.get('/', (req, res, next) => {
-	// sendEmail("deveshaggrawal19@gmail.com", "welcome", {link: "https://www.joblana.com"}, "verification");
+    // sendEmail("deveshaggrawal19@gmail.com", "welcome", {link: "https://www.joblana.com"}, "verification");
     res.render("main/index", { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company", messages: [] });
 });
 
@@ -97,23 +97,23 @@ mainRouter.get('/office-support-jobs-for-freshers', (req, res) => {
 });
 
 mainRouter.get('/calling-jobs-for-freshers', (req, res) => {
-    res.render('main/caljob', { title: "", messages: [] });
+    res.render('main/calljob', { title: "Call Jobs", messages: [] });
 });
 
 mainRouter.get('/operations-jobs-for-freshers', (req, res) => {
-    res.render('main/opjob', { title: "", messages: [] });
+    res.render('main/opjob', { title: "All about Operation jobs -Roles & Responsibilities, latest Operation jobs vacancy in india | JobLana", messages: [] });
 });
 
 mainRouter.get('/privacy-policy', (req, res) => {
-    res.render('main/policy', { title: "", messages: [] });
+    res.render('main/policy', { title: "Privacy Policy", messages: [] });
 });
 
 mainRouter.get('/terms-and-conditions', (req, res) => {
-    res.render('main/terms', { title: "", messages: [] });
+    res.render('main/terms', { title: "Privacy Policy", messages: [] });
 });
 
 mainRouter.get('/job-opportunities', (req, res) => {
-    res.render('main/comlist', { title: "", messages: [] });
+    res.render('main/comlist', { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana", messages: [] });
 });
 
 
