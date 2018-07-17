@@ -43,75 +43,75 @@ mainRouter.get('/contact-joblana', (req, res) => {
 });
 
 mainRouter.get('/why-joblana-jl-test', (req, res) => {
-    res.sendFile(path.join(template, '/whyjl.html'));
+    res.render('main/whyjl', { title: "Why JobLana - All reason to choose JobLana for your better career", messages: [] });
 });
 
 mainRouter.get('/joblana-recruiting-partners', (req, res) => {
-    res.sendFile(path.join(template, '/partners.html'));
+    res.render('main/partners', { title: "Our Partners | JobLana", messages: [] });
 });
 
 mainRouter.get('/about-jl-test', (req, res) => {
-    res.sendFile('/templates/jltest.html', { root: __dirname });
+    res.render('main/jltest', { title: "About JL Test - All you need to know about this innovative assessment test.", messages: [] });
 });
 
 mainRouter.get('/how-it-works-joblana', (req, res) => {
-    res.sendFile('/templates/how.html', { root: __dirname });
+    res.render('main/how', { title: "How it works? | Path to get job through JobLana platform", messages: [] });
 });
 
 mainRouter.get('/joblana-sample-paper-jl-test', (req, res) => {
-    res.sendFile('/templates/samplepaper.html', { root: __dirname });
+    res.render('main/samplepaper', { title: "Sample Paper", messages: [] });
 });
 
 mainRouter.get('/post-a-job-joblana', (req, res) => {
-    res.sendFile('/templates/recruiters.html', { root: __dirname });
+    res.render('main/recruiters', { title: "Post a job on Joblana for free | Get access to 10k+ qualified candidates", messages: [] });
 });
 
 mainRouter.get('/freshers-job-listings', (req, res) => {
-    res.sendFile('/templates/joblist.html', { root: __dirname });
+    res.render('main/joblist', { title: "Joblana", messages: [] });
 });
 
 mainRouter.get('/it-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/itjob.html', { root: __dirname });
+    res.render('main/itjob', { title: "All about IT jobs -Roles & Responsibilities, latest IT jobs vacancy in india | JobLana", messages: [] });
 });
 
 mainRouter.get('/human-resources-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/hrjob.html', { root: __dirname });
+    res.render('main/hrjob', { title: "All about HR jobs -Roles & Responsibilities, latest HR jobs vacancy in india | JobLana", messages: [] });
 });
 
 mainRouter.get('/sales-and-marketing-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/smjob.html', { root: __dirname });
+    res.render('main/smjob', { title: "All about Sales and Marketing jobs -Roles & Responsibilities, latest Sales and Marketing jobs vacancy in india | JobLana", messages: [] });
 });
 
 mainRouter.get('/accounting-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/accjob.html', { root: __dirname });
+    res.render('main/accjob', { title: "All about Accounting jobs -Roles & Responsibilities, latest accounting jobs vacancy in india | JobLana", messages: [] });
 });
 
 mainRouter.get('/digital-marketing-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/dmjob.html', { root: __dirname });
+    res.render('main/dmjob', { title: "Document", messages: [] });
 });
 
 mainRouter.get('/office-support-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/osjob.html', { root: __dirname });
+    res.render('main/osjob', { title: "All about Office Sector jobs -Roles & Responsibilities, latest Office Sector jobs vacancy in india | JobLana", messages: [] });
 });
 
 mainRouter.get('/calling-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/.html', { root: __dirname });
+    res.render('main/caljob', { title: "", messages: [] });
 });
 
 mainRouter.get('/operations-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/opjob.html', { root: __dirname });
+    res.render('main/opjob', { title: "", messages: [] });
 });
 
 mainRouter.get('/privacy-policy', (req, res) => {
-    res.sendFile('/templates/policy.html', { root: __dirname });
+    res.render('main/policy', { title: "", messages: [] });
 });
 
 mainRouter.get('/terms-and-conditions', (req, res) => {
-    res.sendFile('/templates/terms.html', { root: __dirname });
+    res.render('main/terms', { title: "", messages: [] });
 });
 
 mainRouter.get('/job-opportunities', (req, res) => {
-    res.sendFile('/templates/comlist.html', { root: __dirname });
+    res.render('main/comlist', { title: "", messages: [] });
 });
 
 

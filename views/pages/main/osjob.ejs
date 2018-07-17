@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>All about Office Sector jobs -Roles & Responsibilities, latest Office Sector jobs vacancy in india | JobLana</title>
+<meta name="description" content="Know all about Office Sector jobs and find the latest Office Sector jobs vacancy in India that is suitable for you, Apply Now">
+<meta name="keyword" content="Assessment test, freshers jobs, aptitude test, recruitment company, job offers, test for jobs, cv , resume, IT jobs, sales & marketing jobs, BPO jobs , accounting jobs , digital marketing jobs, operation jobs, HR jobs, office support jobs, freshers jobs after 12th ,  freshers jobs after bba,  freshers jobs after bca,  freshers jobs after graduation,  freshers jobs after btech,  freshers jobs after b.com,  freshers jobs after m.com, best assessment test,  freshers jobs in Delhi, freshers jobs in Banglore, freshers jobs in mumbai, freshers jobs in Ahmedabad, freshers jobs in chennai, freshers jobs in pune, cv for IT jobs , cv for sales job, cv for marking jobs ">
+
+<head>
+    <% include ../../partials/pre_head %>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- NAVIGATION BAR START -->
+    <% include ../../partials/pre_header %>
+        <!-- NAVIGATION BAR END -->
+
+        <div class="row" style="height:30px;"></div>
+        <!-- HEADER START -->
+        <div class="row white-text blue darken-4">
+            <div class="col  s12">
+                <div class="row" style="height:50px;"></div>
+                <h1>
+                    <b>ALL ABOUT OFFICE SUPPORT JOBS IN INDIA</b>
+                </h1>
+
+                <div class="row" style="height:50px;"></div>
+            </div>
+        </div>
+        <!-- HEADER END -->
+
+
+        <div class="row" style="height:50px;"></div>
+        <div class="row">
+            <div class="col s10 offset-s2">
+                <div class="col s10">
+                    Office support jobs are very important for solving company's daily problems. There are basically two jobs- Front office and back office jobs. The management of back-office processes can significantly affect the success of a company. The volume of data
+                    being collected on a daily basis has increased significantly due to the increasing number of transactional processes like application processing, order fulfillment, collections, billing, transaction processing, etc. All these processes
+                    need time and cost-effective back office solutions.while, front office staff are the people who directly generate revenue for the company. The front office largely consists of client-facing roles. So in a finance company or investment
+                    bank, front office departments might consist of sales and trading, investment banking, wealth management, and private equity. banks might be flooded with applications for front office roles, it’s for these technical roles that they
+                    are desperate to recruit top talent.
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 " style="height:50px;"></div>
+            <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
+                <div class="col s12">
+                    <h5><b>Roles and Responsibilities for Office Support jobs in India</b></h5>
+
+                    <br><br>
+                    <div class="col s12">
+                        <li class="ui message">
+
+                            Prepares source data for computer entry by compiling and sorting information; establishing entry priorities.
+                        </li>
+                        <li class="ui message">
+
+                            Proven data entry work experience, Experience with MS Office and data programs, Typing speed and accuracy, Organization skills, with an ability to stay focused on assigned tasks
+                        </li>
+                        <li class="ui message">
+                            Respond to queries for information and access relevant files
+
+                        </li>
+                        <li class="ui message">
+
+                            Preparing and sorting documents for data entry
+                        </li>
+                        <li class="ui message">
+
+                            Entering data into database software and checking to ensure the accuracy of the data that has been inputted
+                        </li>
+                        <li class="ui message">
+
+                            Responding to information requests from authorised members
+                        </li>
+                    </div>
+                </div>
+                <div class="col s12" style="height:50px;"></div>
+            </div>
+        </div>
+        <!-- FOOTER START -->
+        <% include ../../partials/pre_footer %>
+            <!-- FOOTER END -->
+            <script>
+                function getJobList() {
+                    $.ajax({
+                        url: window.location.origin + "/getjoblistings",
+                        method: "GET",
+                        dataType: "json",
+                        success: function(response) {
+                            let fulldata = response.data.filter(d => d.jobtitle == "it").slice(0, 3);
+
+                            console.log(fulldata);
+                            joblistmaker(fulldata);
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    });
+                }
+
+                function joblistmaker(data) {
+                    console.log(data);
+                    let JOBLISTCON = $('#joblistcon ');
+                    JOBLISTCON.empty();
+                    for (d in data) {
+                        var EXP = expToMonth(data[d].experience);
+                        let template =
+                            `
+            <div class="col l4 s12 " style="cursor:pointer;">
+                        <div class="col s12 ui white card no-padd hoverable animated bounceIn" style="animation-delay:` + Math.random() * 1 + `s;border-radius:0px 0px 10px 10px;border-top:2px solid indigo">
+                            <div class="col s12">
+                                <h6 style="text-transform:uppercase;"><b>
+                                    <i class="fas fa-building fa-1x grey-text lighten-2"></i>&nbsp;` + data[d].jobtitle + ` JOB</b>
+                                    
+                                </h6>
+                                <small><i>` + data[d].companyname + `</i></small><br/>
+                                <div class="col s12 no-padd">
+                                    <div class="col s12 no-padd">
+                                       <strong> EXP : ` + EXP + `</strong>
+                                    </div>
+                                    <div class="col s12 no-padd">
+                                        <strong>  SALARY : ` + data[d].salary + `LPA </strong>
+                                    </div>
+                                    <div class="col s12 no-padd">
+                                        <strong>  LOCATION : ` + data[d].location + `</strong> 
+                                    </div>
+                                </div>
+                                <div class="col s12 no-padd">
+                                    
+                                <a href="/company-info/` + data[d].jobid + `">Read More</a>
+                                    
+        
+                                </div>
+                                    <div class="col s12 no-padd">
+                                        <a href="/schedule" class="btn white indigo-text right accent-4 z-depth-0">
+                                            <b>APPLY</b>
+                                        </a>
+                                    </div>
+                                
+                                </div>
+                                </div>
+                                <div class="row"></div>
+                    </div>
+            `;
+                        template = template.replace(/null/gi, "Not Specified");
+                        JOBLISTCON.append(template);
+                        $(document).on('click', ".collapsible", function() {
+                            $(this).collapsible();
+                        });
+                    }
+
+                    function expToMonth(exp) {
+                        switch (exp) {
+                            case 'ef':
+                                return '>12 MONTH';
+                                break;
+                            case 'e12':
+                                return '+12 MONTH';
+                                break;
+                            case 'e24':
+                                return '+24 MONTH';
+                                break;
+                            case 'e24p':
+                                return '>24 MONTH';
+                                break;
+                        }
+                    }
+                }
+            </script>
+</body>
+
+</html>
