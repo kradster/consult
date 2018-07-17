@@ -115,5 +115,42 @@ mainRouter.get('/job-opportunities', (req, res) => {
 });
 
 
+mainRouter.post('/subscribe', (req, res) => {
+
+    if (req.body.subscriptionemail)
+        if (req.body.subscriptionemail != "") {
+            db.exec("INSERT INTO JobAlerts(email) VALUES('" + req.body.subscriptionemail + "')", (err, row) => {
+                if (err) console.log(err);
+                return res.render('alert', { title: "Subscribed to Joblana Job Alerts!!", link: '/', linkname: 'Go back to home' });
+            });
+        }
+});
+
+
+mainRouter.get('/getjoblistings', (req, res) => {
+    db.all("SELECT * FROM JobListings", (err, row) => {
+        if (!row) {
+            console.log("No rows found");
+            return res.send({ success: false, message: "0 job listings" });
+        }
+        console.log("Fetching job listings...", row.length, "rows found");
+        return res.send({ success: true, data: row });
+    });
+});
+
+mainRouter.post('/getuserdata', (req, res) => {
+    if (!req.body.uid) return res.send({ success: false, message: "Userid uid required" });
+    db.get("SELECT * FROM Users WHERE uniqueid = ?", req.body.uid, (err, row) => {
+        if (!row) return res.send({ success: false, message: 'No User with the particular id found' });
+        data = row;
+        delete data.password;
+        db.get("SELECT * FROM CV WHERE uniqueid = ?", req.body.uid, (err, row) => {
+            if (!row) return res.send({ success: true, data: data });
+            data["CV"] = row;
+            res.send({ success: true, data: data });
+        });
+    });
+});
+
 
 module.exports = mainRouter;
