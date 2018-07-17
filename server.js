@@ -336,7 +336,7 @@ app.post('/scheduletest', (req, res) => {
     sql = "INSERT INTO Tests(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
     db.exec(sql, (err, row) => {
         if (err) console.log(err);
-        return res.render('alert', { title: "Successfully booked for the test ", link: "/templates/profile.html", linkname: "Goto Profile" });
+        return res.render('alert', { title: "Successfully booked for the test ", link: "/profile", linkname: "Goto Profile" });
     });
 });
 
