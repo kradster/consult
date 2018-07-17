@@ -1,20 +1,24 @@
 const express = require('express');
-var path = require('path');
-template = path.join(__dirname, '../static/templates');
+let bcrypt = require('bcrypt-nodejs');
 var authRouter = express.Router();
+var userController = require('../controllers/user')
 
-authRouter.get('/dashboard', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
+function isauthenticated(req, res, next){
+    if (!req.session.user) {
+        req.session.messages.push(["Please login to access this page", "blue"])
+        return res.redirect('/login');
+    }
+    next();
+}
+authRouter.get('/dashboard', isauthenticated, (req, res) => {
     res.sendFile('/templates/profile.html', { root: __dirname });
 });
 
-authRouter.post('/showcv', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
+authRouter.post('/showcv', isauthenticated, (req, res) => {
     res.sendFile('/templates/showcv.html', { root: __dirname });
 });
 
-authRouter.post('/myscore', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
+authRouter.post('/myscore', isauthenticated, (req, res) => {
     res.sendFile('/templates/myscore.html', { root: __dirname });
 });
 
@@ -23,8 +27,7 @@ authRouter.post('/myjob', (req, res) => {
     res.sendFile('/templates/myjob.html', { root: __dirname });
 });
 
-authRouter.post('/editcv', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
+authRouter.post('/editcv', isauthenticated, (req, res) => {
     res.sendFile('/templates/makecv.html', { root: __dirname });
 });
 
@@ -106,8 +109,7 @@ authRouter.post('/login', (req, res) => {
 });
 
 
-authRouter.post('/cvbuilder', (req, res) => {
-    if (!req.session.user) return res.redirect('/templates/login.html');
+authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
     console.log("session", req.session.user);
     console.log("cv details");
     data = req.body;
@@ -153,8 +155,7 @@ authRouter.get('/getcv', (req, res) => {
     });
 });
 
-authRouter.get('/profile', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
+authRouter.get('/profile', isauthenticated, (req, res) => {
     db.get("SELECT * FROM Users WHERE email = ?", req.session.email, (err, userrow) => {
         if (err) return console.log(err);
         db.get('SELECT * FROM CV WHERE uniqueid = ?', userrow.uniqueid, (err, cvrow) => {
@@ -171,8 +172,7 @@ authRouter.get('/profile', (req, res) => {
     });
 });
 
-authRouter.post('/scheduletest', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
+authRouter.post('/scheduletest', isauthenticated, (req, res) => {
     data = req.body;
     data["userid"] = req.session.user;
     sql = "INSERT INTO Tests(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
@@ -186,7 +186,14 @@ authRouter.post('/scheduletest', (req, res) => {
 authRouter.get('/logout', (req, res) => {
     res.cookie('uniqueid', "null");
     req.session = null;
+    req.session.messages = [["You are Successfully Logger out.", "green"]]
     return res.redirect('/');
 });
+
+authRouter.post('/uploadresume', (req, res) => {
+    if (!req.session.user) return res.redirect('/login');
+    res.send(req.body);
+});
+
 
 module.exports = authRouter;

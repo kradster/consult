@@ -7,11 +7,12 @@ let bodyParser = require('body-parser');
 let multer = require('multer');
 let upload = multer();
 let cookieparser = require('cookie-parser');
-let bcrypt = require('bcrypt-nodejs');
 let nodemailer = require('nodemailer');
 let Config = require('./config.json');
 
 let mainRouter = require('./routes/main.js');
+let authRouter = require('./routes/auth.js');
+let adminRouter = require('./routes/admin.js');
 //for parsing application/xwww
 app.use(bodyParser.urlencoded({ extended: true }));
 //for parsing application/json
@@ -20,8 +21,6 @@ app.use(bodyParser.json());
 app.use(upload.array());
 
 app.set('views', path.join(__dirname, 'views/pages'));
-
-let fs = require('fs');
 
 app.set('view engine', 'ejs');
 
@@ -36,6 +35,20 @@ app.use(session({
         secure: Config.SESSION_COOKIE_SECURE,
     }
 }));
+
+app.use(function(req, res, next){
+    if (req.session.messages){
+        res.locals.messages = req.session.messages;
+    }
+    else{
+        res.locals.messages = [];
+        req.session.messages = []
+    }
+    res.locals.removeMessages = function () {
+        req.session.messages = [];
+    };
+    next();
+});
 //app.use(cookieparser);
 
 //serve all static folders
@@ -48,7 +61,8 @@ app.use('/downloads', express.static('static/downloads'));
 //app.use('/static/templates/admin', express.static('admin'));
 
 app.use('/', mainRouter);
-
+app.use('/user', authRouter);
+app.use('/admin', adminRouter);
 
 //Connecting to local database
 const sqlite3 = require('sqlite3').verbose();
@@ -117,17 +131,12 @@ app.listen(Config.PORT || 5000, Config.HOST || "0.0.0.0", () => {
     console.log('listening on ' + (Config.HOST || "0.0.0.0") + ": " + (Config.PORT || 5000));
 });
 
-app.post('/uploadresume', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
-    res.send(req.body);
-});
-
-
 app.get('*', (req, res) => {
-    res.render('alert', { title: "404. The page you are looking for doesn't exist", link: "/", linkname: "Go back to home" });
+    if (req.session.messages){
+        req.session.messages.push(["The page you are looking for doesn't exist", "red"])
+    }
+    else {
+        req.session.messages = [["The page you are looking for doesn't exist", "red"]]
+    }
+    res.redirect('/');
 });
-
-let rand, host, link = "sada";
-let runtime_obj = {};
-
-//sendVerificatonEmail({ body: { email: "priyanshbalyan@gmail.com" } });

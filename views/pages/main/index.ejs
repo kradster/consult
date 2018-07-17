@@ -125,15 +125,15 @@
                     </h1>
                     <br>
                     <br>
-                    <form action="/subscribe" method="POST">
+                    <form >
                         <div class="input-field col l12 s12 card z-depth-3 " style="border-radius:30px; padding:10px;">
                             <center>
-                                <input name="subscriptionemail" placeholder="Enter Email " type="text " class="blue-text center-align " style="padding:5px;font-size:1.5em;border:none;outline:none;">
+                                <input name="subscriptionemail" id="email_val" placeholder="Enter Email " type="text " class="blue-text center-align " style="padding:5px;font-size:1.5em;border:none;outline:none;">
                             </center>
                         </div>
                         <div class=" col l12  s12 ">
                             <center>
-                                <input type="submit" style="margin-top:15px;border-radius:25px;transition:all .3s ease-in-out;" class="btn btn-large blue accent-4 white-text " value="Get job alerts">
+                                <input type="button" style="margin-top:15px;border-radius:25px;transition:all .3s ease-in-out;" class="btn btn-large blue accent-4 white-text " value="Get job alerts", id="email_submit">
                             </center>
                             <br>
                         </div>
@@ -423,30 +423,45 @@
         <!-- FOOTER START -->
         <% include ../../partials/pre_footer %>
             <!-- FOOTER END -->
-
-
-            <!-- Compiled and minified JavaScript -->
-            <script type="text/javascript " src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js "></script>
-            <script>
-                $(document).ready(function() {
-                    M.AutoInit();
-                    $('#GetStarted').on('click', function(e) {
-                        e.preventDefault();
-                        localStorage.setItem('name', $('#name').val());
-                        localStorage.setItem('email', $('#email').val());
-                        location.href = location.origin + "/signup "
-                    });
+        <script>
+            $(document).ready(function() {
+                M.AutoInit();
+                $('#GetStarted').on('click', function(e) {
+                    e.preventDefault();
+                    localStorage.setItem('name', $('#name').val());
+                    localStorage.setItem('email', $('#email').val());
+                    location.href = location.origin + "/signup "
                 });
-            </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js"></script>
-            <script src="../js/type.js"></script>
-            <!-- <script src="https://wchat.freshchat.com/js/widget.js "></script>
-    <script>
-        window.fcWidget.init({
-            token: "4281856b-8aa2-4b5e-8108-4171813716e5 ",
-            host: "https://wchat.freshchat.com "
-        });
-    </script> -->
+            });
+
+            function subscribe() {
+                let email = $("#email_val").val();
+                console.log('asdf', $("#email").val());
+
+                obj = {email: email};
+                $.ajax({
+                    url: window.location.origin + "/subscribe",
+                    method: "POST",
+                    data: obj,
+                    success: function(response) {
+                        console.log(response);
+                        array = response.messages
+                        array.forEach(a => {
+                            M.toast({
+                                html: "<b>" + a[0] + "</b>",
+                                classes: a[1]
+                            });
+
+                        });
+
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            }
+            $('#email_submit').on('click', subscribe);
+        </script>
 </body>
 
 </html>

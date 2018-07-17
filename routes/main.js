@@ -1,102 +1,107 @@
 const express = require('express');
-var path = require('path');
-template = path.join(__dirname, '../views/pages');
 var mainRouter = express.Router();
 var sendEmail = require('../utils/email');
 
+var userController = require('../controllers/user')
+
 mainRouter.get('/', (req, res, next) => {
-    // sendEmail("deveshaggrawal19@gmail.com", "welcome", {link: "https://www.joblana.com"}, "verification");
-    res.render("main/index", { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company", messages: [] });
+    dct = { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company"}
+    res.render("main/index", dct);
 });
 
 mainRouter.get('/signup', (req, res, next) => {
-    res.render('login/signup', { title: "JobLana Signup", messages: [] });
+    dct = { title: "JobLana Signup"};
+    res.render('login/signup', dct);
 });
 
 mainRouter.get('/login', (req, res, next) => {
-    res.render('login/login', { title: "JobLana Login", messages: [] });
+    dct = { title: "JobLana Login"};
+    res.render('login/login', dct);
 });
 
 mainRouter.get('/upcoming-jl-test', (req, res, next) => {
-    res.render('main/schedule', { title: "Upcoming JL Tests | Schedule your JL test Now", messages: [] });
+    dct = { title: "Upcoming JL Tests | Schedule your JL test Now"};
+    res.render('main/schedule', dct);
 });
 
 mainRouter.get('/recruiters', (req, res, next) => {
-    res.render('main/recruiters', { title: "Post a job on Joblana for free | Get access to 10k+ qualified candidates", messages: [] });
+    dct = { title: "Post a job on Joblana for free | Get access to 10k+ qualified candidates"};
+    res.render('main/recruiters', dct);
 });
 
-mainRouter.get('/jobs', (req, res, next) => {
-    res.render('main/comlist', { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana", messages: [] });
+mainRouter.get('/jobs', (req, res, next) => {d
+    dct = { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana"};
+    res.render('main/comlist', dct);
 });
 
 mainRouter.get('/about-joblana', (req, res, next) => {
-    res.render('main/about', { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company", messages: [] });
+    dct = { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company"}
+    res.render('main/about', dct);
 });
 
 mainRouter.get('/faq-joblana', (req, res, next) => {
-    res.render('main/faq', {
-        title: "Frequently Asked Questions related to JobLana and JL assessment Test",
-        messages: []
-    });
+    dct = { title: "Frequently Asked Questions related to JobLana and JL assessment Test"};
+    res.render('main/faq', dct);
 });
 
 mainRouter.get('/contact-joblana', (req, res) => {
-    res.render('main/contact', { title: "Contact JobLana | Reach out to us for JL assessment test, jobs and recruitment", messages: [] });
+    res.render('main/contact', { title: "Contact JobLana | Reach out to us for JL assessment test, jobs and recruitment"});
 });
 
 mainRouter.get('/why-joblana-jl-test', (req, res) => {
-    res.render('main/whyjl', { title: "Why JobLana - All reason to choose JobLana for your better career", messages: [] });
+    res.render('main/whyjl', { title: "Why JobLana - All reason to choose JobLana for your better career"});
 });
 
 mainRouter.get('/joblana-recruiting-partners', (req, res) => {
-    res.render('main/partners', { title: "Our Partners | JobLana", messages: [] });
+    res.render('main/partners', { title: "Our Partners | JobLana"});
 });
 
 mainRouter.get('/about-jl-test', (req, res) => {
-    res.render('main/jltest', { title: "About JL Test - All you need to know about this innovative assessment test.", messages: [] });
+    res.render('main/jltest', { title: "About JL Test - All you need to know about this innovative assessment test."});
 });
 
 mainRouter.get('/how-it-works-joblana', (req, res) => {
-    res.render('main/how', { title: "How it works? | Path to get job through JobLana platform", messages: [] });
+    res.render('main/how', { title: "How it works? | Path to get job through JobLana platform"});
 });
 
 mainRouter.get('/joblana-sample-paper-jl-test', (req, res) => {
-    res.render('main/samplepaper', { title: "Sample Paper", messages: [] });
+    res.render('main/samplepaper', { title: "Sample Paper"});
 });
 
 mainRouter.get('/post-a-job-joblana', (req, res) => {
-    res.render('main/recruiters', { title: "Post a job on Joblana for free | Get access to 10k+ qualified candidates", messages: [] });
+    res.render('main/recruiters', { title: "Post a job on Joblana for free | Get access to 10k+ qualified candidates"});
 });
 
 mainRouter.get('/freshers-job-listings', (req, res) => {
-    res.render('main/joblist', { title: "Joblana", messages: [] });
+    res.render('main/joblist', { title: "Joblana"});
 });
 
 mainRouter.get('/it-jobs-for-freshers', (req, res) => {
-    res.render('main/itjob', { title: "All about IT jobs -Roles & Responsibilities, latest IT jobs vacancy in india | JobLana", messages: [] });
+    res.render('main/itjob', { title: "All about IT jobs -Roles & Responsibilities, latest IT jobs vacancy in india | JobLana"});
 });
 
 mainRouter.get('/human-resources-jobs-for-freshers', (req, res) => {
-    res.render('main/hrjob', { title: "All about HR jobs -Roles & Responsibilities, latest HR jobs vacancy in india | JobLana", messages: [] });
+    res.render('main/hrjob', { title: "All about HR jobs -Roles & Responsibilities, latest HR jobs vacancy in india | JobLana"});
 });
 
 mainRouter.get('/sales-and-marketing-jobs-for-freshers', (req, res) => {
-    res.render('main/smjob', { title: "All about Sales and Marketing jobs -Roles & Responsibilities, latest Sales and Marketing jobs vacancy in india | JobLana", messages: [] });
+    res.render('main/smjob', { title: "All about Sales and Marketing jobs -Roles & Responsibilities, latest Sales and Marketing jobs vacancy in india | JobLana"});
 });
 
 mainRouter.get('/accounting-jobs-for-freshers', (req, res) => {
-    res.render('main/accjob', { title: "All about Accounting jobs -Roles & Responsibilities, latest accounting jobs vacancy in india | JobLana", messages: [] });
+    res.render('main/accjob', { title: "All about Accounting jobs -Roles & Responsibilities, latest accounting jobs vacancy in india | JobLana"});
 });
 
 mainRouter.get('/digital-marketing-jobs-for-freshers', (req, res) => {
-    res.render('main/dmjob', { title: "Document", messages: [] });
+    res.render('main/dmjob', { title: "Document"});
 });
 
 mainRouter.get('/office-support-jobs-for-freshers', (req, res) => {
-    res.render('main/osjob', { title: "All about Office Sector jobs -Roles & Responsibilities, latest Office Sector jobs vacancy in india | JobLana", messages: [] });
+    res.render('main/osjob', { title: "All about Office Sector jobs -Roles & Responsibilities, latest Office Sector jobs vacancy in india | JobLana"});
 });
 
 mainRouter.get('/calling-jobs-for-freshers', (req, res) => {
+<<<<<<< Updated upstream
     res.render('main/calljob', { title: "Call Jobs", messages: [] });
 });
 
@@ -114,23 +119,46 @@ mainRouter.get('/terms-and-conditions', (req, res) => {
 
 mainRouter.get('/job-opportunities', (req, res) => {
     res.render('main/comlist', { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana", messages: [] });
+=======
+    res.render('main/caljob', { title: ""});
+});
+
+mainRouter.get('/operations-jobs-for-freshers', (req, res) => {
+    res.render('main/opjob', { title: ""});
+});
+
+mainRouter.get('/privacy-policy', (req, res) => {
+    res.render('main/policy', { title: ""});
+});
+
+mainRouter.get('/terms-and-conditions', (req, res) => {
+    res.render('main/terms', { title: ""});
+});
+
+mainRouter.get('/job-opportunities', (req, res) => {
+    res.render('main/comlist', { title: ""});
+>>>>>>> Stashed changes
 });
 
 
 mainRouter.post('/subscribe', (req, res) => {
-
-    if (req.body.subscriptionemail)
-        if (req.body.subscriptionemail != "") {
-            db.exec("INSERT INTO JobAlerts(email) VALUES('" + req.body.subscriptionemail + "')", (err, row) => {
-                if (err) console.log(err);
-                return res.render('alert', { title: "Subscribed to Joblana Job Alerts!!", link: '/', linkname: 'Go back to home' });
+    if (req.body.email){
+        if (req.body.email != "") {
+            userController.subscribe_email(req.body.email, (err, data)=>{
+                if (err){
+                    res.send({success: false, messages: [[err.message, "red"]]});
+                    return
+                }
+                sendEmail(req.body.email, "Email Newsletter Subscribed", {link: "https://www.joblana.com"}, "verification");
+                res.send({success: true, messages: [["Subscribed to Joblana Job Alerts!!", "green"]]});
             });
+            
         }
+    }
 });
 
-
 mainRouter.get('/getjoblistings', (req, res) => {
-    db.all("SELECT * FROM JobListings", (err, row) => {
+    userController.getjoblistings((err, row) => {
         if (!row) {
             console.log("No rows found");
             return res.send({ success: false, message: "0 job listings" });
@@ -142,16 +170,15 @@ mainRouter.get('/getjoblistings', (req, res) => {
 
 mainRouter.post('/getuserdata', (req, res) => {
     if (!req.body.uid) return res.send({ success: false, message: "Userid uid required" });
-    db.get("SELECT * FROM Users WHERE uniqueid = ?", req.body.uid, (err, row) => {
-        if (!row) return res.send({ success: false, message: 'No User with the particular id found' });
-        data = row;
-        delete data.password;
-        db.get("SELECT * FROM CV WHERE uniqueid = ?", req.body.uid, (err, row) => {
-            if (!row) return res.send({ success: true, data: data });
-            data["CV"] = row;
-            res.send({ success: true, data: data });
-        });
-    });
+    userController.userdata(req.body.uid, (err, row) => {
+        if (row.success == true){
+            return res.send({ success: true, data: dct });
+        }
+        else{
+            return res.send({ success: false, messages: [[row.message, "red"]] });
+        }
+    })
+    
 });
 
 
