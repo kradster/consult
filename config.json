@@ -3,5 +3,7 @@
     "USER": "shivam.thakral@icloud.com",
     "PASS": "3449faaa-8818-4d3c-9737-4e9b67b7f85b",
     "EMAIL_ADDRESS": "no-reply@mail.joblana.com",
-    "ADMIN_KEY": "joblana.COM42"
+    "ADMIN_KEY": "joblana.COM42",
+    "SECRET_KEY": "ksjaf89w3rjndoipqw38ueyulpocnz0939UAHKQWUBBCHJIUHFUIOOFHFWusdhf98wehrhkj",
+    "SESSION_COOKIE_SECURE": false
 }

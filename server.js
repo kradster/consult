@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var path = require('path');
 
 let session = require('express-session');
 let bodyParser = require('body-parser');
@@ -10,6 +11,7 @@ let bcrypt = require('bcrypt-nodejs');
 let nodemailer = require('nodemailer');
 let Config = require('./config.json');
 
+let mainRouter = require('./routes/main.js');
 //for parsing application/xwww
 app.use(bodyParser.urlencoded({ extended: true }));
 //for parsing application/json
@@ -17,17 +19,33 @@ app.use(bodyParser.json());
 //for parsing multipart/form-data
 app.use(upload.array());
 
-app.use(session({ secret: Config.SESSION_KEY }));
+app.set('views', path.join(__dirname, 'views/pages'));
+
+let fs = require('fs');
+
+app.set('view engine', 'ejs');
+
+app.use(session({ 
+    secret: Config.SESSION_KEY,
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        path: "/",
+        httpOnly: true,
+        maxAge:  1800000,  //30 mins
+        secure: Config.SESSION_COOKIE_SECURE,
+    }
+}));
 //app.use(cookieparser);
 
 //serve all static folders
-app.use(express.static('css'));
-app.use('/img', express.static('img'));
-app.use('/myfont', express.static('myfont'));
-app.use('/templates', express.static('templates'));
-app.use('/js', express.static('js'));
-app.use('/downloads', express.static('downloads'));
-//app.use('/admin', express.static('admin'));
+app.use(express.static('static/css'));
+app.use('/img', express.static('static/img'));
+app.use('/myfont', express.static('static/myfont'));
+app.use('/templates', express.static('static/templates'));
+app.use('/js', express.static('static/js'));
+app.use('/downloads', express.static('static/downloads'));
+//app.use('/static/templates/admin', express.static('admin'));
 
 
 //Connecting to local database
@@ -357,8 +375,8 @@ app.post('/adminpanel', (req, res) => {
         res.send({ success: false, message: "Incorrect login" });
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('listening on : ' + (process.env.PORT || 3000));
+app.listen(Config.PORT || 5000, Config.HOST || "0.0.0.0", () => {
+    console.log('listening on ' + (Config.HOST || "0.0.0.0") + ": " + (Config.PORT || 5000));
 });
 
 app.get('/', (req, res) => {
@@ -371,107 +389,7 @@ app.get('/logout', (req, res) => {
     return res.redirect('/');
 });
 
-app.get('/signup', (req, res) => {
-    res.sendFile('/templates/signup.html', { root: __dirname });
-});
-app.get('/login', (req, res) => {
-    res.sendFile('/templates/login.html', { root: __dirname });
-});
-
-app.get('/upcoming-jl-test', (req, res) => {
-    res.sendFile('/templates/schedule.html', { root: __dirname });
-});
-app.get('/recruiters', (req, res) => {
-    res.sendFile('/templates/recruiters.html', { root: __dirname });
-});
-app.get('/dashboard', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
-    res.sendFile('/templates/profile.html', { root: __dirname });
-});
-app.get('/jobs', (req, res) => {
-    //if (!req.session.user) return res.redirect('/login');
-    res.sendFile('/templates/comlist.html', { root: __dirname });
-});
-app.get('/about-joblana', (req, res) => {
-    res.sendFile('/templates/about.html', { root: __dirname });
-});
-app.get('/faq-joblana', (req, res) => {
-    res.sendFile('/templates/faq.html', { root: __dirname });
-});
-app.get('/contact-joblana', (req, res) => {
-    res.sendFile('/templates/contact.html', { root: __dirname });
-});
-app.get('/why-joblana-jl-test', (req, res) => {
-    res.sendFile('/templates/whyjl.html', { root: __dirname });
-});
-app.get('/joblana-recruiting-partners', (req, res) => {
-    res.sendFile('/templates/partners.html', { root: __dirname });
-});
-app.get('/about-jl-test', (req, res) => {
-    res.sendFile('/templates/jltest.html', { root: __dirname });
-});
-app.get('/how-it-works-joblana', (req, res) => {
-    res.sendFile('/templates/how.html', { root: __dirname });
-});
-app.get('/joblana-sample-paper-jl-test', (req, res) => {
-    res.sendFile('/templates/samplepaper.html', { root: __dirname });
-});
-app.get('/post-a-job-joblana', (req, res) => {
-    res.sendFile('/templates/recruiters.html', { root: __dirname });
-});
-app.get('/freshers-job-listings', (req, res) => {
-    res.sendFile('/templates/joblist.html', { root: __dirname });
-});
-app.get('/it-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/itjob.html', { root: __dirname });
-});
-app.get('/human-resources-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/hrjob.html', { root: __dirname });
-});
-app.get('/sales-and-marketing-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/smjob.html', { root: __dirname });
-});
-app.get('/accounting-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/accjob.html', { root: __dirname });
-});
-app.get('/digital-marketing-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/dmjob.html', { root: __dirname });
-});
-app.get('/office-support-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/osjob.html', { root: __dirname });
-});
-app.get('/calling-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/.html', { root: __dirname });
-});
-app.get('/operations-jobs-for-freshers', (req, res) => {
-    res.sendFile('/templates/opjob.html', { root: __dirname });
-});
-app.get('/privacy-policy', (req, res) => {
-    res.sendFile('/templates/policy.html', { root: __dirname });
-});
-app.get('/terms-and-conditions', (req, res) => {
-    res.sendFile('/templates/terms.html', { root: __dirname });
-});
-app.get('/job-opportunities', (req, res) => {
-    res.sendFile('/templates/comlist.html', { root: __dirname });
-});
-
-app.post('/showcv', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
-    res.sendFile('/templates/showcv.html', { root: __dirname });
-});
-app.post('/myscore', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
-    res.sendFile('/templates/myscore.html', { root: __dirname });
-});
-app.post('/myjob', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
-    res.sendFile('/templates/myjob.html', { root: __dirname });
-});
-app.post('/editcv', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
-    res.sendFile('/templates/makecv.html', { root: __dirname });
-});
+app.use('/', mainRouter);
 
 app.post('/uploadresume', (req, res) => {
     if (!req.session.user) return res.redirect('/login');
@@ -525,27 +443,3 @@ function sendVerificatonEmail(req, res) {
     });
 
 }
-
-//render engine
-let fs = require('fs');
-
-app.set('views', './render');
-app.set('view engine', 'html');
-
-app.engine('html', (filepath, options, callback) => {
-    fs.readFile(filepath, (err, content) => {
-        if (err) return callback(err);
-        let rendered = content.toString();
-        //console.log("trigger", options.data);
-        for (let key in options) {
-            if (options.hasOwnProperty(key) && key != "settings" && key != "_locals" && key != "cache" && key != "_removetags") {
-                val = options[key];
-                if (val == "") val = "N/A";
-                rendered = rendered.replace(new RegExp('{{ ' + key + ' }}', 'gi'), val); //replace all {{ key }} case insensitive
-            }
-        }
-        if (options._removetags) rendered = rendered.replace(/{{\s\w+\s}}/gi, "N/A (Unspecified)");
-
-        return callback(null, rendered);
-    });
-});
