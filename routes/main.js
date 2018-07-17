@@ -2,8 +2,10 @@ const express = require('express');
 var path = require('path');
 template = path.join(__dirname, '../views/pages');
 var mainRouter = express.Router();
+var sendEmail = require('../utils/email');
 
 mainRouter.get('/', (req, res, next) => {
+	// sendEmail("deveshaggrawal19@gmail.com", "welcome", {link: "https://www.joblana.com"}, "verification");
     res.render("main/index", { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company", messages: [] });
 });
 
