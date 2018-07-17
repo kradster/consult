@@ -13,7 +13,7 @@ mainRouter.get('/login', (req, res) => {
 });
 
 mainRouter.get('/upcoming-jl-test', (req, res) => {
-    res.render(path.join(template, '/schedule'));
+    res.render('main/schedule', {title: "Upcoming JL Tests | Schedule your JL test Now"});
 });
 
 mainRouter.get('/recruiters', (req, res) => {

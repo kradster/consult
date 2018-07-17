@@ -39,7 +39,7 @@ app.use(session({
 //app.use(cookieparser);
 
 //serve all static folders
-app.use(express.static('static/css'));
+app.use('/css', express.static('static/css'));
 app.use('/img', express.static('static/img'));
 app.use('/myfont', express.static('static/myfont'));
 app.use('/templates', express.static('static/templates'));
