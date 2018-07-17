@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name='description' content='Book your seat now for the next test and get the chance to highlight yourself in front of 500+ recruiters.'>
+    <% include ../../partials/pre_head %>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- NAVIGATION BAR START -->
+    <% include ../../partials/pre_header %>
+    <!-- NAVIGATION BAR END -->
+    
+    <!-- HEADER START -->
+    <div class="row white-text blue darken-4">
+        <div class="col  s12">
+            <div class="row" style="height:50px;"></div>
+            <h1>
+                <b>SCHEDULE YOUR JL TEST NOW</b>
+            </h1>
+
+            <div class="row" style="height:50px;"></div>
+        </div>
+    </div>
+    <!-- HEADER END -->
+    <div class="row" style="height:40px;"></div>
+
+    <!-- TEST SCHEDULE DETAILS PANEL START -->
+    <div class="row">
+        <div class="row" style="height:50px;"></div>
+        <div class="col s10 offset-s1">
+            <div class="col s12">
+                <h2 class="grey-text">BOOK YOUR TEST SEAT NOW</h2>
+            </div>
+            <div class="col s12 card no-padd z-depth-0">
+                <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
+                    <span style="font-size:1.7em">Choose your Slot.</span>
+                </div>
+                <div class="divider"></div>
+                <br>
+                <div class="col s12">
+
+                    <form action="/scheduletest" class="col s12" method="POST">
+                        <div class="col s3">
+                            <select name="testname">
+                                <option value="" disabled selected>Choose your role</option>
+                                <option value="hr">HR</option>
+                                <option value="operations">OPERATIONS</option>
+                                <option value="calling">CALLING</option>
+                                <option value="sallesmkt">SALES AND MARKETING</option>
+                                <option value="digitalmkt">DIGITAL MARKETING</option>
+                                <option value="it">IT JOBS</option>
+                                <option value="office">OFFICE JOBS</option>
+                                <option value="accounting">ACCOUNTING</option>
+                            </select>
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testlocation" id="dob" value="Delhi" readonly>
+
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testdate" id="dob" value="18/08/2018" readonly>
+
+                        </div>
+                        <div class="col s3">
+                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                        </div>
+                        <div class="row"></div>
+                    </form>
+                </div>
+                <div class="col s12">
+
+                    <form action="/scheduletest" class="col s12" method="POST">
+                        <div class="col s3">
+                            <select name="testname">
+                                <option value="" disabled selected>Choose your role</option>
+                                <option value="hr">HR</option>
+                                <option value="operations">OPERATIONS</option>
+                                <option value="calling">CALLING</option>
+                                <option value="sallesmkt">SALES AND MARKETING</option>
+                                <option value="digitalmkt">DIGITAL MARKETING</option>
+                                <option value="it">IT JOBS</option>
+                                <option value="office">OFFICE JOBS</option>
+                                <option value="accounting">ACCOUNTING</option>
+                            </select>
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testlocation" id="dob" value="Banglore" readonly>
+
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testdate" id="dob" value="23/09/2018" readonly>
+
+                        </div>
+
+                        <div class="col s3">
+                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                        </div>
+                        <div class="row"></div>
+                    </form>
+                </div>
+                <div class="col s12">
+
+                    <form action="/scheduletest" class="col s12" method="POST">
+                        <div class="col s3">
+                            <select name="testname">
+                                <option value="" disabled selected>Choose your role</option>
+                                <option value="hr">HR</option>
+                                <option value="operations">OPERATIONS</option>
+                                <option value="calling">CALLING</option>
+                                <option value="sallesmkt">SALES AND MARKETING</option>
+                                <option value="digitalmkt">DIGITAL MARKETING</option>
+                                <option value="it">IT JOBS</option>
+                                <option value="office">OFFICE JOBS</option>
+                                <option value="accounting">ACCOUNTING</option>
+                            </select>
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testlocation" id="dob" value="Bombay" readonly>
+
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="testdate" id="dob" value="28/10/2018" readonly>
+
+                        </div>
+                        <div class="col s3">
+                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                        </div>
+                        <div class="row"></div>
+                    </form>
+                </div>
+
+                <div class="row" style="height:50px;"></div>
+
+            </div>
+        </div>
+
+        <div class="row" style="height:50px;"></div>
+
+    </div>
+
+<!-- FOOTER START -->
+    <% include ../../partials/pre_footer %>
+<!-- FOOTER END -->
+
+</body>
+</html>
