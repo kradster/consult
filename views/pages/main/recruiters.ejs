@@ -1,0 +1,223 @@
+<meta name='description' content='JobLana provide best way to reach out more than 10,000+ qualified candidates evaluated using standardised evaluation criteria with the ease of JobLana platform hence getting the best candidate without any of the hassle and with tremendous savings in cost and effort.'> !DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name='description' content='Book your seat now for the next test and get the chance to highlight yourself in front of 500+ recruiters.'>
+    <% include ../../partials/pre_head %>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- NAVIGATION BAR START -->
+    <% include ../../partials/pre_header %>
+        <!-- NAVIGATION BAR END -->
+
+
+        <div class="row" style="height:30px;"></div>
+        <!-- HEADER START -->
+        <div class="row white-text blue darken-4">
+            <div class="col s12" style="padding-left:50px;padding-right:50px">
+                <div class="row" style="height:50px;"></div>
+                <h1>
+                    <B>Just a step away from assessing India's largest job applicant database
+            </h1>
+            <div class="row" style="height:50px;"></div>
+        </div>
+    </div>
+    <!-- HEADER END -->
+
+    <!-- JOB DETAILS PANEL START -->
+    <div class="card" style="margin:50px">
+        <div class="row">
+            <div class="row" style="height:50px;"></div>
+            <div class="col l10 offset-l1 s12">
+                <div class="col s12">
+                    <h2>
+                        <b class="grey-text">Post a Job For Free</b>
+                    </h2>
+            </div>
+            <div class="col s12 card no-padd z-depth-0">
+                <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
+                    <i class="fas fa-briefcase fa-2x"></i> POST YOUR JOB REQUIREMENTS
+                </div>
+                <div class="divider"></div>
+                <div class="row" style="height:50px;"></div>
+                <form action="/addjob" method="POST">
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
+                        <div class="col s9">
+                            <input type="text" name="companyname" placeholder="Company Name">
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">Recruiter Email Id</div>
+                        <div class="col s9">
+                            <input type="text" name="recruiteremail" placeholder="Enter email address of contact person">
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">Alternate Email</div>
+                        <div class="col s9">
+                            <input type="text" name="altemail" placeholder="Enter Email id">
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">Contact No</div>
+                        <div class="col s9">
+                            <input type="text" name="contactno" placeholder="Enter comapny contact no">
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">Company Website</div>
+                        <div class="col s9">
+                            <input type="text" name="companyname" placeholder="Website link">
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">About the Company</div>
+                        <div class="col s9">
+                            <textarea style="height:200px;" type="text" name="aboutcompany" placeholder="Enter about you company"></textarea>
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
+                        <div class="col s9">
+                            <select name="jobtitle" class="no-autoinit">
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="hr">HR</option>
+                                    <option value="Operations">OPERATIONS</option>
+                                    <option value="Calling">CALLING</option>
+                                    <option value="Sales and Marketing">SALLES AND MARKITING</option>
+                                    <option value="Digital Marketing">DIGITAL MARKITING</option>
+                                    <option value="IT">IT JOBS</option>
+                                    <option value="Office">OFFICE JOBS</option>
+                                    <option value="Accounting">ACCOUNTING</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">No of Vacancies</div>
+                        <div class="col s9">
+                            <input type="text" name="noofvac" placeholder="Enter no vacancies">
+                        </div>
+                    </div>
+                    <div id="location-container" class="col l10 offset-l2 s12">
+                        <div id="location-parent">
+                            <div class="col s3 right-align" style="padding-top:10px;">Location</div>
+                            <div class="col s8">
+                                <select name="location[]" class="no-autoinit">
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="New Delhi">New Delhi</option>
+                                        <option value="Noida">Noida</option>
+                                        <option value="Gurugram">Gurugram</option>
+                                        <option value="Greater Noida">Greater Noida</option>
+                                        <option value="Ghaziabad">Gaziabad</option>
+                                        <option value="Faridabad">Faridabad</option>
+                                        <option value="Sahibabad">Sahibabad</option>
+                                        <option value="Kanpur">Kanpur</option>
+                                        <option value="Luchnow">Luchnow</option>
+                                        <option value="Meerut">Meerut</option>
+                                        <option value="Sonipat">Sonipat</option>
+                                        <option value="Ambala">Ambala</option>
+                                        <option value="Agra">Agra</option>
+                                        <option value="Dehradun">Dehradun</option>
+                                        <option value="Chandigarh">Chandigarh</option>
+                                    </select>
+                            </div>
+                            <div class="col s1">
+                                <input id="add-location" onclick="javascript:AddMoreLocation()" type="button" class="ui button mini light-blue white-text" value="ADD">
+                            </div>
+                            <div class="col s12" style="height:5px;"></div>
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s12 no-padd">
+                            <div class="col s3 right-align" style="padding-top:10px;">Salary</div>
+                            <div class="col s9">
+                                <select name="sallary" class="no-autoinit">
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="2">Less than 2 lac</option>
+                                        <option value="2-3">2-3 lac</option>
+                                        <option value="3-4">3-4 lac</option>
+                                        <option value="4-5">4-5 lac</option>
+                                        <option value="5-6">5-6 lac</option>
+                                        <option value="7">More than 6 lac</option>
+
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s12 no-padd">
+                            <div class="col s3 right-align" style="padding-top:10px;">Experience</div>
+                            <div class="col s9">
+                                <select name="experience" class="no-autoinit">
+                                        <option value="" disabled selected>Choose your option</option>
+                                        <option value="ef">FRESHER</option>
+                                        <option value="e12">
+                                            < 12 MOTHNS</option>
+                                                <option value="e24">12 TO 24 MONTHS</option>
+                                                <option value="e24p">+24 MONTHS</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">Job Description</div>
+                        <div class="col s9">
+                            <input style="height:200px;" type="text" name="jobdesc" placeholder="Enter job description">
+                        </div>
+                    </div>
+                    <div class="col l10 offset-l2 s12">
+                        <div class="col s3 right-align" style="padding-top:10px;">Joining Date</div>
+                        <div class="col s9">
+                            <input class="datepicker" type="text" name="dateofjoin" placeholder="Enter date of joining">
+                            <p>
+                                <label>
+                                        <input type="checkbox" class="filled-in" name="anytime" />
+                                        <span>Any time</span>
+                                    </label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s12"></div>
+
+                    <div class="col s12" style="height:50px;"></div>
+                    <div class="col s12 no-padd">
+                        <div class="divider"></div>
+                        <div style="text-align: center">You agree to
+                            <a href="/terms-and-conditions">terms and conditions</a> and
+                            <a href="/privacy-policy">Privacy Policy</a> on posting jobs on our platform.</div>
+                    </div>
+                    <div class="col s12" style="height:50px;"></div>
+                    <div class="col l4 offset-l8 s12">
+                        <input style="border:1px solid #ccc;" class="btn btn-large white grey-text z-depth-0" type="reset" value="RESET">
+                        <input class="btn btn-large blue accent-4 z-depth-0" type="submit" value="Post Job">
+                    </div>
+
+                    <div class="col s12" style="height:50px;"></div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row" style="height:50px;"></div>
+
+        </div>
+        <!-- JOB DETAILS PANEL END -->
+        </div>
+        <!-- FOOTER START -->
+        <div id="myfooter">
+
+        </div>
+        <!-- FOOTER START -->
+        <% include ../../partials/pre_footer %>
+            <!-- FOOTER END -->
+</body>
+
+</html>

@@ -3,37 +3,43 @@ var path = require('path');
 template = path.join(__dirname, '../views/pages');
 var mainRouter = express.Router();
 
-
-mainRouter.get('/signup', (req, res) => {
-    res.render('login/signup', {title: "JobLana Signup"});
+mainRouter.get('/', (req, res, next) => {
+    res.render("main/index", { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company", messages: [] });
 });
 
-mainRouter.get('/login', (req, res) => {
-    res.render('login/login', {title: "JobLana Login"});
+mainRouter.get('/signup', (req, res, next) => {
+    res.render('login/signup', { title: "JobLana Signup", messages: [] });
 });
 
-mainRouter.get('/upcoming-jl-test', (req, res) => {
-    res.render('main/schedule', {title: "Upcoming JL Tests | Schedule your JL test Now"});
+mainRouter.get('/login', (req, res, next) => {
+    res.render('login/login', { title: "JobLana Login", messages: [] });
 });
 
-mainRouter.get('/recruiters', (req, res) => {
-    res.sendFile(path.join(template, '/recruiters.html'));
+mainRouter.get('/upcoming-jl-test', (req, res, next) => {
+    res.render('main/schedule', { title: "Upcoming JL Tests | Schedule your JL test Now", messages: [] });
 });
 
-mainRouter.get('/jobs', (req, res) => {
-    res.sendFile(path.join(template, '/comlist.html'));
+mainRouter.get('/recruiters', (req, res, next) => {
+    res.render('main/recruiters', { title: "Post a job on Joblana for free | Get access to 10k+ qualified candidates", messages: [] });
 });
 
-mainRouter.get('/about-joblana', (req, res) => {
-    res.sendFile(path.join(template, '/about.html'));
+mainRouter.get('/jobs', (req, res, next) => {
+    res.render('main/comlist', { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana", messages: [] });
 });
 
-mainRouter.get('/faq-joblana', (req, res) => {
-    res.sendFile(path.join(template, '/faq.html'));
+mainRouter.get('/about-joblana', (req, res, next) => {
+    res.render('main/about', { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company", messages: [] });
+});
+
+mainRouter.get('/faq-joblana', (req, res, next) => {
+    res.render('main/faq', {
+        title: "Frequently Asked Questions related to JobLana and JL assessment Test",
+        messages: []
+    });
 });
 
 mainRouter.get('/contact-joblana', (req, res) => {
-    res.sendFile(path.join(template, '/contact.html'));
+    res.render('main/contact', { title: "Contact JobLana | Reach out to us for JL assessment test, jobs and recruitment", messages: [] });
 });
 
 mainRouter.get('/why-joblana-jl-test', (req, res) => {

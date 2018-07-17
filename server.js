@@ -25,14 +25,14 @@ let fs = require('fs');
 
 app.set('view engine', 'ejs');
 
-app.use(session({ 
+app.use(session({
     secret: Config.SESSION_KEY,
     saveUninitialized: false,
     resave: false,
     cookie: {
         path: "/",
         httpOnly: true,
-        maxAge:  1800000,  //30 mins
+        maxAge: 1800000, //30 mins
         secure: Config.SESSION_COOKIE_SECURE,
     }
 }));
@@ -379,9 +379,6 @@ app.listen(Config.PORT || 5000, Config.HOST || "0.0.0.0", () => {
     console.log('listening on ' + (Config.HOST || "0.0.0.0") + ": " + (Config.PORT || 5000));
 });
 
-app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: __dirname });
-});
 
 app.get('/logout', (req, res) => {
     res.cookie('uniqueid', "null");
