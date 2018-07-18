@@ -8,17 +8,33 @@
 
     <% include ../../partials/pre_head %>
         <style>
-            .body {
-                background-image: url('/img/header.jpg');
-                background-position: center;
-                background-size: cover;
+            .body,.body5{
+                background-image: url('/img/team_work.png');
+                background-position:top left;
+                background-size:contain;
                 background-attachment: fixed;
                 background-repeat: no-repeat;
             }
+            .body2{
+                background-image: url('/img/form.jpg');
+            }
+            .body3{
+                background-image:url('/img/video.png');
+                background-attachment:fixed;
+            }
+            .body4{
+                background-image:url('/img/team3.png');
+            }
+            .body5{
+                background-image: url('/img/have.png'); 
+                background-repeat:repeat;
+                background-position:center;
+            }
             
             input:not([type]),
-            input[type=text]:not(.browser-default) {
-                border: none;
+            input[type=text]:not(.browser-default),
+            input[type=email]:not(.browser-default) {
+                border:solid  2px  #ccc  !important;
                 outline: none;
                 height: 3rem;
                 width: 100%;
@@ -30,8 +46,9 @@
             }
             
             input:not([type]):focus:not([readonly]),
-            input[type=text]:not(.browser-default):focus:not([readonly]) {
-                border-bottom: none;
+            input[type=text]:not(.browser-default):focus:not([readonly]),
+            input[type=email]:not(.browser-default):focus:not([readonly]) {
+                border:solid  2px  #646af2  !important;
                 -webkit-box-shadow: none;
                 box-shadow: none;
             }
@@ -45,8 +62,10 @@
             }
             
             #name:focus,
-            #name:active {
-                box-shadow: 0px 2px 0px 0px blue !important;
+            #name:active,
+            #email:focus,
+            #email:active {
+                border:solid  2px  #646af2  !important;
             }
             
             p {
@@ -68,17 +87,14 @@
     <% include ../../partials/pre_header %>
         <!-- NAVIGATION BAR END -->
         <!-- HEADER START -->
-        <div class="row body" style="overflow: hidden;">
-            <div class="col s12" style="height:100%;">
-                <div class="col s12 no-padd hide-on-small-only" style="height:100px;"></div>
-
-                <div class="col l8 s12 no-padd">
-                    <div class="col s12 no-padd hide-on-small-only" style="height: 100px;"></div>
+        <div class="row body" style="height:100%;overflow: hidden;">
+            <div style="width:100%;height:100%;display:flex;background:rgba(7, 116, 199, 0.581) !important;">
+                <div style="flex:1;margin:auto;">
+                <div class="col s12 no-padd">
                     <center>
-                        <br>
-                        <h1 style="font-size:9em;" class="hide-on-small-only red-text">
-                            <b>JOB
-                            <span class="blue-text text-darken-4 hide-on-small-only">LANA</span>
+                        <p style="font-size:1.5em;" class="grey-text text-lighten-4" id="typec">Bringing Job Seekers closer to Recruiters</p>
+                        <h1 style="font-size:6em;" class="hide-on-small-only white-text">
+                            <b>JOBLANA
                         </b>
                         </h1>
                         <h1 class="hide-on-med-and-up show-on-small-only">
@@ -86,152 +102,175 @@
                             <span class="blue-text text-darken-4">LANA</span>
                         </b>
                         </h1>
-                        <p style="font-size:2em;text-shadow: rgb(0, 0, 0) 1px 1px" class="white-text" id="typec">Bringing Job Seekers closer to Recruiters</p>
+                        <div class="col s4 offset-s4">
+                            <div class="col s6">
+                                <center>
+                                    <a class="btn btn-large z-depth-0" style="background:#30f9c3;border-radius:50px;"><b>SUBSCRIBE</b></a>
+                                </center>
+                            </div>
+                            <div class="col s6">
+                                <center>
+                                    <a class="btn btn-large z-depth-0" style="background:transparent;border-radius:50px;box-shadow:0px 0px 0px 2px #fff !important;"><b>REGISTER</b></a>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="row"></div>
                     </center>
                 </div>
-                <div class="col s12 l4">
-                    <div class="col s12" style="height:50px;"></div>
-                    <div class="col s12 no-padd">
-                        <form class="col s12 no-padd" action="/signup" method="GET">
-                            <div class="card col s12 z-depth-5" style="padding:10px;border-radius:10px;">
-
-                                <div class="input-field col s12">
-                                    <input style="padding-left:10px;margin-left:-5px;border-radius:5px;" placeholder="Your name" id="name" name="name" type="text" class="blue-text cyan lighten-5" />
-
-                                </div>
-                                <div class="input-field col s12">
-                                    <input style="padding-left:10px;margin-left:-5px;border-radius:5px;" placeholder="Email" id="email" name="email" type="text" class="blue-text cyan lighten-5" />
-                                </div>
-                                <br>
-                                <div class="input-field col s12">
-                                    <center>
-                                        <input id="GetStarted" name="getstartsubmit" style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="col s12 btn btn-large blue accent-4 z-depth-2 white-text" value="Get Started">
-                                    </center>
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
-
-            <div class="col s12 no-padd" style="height:100px;"></div>
         </div>
-        <div class="row" style="padding:0px;overflow: hidden;">
-            <div class="col l6 s12">
-                <div class="col l8 offset-l2 s12">
-                    <h1 class="center-align  grey-text text-darken-1 " style="font-size:2.8em">
-                        <b>India's Fastest skill Assessment Test for freshers job offering and recruitment</b>
-                    </h1>
-                    <br>
-                    <br>
-                    <form >
-                        <div class="input-field col l12 s12 card z-depth-3 " style="border-radius:30px; padding:10px;">
-                            <center>
-                                <input name="subscriptionemail" id="email_val" placeholder="Enter Email " type="text " class="blue-text center-align " style="padding:5px;font-size:1.5em;border:none;outline:none;">
-                            </center>
+
+        <div class="row body2" style="height:100%;overflow: hidden;margin-top:-20px">
+            <div style="width:100%;height:100%;display:flex;background:rgba(7, 116, 199, 0.581) !important;">
+                <div style="flex:1;margin:auto;">
+                        <div class="col s12 no-padd ">
+                                <div class="col s4 offset-s4 no-padd">
+                                    <form class="col s12 no-padd" action="/signup" method="GET">
+                                        <div class="card col no-padd s12 z-depth-0" style="padding:10px;border-radius:10px;">
+                                            <div class="col s12 no-padd">
+                                                <img style="width:100%;" src="/img/getstarted.jpg" alt="">
+                                            </div>
+                                            <div class="input-field col s8 offset-s2">
+                                                <input style="padding-left:10px;margin-left:-5px;" placeholder="Your name" id="name" name="name" type="text" class="blue-text cyan lighten-5" />
+            
+                                            </div>
+                                            <div class="input-field col s8 offset-s2">
+                                                <input style="padding-left:10px;margin-left:-5px;" placeholder="Email" id="email" name="email" type="text" class="blue-text cyan lighten-5" />
+                                            </div>
+                                            <br>
+                                            <div class="input-field col s12">
+                                                <center>
+                                                    <input id="GetStarted" name="getstartsubmit" style="margin-top:0px;border-radius:50px;transition:all .3s ease-in-out;background:#646af2 " type="submit" class="col s8 offset-s2 btn btn-large  z-depth-2 white-text" value="Get Started">
+                                                </center>
+                                            </div>
+            
+                                        </div>
+                                    </form>
+                                </div>            
                         </div>
-                        <div class=" col l12  s12 ">
-                            <center>
-                                <input type="button" style="margin-top:15px;border-radius:25px;transition:all .3s ease-in-out;" class="btn btn-large blue accent-4 white-text " value="Get job alerts", id="email_submit">
-                            </center>
-                            <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="row body3" style="height:100%;overflow: hidden;margin-top:-20px">
+            <div style="width:100%;height:100%;display:flex;background:rgba(7, 116, 199, 0.581) !important;">
+                <div style="flex:1;margin:auto;">
+                        <div class="col s8 offset-s2 card z-depth-5" style="overflow: hidden;padding:10px;border-radius:10px;">
+                            <div class="col s6 no-padd">
+                                <iframe class="col s12 no-padd" style="border:none;height:400px;overflow: hidden;" src="https://biteable.com/watch/embed/language-tutor-copy-1933615" allowfullscreen="true"></iframe>
+                            </div>    
+                            <div class="col s6">
+                                <div class="col s12">
+                                        <h1 style="font-size:2.2em;color: #646af2;">
+                                            <b>India's Fastest skill Assessment Test for freshers job offering and recruitment</b>
+                                        </h1>
+                                        <form class="col s12">
+                                            <div class="input-field col s12 no-padd" style="padding:10px;">
+                                                    <input name="subscriptionemail" id="email_val" placeholder="Enter Email " type="text" class="" style="padding:5px;">
+                                            </div>
+                                            <div class="col s12 no-padd">
+    
+                                                    <input type="button" style="transition:all .3s ease-in-out;background-color:#646af2;" class="btn btn-large white-text " value="Get job alerts", id="email_submit">
+                                                
+                                                <br>
+                                            </div>
+                                        </form>
+                    
+                                </div>
+                            </div> 
                         </div>
-                    </form>
-
-                </div>
-            </div>
-            <div class="row hide-on-med-and-up show-on-small-only"></div>
-            <div class="col l6 s12">
-                <iframe class="col s12" style="border:none;height:400px;overflow: hidden;" src="https://biteable.com/watch/embed/language-tutor-copy-1933615" allowfullscreen="true"></iframe>
-            </div>
-        </div>
-
-        <div class="row " style="overflow: hidden; ">
-            <div class="col s12 ">
-                <div class="grey lighten-4 " style="width:2500px;height:600px;transform:rotate(-16deg);position: relative;top:-400px;left:-150px; "></div>
-            </div>
-            <div class="col s12" style="margin-top:-600px;top:0px;position:relative; ">
-
-                <h1 class="center-align " style="font-size:5em; ">
-                    <b>What We
-                    <span class="blue-text text-darken-4 ">Do</span>
-                </b>
-                </h1>
-            </div>
-            <div class="col s12 " style="margin-top:-400px;top:0px;position:relative; ">
-                <div class="container">
-                    <div class="col l6 s12">
-                        <p class="black-text " style="font-size:1.2em;text-align:justify; ">
-                            Whether you’re a professional looking for jobs, or an employer searching for the best talents for your organisation, we’re here to help! Committed to our mission to find jobs for people they’ll love and connect companies with the talent they need.
-
-                        </p>
-                        <p class="black-text " style="font-size:1.2em;text-align:justify; ">
-                            For job-seekers, Joblana provides a platform to build your CV and help you to get a call from hundreds of recruiters based on your JL Test score plus you have access to apply for regular job openings from our partner companies that dramatically improving
-                            your chances of getting your dream job, with much less effort.
-                        </p>
-                        <p class="black-text " style="font-size:1.2em;text-align:justify; ">
-                            For recruiters, Joblana provide best way to reach out more than 40,000+ qualified candidates evaluated using standardised evaluation criteria with the ease of JL Test and getting the best candidate without any of the hassle but with huge savings in cost
-                            and effort.
-
-                        </p>
-
-                    </div>
-                    <div class="col l5 offset-l1 s12">
-                        <img class="hoverable " style="width:100%;border:10px solid #ccc;" src="img/image1.png " alt="What JobLana do?
-                    What is JL test?
-                    Best Assessment Test
-                    Freshers jobs in India
-                    Recruiting companies in india">
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row " style="overflow: hidden; ">
-            <div class="col s12 ">
-                <div class="blue lighten-4 " style="width:2500px;height:400px;transform:rotate(16deg);position: relative;top:-100px;left:-100px; "></div>
-            </div>
-
-            <div class="col s12 hide-on-med-and-up show-on-small-only" style="height:100px;"></div>
-            <div class="col s12 " style="margin-top:-300px;top:0px;position:relative; ">
-                <div>
-                    <div class="col l4 s12 no-padd">
-                        <center>
-                            <img class="z-depth-1" style="width:83%; border:20px solid #fff; " src="img/vacancies.png" alt=" IT jobs, sales & marketing jobs, BPO jobs , accounting jobs , digital marketing jobs, operation jobs, HR jobs, office support jobs, freshers jobs after 12th ,  freshers jobs after bba,  freshers jobs after bca,  freshers jobs after graduation,  freshers jobs after btech,  freshers jobs after b.com,  freshers jobs after m.com, ">
-                            <h5 class="ui label massive white lighten-4 indigo-text text-lighten-2 ">5K+ Existing Vacancies</h5>
-                        </center>
-                    </div>
-                    <div class="col l4 s12 no-padd">
-                        <center>
-                            <img class="z-depth-1" style="width:100%; border:20px solid #fff;" src="img/jobseekers.png" alt="Sales and marketing Jobs in india
-                        IT jobs in india
-                        BPO jobs in india
-                        HR jobs in india
-                        Operation jobs in india
-                        accounting jobs in india
-                        office support jobs in india
-                        digital marketing jobs in india
-                         ">
-                            <h5 class="ui label massive white indigo-text text-lighten-2 ">100K+ Job applicants</h5>
-                        </center>
-                    </div>
-                    <div class="col l4 s12 no-padd">
-                        <center>
-                            <img class="z-depth-1" style="width:87%; border:20px solid #fff; " src="img/vida_hospitality_hotel_jobs_miami.jpg" alt="Freshers jobs in India
-                        Freshers jobs in Delhi
-                        Freshers jobs in Bangalore
-                        Freshers jobs in Pune
-                        Freshers jobs in Mumbai
-                        Freshers jobs in Chennai
-                        Job vacancy in india
-                        recruitment agency in india ">
-                            <h5 class="ui label massive white indigo-text text-lighten-2 ">500+ Recruiters</h5>
-                        </center>
-                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="row body4" style="height:100%;overflow: hidden;margin-top:-20px">
+                <div style="width:100%;height:100%;display:flex;background:rgba(7, 116, 199, 0.581) !important;">
+                    <div style="flex:1;margin:auto;">
+                        <div class="col s12 no-padd">
+
+                                    <h1 class="center-align white-text" style="font-size:3em; ">
+                                        What We Do
+                                    </h1>
+                         </div>
+                        <div class="col s12">
+                                    <div class="col s8 offset-s2 card white" style="background-image:url('/img/team3.png');background-position:bottom right;background-size:400px 300px;background-repeat: no-repeat;mix-blend-mode:luminosity;">
+                                            <div class="col s6">
+                                                    <img style="width:100%;" src="img/image1.png " alt="What JobLana do?
+                                                    What is JL test?
+                                                    Best Assessment Test
+                                                    Freshers jobs in India
+                                                    Recruiting companies in india">
+                                                    </div>
+                                        <div class="col s6">
+                                            <p class="red-text " style="font-size:1em;text-align:justify; ">
+                                                Whether you’re a professional looking for jobs, or an employer searching for the best talents for your organisation, we’re here to help! Committed to our mission to find jobs for people they’ll love and connect companies with the talent they need.
+                    
+                                            </p>
+                                            <p class="red-text " style="font-size:1em;text-align:justify; ">
+                                                For job-seekers, Joblana provides a platform to build your CV and help you to get a call from hundreds of recruiters based on your JL Test score plus you have access to apply for regular job openings from our partner companies that dramatically improving
+                                                your chances of getting your dream job, with much less effort.
+                                            </p>
+                                            <p class="red-text " style="font-size:1em;text-align:justify;">
+                                                For recruiters, Joblana provide best way to reach out more than 40,000+ qualified candidates evaluated using standardised evaluation criteria with the ease of JL Test and getting the best candidate without any of the hassle but with huge savings in cost
+                                                and effort.
+                    
+                                            </p>
+                    
+                                        </div>
+                                        
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="row body5" style="height:100%;overflow: hidden;margin-top:-20px">
+            <div style="width:100%;height:100%;display:flex;background:rgba(7, 116, 199, 0.581) !important;">
+                <div style="flex:1;margin:auto;">
+                        <div class="col s10 offset-s1">
+                                <div>
+                                    <div class="col l4 s12">
+                                        <center>
+                                            <div class="card">
+                                                <div class="col s12 no-padd" style="height:200px;overflow-hidden;">
+                                                    <img style="width:100%;"src="img/vacancies.png" alt=" IT jobs, sales & marketing jobs, BPO jobs , accounting jobs , digital marketing jobs, operation jobs, HR jobs, office support jobs, freshers jobs after 12th ,  freshers jobs after bba,  freshers jobs after bca,  freshers jobs after graduation,  freshers jobs after btech,  freshers jobs after b.com,  freshers jobs after m.com, ">
+                                                </div>
+                                                <img class="z-depth-1" style="width:83%; border:20px solid #fff; " src="img/vacancies.png" alt=" IT jobs, sales & marketing jobs, BPO jobs , accounting jobs , digital marketing jobs, operation jobs, HR jobs, office support jobs, freshers jobs after 12th ,  freshers jobs after bba,  freshers jobs after bca,  freshers jobs after graduation,  freshers jobs after btech,  freshers jobs after b.com,  freshers jobs after m.com, ">
+                                                <h5 class="ui label massive white lighten-4 indigo-text text-lighten-2 ">5K+ Existing Vacancies</h5>
+                                            </div>
+                                        </center>
+                                    </div>
+                                    <div class="col l4 s12">
+                                        <center>
+                                            <img class="z-depth-1" style="width:100%; border:20px solid #fff;" src="img/jobseekers.png" alt="Sales and marketing Jobs in india
+                                        IT jobs in india
+                                        BPO jobs in india
+                                        HR jobs in india
+                                        Operation jobs in india
+                                        accounting jobs in india
+                                        office support jobs in indiadigital marketing jobs in india">
+                                            <h5 class="ui label massive white indigo-text text-lighten-2 ">100K+ Job applicants</h5>
+                                        </center>
+                                    </div>
+                                    <div class="col l4 s12">
+                                        <center>
+                                            <div class="card">
+                                                <img class="z-depth-1" style="width:87%; border:20px solid #fff; " src="img/vida_hospitality_hotel_jobs_miami.jpg" alt="Freshers jobs in India Freshers jobs in Delhi Freshers jobs in Bangalore Freshers jobs in Pune Freshers jobs in Mumbai                                        Freshers jobs in Chennai Job vacancy in indiarecruitment agency in india ">
+                                                <h5 class="ui label massive white indigo-text text-lighten-2 ">500+ Recruiters</h5>
+                                            </div>
+                                        </center>
+                                    </div>
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        
         <div class="row">
             <div class="col s12 ">
                 <hr>
