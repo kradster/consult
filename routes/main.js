@@ -101,7 +101,6 @@ mainRouter.get('/office-support-jobs-for-freshers', (req, res) => {
 });
 
 mainRouter.get('/calling-jobs-for-freshers', (req, res) => {
-<<<<<<< Updated upstream
     res.render('main/calljob', { title: "Call Jobs", messages: [] });
 });
 
@@ -119,25 +118,6 @@ mainRouter.get('/terms-and-conditions', (req, res) => {
 
 mainRouter.get('/job-opportunities', (req, res) => {
     res.render('main/comlist', { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana", messages: [] });
-=======
-    res.render('main/caljob', { title: ""});
-});
-
-mainRouter.get('/operations-jobs-for-freshers', (req, res) => {
-    res.render('main/opjob', { title: ""});
-});
-
-mainRouter.get('/privacy-policy', (req, res) => {
-    res.render('main/policy', { title: ""});
-});
-
-mainRouter.get('/terms-and-conditions', (req, res) => {
-    res.render('main/terms', { title: ""});
-});
-
-mainRouter.get('/job-opportunities', (req, res) => {
-    res.render('main/comlist', { title: ""});
->>>>>>> Stashed changes
 });
 
 

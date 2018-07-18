@@ -2,6 +2,11 @@ const express = require('express');
 let bcrypt = require('bcrypt-nodejs');
 var authRouter = express.Router();
 var userController = require('../controllers/user')
+const sqlite3 = require('sqlite3').verbose();
+
+let db = new sqlite3.Database('database.db', err => {
+    if (err) return console.error(err.message);
+});
 
 function isauthenticated(req, res, next){
     if (!req.session.user) {
@@ -10,8 +15,23 @@ function isauthenticated(req, res, next){
     }
     next();
 }
-authRouter.get('/dashboard', isauthenticated, (req, res) => {
-    res.sendFile('/templates/profile.html', { root: __dirname });
+authRouter.get('/profile', isauthenticated, (req, res) => {
+    let dct = { title: "Dashboard"};
+    console.log(dct);
+    console.log('\n')
+    userController.userdata(req.session.user, (err, response) =>{
+        console.log('response', response);
+        if (response.success == true){
+            dct.data = response.data;
+            dct.data["_removetags"] = true;
+            return res.render("auth/profile", dct);
+        }
+        else{
+            res.locals.messages.push([response.message, "red"]);
+            return res.redirect('/')
+        }
+    })
+    
 });
 
 authRouter.post('/showcv', isauthenticated, (req, res) => {
@@ -87,23 +107,27 @@ authRouter.post('/signup', (req, res) => {
 authRouter.post('/login', (req, res) => {
 
     console.log('trying to log in...');
-    db.get("SELECT * FROM Users WHERE email = ?", req.body.email, (err, userrow) => {
-        if (!userrow) {
-            console.log("0 rows found, no user");
-            res.cookie('userid', null);
-            return res.render('alert', { title: "One or more fields are incorrect", link: "/login", linkname: "Go Back" });
+    if (!req.body.email){
+        res.locals.messages.push(["One or more fields are incorrect", "red"])
+        return res.redirect('/login');
+    }
+    userController.userlogin(req.body.email, req.body.password, (err, response) => {
+        if(err){
+            console.err(err.message);
+            return
         }
-        //console.log(row);
-        if (!bcrypt.compareSync(req.body.password, userrow.password))
-            return res.render('alert', { title: "Incorrect password", link: "/login", linkname: "Go Back" });
-
-        e = { expires: new Date(Date.now() + 1000 * 60 * 24) };
-
-        req.session.user = userrow.uniqueid;
-        req.session.email = userrow.email;
-        console.log('Logged in');
-        res.cookie('uniqueid', userrow.uniqueid, e);
-        res.redirect('/profile');
+        if (response.success == false){
+            res.locals.messages.push([response.message, "red"])
+            return res.redirect('/login');
+        } 
+        if (!bcrypt.compareSync(req.body.password, response.user.password)){
+            res.locals.messages.push(["Incorrect password", "red"])
+            return res.redirect('/login');
+        }
+        req.session.user = response.user.uniqueid;
+        req.session.email = response.user.email;
+        res.locals.messages.push(["Successfully Logged in", "green"])
+        return res.redirect('/user/profile');
     });
     //res.send('TODO');
 });
@@ -152,23 +176,6 @@ authRouter.get('/getcv', (req, res) => {
         }
         console.log("Fetching cv details for", req.session.user);
         return res.send({ success: true, data: row });
-    });
-});
-
-authRouter.get('/profile', isauthenticated, (req, res) => {
-    db.get("SELECT * FROM Users WHERE email = ?", req.session.email, (err, userrow) => {
-        if (err) return console.log(err);
-        db.get('SELECT * FROM CV WHERE uniqueid = ?', userrow.uniqueid, (err, cvrow) => {
-            if (err) console.log(err);
-            if (!cvrow) return res.render('profile', {});
-            data = cvrow;
-            data["contactno"] = userrow.phoneno;
-            data["verified"] = userrow.verified == "yes" ? "E-mail is verified." : "E-mail not verified. <a href='/resendemail'>Resend verification E-mail</a>";
-            //  console.log(cvrow);
-            data["_removetags"] = true;
-            console.log(data);
-            return res.render('profile', data);
-        });
     });
 });
 
