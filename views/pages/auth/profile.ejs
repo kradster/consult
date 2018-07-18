@@ -16,612 +16,717 @@
 
     <!-- NAVIGATION BAR START -->
     <% include ../../partials/post_header %>
-    <!-- NAVIGATION BAR END -->
+        <!-- NAVIGATION BAR END -->
 
-    <!-- USER BANNER-->
-    <style>
-        .profile-active {
-            color: black !important;
-            border-color: #000 !important;
-        }
-        
-        .upload-form {
-            transition: all .3s ease-in-out !important;
-            opacity: 0;
-        }
-        
-        .mypic-con:hover .upload-form {
-            opacity: 1;
-        }
-    </style>
+        <!-- USER BANNER-->
+        <style>
+            .profile-active {
+                color: black !important;
+                border-color: #000 !important;
+            }
+            
+            .upload-form {
+                transition: all .3s ease-in-out !important;
+                opacity: 0;
+            }
+            
+            .mypic-con:hover .upload-form {
+                opacity: 1;
+            }
+        </style>
 
-    <div class="row" style="height:50px;"></div>
-    <div class="row no-padd">
+        <div class="row" style="height:50px;"></div>
+        <div class="row no-padd">
 
-        <div class="col s12 no-padd animated fadeIn">
-            <div ng-controller="controller">
-                <div class="col l2 m3 s12 no-padd">
-                    <center>
-                        <br>
-                        <div class="black mypic-con" style="width:150px; height:150px; overflow:hidden;border-radius:100%;display:flex;position: relative;">
-                            <img id="myimg" style="width:100%;margin:auto;" src="/img/profilepic.jpg" alt="">
+            <div class="col s12 no-padd animated fadeIn">
+                <div ng-controller="controller">
+                    <div class="col l2 m3 s12 no-padd">
+                        <center>
                             <br>
-                            <div class="upload-form" style="width:100%;height:100%;margin:auto;position: absolute;background-color:rgba(0,0,0,0.5);">
+                            <div class="black mypic-con" style="width:150px; height:150px; overflow:hidden;border-radius:100%;display:flex;position: relative;">
+                                <img id="myimg" style="width:100%;margin:auto;" src="/img/profilepic.jpg" alt="">
+                                <br>
+                                <div class="upload-form" style="width:100%;height:100%;margin:auto;position: absolute;background-color:rgba(0,0,0,0.5);">
 
-                                <form action="/picupload" method="GET">
-                                    <input name="pic" type="file" id="picfile" style="display:none" onchange="previewFile()">
-                                    <label id="plab" for="picfile" class="ui button white mini" style="margin-top:50px;">Choose File</label><br>
-                                    <div id="panel" style="display:none;margin-top:50px;">
-                                        <div style="display:flex;">
-                                            <input style="flex: 1" id="psub" type="submit" class="ui button mini amber" value="upload"><br>
-                                            <input style="flex: 1" id="pcan" type="button" class="ui button mini red" value="cancel">
+                                    <form action="/picupload" method="GET">
+                                        <input name="pic" type="file" id="picfile" style="display:none" onchange="previewFile()">
+                                        <label id="plab" for="picfile" class="ui button white mini" style="margin-top:50px;">Choose File</label><br>
+                                        <div id="panel" style="display:none;margin-top:50px;">
+                                            <div style="display:flex;">
+                                                <input style="flex: 1" id="psub" type="submit" class="ui button mini amber" value="upload"><br>
+                                                <input style="flex: 1" id="pcan" type="button" class="ui button mini red" value="cancel">
+                                            </div>
+
                                         </div>
 
-                                    </div>
-
-                                </form>
+                                    </form>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="col l10 m9 s12 no-padd">
+                        <div class="col s12">
+                            <h5>
+                                <b id="u_name"><%= data.fullname %></b>
+                            </h5>
+                            <div class="col l3 m4 s7 no-padd">
+                                <span id="u_email" class="blue-text"><%= data.email %></span>
+                                <br>
+                                <%= data.verified %>
+                            </div>
+                            <div class="col l2 m2 s3 no-padd">
+                                <span id="u_city"><%= data.city %></span>
+                            </div>
+                            <div class="col l2 m3 s2 no-padd">
+                                <span id="u_edu"><%= data.state %></span>
                             </div>
                         </div>
-                    </center>
-                </div>
-                <div class="col l10 m9 s12 no-padd">
-                    <div class="col s12">
-                        <h5>
-                            <b id="u_name">{{ fullname }}</b>
-                        </h5>
-                        <div class="col l3 m4 s7 no-padd">
-                            <span id="u_email" class="blue-text">{{ email }}</span>
-                            <br> {{ verified }}
-                        </div>
-                        <div class="col l2 m2 s3 no-padd">
-                            <span id="u_city">{{ city }}</span>
-                        </div>
-                        <div class="col l2 m3 s2 no-padd">
-                            <span id="u_edu">{{ state }}</span>
-                        </div>
-                    </div>
-                    <div class="col s12 no-padd">
-                        <div class=" hide-on-small-only">
-                            <div class="col s12 no-padd">
-                                <br>
-                                <a id="l3" style="border: 1px solid #aaa;" href="/upcoming-jl-test" class="z-depth-0 btn white grey-text grey lighten-4">
-                                    <b>Schedule Test</b>
-                                </a>
-                                <a id="l2" style="border: 1px solid #aaa;" href='/profile' data-target='dropdown1' class=" dropdown-trigger z-depth-0 btn white grey-text grey lighten-4">
-                                    <b>JL TEST</b>
-                                </a>
-                                <!-- Dropdown Structure -->
-                                <ul id='dropdown1' class='dropdown-content'>
+                        <div class="col s12 no-padd">
+                            <div class=" hide-on-small-only">
+                                <div class="col s12 no-padd">
+                                    <br>
+                                    <a id="l3" style="border: 1px solid #aaa;" href="/upcoming-jl-test" class="z-depth-0 btn white grey-text grey lighten-4">
+                                        <b>Schedule Test</b>
+                                    </a>
+                                    <a id="l2" style="border: 1px solid #aaa;" href="<%- link('profile', 'user') %>" data-target='dropdown1' class=" dropdown-trigger z-depth-0 btn white grey-text grey lighten-4">
+                                        <b>JL TEST</b>
+                                    </a>
+                                    <!-- Dropdown Structure -->
+                                    <ul id='dropdown1' class='dropdown-content'>
 
-                                    <li>
-                                        <a onclick="M.toast({html: 'You haven\'t given the JL Test yet.' })">Admit Card</a>
-                                    </li>
-                                </ul>
-                                <!-- <a id="l4" style="border: 1px solid #aaa;" href="../templates/myjob.html" class="z-depth-0 btn white grey-text grey lighten-4">
+                                        <li>
+                                            <a onclick="M.toast({html: 'You haven\'t given the JL Test yet.' })">Admit Card</a>
+                                        </li>
+                                    </ul>
+                                    <!-- <a id="l4" style="border: 1px solid #aaa;" href="../templates/myjob.html" class="z-depth-0 btn white grey-text grey lighten-4">
                                     <b>My Job</b>
                                 </a> -->
-                                <a id="l6" style="border: 1px solid #aaa;" href="/templates/makecv.html" class="z-depth-0 btn green accent-4">
-                                    <b>EDIT PROFILE</b>
-                                </a>
-                                <form class="z-depth-0 btn white" action="/picupload" method="GET" enctype="multipart/form-data">
-                                    <input name="resume" type="file" id="resume" style="display:none" onchange="previewFile()">
-                                    <label id="resume-label" for="resume" class="ui button blue white-text">
+                                    <a id="l6" style="border: 1px solid #aaa;" href="/templates/makecv.html" class="z-depth-0 btn green accent-4">
+                                        <b>EDIT PROFILE</b>
+                                    </a>
+                                    <form class="z-depth-0 btn white" action="/picupload" method="GET" enctype="multipart/form-data">
+                                        <input name="resume" type="file" id="resume" style="display:none" onchange="previewFile()">
+                                        <label id="resume-label" for="resume" class="ui button blue white-text">
                                                         Upload Resume
                                                         <i id="f1" class="fas fa-circle-notch uploadIn" style="display:none"></i>
                                                         <i id="f2" class="fas fa-check" style="display:none"></i>
                                                         <i id="f3" class="fas fa-times" style="display:none"></i>
                                                     </label>
-                                </form>
+                                    </form>
 
-                            </div><br>
+                                </div><br>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-
-    </div>
-    <!-- USER BANNER END-->
+        <!-- USER BANNER END-->
 
 
 
-    <div class="row no-padd grd">
-        <div class="row no-padd">
-            <div class="col  s12 card no-padd z-depth-0">
-                <div class="col s12 grey lighten-4 no-padd">
-                    <h5 style="padding-left:10px;">
-                        <b>My Profile</b>
-                    </h5>
-                </div>
-                <div class="col s12 no-padd">
+        <div class="row no-padd grd">
+            <div class="row no-padd">
+                <div class="col  s12 card no-padd z-depth-0">
+                    <div class="col s12 grey lighten-4 no-padd">
+                        <h5 style="padding-left:10px;">
+                            <b>My Profile</b>
+                        </h5>
+                    </div>
                     <div class="col s12 no-padd">
-                        <button style="border-radius:0px;" id="tab1" class="no-padd col l3 s12 btn z-depth-0 light-blue white-text">Personal Details</button>
-                        <button style="border-radius:0px;" id="tab2" class="no-padd col l3 s12 btn z-depth-0 blue">Education</button>
-                        <button style="border-radius:0px;" id="tab3" class="no-padd col l3 s12 btn z-depth-0 green accent-4">Technical</button>
-                        <button style="border-radius:0px;" id="tab4" class="no-padd col l3 s12 btn z-depth-0 red accent-4">View CV</button>
-                    </div>
+                        <div class="col s12 no-padd">
+                            <button style="border-radius:0px;" id="tab1" class="no-padd col l3 s12 btn z-depth-0 light-blue white-text">Personal Details</button>
+                            <button style="border-radius:0px;" id="tab2" class="no-padd col l3 s12 btn z-depth-0 blue">Education</button>
+                            <button style="border-radius:0px;" id="tab3" class="no-padd col l3 s12 btn z-depth-0 green accent-4">Technical</button>
+                            <button style="border-radius:0px;" id="tab4" class="no-padd col l3 s12 btn z-depth-0 red accent-4">View CV</button>
+                        </div>
 
-                    <div id="panel1" class="col s12 light-blue">
-                        <br>
-                        <div class="col l10 offset-l1 s12 white">
-                            <h5>
-                                <b>PERSONAL DETAILS</b>
-                            </h5>
+                        <div id="panel1" class="col s12 light-blue">
                             <br>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Name</b>
-                                </div>
-                                <div class="col s8">{{ fullname }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Date of birth</b>
-                                </div>
-                                <div class="col s8">{{ dob }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Gender</b>
-                                </div>
-                                <div class="col s8">{{ gender }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Email id</b>
-                                </div>
-                                <div class="col s8">{{ email }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Contact no</b>
-                                </div>
-                                <div class="col s8">{{ contactno }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Aadhar no</b>
-                                </div>
-                                <div class="col s8">{{ aadharno }}</div>
-                            </div>
-                            <div class="row"></div>
-                        </div>
-                        <div class="row"></div>
-                        <div class="col l10 offset-l1 s12 white">
-                            <h5>
-                                <b>ADDRESS</b>
-                            </h5>
-                            <br>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Address</b>
-                                </div>
-                                <div class="col s8">{{ fulladdress }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>State</b>
-                                </div>
-                                <div class="col s8">{{ state }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>City</b>
-                                </div>
-                                <div class="col s8">{{ city }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>ZIP CODE</b>
-                                </div>
-                                <div class="col s8">{{ zipcode }}</div>
-                            </div>
-                            <div class="row"></div>
-                        </div>
-                        <div class="row"></div>
-                    </div>
-                    <div id="panel2" class="col s12 blue" style="display:none;">
-                        <br>
-                        <div class="col l10 offset-l1 s12 white">
-                            <h5>
-                                <b>EDUCATION DETAILS</b>
-                            </h5>
-                            <div class="divider"></div>
-                            <br>
-                            <h6>
-                                <b>10TH</b>
-                            </h6>
-                            <br>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>School Name</b>
-                                </div>
-                                <div class="col s8">{{ school10 }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Board</b>
-                                </div>
-                                <div class="col s8">{{ board10 }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Passing Year</b>
-                                </div>
-                                <div class="col s8">{{ year10 }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Marks</b>
-                                </div>
-                                <div class="col s8">{{ marks10 }}</div>
-                            </div>
-                            <div class="row"></div>
-                        </div>
-                        <div class="row"></div>
-                        <div class="col l10 offset-l1 s12 white">
-                            <h5>
-                                <b>EDUCATION DETAILS</b>
-                            </h5>
-                            <div class="divider"></div>
-                            <br>
-                            <h6>
-                                <b>12TH</b>
-                            </h6>
-                            <br>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>School Name</b>
-                                </div>
-                                <div class="col s8">{{ school12 }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Board</b>
-                                </div>
-                                <div class="col s8">{{ board12 }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Passing Year</b>
-                                </div>
-                                <div class="col s8">{{ year12 }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Marks</b>
-                                </div>
-                                <div class="col s8">{{ marks12 }}</div>
-                            </div>
-                            <div class="row"></div>
-                        </div>
-                        <div class="row"></div>
-
-                        <div class="col l10 offset-l1 s12 white">
-                            <h5>
-                                <b>College</b>
-                            </h5>
-                            <br>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>College Name</b>
-                                </div>
-                                <div class="col s8">{{ collegename }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Board</b>
-                                </div>
-                                <div class="col s8">{{ collegeboard }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Passing Year</b>
-                                </div>
-                                <div class="col s8">{{ collegeyear }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Marks</b>
-                                </div>
-                                <div class="col s8">{{ collegemarks }}</div>
-                            </div>
-                            <div class="row"></div>
-                        </div>
-                        <div class="row"></div>
-
-                    </div>
-
-                    <div id="panel3" class="col s12 green accent-4" style="display:none;">
-                        <br>
-                        <div class="col l10 offset-l1 s12 white">
-                            <h5>
-                                <b>TECHNICAL DETAILS</b>
-                            </h5>
-                            <br>
-                            <div class="divider"></div>
-                            <br>
-                            <h6>
-                                <b>Project Details</b>
-                            </h6>
-                            <br>
-                            <div id="cont">
+                            <div class="col l10 offset-l1 s12 white">
+                                <h5>
+                                    <b>PERSONAL DETAILS</b>
+                                </h5>
+                                <br>
                                 <div class="col s12">
                                     <div class="col s3">
-                                        <b>Project Name</b>
+                                        <b>Name</b>
                                     </div>
-                                    <div class="col s8" id="proj">{{ projects }}</div>
+                                    <div class="col s8">
+                                        <%= data.fullname %>
+                                    </div>
                                 </div>
                                 <div class="row"></div>
                                 <div class="col s12">
                                     <div class="col s3">
-                                        <b>Institute/Organisation</b>
+                                        <b>Date of birth</b>
                                     </div>
-                                    <div class="col s8">{{ projectinstitute }}</div>
+                                    <div class="col s8">
+                                        <%= data.dob %>
+                                    </div>
                                 </div>
                                 <div class="row"></div>
                                 <div class="col s12">
                                     <div class="col s3">
-                                        <b>Duration</b>
+                                        <b>Gender</b>
                                     </div>
-                                    <div class="col s8">{{ projectstartdate }} to {{ projectenddate }}</div>
+                                    <div class="col s8">
+                                        <%= data.gender %>
+                                    </div>
                                 </div>
-                                <div class="row"></div>
                                 <div class="row"></div>
                                 <div class="col s12">
                                     <div class="col s3">
-                                        <b>ProJect Details</b>
+                                        <b>Email id</b>
                                     </div>
-                                    <div class="col s8">{{ projectdesc }}</div>
+                                    <div class="col s8">
+                                        <%= data.email %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Contact no</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.contactno %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Aadhar no</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.aadharno %>
+                                    </div>
                                 </div>
                                 <div class="row"></div>
                             </div>
-                        </div>
-                        <div class="row"></div>
-                        <div class="col l10 offset-l1 s12 white">
-                            <h5>
-                                <b>TECHNICAL SKILLS</b>
-                            </h5>
-                            <br>
-                            <div class="col s12">
-                                <div class="ui label">{{ skills }}</div>
-                            </div>
                             <div class="row"></div>
-                        </div>
-                        <div class="row"></div>
-                        <div class="col l10  offset-l1 s12 white">
-                            <h5>
-                                <b>JOB EXPECTATIONS</b>
-                            </h5>
-                            <br>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Available for work after</b>
+                            <div class="col l10 offset-l1 s12 white">
+                                <h5>
+                                    <b>ADDRESS</b>
+                                </h5>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Address</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.fulladdress %>
+                                    </div>
                                 </div>
-                                <div class="col s8">{{ jobavailability }}</div>
-                            </div>
-                            <div class="row"></div>
-                            <div class="row"></div>
-                            <div class="col s12">
-                                <div class="col s3">
-                                    <b>Preferred City</b>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>State</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.state %>
+                                    </div>
                                 </div>
-                                <div class="col s8">{{ joblocation }}</div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>City</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.city %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>ZIP CODE</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.zipcode %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
                             </div>
-
                             <div class="row"></div>
                         </div>
+                        <div id="panel2" class="col s12 blue" style="display:none;">
+                            <br>
+                            <div class="col l10 offset-l1 s12 white">
+                                <h5>
+                                    <b>EDUCATION DETAILS</b>
+                                </h5>
+                                <div class="divider"></div>
+                                <br>
+                                <h6>
+                                    <b>10TH</b>
+                                </h6>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>School Name</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.school10 %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Board</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.board10 %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Passing Year</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.year10 %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Marks</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.marks10 %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col l10 offset-l1 s12 white">
+                                <h5>
+                                    <b>EDUCATION DETAILS</b>
+                                </h5>
+                                <div class="divider"></div>
+                                <br>
+                                <h6>
+                                    <b>12TH</b>
+                                </h6>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>School Name</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.school12 %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Board</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.board12 %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Passing Year</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.year12 %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Marks</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.marks12 %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
 
-                        <div class="row"></div>
-                    </div>
-                    <div id="panel4" class="col s12 amber accent-4" style="display:none;">
-                        <div class="row grey lighten-2">
-                            <div class="col s12 grey lighten-2" style="height:50px;"></div>
-                            <div class="col s8 offset-s2 card" style="border-radius:5px;">
-                                <div id="resumebox" class="col s10 offset-s1">
-                                    <br>
-                                    <br>
-                                    <h4>
-                                        <b>{{ fullname }}</b>
-                                    </h4>
-                                    <div class="ui label blue-text blue">{{ email }}</div>
-                                    <div>{{ contactno }}</div>
-                                    <div>{{ city }}, {{ state }}</div>
-                                    <br>
-                                    <div class="divider"></div>
-                                    <br>
-                                    <div class="col s12 no-padd">
+                            <div class="col l10 offset-l1 s12 white">
+                                <h5>
+                                    <b>College</b>
+                                </h5>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>College Name</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.collegename %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Board</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.collegeboard %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Passing Year</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.collegeyear %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Marks</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.collegemarks %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
+
+                        </div>
+
+                        <div id="panel3" class="col s12 green accent-4" style="display:none;">
+                            <br>
+                            <div class="col l10 offset-l1 s12 white">
+                                <h5>
+                                    <b>TECHNICAL DETAILS</b>
+                                </h5>
+                                <br>
+                                <div class="divider"></div>
+                                <br>
+                                <h6>
+                                    <b>Project Details</b>
+                                </h6>
+                                <br>
+                                <div id="cont">
+                                    <div class="col s12">
                                         <div class="col s3">
-                                            <b style="font-size:1.5em">EDUCATION</b>
+                                            <b>Project Name</b>
                                         </div>
-                                        <div class="col s9">
-                                            <div>High School</div>
-                                            <div>{{ school10 }}</div>
-                                            <div>{{ board10 }}</div>
-                                            <div>{{ marks10 }}</div>
-                                            <div>{{ course10 }}</div>
-                                            <br>
-                                            <div>Senior Secondary School</div>
-                                            <div>{{ school12 }}</div>
-                                            <div>{{ board12 }}</div>
-                                            <div>{{ marks12 }}</div>
-                                            <div>{{ course12 }}</div>
-                                            <br>
-                                            <div>
-                                                <a data-html2canvas-ignore id="r1" style="font-family: sans-serif;" href="/makecv/{{ uniqueid }}">Add More+</a>
-                                            </div>
+                                        <div class="col s8" id="proj">
+                                            <%= data.projects %>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3">
+                                            <b>Institute/Organisation</b>
+                                        </div>
+                                        <div class="col s8">
+                                            <%= data.projectinstitute %>
+                                        </div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3">
+                                            <b>Duration</b>
+                                        </div>
+                                        <div class="col s8">
+                                            <%= data.projectstartdate %> to
+                                                <%= data.projectenddate %>
+                                        </div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="row"></div>
+                                    <div class="col s12">
+                                        <div class="col s3">
+                                            <b>ProJect Details</b>
+                                        </div>
+                                        <div class="col s8">
+                                            <%= data.projectdesc %>
+                                        </div>
+                                    </div>
+                                    <div class="row"></div>
+                                </div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col l10 offset-l1 s12 white">
+                                <h5>
+                                    <b>TECHNICAL SKILLS</b>
+                                </h5>
+                                <br>
+                                <div class="col s12">
+                                    <div class="ui label">
+                                        <%= data.skills %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="row"></div>
+                            <div class="col l10  offset-l1 s12 white">
+                                <h5>
+                                    <b>JOB EXPECTATIONS</b>
+                                </h5>
+                                <br>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Available for work after</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.jobavailability %>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                                <div class="row"></div>
+                                <div class="col s12">
+                                    <div class="col s3">
+                                        <b>Preferred City</b>
+                                    </div>
+                                    <div class="col s8">
+                                        <%= data.joblocation %>
+                                    </div>
+                                </div>
 
-                                    </div>
-                                    <div class="col s12 no-padd">
+                                <div class="row"></div>
+                            </div>
+
+                            <div class="row"></div>
+                        </div>
+                        <div id="panel4" class="col s12 amber accent-4" style="display:none;">
+                            <div class="row grey lighten-2">
+                                <div class="col s12 grey lighten-2" style="height:50px;"></div>
+                                <div class="col s8 offset-s2 card" style="border-radius:5px;">
+                                    <div id="resumebox" class="col s10 offset-s1">
+                                        <br>
+                                        <br>
+                                        <h4>
+                                            <b><%= data.fullname %></b>
+                                        </h4>
+                                        <div class="ui label blue-text blue">
+                                            <%= data.email %>
+                                        </div>
+                                        <div>
+                                            <%= data.contactno %>
+                                        </div>
+                                        <div>
+                                            <%= data.city %>,
+                                                <%= data.state %>
+                                        </div>
+                                        <br>
                                         <div class="divider"></div>
                                         <br>
-                                        <div class="col s3">
-                                            <b style="font-size:1.5em">COLLEGE EDUCATION</b>
+                                        <div class="col s12 no-padd">
+                                            <div class="col s3">
+                                                <b style="font-size:1.5em">EDUCATION</b>
+                                            </div>
+                                            <div class="col s9">
+                                                <div>High School</div>
+                                                <div>
+                                                    <%= data.school10 %>
+                                                </div>
+                                                <div>
+                                                    <%= data.board10 %>
+                                                </div>
+                                                <div>
+                                                    <%= data.marks10 %>
+                                                </div>
+                                                <div>
+                                                    <%= data.course10 %>
+                                                </div>
+                                                <br>
+                                                <div>Senior Secondary School</div>
+                                                <div>
+                                                    <%= data.school12 %>
+                                                </div>
+                                                <div>
+                                                    <%= data.board12 %>
+                                                </div>
+                                                <div>
+                                                    <%= data.marks12 %>
+                                                </div>
+                                                <div>
+                                                    <%= data.course12 %>
+                                                </div>
+                                                <br>
+                                                <div>
+                                                    <a data-html2canvas-ignore id="r1" style="font-family: sans-serif;" href="/makecv/<%= data.uniqueid %>">Add More+</a>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col s9">
-                                            <div class="col s12 no-padd">
-                                                <div>{{ collegename }}</div>
-                                                <div>{{ collegeboard }}</div>
-                                                <div>{{ collegemarks }}</div>
-                                                <br>
-                                            </div>
-                                            <div class="col s12 no-padd">
-                                                <div>POST GRADUATION DETAILS</div>
-                                                <div>{{ postcollegename }}</div>
-                                                <div>{{ postcollegeboard }}</div>
-                                                <div>{{ postcollegecourse }}</div>
-                                                <div>{{ postcollegemarks }}</div>
-                                                <br>
-                                            </div>
+                                        <div>
 
-                                            <div class="col s12 no-padd">
-                                                <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/{{ uniqueid }}">Add More+</a>
-
+                                        </div>
+                                        <div class="col s12 no-padd">
+                                            <div class="divider"></div>
+                                            <br>
+                                            <div class="col s3">
+                                                <b style="font-size:1.5em">COLLEGE EDUCATION</b>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col s12 no-padd">
-                                        <div class="divider"></div>
-                                        <br>
-                                        <div class="col s3">
-                                            <b style="font-size:1.5em">PROJECTS / INTERNSHIPS</b>
-                                        </div>
-                                        <div class="col s9">
-                                            <div class="col s12 no-padd">
-                                                <div>{{ projects }}</div>
-                                                <br>
+                                            <div class="col s9">
                                                 <div class="col s12 no-padd">
-                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/{{ uniqueid }}">Add More+</a>
+                                                    <div>
+                                                        <%= data.collegename %>
+                                                    </div>
+                                                    <div>
+                                                        <%= data.collegeboard %>
+                                                    </div>
+                                                    <div>
+                                                        <%= data.collegemarks %>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                                <div class="col s12 no-padd">
+                                                    <div>POST GRADUATION DETAILS</div>
+                                                    <div>
+                                                        <%= data.postcollegename %>
+                                                    </div>
+                                                    <div>
+                                                        <%= data.postcollegeboard %>
+                                                    </div>
+                                                    <div>
+                                                        <%= data.postcollegecourse %>
+                                                    </div>
+                                                    <div>
+                                                        <%= data.postcollegemarks %>
+                                                    </div>
+                                                    <br>
+                                                </div>
+
+                                                <div class="col s12 no-padd">
+                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/<%= data.uniqueid %>">Add More+</a>
 
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col s12 no-padd">
+                                            <div class="divider"></div>
                                             <br>
+                                            <div class="col s3">
+                                                <b style="font-size:1.5em">PROJECTS / INTERNSHIPS</b>
+                                            </div>
+                                            <div class="col s9">
+                                                <div class="col s12 no-padd">
+                                                    <div>
+                                                        <%= data.projects %>
+                                                    </div>
+                                                    <br>
+                                                    <div class="col s12 no-padd">
+                                                        <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/<%= data.uniqueid %>">Add More+</a>
+
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                            </div>
+
 
                                         </div>
 
+                                        <div class="col s12 no-padd">
+                                            <div class="divider"></div>
+                                            <br>
+                                            <div class="col s3">
+                                                <b style="font-size:1.5em">ROLES / SKILLS</b>
+                                            </div>
+                                            <div class="col s9">
+                                                <div class="col s12 no-padd">
+                                                    <div>
+                                                        <%= data.skills %>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                                <div class="col s12 no-padd">
+                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/<%= data.uniqueid %>">Add More+</a>
 
-                                    </div>
-
-                                    <div class="col s12 no-padd">
-                                        <div class="divider"></div>
-                                        <br>
-                                        <div class="col s3">
-                                            <b style="font-size:1.5em">ROLES / SKILLS</b>
-                                        </div>
-                                        <div class="col s9">
-                                            <div class="col s12 no-padd">
-                                                <div>{{ skills }}</div>
+                                                </div>
                                                 <br>
                                             </div>
-                                            <div class="col s12 no-padd">
-                                                <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/{{ uniqueid }}">Add More+</a>
 
-                                            </div>
+
+                                        </div>
+
+                                        <div class="col s12 no-padd">
+                                            <div class="divider"></div>
                                             <br>
+                                            <div class="col s3">
+                                                <b style="font-size:1.5em">PREFFERED LOCATION</b>
+                                            </div>
+                                            <div class="col s9">
+                                                <div class="col s12 no-padd">
+                                                    <div>
+                                                        <%= data.joblocation %>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                                <br>
+                                                <div class="col s12 no-padd">
+                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/<%= data.uniqueid %>">Add More+</a>
+
+                                                </div>
+                                            </div>
+
+
                                         </div>
-
-
-                                    </div>
-
-                                    <div class="col s12 no-padd">
-                                        <div class="divider"></div>
-                                        <br>
-                                        <div class="col s3">
-                                            <b style="font-size:1.5em">PREFFERED LOCATION</b>
-                                        </div>
-                                        <div class="col s9">
-                                            <div class="col s12 no-padd">
-                                                <div>{{ joblocation }}</div>
+                                        <div class="col s12 no-padd">
+                                            <div class="divider"></div>
+                                            <br>
+                                            <div class="col s3">
+                                                <b style="font-size:1.5em">AVAILABLE FROM</b>
+                                            </div>
+                                            <div class="col s9">
+                                                <div class="col s12 no-padd">
+                                                    <div>
+                                                        <%= data.jobavailability %>
+                                                    </div>
+                                                    <br>
+                                                </div>
                                                 <br>
                                             </div>
-                                            <br>
-                                            <div class="col s12 no-padd">
-                                                <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/{{ uniqueid }}">Add More+</a>
-
-                                            </div>
+                                            <br><br><br><br>
                                         </div>
-
-
                                     </div>
-                                    <div class="col s12 no-padd">
-                                        <div class="divider"></div>
-                                        <br>
-                                        <div class="col s3">
-                                            <b style="font-size:1.5em">AVAILABLE FROM</b>
-                                        </div>
-                                        <div class="col s9">
-                                            <div class="col s12 no-padd">
-                                                <div>{{ jobavailability }}</div>
-                                                <br>
-                                            </div>
-                                            <br>
-                                        </div>
-                                        <br><br><br><br>
-                                    </div>
+
+
                                 </div>
-
-
+                                <br>
+                                <br>
                             </div>
-                            <br>
-                            <br>
                         </div>
                     </div>
+
                 </div>
-
             </div>
+            <div class="col s12" style="height:50px;"></div>
         </div>
-        <div class="col s12" style="height:50px;"></div>
-    </div>
-    </div>
+        </div>
 
-    </div>
-    </div>
-    </div>
-    </div>
+        </div>
+        </div>
+        </div>
+        </div>
 
-    <!-- FOOTER START -->
-    <% include ../../partials/pre_footer %>
-    <!-- FOOTER END -->
+        <!-- FOOTER START -->
+        <% include ../../partials/pre_footer %>
+            <!-- FOOTER END -->
 
 
 
 
 
-    <!-- Compiled and minified JavaScript -->
+            <!-- Compiled and minified JavaScript -->
 
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    <script src="../js/mysidebar.js"></script>
-    <script src="../js/userprofile.js"></script>
-    <script src="../js/profiletab.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            M.AutoInit();
-            data = $('#proj').html().split(";\n");
-            str = "";
-            data.forEach((d, i) => {
-                key = d.split(", ");
-                str += `
+            <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+            <script src="../js/mysidebar.js"></script>
+            <script src="../js/userprofile.js"></script>
+            <script src="../js/profiletab.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    M.AutoInit();
+                    data = $('#proj').html().split(";\n");
+                    str = "";
+                    data.forEach((d, i) => {
+                        key = d.split(", ");
+                        str += `
                 <div class="col s12">
                         ` + (i + 1) + `.<br>
                                     <div class="col s3">
@@ -655,9 +760,10 @@
                                 </div>
                                 <div class="row"></div>
                 `;
-            });
-            $('#cont').html(str);
-        });
-    </script>
+                    });
+                    $('#cont').html(str);
+                });
+            </script>
 </body>
+
 </html>

@@ -20,6 +20,10 @@ transporter.verify(function(error, success) {
 });
 
 function sendEmail(email, subject, data, file) {
+    if (!Config.SEND_EMAIL) {
+        console.log('Sending no email')
+        return
+    } 
     ejs.renderFile(path.join(__dirname, "../views/email/") + file + ".ejs", data, function (err, html) {
         if (err) {
             console.log(err);
@@ -39,31 +43,6 @@ function sendEmail(email, subject, data, file) {
             });
         }
     });
-}
-
-function sendVerificatonEmail(req, res) {
-    rand = Math.floor((Math.random() * 10000000) + 342132);
-    console.log("Sending verification email...");
-    email = req.body.email || req.session.email;
-    runtime_obj[rand] = email;
-    console.log(runtime_obj);
-    host = req.get('host');
-    link = "http://joblana.com/verify?id=" + rand;
-
-    let mailoptions = {
-        from: Config.EMAIL_ADDRESS,
-        to: email,
-        subject: "Confirm your e-mail",
-        text: "Hello, Please click on the link to verify your email. " + link,
-        html: "<b>Hello</b>, <br> Please click on the link to verify your email. <br><a href=" + link + ">Click here to verify</a>",
-    };
-
-    transporter.sendMail(mailoptions, (err, info) => {
-        if (err) return console.log(err);
-        console.log('Message sent:', info.messageid);
-        console.log('Preview URL: ', nodemailer.getTestMessageUrl(info));
-    });
-
 }
 
 module.exports = sendEmail;

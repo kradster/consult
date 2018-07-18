@@ -26,7 +26,7 @@ app.set('view engine', 'ejs');
 
 app.use(session({
     secret: Config.SESSION_KEY,
-    saveUninitialized: false,
+    saveUninitialized: true,
     resave: false,
     cookie: {
         path: "/",
@@ -47,6 +47,16 @@ app.use(function(req, res, next){
     res.locals.removeMessages = function () {
         req.session.messages = [];
     };
+    res.locals.link = function(view, namespace){
+        if (namespace){
+            let url = "/" + namespace + "/" + view;
+            return url;
+        }
+        else {
+            let url = "/" + view;
+            return url;
+        }        
+    }
     next();
 });
 //app.use(cookieparser);

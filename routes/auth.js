@@ -1,26 +1,20 @@
 const express = require('express');
-let bcrypt = require('bcrypt-nodejs');
 var authRouter = express.Router();
 var userController = require('../controllers/user')
-const sqlite3 = require('sqlite3').verbose();
 
-let db = new sqlite3.Database('database.db', err => {
-    if (err) return console.error(err.message);
-});
+var sendEmail = require('../utils/email');
 
 function isauthenticated(req, res, next){
     if (!req.session.user) {
         req.session.messages.push(["Please login to access this page", "blue"])
+        req.session.next = req.originalUrl;
         return res.redirect('/login');
     }
     next();
 }
 authRouter.get('/profile', isauthenticated, (req, res) => {
     let dct = { title: "Dashboard"};
-    console.log(dct);
-    console.log('\n')
     userController.userdata(req.session.user, (err, response) =>{
-        console.log('response', response);
         if (response.success == true){
             dct.data = response.data;
             dct.data["_removetags"] = true;
@@ -31,26 +25,27 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
             return res.redirect('/')
         }
     })
-    
 });
 
-authRouter.post('/showcv', isauthenticated, (req, res) => {
-    res.sendFile('/templates/showcv.html', { root: __dirname });
+authRouter.get('/showcv', isauthenticated, (req, res) => {
+    let dct = { title: "View Cv"};
+    return res.render("auth/showcv", dct);
 });
 
-authRouter.post('/myscore', isauthenticated, (req, res) => {
-    res.sendFile('/templates/myscore.html', { root: __dirname });
+authRouter.get('/myscore', isauthenticated, (req, res) => {
+    let dct = { title: "My Score"};
+    return res.render("auth/myscore", dct);
 });
 
-authRouter.post('/myjob', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
-    res.sendFile('/templates/myjob.html', { root: __dirname });
+authRouter.get('/myjob', isauthenticated, (req, res) => {
+    let dct = { title: "View Cv"};
+    return res.render("auth/myjob", dct);
 });
 
-authRouter.post('/editcv', isauthenticated, (req, res) => {
-    res.sendFile('/templates/makecv.html', { root: __dirname });
+authRouter.get('/editcv', isauthenticated, (req, res) => {
+    let dct = { title: "Edit Cv"};
+    return res.render("auth/makecv", dct);
 });
-
 
 authRouter.get('/verify', (req, res) => {
     console.log(req.protocol + ":/" + req.get('host'));
@@ -78,35 +73,36 @@ authRouter.get('/resendemail', (req, res) => {
 
 authRouter.post('/signup', (req, res) => {
     console.log("signup");
-    data = req.body;
-    if (!data.firstname || !data.lastname || !data.phoneno || !data.email || !data.password || !data.cpassword)
-        return res.send({ success: false, message: "Error, one or more fields are empty." });
-    if (data.password !== data.cpassword)
-        return res.send({ success: false, message: "Error, passwords dont match" });
-    db.get("SELECT * FROM Users WHERE email = ?", data.email, (err, row) => {
-        if (row) return res.send({ success: false, message: "The account associated with the email already exists." });
-        delete data.cpassword;
-        data["uniqueid"] = Date.now();
-        data["verified"] = "no";
-        data.password = bcrypt.hashSync(data.password);
-        //console.log(data);
-        sql = "INSERT INTO Users(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
-        db.exec(sql, err => {
-            if (err) return res.send(err);
-            sendVerificatonEmail(req, res);
-            console.log("Account created");
-            db.exec("INSERT INTO CV(uniqueid) VALUES('" + data.uniqueid + "')", (err, row) => {
-                if (err) return res.send(err);
-                res.redirect('/login');
-            });
-        });
-    });
-    //    res.send(req.body);
+    let data = req.body;
+    if (!data.firstname || !data.lastname || !data.phoneno || !data.email || !data.password || !data.cpassword){
+        res.locals.messages.push(["One or more fields are empty", "red"])
+        return res.redirect('/signup');
+    }
+    if (data.password !== data.cpassword){
+        res.locals.messages.push(["Passwords do not match", "red"])
+        return res.redirect('/signup');
+    }
+    userController.createuser(data, (err, response) => {
+        if (err){
+            console.err(err);
+            res.locals.messages.push(["Some error found", "red"]);
+            return res.redirect('/signup')
+        }
+        if (response.success == false){
+            res.locals.messages.push([response.message, "red"]);
+            return res.redirect('/signup')
+        }
+        else{
+            sendEmail(data.email, "Welcome", {link: "https://www.joblana.com"}, "verification");
+            res.locals.messages.push([response.message, "green"]);
+            return res.redirect('/signup')
+        }
+    })
 });
 
 authRouter.post('/login', (req, res) => {
 
-    console.log('trying to log in...');
+    console.log(req.session.next);
     if (!req.body.email){
         res.locals.messages.push(["One or more fields are incorrect", "red"])
         return res.redirect('/login');
@@ -119,19 +115,19 @@ authRouter.post('/login', (req, res) => {
         if (response.success == false){
             res.locals.messages.push([response.message, "red"])
             return res.redirect('/login');
-        } 
-        if (!bcrypt.compareSync(req.body.password, response.user.password)){
-            res.locals.messages.push(["Incorrect password", "red"])
-            return res.redirect('/login');
         }
         req.session.user = response.user.uniqueid;
         req.session.email = response.user.email;
         res.locals.messages.push(["Successfully Logged in", "green"])
+        if (req.session.next){
+            let next = req.session.next;
+            delete req.session.next;
+            return res.redirect(next);
+        }
         return res.redirect('/user/profile');
     });
     //res.send('TODO');
 });
-
 
 authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
     console.log("session", req.session.user);
@@ -167,17 +163,17 @@ authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
 });
 
 
-authRouter.get('/getcv', (req, res) => {
-    if (!req.session.user) return res.send({ success: false, message: "You need to login first" });
-    db.get("SELECT * FROM CV WHERE uniqueid = ?", req.session.user, (err, row) => {
-        if (!row) {
-            console.log("No id found");
-            return res.send({ success: false, message: "No such userid exists in the database" });
-        }
-        console.log("Fetching cv details for", req.session.user);
-        return res.send({ success: true, data: row });
-    });
-});
+// authRouter.get('/getcv', (req, res) => {
+//     if (!req.session.user) return res.send({ success: false, message: "You need to login first" });
+//     db.get("SELECT * FROM CV WHERE uniqueid = ?", req.session.user, (err, row) => {
+//         if (!row) {
+//             console.log("No id found");
+//             return res.send({ success: false, message: "No such userid exists in the database" });
+//         }
+//         console.log("Fetching cv details for", req.session.user);
+//         return res.send({ success: true, data: row });
+//     });
+// });
 
 authRouter.post('/scheduletest', isauthenticated, (req, res) => {
     data = req.body;
@@ -190,10 +186,8 @@ authRouter.post('/scheduletest', isauthenticated, (req, res) => {
 });
 
 
-authRouter.get('/logout', (req, res) => {
-    res.cookie('uniqueid', "null");
-    req.session = null;
-    req.session.messages = [["You are Successfully Logger out.", "green"]]
+authRouter.get('/logout', isauthenticated, (req, res) => {
+    req.session.destroy();
     return res.redirect('/');
 });
 
