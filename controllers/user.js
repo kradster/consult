@@ -49,8 +49,6 @@ module.exports.userdata = function(uid, callback){
                 return;
             }
             dct["CV"] = row;
-            console.log('user_data')
-            console.log({ success: true, data: dct });
             callback(null, { success: true, data: dct });
         });
     });

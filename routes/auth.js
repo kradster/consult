@@ -17,10 +17,7 @@ function isauthenticated(req, res, next){
 }
 authRouter.get('/profile', isauthenticated, (req, res) => {
     let dct = { title: "Dashboard"};
-    console.log(dct);
-    console.log('\n')
     userController.userdata(req.session.user, (err, response) =>{
-        console.log('response', response);
         if (response.success == true){
             dct.data = response.data;
             dct.data["_removetags"] = true;
@@ -190,10 +187,8 @@ authRouter.post('/scheduletest', isauthenticated, (req, res) => {
 });
 
 
-authRouter.get('/logout', (req, res) => {
-    res.cookie('uniqueid', "null");
-    req.session = null;
-    req.session.messages = [["You are Successfully Logger out.", "green"]]
+authRouter.get('/logout', isauthenticated, (req, res) => {
+    req.session.destroy();
     return res.redirect('/');
 });
 
