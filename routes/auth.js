@@ -12,11 +12,13 @@ function isauthenticated(req, res, next){
     }
     next();
 }
+
 authRouter.get('/profile', isauthenticated, (req, res) => {
     let dct = { title: "Dashboard"};
     userController.userdata(req.session.user, (err, response) =>{
         if (response.success == true){
             dct.data = response.data;
+            console.log(dct);
             dct.data["_removetags"] = true;
             return res.render("auth/profile", dct);
         }
@@ -84,7 +86,7 @@ authRouter.post('/signup', (req, res) => {
     }
     userController.createuser(data, (err, response) => {
         if (err){
-            console.err(err);
+            console.error(err);
             res.locals.messages.push(["Some error found", "red"]);
             return res.redirect('/signup')
         }
@@ -109,7 +111,7 @@ authRouter.post('/login', (req, res) => {
     }
     userController.userlogin(req.body.email, req.body.password, (err, response) => {
         if(err){
-            console.err(err.message);
+            console.error(err.message);
             return
         }
         if (response.success == false){
@@ -130,34 +132,22 @@ authRouter.post('/login', (req, res) => {
 });
 
 authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
-    console.log("session", req.session.user);
-    console.log("cv details");
     data = req.body;
-
-    data["projects"] = data.projecttype.map((x, i) => {
-        return data.projecttype[i] + ", " + data.projectrole[i] + ", " + data.projectinstitute[i] + ", " + data.projectdetails[i] + ", " + data.projectstartdate[i] + " to " + data.projectenddate[i];
-    }).join(";\n");
-    delete data.projecttype;
-    delete data.projectrole;
-    delete data.projectinstitute;
-    delete data.projectdetails;
-    delete data.projectstartdate;
-    delete data.projectenddate;
-    data.skills = data.skills.join(", ");
-    data["email"] = req.session.email;
-    console.log(data);
-    let keys = Object.keys(data);
-    let vals = Object.values(data).map(x => { if (typeof(x) == "string") return x.replace("'", "''") });
-    sql = [];
-    for (let i = 0; i < keys.length; i++)
-        sql.push(keys[i] + " = '" + vals[i] + "'");
-    sql = "UPDATE CV SET " + sql.join(", ") + " WHERE uniqueid = '" + req.session.user + "'";
-    //sql = "INSERT INTO CV(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
-    console.log(sql);
-    db.exec(sql, err => {
-        if (err) return res.send(err);
-        return res.render('alert', { title: "Successfully entered all values", link: "/profile", linkname: "Goto Profile" });
-    });
+    userController.addcvdata(data, req.session.user, req.session.email, (err, response) => {
+        if (err){
+            console.log(err);
+            req.session.messages.push([err.message, "red"])
+            return res.redirect('/user/profile');
+        }
+        if (response.success == false){
+            res.locals.messages.push([response.message, "red"])
+            return res.redirect('/user/editcv');
+        }
+        else{
+            res.locals.messages.push([response.message, "green"])
+            return res.redirect('/user/profile');
+        }
+    })
 
     //res.send({ success: true, data: req.body, message: "cv details" });
 });
