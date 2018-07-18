@@ -28,26 +28,27 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
             return res.redirect('/')
         }
     })
-    
 });
 
-authRouter.post('/showcv', isauthenticated, (req, res) => {
-    res.sendFile('/templates/showcv.html', { root: __dirname });
+authRouter.get('/showcv', isauthenticated, (req, res) => {
+    let dct = { title: "View Cv"};
+    return res.render("auth/showcv", dct);
 });
 
-authRouter.post('/myscore', isauthenticated, (req, res) => {
-    res.sendFile('/templates/myscore.html', { root: __dirname });
+authRouter.get('/myscore', isauthenticated, (req, res) => {
+    let dct = { title: "My Score"};
+    return res.render("auth/myscore", dct);
 });
 
-authRouter.post('/myjob', (req, res) => {
-    if (!req.session.user) return res.redirect('/login');
-    res.sendFile('/templates/myjob.html', { root: __dirname });
+authRouter.get('/myjob', isauthenticated, (req, res) => {
+    let dct = { title: "View Cv"};
+    return res.render("auth/myjob", dct);
 });
 
-authRouter.post('/editcv', isauthenticated, (req, res) => {
-    res.sendFile('/templates/makecv.html', { root: __dirname });
+authRouter.get('/editcv', isauthenticated, (req, res) => {
+    let dct = { title: "Edit Cv"};
+    return res.render("auth/makecv", dct);
 });
-
 
 authRouter.get('/verify', (req, res) => {
     console.log(req.protocol + ":/" + req.get('host'));

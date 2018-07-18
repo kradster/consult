@@ -2,76 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MAKE CV</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-    <script src="../js/myfooter.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.1.0/font-awesome-animation.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/button.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/message.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/components/label.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <!-- Google Tag Manager -->
-    <script>
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-TGKGPG3');
-    </script>
-    <!-- End Google Tag Manager -->
-    <style>
-        input:not([type]),
-        input[type=text]:not(.browser-default) {
-            border: 1px solid #ccc;
-            outline: none;
-            height: 3rem;
-            width: 100%;
-            font-size: 16px;
-            margin: 0 0 8px 0;
-            padding: 0px 0px 0px 10px !important;
-            background-color: transparent;
-            box-shadow: 0px
-        }
-        
-        input:not([type]):focus:not([readonly]),
-        input[type=text]:not(.browser-default):focus:not([readonly]) {
-            border: 1px solid #ccc;
-            -webkit-box-shadow: none;
-            box-shadow: none;
-        }
-        
-        input::-webkit-input-placeholder {
-            color: grey;
-        }
-        
-        select {
-            display: block !important;
-        }
-        
-        .holder {
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-        }
-    </style>
+    <meta name='description' content='Dashboard on JobLana Platform to get in front of 500+ recruiters across the globe.'>
+    <% include ../../partials/post_head %>
 </head>
 
 <body>
@@ -82,10 +14,9 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- NAVIGATION BAR START -->
-    <div id="navigationbar">
-
-    </div>
+    <% include ../../partials/post_header %>
     <!-- NAVIGATION BAR END -->
+
     <div class="row">
 
         <form class="col s10 offset-s1" action="/cvbuilder" method="post">
@@ -436,14 +367,14 @@
             </div>
         </form>
     </div>
+    
     <!-- FOOTER START -->
-    <div id="myfooter">
-    </div>
+    <% include ../../partials/pre_footer %>
     <!-- FOOTER END -->
+
     <!-- Compiled and minified JavaScript -->
     <script src="../js/stepform.js"></script>
     <script src="../js/addmoreskills.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script>
         $(document).ready(function() {
             M.AutoInit();
@@ -469,5 +400,4 @@
         });
     </script>
 </body>
-
 </html>
