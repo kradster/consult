@@ -4,6 +4,9 @@ let db = new sqlite3.Database('database.db', err => {
     if (err) return console.error(err.message);
 });
 
+let bcrypt = require('bcrypt-nodejs');
+
+
 module.exports.subscribe_email = function(email, callback){
 	db.exec("INSERT INTO JobAlerts(email) VALUES('" + email + "')", (err, row) => {
         if (err) {
@@ -62,8 +65,30 @@ module.exports.userlogin = function(email, password, callback){
         if (!userrow) {
             return callback(null, {success: false, message: "Email id not found"})
         }
+        else if (!bcrypt.compareSync(password, userrow.password)){
+            return callback(null, {success: false, message: "Incorrect password"})
+        }
         else {
             return callback(null, {success: true, user: userrow})
         }
+    });
+}
+
+module.exports.createuser = function(user, callback){
+    db.get("SELECT * FROM Users WHERE email = ?", user.email, (err, row) => {
+        if (row) return callback(null, { success: false, message: "The account associated with the email already exists" });
+        delete user.cpassword;
+        user["uniqueid"] = Date.now();
+        user["verified"] = "no";
+        user.password = bcrypt.hashSync(user.password);
+        sql = "INSERT INTO Users(" + Object.keys(user).join(",") + ") VALUES('" + Object.values(user).join("', '") + "');";
+        db.exec(sql, (err) => {
+            if (err) return callback(err, null);
+            console.log("Account created");
+            db.exec("INSERT INTO CV(uniqueid) VALUES('" + user.uniqueid + "')", (err, row) => {
+                if (err) return callback(err, null);
+                return callback(null, { success: true, message: "Your Account has been created" });
+            });
+        });
     });
 }
