@@ -8,8 +8,8 @@ var Schema = mongoose.Schema;
 var User = new Schema({
     email: {
         type: String,
-        unique: true,
-        required: true,
+        unique: [true, "Email already registered with us"],
+        required: [true, "Email is mandatory"],
         trim: true,
         validate: {
             isAsync: false,
@@ -31,16 +31,17 @@ var User = new Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: [true, "Password is required"],
         trim: true,
         min: [4, "Password must be of 4 digits"],
         max: [16, "Password cannot be greater than 16 digits"]
     },
     phoneno: {
         type: String,
-        required: true,
+        required: [true, "Phone number is required"],
         trim: true,
-        max: [10, "Mobile Number can be of 10 digits only."],
+        minlength: [10, "Mobile Number can be of 10 digits only."],
+        maxlength: [10, "Mobile Number can be of 10 digits only."],
         validate: {
             validator: validator.isInt,
             message: '{VALUE} is not a valid phone number!'
@@ -50,7 +51,8 @@ var User = new Schema({
         type: Boolean,
         default: false
     }
-});
+}, {timestamps: true}
+);
 
 User.virtual('fullname').get(function() {
     return this.name.first + ' ' + this.name.second;

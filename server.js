@@ -49,6 +49,7 @@ app.use(function(req, res, next){
     }
     res.locals.removeMessages = function () {
         req.session.messages = [];
+        res.locals.messages = [];
     };
     res.locals.link = function(view, namespace){
         if (namespace){

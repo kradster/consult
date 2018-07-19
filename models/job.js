@@ -4,30 +4,14 @@ var validator = require('validator');
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-//             minexp text,
-//             maxexp text,
-//             listbyemail text,
-//             noofvac text,
-//             salary text,
-//             experience text,
-//             anytime text,
-//             dateofjoin text,
-//             listingid text,
+var User = require('./user');
+
 var Job = new Schema({
-    recruiteremail: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true,
-        validate: {
-            isAsync: false,
-            validator: validator.isEmail,
-            message: 'Please fill a valid email address'
-        }
+    recruiter: { 
+        type: Schema.Types.ObjectId, ref: 'User'
     },
     altemail: {
         type: String,
-        unique: true,
         required: false,
         trim: true,
         validate: {
@@ -36,30 +20,11 @@ var Job = new Schema({
             message: 'Please fill a valid email address'
         }
     },
-    name: {
-        first: {
-            type: String,
-            trim: true,
-            max: 20
-        },
-        second: {
-            type: String,
-            trim: true,
-            max: 20
-        }
-    },
-    password: {
-        type: String,
-        required: true,
-        trim: true,
-        min: [4, "Password must be of 4 digits"],
-        max: [16, "Password cannot be greater than 16 digits"]
-    },
     contactno: {
         type: String,
         required: true,
         trim: true,
-        max: [10, "Mobile Number can be of 10 digits only."],
+        maxlength: [10, "Mobile Number can be of 10 digits only."],
         validate: {
             validator: validator.isInt,
             message: '{VALUE} is not a valid phone number!'
@@ -72,32 +37,32 @@ var Job = new Schema({
     jobtitle: {
         type: String,
         trim: true,
-        max: 20
+        maxlength: 20
     },
     companyname: {
         type: String,
         trim: true,
-        max: 20
+        maxlength: 20
     },
     aboutcompany: {
         type: String,
         trim: true,
-        max: 20
+        maxlength: 200
     },
     location: {
         type: String,
         trim: true,
-        max: 20
+        maxlength: 50
     },
     jobdesc: {
         type: String,
         trim: true,
-        max: 20
+        maxlength: 100
     },
     companywebsite: {
         type: String,
         trim: true,
-        max: 20,
+        maxlength: 20,
         validate:{
             validator: validate.isURL,
             message: "Not a valid URL"
@@ -106,17 +71,36 @@ var Job = new Schema({
     location: {
         type: String,
         trim: true,
-        max: 20
+        maxlength: 20
     },
     jobdesc: {
         type: String,
         trim: true,
-        max: 20
+        maxlength: 20
     },
+    experience: {
+        minexp: {
+            type: [Number, "Wrong type"],
+        },
+        maxexp: {
+            type: [Number, "Wrong type"],
+        }
+    },
+    salary: {
+        type: [Number, "Wrong type"]
+    },
+    dateofjoin: {
+        type: Date,
+        required: false
+    },
+    vacancies: {
+        type: Number,
+        required: [true, "Vacancies are mandatory"]
+    }
 });
 
 User.virtual('fullname').get(function(){
     return this.name.first + ' ' + this.name.second;
 });
 
-module.exports = mongoose.model('User', User, 'User');
+module.exports = mongoose.model('Job', Job);
