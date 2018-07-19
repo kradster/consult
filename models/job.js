@@ -4,7 +4,6 @@ var validator = require('validator');
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var User = require('./user');
 
 var Job = new Schema({
     recruiter: { 
@@ -97,10 +96,6 @@ var Job = new Schema({
         type: Number,
         required: [true, "Vacancies are mandatory"]
     }
-});
-
-User.virtual('fullname').get(function(){
-    return this.name.first + ' ' + this.name.second;
 });
 
 module.exports = mongoose.model('Job', Job);

@@ -4,13 +4,12 @@ var validator = require('validator');
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var User = require('./user');
-var experience = require('./experience');
 
 var Profile = new Schema({
     user: { 
-        type: Schema.Types.ObjectId, ref: 'Experience'
+        type: Schema.Types.ObjectId, ref: 'User'
     },
+    experience: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
     details: {
         fathersname: {
             type: String,
@@ -104,10 +103,7 @@ var Profile = new Schema({
     	},
     },
     skills: [],
-    experience: [{ type: Schema.Types.ObjectId, ref: 'Project' }]
 }, {timestamps: true}
 );
 
 module.exports = mongoose.model('Profile', Profile);
-
-lls 

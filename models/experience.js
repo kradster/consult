@@ -4,14 +4,13 @@ var validator = require('validator');
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Profile = require('./profile');
 
 var Experience = new Schema({
     type: {
         type: String,
         enum: ["project", "internship", "job"]
         required: true
-    }
+    },
     profile: { 
         type: Schema.Types.ObjectId, ref: 'Profile'
         required: true
@@ -32,16 +31,12 @@ var Experience = new Schema({
     start_date: {
         type: Date,
         required: true
-    }
+    },
     end_date: {
         type: Date,
         required: true
     }
-
-
 }, {timestamps: true}
 );
 
 module.exports = mongoose.model('Experience', Experience);
-
-lls 
