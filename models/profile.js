@@ -9,7 +9,7 @@ var Profile = new Schema({
     user: { 
         type: Schema.Types.ObjectId, ref: 'User'
     },
-    experience: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
+    experience: [{ type: Schema.Types.ObjectId, ref: 'Experience' }],
     details: {
         fathersname: {
             type: String,
