@@ -3,12 +3,8 @@ const express = require('express');
 const app = express();
 var path = require('path');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mydb');
-var db1 = mongoose.connection;
-db1.on('error', console.error.bind(console, 'connection error:'));
-db1.once('open', function() {
-  // we're connected!
-});
+mongoose.connect('mongodb://localhost/joblana');
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 let session = require('express-session');
 let bodyParser = require('body-parser');
 let multer = require('multer');
