@@ -73,28 +73,23 @@ authRouter.get('/resendemail', (req, res) => {
 });
 
 authRouter.post('/signup', (req, res) => {
-    console.log("signup");
     let data = req.body;
-    if (!data.firstname || !data.lastname || !data.phoneno || !data.email || !data.password || !data.cpassword) {
-        res.locals.messages.push(["One or more fields are empty", "red"])
-        return res.redirect('/signup');
-    }
-    if (data.password !== data.cpassword) {
+    if (!data.password || !data.cpassword || (data.password !== data.cpassword)) {
         res.locals.messages.push(["Passwords do not match", "red"])
         return res.redirect('/signup');
     }
-    userController.createuser(data, (err, response) => {
+    userController.createuser(data, (err, user) => {
         if (err) {
             console.error(err);
-            res.locals.messages.push(["Some error found", "red"]);
-            return res.redirect('/signup')
-        }
-        if (response.success == false) {
-            res.locals.messages.push([response.message, "red"]);
+            Object.keys(err.errors).forEach(error => {
+                console.log(err.errors[error].message);
+                res.locals.messages.push([err.errors[error].message, "red"]);
+            });
             return res.redirect('/signup')
         } else {
-            sendEmail(data.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
-            res.locals.messages.push([response.message, "green"]);
+            console.log(user);
+            sendEmail(user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
+            res.locals.messages.push(["Successful signup", "green"]);
             return res.redirect('/signup')
         }
     })

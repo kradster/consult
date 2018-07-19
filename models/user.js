@@ -20,11 +20,13 @@ var User = new Schema({
     name: {
         first: {
             type: String,
+            required: [true, "First name is required"],
             trim: true,
             max: 20
         },
         second: {
             type: String,
+            required: [true, "Last name is required"],
             trim: true,
             max: 20
         }
@@ -38,6 +40,7 @@ var User = new Schema({
     },
     phoneno: {
         type: String,
+        unique: [true, "Mobile already registered with us"],
         required: [true, "Phone number is required"],
         trim: true,
         minlength: [10, "Mobile Number can be of 10 digits only."],
