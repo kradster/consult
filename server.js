@@ -2,7 +2,13 @@
 const express = require('express');
 const app = express();
 var path = require('path');
-
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/mydb');
+var db1 = mongoose.connection;
+db1.on('error', console.error.bind(console, 'connection error:'));
+db1.once('open', function() {
+  // we're connected!
+});
 let session = require('express-session');
 let bodyParser = require('body-parser');
 let multer = require('multer');
@@ -77,65 +83,65 @@ app.use('/admin', adminRouter);
 
 //Connecting to local database
 const sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database('database.db', err => {
-    if (err) return console.error(err.message);
-    console.log('Connected to database.db SQLite3 Local Database');
-    db.exec(`
-        CREATE TABLE IF NOT EXISTS Users ( 
-            uniqueid text PRIMARY KEY,
-            firstname text NOT NULL,
-            lastname text NOT NULL,
-            email text NOT NULL,    
-            password text NOT NULL,
-            phoneno text NOT NULL,
-            verified text NOT NULL
-        );
-    `);
-    db.exec(`
-        CREATE TABLE IF NOT EXISTS CV ( 
-            uniqueid text PRIMARY KEY,
-            fullname text,
-            fathersname text,
-            dob text,    
-            city text,
-            aadharno text,
-            school10 text,
-            board10 text,
-            marks10 text,
-            school12 text,
-            board12 text,
-            marks12 text,
-            collegename text,
-            collegeboard text,
-            collegemarks text,
-            projects text,
-            skills text
-        );
-    `);
-    db.exec(`
-        CREATE TABLE IF NOT EXISTS JobListings(
-            jobtitle text,
-            recruiteremail text,
-            companyname text,
-            aboutcompany text,
-            location text,
-            minexp text,
-            maxexp text,
-            jobdesc text,
-            listbyemail text,
-            altemail text,
-            contactno text,
-            companywebsite text,
-            noofvac text,
-            salary text,
-            experience text,
-            anytime text,
-            dateofjoin text,
-            listingid text,
-            approved text
-        );
-    `);
-});
+// let db = new sqlite3.Database('database.db', err => {
+//     if (err) return console.error(err.message);
+//     console.log('Connected to database.db SQLite3 Local Database');
+//     db.exec(`
+//         CREATE TABLE IF NOT EXISTS Users ( 
+//             uniqueid text PRIMARY KEY,
+//             firstname text NOT NULL,
+//             lastname text NOT NULL,
+//             email text NOT NULL,    
+//             password text NOT NULL,
+//             phoneno text NOT NULL,
+//             verified text NOT NULL
+//         );
+//     `);
+//     db.exec(`
+//         CREATE TABLE IF NOT EXISTS CV ( 
+//             uniqueid text PRIMARY KEY,
+//             fullname text,
+//             fathersname text,
+//             dob text,    
+//             city text,
+//             aadharno text,
+//             school10 text,
+//             board10 text,
+//             marks10 text,
+//             school12 text,
+//             board12 text,
+//             marks12 text,
+//             collegename text,
+//             collegeboard text,
+//             collegemarks text,
+//             projects text,
+//             skills text
+//         );
+//     `);
+//     db.exec(`
+//         CREATE TABLE IF NOT EXISTS JobListings(
+//             jobtitle text,
+//             recruiteremail text,
+//             companyname text,
+//             aboutcompany text,
+//             location text,
+//             minexp text,
+//             maxexp text,
+//             jobdesc text,
+//             listbyemail text,
+//             altemail text,
+//             contactno text,
+//             companywebsite text,
+//             noofvac text,
+//             salary text,
+//             experience text,
+//             anytime text,
+//             dateofjoin text,
+//             listingid text,
+//             approved text
+//         );
+//     `);
+// });
 
 
 app.listen(Config.PORT || 5000, Config.HOST || "0.0.0.0", () => {
