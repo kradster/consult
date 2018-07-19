@@ -4,7 +4,7 @@ var userController = require('../controllers/user')
 
 var sendEmail = require('../utils/email');
 
-function isauthenticated(req, res, next){
+function isauthenticated(req, res, next) {
     if (!req.session.user) {
         req.session.messages.push(["Please login to access this page", "blue"])
         req.session.next = req.originalUrl;
@@ -14,15 +14,14 @@ function isauthenticated(req, res, next){
 }
 
 authRouter.get('/profile', isauthenticated, (req, res) => {
-    let dct = { title: "Dashboard"};
-    userController.userdata(req.session.user, (err, response) =>{
-        if (response.success == true){
+    let dct = { title: "Dashboard" };
+    userController.userdata(req.session.user, (err, response) => {
+        if (response.success == true) {
             dct.data = response.data;
             console.log(dct);
             dct.data["_removetags"] = true;
             return res.render("auth/profile", dct);
-        }
-        else{
+        } else {
             res.locals.messages.push([response.message, "red"]);
             return res.redirect('/')
         }
@@ -30,22 +29,22 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
 });
 
 authRouter.get('/showcv', isauthenticated, (req, res) => {
-    let dct = { title: "View Cv"};
+    let dct = { title: "View Cv" };
     return res.render("auth/showcv", dct);
 });
 
 authRouter.get('/myscore', isauthenticated, (req, res) => {
-    let dct = { title: "My Score"};
+    let dct = { title: "My Score" };
     return res.render("auth/myscore", dct);
 });
 
 authRouter.get('/myjob', isauthenticated, (req, res) => {
-    let dct = { title: "View Cv"};
+    let dct = { title: "View Cv" };
     return res.render("auth/myjob", dct);
 });
 
 authRouter.get('/editcv', isauthenticated, (req, res) => {
-    let dct = { title: "Edit Cv"};
+    let dct = { title: "Edit Cv" };
     return res.render("auth/makecv", dct);
 });
 
@@ -76,26 +75,25 @@ authRouter.get('/resendemail', (req, res) => {
 authRouter.post('/signup', (req, res) => {
     console.log("signup");
     let data = req.body;
-    if (!data.firstname || !data.lastname || !data.phoneno || !data.email || !data.password || !data.cpassword){
+    if (!data.firstname || !data.lastname || !data.phoneno || !data.email || !data.password || !data.cpassword) {
         res.locals.messages.push(["One or more fields are empty", "red"])
         return res.redirect('/signup');
     }
-    if (data.password !== data.cpassword){
+    if (data.password !== data.cpassword) {
         res.locals.messages.push(["Passwords do not match", "red"])
         return res.redirect('/signup');
     }
     userController.createuser(data, (err, response) => {
-        if (err){
+        if (err) {
             console.error(err);
             res.locals.messages.push(["Some error found", "red"]);
             return res.redirect('/signup')
         }
-        if (response.success == false){
+        if (response.success == false) {
             res.locals.messages.push([response.message, "red"]);
             return res.redirect('/signup')
-        }
-        else{
-            sendEmail(data.email, "Welcome", {link: "https://www.joblana.com"}, "verification");
+        } else {
+            sendEmail(data.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
             res.locals.messages.push([response.message, "green"]);
             return res.redirect('/signup')
         }
@@ -105,23 +103,23 @@ authRouter.post('/signup', (req, res) => {
 authRouter.post('/login', (req, res) => {
 
     console.log(req.session.next);
-    if (!req.body.email){
+    if (!req.body.email) {
         res.locals.messages.push(["One or more fields are incorrect", "red"])
         return res.redirect('/login');
     }
     userController.userlogin(req.body.email, req.body.password, (err, response) => {
-        if(err){
+        if (err) {
             console.error(err.message);
             return
         }
-        if (response.success == false){
+        if (response.success == false) {
             res.locals.messages.push([response.message, "red"])
             return res.redirect('/login');
         }
         req.session.user = response.user.uniqueid;
         req.session.email = response.user.email;
         res.locals.messages.push(["Successfully Logged in", "green"])
-        if (req.session.next){
+        if (req.session.next) {
             let next = req.session.next;
             delete req.session.next;
             return res.redirect(next);
@@ -134,16 +132,15 @@ authRouter.post('/login', (req, res) => {
 authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
     data = req.body;
     userController.addcvdata(data, req.session.user, req.session.email, (err, response) => {
-        if (err){
+        if (err) {
             console.log(err);
             req.session.messages.push([err.message, "red"])
             return res.redirect('/user/profile');
         }
-        if (response.success == false){
+        if (response.success == false) {
             res.locals.messages.push([response.message, "red"])
             return res.redirect('/user/editcv');
-        }
-        else{
+        } else {
             res.locals.messages.push([response.message, "green"])
             return res.redirect('/user/profile');
         }

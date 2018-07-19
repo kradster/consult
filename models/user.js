@@ -48,12 +48,11 @@ var User = new Schema({
     },
     verified: {
         type: Boolean,
-        default: false,
-
+        default: false
     }
 });
 
-User.virtual('fullname').get(function(){
+User.virtual('fullname').get(function() {
     return this.name.first + ' ' + this.name.second;
 });
 

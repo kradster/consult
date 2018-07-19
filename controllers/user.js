@@ -9,33 +9,33 @@ let db = new sqlite3.Database('database.db', err => {
 let bcrypt = require('bcrypt-nodejs');
 
 
-module.exports.subscribe_email = function(email, callback){
-	db.exec("INSERT INTO JobAlerts(email) VALUES('" + email + "')", (err, row) => {
+module.exports.subscribe_email = function(email, callback) {
+    db.exec("INSERT INTO JobAlerts(email) VALUES('" + email + "')", (err, row) => {
         if (err) {
-        	console.log(err);
-        	return
+            console.log(err);
+            return
         }
-        if (callback){
-        	callback(null, row);
+        if (callback) {
+            callback(null, row);
         }
-                
+
     });
 }
 
-module.exports.getjoblistings = function(callback){
+module.exports.getjoblistings = function(callback) {
     db.all("SELECT * FROM JobListings", (err, row) => {
         if (err) {
             console.log(err);
             return
         }
-        if (callback){
+        if (callback) {
             callback(null, row);
         }
-                
+
     });
 }
 
-module.exports.userdata = function(uid, callback){
+module.exports.userdata = function(uid, callback) {
     db.get("SELECT * FROM Users WHERE uniqueid = ?", uid, (err, row) => {
         let dct = {};
         if (!row) {
@@ -59,43 +59,57 @@ module.exports.userdata = function(uid, callback){
     });
 }
 
-module.exports.userlogin = function(email, password, callback){
+module.exports.userlogin = function(email, password, callback) {
     db.get("SELECT * FROM Users WHERE email = ?", email, (err, userrow) => {
         if (err) {
             return callback(err, null)
         }
         if (!userrow) {
-            return callback(null, {success: false, message: "Email id not found"})
-        }
-        else if (!bcrypt.compareSync(password, userrow.password)){
-            return callback(null, {success: false, message: "Incorrect password"})
-        }
-        else {
-            return callback(null, {success: true, user: userrow})
+            return callback(null, { success: false, message: "Email id not found" })
+        } else if (!bcrypt.compareSync(password, userrow.password)) {
+            return callback(null, { success: false, message: "Incorrect password" })
+        } else {
+            return callback(null, { success: true, user: userrow })
         }
     });
 }
 
-module.exports.createuser = function(user, callback){
-    db.get("SELECT * FROM Users WHERE email = ?", user.email, (err, row) => {
-        if (row) return callback(null, { success: false, message: "The account associated with the email already exists" });
-        delete user.cpassword;
-        user["uniqueid"] = Date.now();
-        user["verified"] = "no";
-        user.password = bcrypt.hashSync(user.password);
-        sql = "INSERT INTO Users(" + Object.keys(user).join(",") + ") VALUES('" + Object.values(user).join("', '") + "');";
-        db.exec(sql, (err) => {
-            if (err) return callback(err, null);
-            console.log("Account created");
-            db.exec("INSERT INTO CV(uniqueid) VALUES('" + user.uniqueid + "')", (err, row) => {
-                if (err) return callback(err, null);
-                return callback(null, { success: true, message: "Your Account has been created" });
-            });
-        });
+module.exports.createuser = function(user, callback) {
+
+    let userschema = require('./models/user.js');
+    let userdat = new userschema({
+        email: data.email,
+        name: {
+            first: data.firstname,
+            second: data.lastname
+        },
+        password: bcrypt.hashSync(data.password),
+        phoneno: data.phoneno
     });
+    userdat.validate()
+    userdat.save((err, userdat) => {
+        if (err) return console.error(err);
+
+    });
+    // db.get("SELECT * FROM Users WHERE email = ?", user.email, (err, row) => {
+    //     if (row) return callback(null, { success: false, message: "The account associated with the email already exists" });
+    //     delete user.cpassword;
+    //     user["uniqueid"] = Date.now();
+    //     user["verified"] = "no";
+    //     user.password = bcrypt.hashSync(user.password);
+    //     sql = "INSERT INTO Users(" + Object.keys(user).join(",") + ") VALUES('" + Object.values(user).join("', '") + "');";
+    //     db.exec(sql, (err) => {
+    //         if (err) return callback(err, null);
+    //         console.log("Account created");
+    //         db.exec("INSERT INTO CV(uniqueid) VALUES('" + user.uniqueid + "')", (err, row) => {
+    //             if (err) return callback(err, null);
+    //             return callback(null, { success: true, message: "Your Account has been created" });
+    //         });
+    //     });
+    // });
 }
 
-module.exports.addcvdata = function(data, user_id, email, callback){
+module.exports.addcvdata = function(data, user_id, email, callback) {
     console.log('addvsdata');
     console.log(data, user_id, email);
     data["projects"] = data.projecttype.map((x, i) => {
@@ -121,6 +135,6 @@ module.exports.addcvdata = function(data, user_id, email, callback){
         if (err) {
             return callback(err, null);
         }
-        return callback(null, {success: true, message: "CV updated Successfully"})
+        return callback(null, { success: true, message: "CV updated Successfully" })
     });
 }
