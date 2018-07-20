@@ -130,13 +130,14 @@
     });
     $(document).ready(function() {
         M.AutoInit();
+        $('.tooltipped').tooltip();
         array = <%- JSON.stringify(locals.messages) %>;
         array.forEach(a => {
             M.toast({
                 html: "<b>" + a[0] + "</b>",
                 classes: a[1]
             });
-        <%- removeMessages() %>
+            <%- removeMessages() %>
         });
 
     });

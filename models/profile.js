@@ -6,13 +6,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Profile = new Schema({
-    user: { 
-        type: Schema.Types.ObjectId, ref: 'User',
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         unique: true
     },
     experience: [{ type: Schema.Types.ObjectId, ref: 'Experience' }],
     details: {
-        fathername: {
+        father_name: {
             type: String,
             trim: true,
             maxlength: 20
@@ -35,14 +36,14 @@ var Profile = new Schema({
         full_address: {
             type: String,
             trim: true,
-            maxlength: 50    		
+            maxlength: 50
         },
         city: {
             type: String,
             trim: true,
-            maxlength: 50    		
+            maxlength: 50
 
-    	},
+        },
         state: {
             type: String,
             enum: ['Andhra Pradesh', 'Uttar Pradesh']
@@ -51,64 +52,80 @@ var Profile = new Schema({
             type: Number
         }
     },
-    education:{
-    	high: {
-    		institute_name: {
-	    		type: String
-    		},
-    		board: {
-    			type: String
-    		},
-    		marks: {
-    			type: Number
-    		},
+    education: {
+        high: {
+            institute_name: {
+                type: String
+            },
+            board: {
+                type: String
+            },
+            marks: {
+                type: Number
+            },
             passing_year: {
                 type: Date
             },
             course: {
                 type: String
             }
-    	},
-    	intermediate: {
-    		institute_name: {
-	    		type: String
-    		},
-    		board: {
-    			type: String
-    		},
-    		marks: {
-    			type: Number
-    		},
+        },
+        intermediate: {
+            institute_name: {
+                type: String
+            },
+            board: {
+                type: String
+            },
+            marks: {
+                type: Number
+            },
             passing_year: {
                 type: Date
             },
             course: {
                 type: String
             }
-    	},
-    	graduation: {
-    		institute_name: {
-	    		type: String
-    		},
-    		board: {
-    			type: String
-    		},
-    		marks: {
-    			type: Number
-    		},
+        },
+        graduation: {
+            institute_name: {
+                type: String
+            },
+            board: {
+                type: String
+            },
+            marks: {
+                type: Number
+            },
             passing_year: {
                 type: Date
             },
             course: {
                 type: String
             }
-    	},
+        },
+        post_graduation: {
+            institute_name: {
+                type: String
+            },
+            board: {
+                type: String
+            },
+            marks: {
+                type: Number
+            },
+            passing_year: {
+                type: Date
+            },
+            course: {
+                type: String
+            }
+        }
     },
     preferred_city: {
         type: String
     },
     skills: [],
-}, {timestamps: true}
-);
+}, { timestamps: true });
 
 module.exports = mongoose.model('Profile', Profile);

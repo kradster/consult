@@ -40,20 +40,20 @@
                         <br>
                         <br>
                         <div class="input-field col s6">
-                            <input placeholder="Full Name" type="text" name="fullname" id="fullname">
+                            <input placeholder="Full Name" type="text" name="fullname" id="details_fullname" class="tooltipped" data-tooltip="Full Name" placeholder="<%= user.profile.details.fullname %>">
                         </div>
 
                         <div class="input-field col s6">
-                            <input type="text" name="details_fathername" id="details_fathername" placeholder="Father Name">
+                            <input class="tooltipped" data-tooltip="Father's Name" type="text" name="details_fathername" id="details-father_name" placeholder="<%= user.profile.details.fathername %>">
                         </div>
                         <div class="input-field col s6">
-                            <input class="datepicker" type="text" name="details_dob" id="details_dob" placeholder="Date Of Birth">
+                            <input class="datepicker" type="text" name="details_dob" id="details_dob" class="tooltipped" data-tooltip="Date of Birth" placeholder="<%= user.profile.details.dob %>">
                         </div>
                         <!-- <div class="input-field col s6">
                         <input type="text" id="city" placeholder="City">
                     </div> -->
                         <div class="input-field col s6">
-                            <input type="text" name="aadharno" id="details_aadharno" placeholder="Aadhar No">
+                            <input type="text" name="aadharno" id="details-aadharno" class="tooltipped" data-tooltip="Aadhar No." placeholder="<%= user.profile.details.aadharno %>">
                         </div>
                         <div class="input-field col s6">
                             <div class="col s4">
@@ -84,16 +84,16 @@
                         <br>
                         <br>
                         <div class="input-field col s6">
-                            <input placeholder="Full Address" type="text" name="fulladdress" id="fulladdress">
+                            <input placeholder="Full Address" type="text" name="fulladdress" id="address_full_address" class="tooltipped" data-tooltip="Address" placeholder="<%= user.profile.address.full_address %>">
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="city" id="ftrname" placeholder="City">
+                            <input type="text" name="city" id="address-city" class="tooltipped" data-tooltip="Address" placeholder="<%= user.profile.address.city %>">
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="state" id="state" placeholder="State">
+                            <input type="text" name="state" id="address-state" placeholder="State" class="tooltipped" data-tooltip="State" placeholder="<%= user.profile.address.state %>">
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="zipcode" id="zipcode" placeholder="Zip Code">
+                            <input type="text" name="zipcode" id="address-pincode" class="tooltipped" data-tooltip="Pin code" placeholder="<%= user.profile.address.pincode %>">
                         </div>
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
@@ -113,19 +113,19 @@
 
                         <div class="holder">
                             <div class="input-field">
-                                <input id="school10" type="text" name="school10" placeholder="School Name">
+                                <input id="education-high-institute_name" type="text" name="school10" class="tooltipped" data-tooltip="Institute Name" placeholder="<%= user.profile.education.high.institute_name %>">
                             </div>
                             <div class="input-field">
-                                <input id="board10" type="text" name="board10" placeholder="School Board">
+                                <input id="education-high-board" type="text" name="board10" class="tooltipped" data-tooltip="Board" placeholder="<%= user.profile.education.high.board %>">
                             </div>
                             <div class="input-field">
-                                <input id="board10" type="text" name="course10" placeholder="Course">
+                                <input id="education-high-course" type="text" name="course10" class="tooltipped" data-tooltip="Course" placeholder="<%= user.profile.education.high.course %>">
                             </div>
                             <div class="input-field">
-                                <input id="marks10" type="text" name="marks10" placeholder="Marks in % / CGPA">
+                                <input id="education-high-marks" type="text" name="marks10" class="tooltipped" data-tooltip="Marks" placeholder="<%= user.profile.education.high.marks %>">
                             </div>
                             <div class="input-field">
-                                <input id="year10" type="text" name="year10" placeholder="Passing Year">
+                                <input id="education-high-passing_year" type="text" name="year10" class="tooltipped" data-tooltip="Passing Year" placeholder="<%= user.profile.education.passing_year %>">
                             </div>
                         </div>
                         <br>
@@ -134,31 +134,31 @@
                         <br>
                         <div class="holder">
                             <div class="input-field">
-                                <input id="school12" type="text" name="school12" placeholder="School Name">
+                                <input id="education-intermediate-institute_name" type="text" name="school12" class="tooltipped" data-tooltip="Full Name" placeholder="<%= user.profile.education.intermediate.institute_name %>">
                             </div>
                             <div class="input-field">
-                                <input id="board12" type="text" name="board12" placeholder="School Board">
+                                <input id="education-intermediate-board" type="text" name="board12" class="tooltipped" data-tooltip="Board" placeholder="<%= user.profile.education.intermediate.board %>">
                             </div>
                             <div class="input-field">
-                                <input id="board10" type="text" name="course12" placeholder="Course">
+                                <input id="education-intermediate-course" type="text" name="course12" class="tooltipped" data-tooltip="Course" placeholder="<%= user.profile.education.intermediate.course %>">
                             </div>
                             <div class="input-field">
-                                <input id="marks12" type="text" name="marks12" placeholder="Marks in % / CGPA">
+                                <input id="education-intermediate-marks" type="text" name="marks12" class="tooltipped" data-tooltip="Marks in % / CGPA" placeholder="<%= user.profile.education.intermediate.marks %>">
                             </div>
                             <div class="input-field">
-                                <input id="year12" type="text" name="year12" placeholder="Passing Year">
+                                <input id="education-intermediate-passing_year" type="text" name="year12" class="tooltipped" data-tooltip="Passing Year" placeholder="<%= user.profile.education.intermediate.passing_year %>">
                             </div>
                         </div>
                         <div class="ui label">GRADUATION</div>
                         <br>
                         <div class="input-field col s3">
-                            <input id="collegename" type="text" name="collegename" placeholder="Collage Name">
+                            <input id="education-graduation-institute_name" type="text" name="collegename" class="tooltipped" data-tooltip="Institute Name" placeholder="<%= user.profile.education.graduation.institute_name %>">
                         </div>
                         <div class="input-field col s3">
-                            <input id="collegeboard" type="text" name="collegeboard" placeholder="Collage Board">
+                            <input id="education-graduation-board" type="text" name="collegeboard" class="tooltipped" data-tooltip="Board" placeholder="<%= user.profile.education.graduation.board %>">
                         </div>
                         <div class="input-field col s3">
-                            <select class="no-autoinit" name="collegecourse">
+                            <select class="no-autoinit" name="collegecourse" id="education-graduation-course" class="tooltipped" data-tooltip="Course">
                             <option value="" disabled selected>Choose your course</option>
                             <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
                             <option value="Bachelor of Education ( B.Ed)">Bachelor of Education ( B.Ed)</option>
@@ -206,19 +206,19 @@
                         </select>
                         </div>
                         <div class="input-field col s3">
-                            <input id="collegemarks" type="text" name="collegemarks" placeholder="Marks">
+                            <input id="education-graduation-marks" type="text" name="collegemarks" class="tooltipped" data-tooltip="Marks" placeholder="<%= user.profile.education.graduation.marks %>">
                         </div>
 
                         <div class="ui label">POST GRADUATION</div>
                         <br>
                         <div class="input-field col s3">
-                            <input id="mcollegename" type="text" name="postcollegename" placeholder="Collage Name">
+                            <input id="education-post_graduation-institute_name" type="text" name="postcollegename" class="tooltipped" data-tooltip="Institute Name" placeholder="<%= user.profile.education.post_graduation.institute_name %>">
                         </div>
                         <div class="input-field col s3">
-                            <input id="mcollegeboard" type="text" name="postcollegeboard" placeholder="Collage Board">
+                            <input id="education-post_graduation-board" type="text" name="postcollegeboard" data-tooltip="Marks" placeholder="<%= user.profile.education.post_graduation.board %>">
                         </div>
                         <div class="input-field col s3">
-                            <select class="no-autoinit" name="postcollegecourse">
+                            <select class="no-autoinit" name="postcollegecourse" id="education-post_graduation-course" data-tooltip="Course">
                                 <option value="" disabled selected>Choose your course</option>
                                 <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
                                 <option value="Bachelor of Education ( B.Ed)">Bachelor of Education ( B.Ed)</option>
@@ -266,7 +266,10 @@
                             </select>
                         </div>
                         <div class="input-field col s3">
-                            <input id="mcollegemarks" type="text" name="postcollegemarks" placeholder="Marks">
+                            <input id="education-post_graduation-marks" type="text" name="postcollegemarks" data-tooltip="Marks" placeholder="<%= user.profile.education.post_graduation-marks %>">
+                        </div>
+                        <div class="input-field col s3">
+                            <input id="education-post_graduation-passing_year" type="text" name="postcollegename" class="tooltipped" data-tooltip="Passing Year" placeholder="<%= user.profile.education.post_graduation.passing_year %>">
                         </div>
 
                         <div class="input-field col s6">
@@ -404,8 +407,8 @@
                 function save() {
                     let params = $("input[type=text]");
                     let dct = new Object();
-                    for (let i=0; i < params.length; i++){
-                        if (params[i].value){
+                    for (let i = 0; i < params.length; i++) {
+                        if (params[i].value) {
                             dct[params[i].id] = params[i].value;
                         }
                     }
