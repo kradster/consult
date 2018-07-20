@@ -44,7 +44,7 @@
                     </div>
                     <div class="divider"></div>
                     <div class="row" style="height:50px;"></div>
-                    <form action="/addjob" method="POST">
+                    <form method="POST" action="/admin/addjob" enctype="multipart/form-data">
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
                             <div class="col s9">
@@ -54,31 +54,31 @@
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Alternate Email</div>
                             <div class="col s9">
-                                <input type="text" name="contact-altemail" id="contact_altemail" placeholder="Enter Email id">
+                                <input type="text" name="contact-altemail" id="contact-altemail" placeholder="Enter Email id">
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Contact No</div>
                             <div class="col s9">
-                                <input type="text" name="contactno" id="contact-phoneno" placeholder="Enter comapny contact no">
+                                <input type="text" name="contact-phoneno" id="contact-phoneno" placeholder="Enter comapny contact no">
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Company Website</div>
                             <div class="col s9">
-                                <input type="text" name="companyname" id="company-website" placeholder="Website link">
+                                <input type="text" name="company-website" id="company-website" placeholder="Website link">
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">About the Company</div>
                             <div class="col s9">
-                                <textarea style="height:200px;" type="text" id="company-about" name="aboutcompany" placeholder="Enter about you company"></textarea>
+                                <textarea style="height:200px;" type="text" id="company-about" name="company-about" placeholder="Enter about you company"></textarea>
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
                             <div class="col s9">
-                                <select id="job-title" name="jobtitle" class="no-autoinit">
+                                <select id="job-title" name="jobtitle">
                                     <option value="" disabled selected>Choose your option</option>
                                     <option value="hr">HR</option>
                                     <option value="Operations">OPERATIONS</option>
@@ -94,14 +94,14 @@
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">No of Vacancies</div>
                             <div class="col s9">
-                                <input type="text" name="noofvac" id="job-vacancies" placeholder="Enter no vacancies">
+                                <input type="text" name="job-vacancies" id="job-vacancies" placeholder="Enter no vacancies">
                             </div>
                         </div>
                         <div id="location-container" class="col l10 offset-l2 s12">
                             <div id="location-parent">
                                 <div class="col s3 right-align" style="padding-top:10px;">Location</div>
                                 <div class="col s8">
-                                    <select name="location[]" id="job-location" class="no-autoinit">
+                                    <select name="location[]" id="job-location">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="New Delhi">New Delhi</option>
@@ -132,7 +132,7 @@
                             <div class="col s12 no-padd">
                                 <div class="col s3 right-align" style="padding-top:10px;">Salary</div>
                                 <div class="col s9">
-                                    <select id="job-salary" name="sallary" class="no-autoinit">
+                                    <select id="job-salary" name="sallary">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="2">Less than 2 lac</option>
                                         <option value="2-3">2-3 lac</option>
@@ -149,7 +149,7 @@
                             <div class="col s12 no-padd">
                                 <div class="col s3 right-align" style="padding-top:10px;">Experience</div>
                                 <div class="col s9">
-                                    <select id="job-experience-minexp" name="experience" class="no-autoinit">
+                                    <select id="job-experience-minexp" name="experience">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="e0">FRESHER</option>
                                         <option value="e12">12 MOTHNS</option>
@@ -162,13 +162,13 @@
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Job Description</div>
                             <div class="col s9">
-                                <input style="height:200px;" type="text" id="job-description" name="jobdesc" placeholder="Enter job description">
+                                <textarea style="height:200px;" type="text" id="job-description" name="job-description" placeholder="Enter about you company"></textarea>
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Joining Date</div>
                             <div class="col s9">
-                                <input class="datepicker" type="text" id="job-joining_date" name="dateofjoin" placeholder="Enter date of joining">
+                                <input class="datepicker" type="text" id="job-joining_date" name="job-joining_date" placeholder="Enter date of joining">
                             </div>
                         </div>
                         <div class="col s12"></div>
@@ -225,36 +225,6 @@
                 maxDate: new Date(2010, 1, 1)
             });
         });
-
-        function save() {
-            let params = $("input[type=text]");
-            let dct = new Object();
-            for (let i = 0; i < params.length; i++) {
-                if (params[i].value) {
-                    dct[params[i].id] = params[i].value;
-                }
-            }
-            console.log(dct);
-            $.ajax({
-                url: "/admin/addjob",
-                method: "POST",
-                data: dct,
-                success: function(response) {
-                    console.log(response);
-                    array = response.messages
-                    array.forEach(a => {
-                        M.toast({
-                            html: "<b>" + a[0] + "</b>",
-                            classes: a[1]
-                        });
-
-                    });
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-        }
     </script>
 </body>
 

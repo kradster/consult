@@ -11,11 +11,6 @@ function isauthenticated(req, res, next) {
         req.session.next = req.originalUrl;
         return res.redirect('/login');
     }
-    if (!req.isAuthenticated()) {
-        req.session.messages.push(["Please login to access this page", "blue"])
-        req.session.next = req.originalUrl;
-        return res.redirect('/login');
-    }
     if (req.user.role != "ADMIN"){
         req.session.messages.push(["You are not authorised to visit this page", "red"])
         req.session.next = req.originalUrl;
@@ -36,19 +31,22 @@ adminRouter.get('/addjob', isauthenticated, (req, res) => {
 
 adminRouter.post('/addjob', isauthenticated, (req, res) => {
     data = req.body;
-    adminController.addjob(user, data, (err, job) => {
+    console.log(data);
+    adminController.addjob(req.user, data, (err, job) => {
         try {
             if (err) {
                 console.log('errror')
                 console.error(err);
-                messages = [];
-                Object.keys(err.errors).forEach(error => {
-                    console.log(err.errors[error].message);
-                    messages.push([err.errors[error].message, "red"]);
+                Object.values(err.errors).forEach(error => {
+                    console.log(error.message);
+                    res.locals.messages.push([error.message, "red"]);
                 });
-                return res.send({success: true, messages: messages})
+                return res.redirect('/admin/addjob')
             } else {
-                return res.send({success: true, messages: [["Job added successfully", "green"]]})
+                console.log(user);
+                sendEmail(user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
+                res.locals.messages.push(["Successful signup", "green"]);
+                return res.redirect('/job-opportunities')
             }
         } catch (error) {
             console.error(error)
@@ -63,31 +61,6 @@ adminRouter.get('/admin/editjobs', isauthenticated, (req, res) => {
         res.render('comlist', { data: rows });
     });
 
-});
-
-adminRouter.get('/admin/download', isauthenticated, (req, res) => {
-    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
-        res.download(process.cwd() + '/database.db');
-    } else
-        res.render('alert', { title: "Incorrect login activity", link: "/", linkname: "Go to Home" });
-})
-
-
-adminRouter.get('/adminpanel', isauthenticated, (req, res) => {
-    if (req.session.user === "") {
-        res.sendFile('/templates/adminpanel.html', { root: __dirname });
-    } else
-        res.redirect('/login');
-});
-
-adminRouter.post('/adminpanel', isauthenticated, (req, res) => {
-    if (req.session.user === "") {
-        db.all('SELECT * FROM JobListings', (err, row) => {
-            res.send({ success: true, data: row });
-
-        });
-    } else
-        res.send({ success: false, message: "Incorrect login" });
 });
 
 module.exports = adminRouter;

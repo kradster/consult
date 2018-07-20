@@ -1,6 +1,7 @@
 var User = require('../models/user');
-var Profile = require('../models/profile');
 var Job = require('../models/job');
+var mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId
 
 module.exports.addjob = function(user, data, callback) {
     let newJob = new Job();
@@ -27,7 +28,29 @@ module.exports.addjob = function(user, data, callback) {
                     error.errors = { duplicate: { message: "Email or mobile already registered" } }
                     return callback(error, null)
                 }
-                return callback(err, null)
+                return callback(null, newJob)
             }
         });
+}
+
+module.exports.getjobs = function(callback) {
+    Job.find({}, (err, jobs) =>{
+        if (err){
+            return callback(err, null);
+        }
+        else{
+            return callback(null, jobs);
+        }
+    });
+}
+
+module.exports.getjob = function(id, callback) {
+    Job.findOne({"_id": new ObjectId(id)}, (err, job) => {
+        if (err) {
+            return callback(err, null);
+        }
+        else{
+            return callback(null, job);
+        }
+    })
 }

@@ -50,22 +50,22 @@
                                 <div class="col s12 ui white card no-padd hoverable animated bounceIn" style="animation-delay:` + Math.random() * 1 + `s;border-radius:0px 0px 10px 10px;border-top:2px solid indigo">
                                     <div class="col s12">
                                         <h6 style="text-transform:uppercase;"><b>
-                                            <i class="fas fa-building fa-1x grey-text lighten-2"></i>&nbsp;` + listings[i].jobtitle + ` JOB</b>
+                                            <i class="fas fa-building fa-1x grey-text lighten-2"></i><%= listings[i].job.title %> JOB</b>
                                         </h6>
-                                        <small><i>` + listings[i].companyname + `</i></small><br/>
+                                        <small><i><%= listings[i].company.name %></i></small><br/>
                                         <div class="col s12 no-padd">
                                             <div class="col s12 no-padd">
-                                               <strong> EXP : ` + EXP + `</strong>
+                                               <strong> EXP : <%= listings[i].job.experience.min %> </strong>
                                             </div>
                                             <div class="col s12 no-padd">
-                                                <strong>  SALARY : ` + listings[i].salary + `LPA </strong>
+                                                <strong>  SALARY : <%= listings[i].job.salary %> LPA </strong>
                                             </div>
                                             <div class="col s12 no-padd">
-                                                <strong>  LOCATION : ` + listings[i].location + `</strong> 
+                                                <strong>  LOCATION : <%= listings[i].job.location %></strong> 
                                             </div>
                                         </div>
                                         <div class="col s12 no-padd">  
-                                        <a href="/company-info/` + data[d].jobid + `">Read More</a>
+                                        <a href="/company-info/<%= listings[i].id %>">Read More</a>
                                         </div>
                                         <div class="col s12 no-padd">
                                             <a href="/schedule" class="btn white indigo-text right accent-4 z-depth-0">
