@@ -58,8 +58,7 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
     data.phoneno = req.user.phoneno;
     data.verified = req.user.verified;
     dct.data = data;
-    dct.data["_removetags"] = true;
-    dct.data.profile = {details: {}, address: {}, education: {high: {}, intermediate: {}, graduation: {}}};
+    dct.data.profile = {details: {}, address: {}, education: {high: {}, intermediate: {}, graduation: {}}, experience: [], skills: []};
     userController.getUserProfile(req.user, (err, profile) => {
         if (err){
             console.error(err);
@@ -92,6 +91,32 @@ authRouter.get('/editcv', isauthenticated, (req, res) => {
     return res.render("auth/makecv", dct);
 });
 
+authRouter.post('/editcv', isauthenticated, (req, res, next) => {
+    data = req.body;
+    console.log(data);
+    userController.addprofile(req.user, data, (err, response) => {
+        try {
+            if (err) {
+                console.log('errror')
+                console.error(err);
+                Object.keys(err.errors).forEach(error => {
+                    console.log(err.errors[error].message);
+                    res.locals.messages.push([err.errors[error].message, "red"]);
+                });
+                return res.redirect('/user/profile')
+            } else {
+                res.locals.messages.push(["Profile updated successfully", "green"]);
+                return res.redirect('/user/profile')
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    });
+
+    //res.send({ success: true, data: req.body, message: "cv details" });
+});
+
+
 authRouter.get('/verify', (req, res) => {
     console.log(req.protocol + ":/" + req.get('host'));
     if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
@@ -119,30 +144,6 @@ authRouter.get('/resendemail', (req, res, next) => {
 
 
 
-authRouter.post('/cvbuilder', isauthenticated, (req, res, next) => {
-    data = req.body;
-    console.log(data);
-    userController.addprofile(req.user, data, (err, response) => {
-        try {
-            if (err) {
-                console.log('errror')
-                console.error(err);
-                Object.keys(err.errors).forEach(error => {
-                    console.log(err.errors[error].message);
-                    res.locals.messages.push([err.errors[error].message, "red"]);
-                });
-                return res.redirect('/user/profile')
-            } else {
-                res.locals.messages.push(["Profile updated successfully", "green"]);
-                return res.redirect('/user/profile')
-            }
-        } catch (error) {
-            console.error(error)
-        }
-    });
-
-    //res.send({ success: true, data: req.body, message: "cv details" });
-});
 
 
 // authRouter.get('/getcv', (req, res) => {

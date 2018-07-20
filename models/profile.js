@@ -103,6 +103,9 @@ var Profile = new Schema({
             }
     	},
     },
+    preferred_city: {
+        type: String
+    },
     skills: [],
 }, {timestamps: true}
 );

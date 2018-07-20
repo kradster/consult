@@ -75,10 +75,10 @@
                                 <%= data.verified %>
                             </div>
                             <div class="col l2 m2 s3 no-padd">
-                                <span id="u_city"><%= data.city %></span>
+                                <span id="u_city"><%= data.profile.address.city %></span>
                             </div>
                             <div class="col l2 m3 s2 no-padd">
-                                <span id="u_edu"><%= data.state %></span>
+                                <span id="u_edu"><%= data.profile.address.state %></span>
                             </div>
                         </div>
                         <div class="col s12 no-padd">
@@ -163,7 +163,7 @@
                                         <b>Date of birth</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.dob %>
+                                        <%= data.profile.details.dob %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -215,7 +215,7 @@
                                         <b>Address</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.fulladdress %>
+                                        <%= data.profile.address.fulladdress %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -224,7 +224,7 @@
                                         <b>State</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.state %>
+                                        <%= data.profile.address.state %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -233,7 +233,7 @@
                                         <b>City</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.city %>
+                                        <%= data.profile.address.city %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -242,7 +242,7 @@
                                         <b>ZIP CODE</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.zipcode %>
+                                        <%= data.profile.address.pincode %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -266,7 +266,7 @@
                                         <b>School Name</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.school10 %>
+                                        <%= data.profile.education.high.institute_name %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -275,7 +275,7 @@
                                         <b>Board</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.board10 %>
+                                        <%= data.profile.education.high.board %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -284,7 +284,7 @@
                                         <b>Passing Year</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.year10 %>
+                                        <%= data.profile.education.high.passing_year %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -293,7 +293,7 @@
                                         <b>Marks</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.marks10 %>
+                                        <%= data.profile.education.high.marks %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -314,7 +314,7 @@
                                         <b>School Name</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.school12 %>
+                                        <%= data.profile.education.intermediate.institute_nam %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -323,7 +323,7 @@
                                         <b>Board</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.board12 %>
+                                        <%= data.profile.education.intermediate.board %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -332,7 +332,7 @@
                                         <b>Passing Year</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.year12 %>
+                                        <%= data.profile.education.intermediate.passing_year %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -341,7 +341,7 @@
                                         <b>Marks</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.marks12 %>
+                                        <%= data.profile.education.intermediate.marks %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -358,7 +358,7 @@
                                         <b>College Name</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.collegename %>
+                                        <%= data.profile.education.graduation.institute_name %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -367,7 +367,7 @@
                                         <b>Board</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.collegeboard %>
+                                        <%= data.profile.education.graduation.board %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -376,7 +376,7 @@
                                         <b>Passing Year</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.collegeyear %>
+                                        <%= data.profile.education.graduation.passing_year %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -385,7 +385,7 @@
                                         <b>Marks</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.collegemarks %>
+                                        <%= data.profile.education.graduation.marks %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -407,46 +407,48 @@
                                     <b>Project Details</b>
                                 </h6>
                                 <br>
-                                <div id="cont">
-                                    <div class="col s12">
-                                        <div class="col s3">
-                                            <b>Project Name</b>
+                                <% for(var i=0; i < data.profile.experience.length; i++) { %>
+                                    <div id="cont">
+                                        <div class="col s12">
+                                            <div class="col s3">
+                                                <b>Project Name</b>
+                                            </div>
+                                            <div class="col s8" id="proj">
+                                                <%= data.profile.experience[i].profile %>
+                                            </div>
                                         </div>
-                                        <div class="col s8" id="proj">
-                                            <%= data.profile.projects %>
+                                        <div class="row"></div>
+                                        <div class="col s12">
+                                            <div class="col s3">
+                                                <b>Institute/Organisation</b>
+                                            </div>
+                                            <div class="col s8">
+                                                <%= data.profile.experience[i].organization %>
+                                            </div>
                                         </div>
+                                        <div class="row"></div>
+                                        <div class="col s12">
+                                            <div class="col s3">
+                                                <b>Duration</b>
+                                            </div>
+                                            <div class="col s8">
+                                                <%= data.profile.experience[i].start_date %> to
+                                                    <%= data.profile.experience[i].end_date %>
+                                            </div>
+                                        </div>
+                                        <div class="row"></div>
+                                        <div class="row"></div>
+                                        <div class="col s12">
+                                            <div class="col s3">
+                                                <b>ProJect Details</b>
+                                            </div>
+                                            <div class="col s8">
+                                                <%= data.profile.experience[i].projectdesc %>
+                                            </div>
+                                        </div>
+                                        <div class="row"></div>
                                     </div>
-                                    <div class="row"></div>
-                                    <div class="col s12">
-                                        <div class="col s3">
-                                            <b>Institute/Organisation</b>
-                                        </div>
-                                        <div class="col s8">
-                                            <%= data.profile.projectinstitute %>
-                                        </div>
-                                    </div>
-                                    <div class="row"></div>
-                                    <div class="col s12">
-                                        <div class="col s3">
-                                            <b>Duration</b>
-                                        </div>
-                                        <div class="col s8">
-                                            <%= data.profile.projectstartdate %> to
-                                                <%= data.profile.projectenddate %>
-                                        </div>
-                                    </div>
-                                    <div class="row"></div>
-                                    <div class="row"></div>
-                                    <div class="col s12">
-                                        <div class="col s3">
-                                            <b>ProJect Details</b>
-                                        </div>
-                                        <div class="col s8">
-                                            <%= data.profile.projectdesc %>
-                                        </div>
-                                    </div>
-                                    <div class="row"></div>
-                                </div>
+                                <% } %>
                             </div>
                             <div class="row"></div>
                             <div class="col l10 offset-l1 s12 white">
@@ -454,11 +456,13 @@
                                     <b>TECHNICAL SKILLS</b>
                                 </h5>
                                 <br>
-                                <div class="col s12">
-                                    <div class="ui label">
-                                        <%= data.profile.skills %>
+                                <% for(var i=0; i < data.profile.skills.length; i++) { %>
+                                    <div class="col s12">
+                                        <div class="ui label">
+                                            <%= data.profile.skills[i] %>
+                                        </div>
                                     </div>
-                                </div>
+                                <% } %>
                                 <div class="row"></div>
                             </div>
                             <div class="row"></div>
@@ -502,14 +506,14 @@
                                             <b><%= data.fullname %></b>
                                         </h4>
                                         <div class="ui label blue-text blue">
-                                            <%= data.profile.email %>
+                                            <%= data.email %>
                                         </div>
                                         <div>
-                                            <%= data.profile.contactno %>
+                                            <%= data.contactno %>
                                         </div>
                                         <div>
-                                            <%= data.profile.city %>,
-                                                <%= data.profile.state %>
+                                            <%= data.profile.address.city %>,
+                                                <%= data.profile.address.state %>
                                         </div>
                                         <br>
                                         <div class="divider"></div>
