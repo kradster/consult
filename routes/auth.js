@@ -59,15 +59,17 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
     data.verified = req.user.verified;
     dct.data = data;
     dct.data["_removetags"] = true;
-    dct.data.profile = {};
+    dct.data.profile = {details: {}, address: {}, education: {high: {}, intermediate: {}, graduation: {}}};
     userController.getUserProfile(req.user, (err, profile) => {
         if (err){
             console.error(err);
             return res.render("auth/profile", dct);
         }
-        dct.data.profile = profile;
+        if (profile) {
+            dct.data.profile = profile;
+        }
         return res.render("auth/profile", dct);
-    })
+    });
 });
 
 authRouter.get('/showcv', isauthenticated, (req, res) => {
