@@ -73,6 +73,9 @@ module.exports.addprofile = function(user, data, callback) {
                     user.profile[pri[0]][pri[1]][pri[2]] = data[dat];
                 }
             }
+            else{
+                user.profile[dat] = data[dat];
+            }
         })
         user.profile.save(err => {
             if(err){
