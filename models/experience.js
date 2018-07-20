@@ -8,19 +8,19 @@ var Schema = mongoose.Schema;
 var Experience = new Schema({
     type: {
         type: String,
-        enum: ["project", "internship", "job"]
+        enum: ["project", "internship", "job"],
         required: true
     },
     profile: { 
-        type: Schema.Types.ObjectId, ref: 'Profile'
+        type: Schema.Types.ObjectId, ref: 'Profile',
         required: true
     },
     role: {
-        type: String
+        type: String,
         required: true
     },
     organization: {
-        type: String
+        type: String,
         required: true
     },
     description: {

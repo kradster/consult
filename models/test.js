@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 
 var Test = new Schema({
     user: { 
-        type: Schema.Types.ObjectId, ref: 'User'
+        type: Schema.Types.ObjectId, ref: 'User',
         required: true
     },
     date: {
