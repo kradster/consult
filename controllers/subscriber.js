@@ -1,15 +1,17 @@
-var Subsriber = require('../models/subsriber');
+var Subscriber = require('../models/subscriber');
 
+module.exports.subscribe_email = function(email, name, callback) {
 
-module.exports.subscribe_email = function(email, callback) {
-    db.exec("INSERT INTO JobAlerts(email) VALUES('" + email + "')", (err, row) => {
+    let subscriber = new Subscriber({
+        email: email,
+        name: name
+    });
+    subscriber.save((err, subscriber) => {
         if (err) {
             console.log(err);
-            return
+            return callback(err, null);
         }
-        if (callback) {
-            callback(null, row);
-        }
-
+        console.log(email, "successfully subscribed");
+        callback(null, subscriber);
     });
 }

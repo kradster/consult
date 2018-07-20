@@ -13,9 +13,9 @@ module.exports.createuser = function(user, callback) {
     userdat.password = userdat.generateHash(user.password)
     userdat.save((err, userdat) => {
         if (err) {
-            if (err.name === 'MongoError' && err.code === 11000){
+            if (err.name === 'MongoError' && err.code === 11000) {
                 let error = new Error()
-                error.errors = {duplicate: {message: "Email or mobile already registered"}}
+                error.errors = { duplicate: { message: "Email or mobile already registered" } }
                 return callback(error, null)
             }
             return callback(err, null)
@@ -39,9 +39,9 @@ module.exports.createuser = function(user, callback) {
 // }
 
 module.exports.getUserProfile = function(user, callback) {
-    Profile.findOne({'user' :  user._id}, (err, profile) =>{
+    Profile.findOne({ 'user': user._id }, (err, profile) => {
         return callback(null, profile);
-    }); 
+    });
 }
 
 // module.exports.userlogin = function(email, password, callback) {
@@ -62,7 +62,7 @@ module.exports.getUserProfile = function(user, callback) {
 
 
 module.exports.addprofile = function(user, data, callback) {
-    if (user.profile){
+    if (user.profile) {
         console.log(user.profile);
         return callback(null, user.profile)
     }
@@ -73,9 +73,9 @@ module.exports.addprofile = function(user, data, callback) {
     newProfile.details.gender = data.gender;
     newProfile.save((err, profile) => {
         if (err) {
-            if (err.name === 'MongoError' && err.code === 11000){
+            if (err.name === 'MongoError' && err.code === 11000) {
                 let error = new Error()
-                error.errors = {duplicate: {message: "Email or mobile already registered"}}
+                error.errors = { duplicate: { message: "Email or mobile already registered" } }
                 return callback(error, null)
             }
             return callback(err, null)
@@ -83,9 +83,9 @@ module.exports.addprofile = function(user, data, callback) {
         user.profile = newProfile._id;
         user.update((err, profile) => {
             if (err) {
-                if (err.name === 'MongoError' && err.code === 11000){
+                if (err.name === 'MongoError' && err.code === 11000) {
                     let error = new Error()
-                    error.errors = {duplicate: {message: "Email or mobile already registered"}}
+                    error.errors = { duplicate: { message: "Email or mobile already registered" } }
                     return callback(error, null)
                 }
                 return callback(err, null)

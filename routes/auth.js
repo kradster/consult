@@ -16,11 +16,11 @@ function isauthenticated(req, res, next) {
 // Middlewares
 
 authRouter.post('/login', (req, res, next) => {
-        passport.authenticate('local-login', {
-            successRedirect : '/user/profile', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
-        })(req, res, next);
-    });
+    passport.authenticate('local-login', {
+        successRedirect: '/user/profile', // redirect to the secure profile section
+        failureRedirect: '/login', // redirect back to the signup page if there is an error
+    })(req, res, next);
+});
 
 authRouter.post('/signup', (req, res) => {
     let data = req.body;
@@ -33,9 +33,9 @@ authRouter.post('/signup', (req, res) => {
             if (err) {
                 console.log('errror')
                 console.error(err);
-                Object.keys(err.errors).forEach(error => {
-                    console.log(err.errors[error].message);
-                    res.locals.messages.push([err.errors[error].message, "red"]);
+                Object.values(err.errors).forEach(error => {
+                    console.log(error.message);
+                    res.locals.messages.push([error.message, "red"]);
                 });
                 return res.redirect('/signup')
             } else {
@@ -44,8 +44,7 @@ authRouter.post('/signup', (req, res) => {
                 res.locals.messages.push(["Successful signup", "green"]);
                 return res.redirect('/login')
             }
-        }
-        catch(error){
+        } catch (error) {
             console.error(error)
         }
     })
@@ -134,9 +133,8 @@ authRouter.post('/cvbuilder', isauthenticated, (req, res, next) => {
             } else {
                 res.locals.messages.push(["Profile updated successfully", "green"]);
                 return res.redirect('/user/profile')
-            }            
-        }
-        catch(error){
+            }
+        } catch (error) {
             console.error(error)
         }
     });
