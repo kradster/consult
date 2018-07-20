@@ -374,66 +374,64 @@
             </form>
         </div>
 
-        <!-- FOOTER START -->
-        <% include ../../partials/pre_footer %>
-            <!-- FOOTER END -->
+    <!-- FOOTER START -->
+    <% include ../../partials/pre_footer %>
+    <!-- FOOTER END -->
 
-            <!-- Compiled and minified JavaScript -->
-            <script src="../js/stepform.js"></script>
-            <script src="../js/addmoreskills.js"></script>
-            <script>
-                $(document).ready(function() {
-                    M.AutoInit();
-                    $('body').on('focus', ".datepicker", function() {
-                        $(this).datepicker();
+    <!-- Compiled and minified JavaScript -->
+    <script>
+        $(document).ready(function() {
+            M.AutoInit();
+            $('body').on('focus', ".datepicker", function() {
+                $(this).datepicker();
 
-                    });
-                    $('body').on('focus', "select", function() {
-                        M.AutoInit();
-                    });
-                    //$(document).on('click','.datapicker',M.datepicker);
-                });
-                $('select').on('contentChanged', function() {
-                    $(this).material_select();
-                });
-                document.addEventListener('DOMContentLoaded', function() {
-                    var elems = document.querySelectorAll('.datepicker');
-                    var instances = M.Datepicker.init(elems, {
-                        minDate: new Date(1950, 1, 1),
-                        maxDate: new Date(2010, 1, 1)
-                    });
-                });
+            });
+            $('body').on('focus', "select", function() {
+                M.AutoInit();
+            });
+            //$(document).on('click','.datapicker',M.datepicker);
+        });
+        $('select').on('contentChanged', function() {
+            $(this).material_select();
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems, {
+                minDate: new Date(1950, 1, 1),
+                maxDate: new Date(2010, 1, 1)
+            });
+        });
 
-                function save() {
-                    let params = $("input[type=text]");
-                    let dct = new Object();
-                    for (let i = 0; i < params.length; i++) {
-                        if (params[i].value) {
-                            dct[params[i].id] = params[i].value;
-                        }
-                    }
-                    console.log(dct);
-                    $.ajax({
-                        url: "/user/editcv",
-                        method: "POST",
-                        data: dct,
-                        success: function(response) {
-                            console.log(response);
-                            array = response.messages
-                            array.forEach(a => {
-                                M.toast({
-                                    html: "<b>" + a[0] + "</b>",
-                                    classes: a[1]
-                                });
-
-                            });
-                        },
-                        error: function(error) {
-                            console.log(error);
-                        }
-                    });
+        function save() {
+            let params = $("input[type=text]");
+            let dct = new Object();
+            for (let i = 0; i < params.length; i++) {
+                if (params[i].value) {
+                    dct[params[i].id] = params[i].value;
                 }
-            </script>
+            }
+            console.log(dct);
+            $.ajax({
+                url: "/user/editcv",
+                method: "POST",
+                data: dct,
+                success: function(response) {
+                    console.log(response);
+                    array = response.messages
+                    array.forEach(a => {
+                        M.toast({
+                            html: "<b>" + a[0] + "</b>",
+                            classes: a[1]
+                        });
+
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

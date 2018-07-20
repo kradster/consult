@@ -48,49 +48,43 @@
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
                             <div class="col s9">
-                                <input type="text" name="companyname" placeholder="Company Name">
-                            </div>
-                        </div>
-                        <div class="col l10 offset-l2 s12">
-                            <div class="col s3 right-align" style="padding-top:10px;">Recruiter Email Id</div>
-                            <div class="col s9">
-                                <input type="text" name="recruiteremail" placeholder="Enter email address of contact person">
+                                <input type="text" id="company-name" name="company-name" placeholder="Company Name">
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Alternate Email</div>
                             <div class="col s9">
-                                <input type="text" name="altemail" id="altemail" placeholder="Enter Email id">
+                                <input type="text" name="contact-altemail" id="contact_altemail" placeholder="Enter Email id">
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Contact No</div>
                             <div class="col s9">
-                                <input type="text" name="contactno" id="contactno" placeholder="Enter comapny contact no">
+                                <input type="text" name="contactno" id="contact-phoneno" placeholder="Enter comapny contact no">
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Company Website</div>
                             <div class="col s9">
-                                <input type="text" name="companyname" placeholder="Website link">
+                                <input type="text" name="companyname" id="company-website" placeholder="Website link">
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">About the Company</div>
                             <div class="col s9">
-                                <textarea style="height:200px;" type="text" name="aboutcompany" placeholder="Enter about you company"></textarea>
+                                <textarea style="height:200px;" type="text" id="company-about" name="aboutcompany" placeholder="Enter about you company"></textarea>
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
                             <div class="col s9">
-                                <select name="jobtitle" class="no-autoinit">
+                                <select id="job-title" name="jobtitle" class="no-autoinit">
                                     <option value="" disabled selected>Choose your option</option>
                                     <option value="hr">HR</option>
                                     <option value="Operations">OPERATIONS</option>
                                     <option value="Calling">CALLING</option>
-                                    <option value="Sales and Marketing">SALLES AND MARKITING</option>
-                                    <option value="Digital Marketing">DIGITAL MARKITING</option>
+                                    <option value="Sales and Marketing">SALES AND MARKETING</option>
+                                    <option value="Digital Marketing">DIGITAL MARKETING</option>
                                     <option value="IT">IT JOBS</option>
                                     <option value="Office">OFFICE JOBS</option>
                                     <option value="Accounting">ACCOUNTING</option>
@@ -100,25 +94,25 @@
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">No of Vacancies</div>
                             <div class="col s9">
-                                <input type="text" name="noofvac" placeholder="Enter no vacancies">
+                                <input type="text" name="noofvac" id="job-vacancies" placeholder="Enter no vacancies">
                             </div>
                         </div>
                         <div id="location-container" class="col l10 offset-l2 s12">
                             <div id="location-parent">
                                 <div class="col s3 right-align" style="padding-top:10px;">Location</div>
                                 <div class="col s8">
-                                    <select name="location[]" class="no-autoinit">
+                                    <select name="location[]" id="job-location" class="no-autoinit">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="New Delhi">New Delhi</option>
                                         <option value="Noida">Noida</option>
                                         <option value="Gurugram">Gurugram</option>
                                         <option value="Greater Noida">Greater Noida</option>
-                                        <option value="Ghaziabad">Gaziabad</option>
+                                        <option value="Gazhiabad">Gazhiabad</option>
                                         <option value="Faridabad">Faridabad</option>
                                         <option value="Sahibabad">Sahibabad</option>
                                         <option value="Kanpur">Kanpur</option>
-                                        <option value="Luchnow">Luchnow</option>
+                                        <option value="Lucknow">Lucknow</option>
                                         <option value="Meerut">Meerut</option>
                                         <option value="Sonipat">Sonipat</option>
                                         <option value="Ambala">Ambala</option>
@@ -138,7 +132,7 @@
                             <div class="col s12 no-padd">
                                 <div class="col s3 right-align" style="padding-top:10px;">Salary</div>
                                 <div class="col s9">
-                                    <select name="sallary" class="no-autoinit">
+                                    <select id="job-salary" name="sallary" class="no-autoinit">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="2">Less than 2 lac</option>
                                         <option value="2-3">2-3 lac</option>
@@ -155,13 +149,12 @@
                             <div class="col s12 no-padd">
                                 <div class="col s3 right-align" style="padding-top:10px;">Experience</div>
                                 <div class="col s9">
-                                    <select name="experience" class="no-autoinit">
+                                    <select id="job-experience-minexp" name="experience" class="no-autoinit">
                                         <option value="" disabled selected>Choose your option</option>
-                                        <option value="ef">FRESHER</option>
-                                        <option value="e12">
-                                            < 12 MOTHNS</option>
-                                                <option value="e24">12 TO 24 MONTHS</option>
-                                                <option value="e24p">+24 MONTHS</option>
+                                        <option value="e0">FRESHER</option>
+                                        <option value="e12">12 MOTHNS</option>
+                                        <option value="e24">12 TO 24 MONTHS</option>
+                                        <option value="e24p">+ 24 MONTHS</option>
                                     </select>
                                 </div>
                             </div>
@@ -169,19 +162,13 @@
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Job Description</div>
                             <div class="col s9">
-                                <input style="height:200px;" type="text" name="jobdesc" placeholder="Enter job description">
+                                <input style="height:200px;" type="text" id="job-description" name="jobdesc" placeholder="Enter job description">
                             </div>
                         </div>
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Joining Date</div>
                             <div class="col s9">
-                                <input class="datepicker" type="text" name="dateofjoin" placeholder="Enter date of joining">
-                                <p>
-                                    <label>
-                                        <input type="checkbox" class="filled-in" name="anytime" />
-                                        <span>Any time</span>
-                                    </label>
-                                </p>
+                                <input class="datepicker" type="text" id="job-joining_date" name="dateofjoin" placeholder="Enter date of joining">
                             </div>
                         </div>
                         <div class="col s12"></div>
@@ -214,6 +201,61 @@
     <% include ../../partials/pre_footer %>
     <!-- FOOTER END -->
 
+
+    <!-- Compiled and minified JavaScript -->
+    <script>
+        $(document).ready(function() {
+            M.AutoInit();
+            $('body').on('focus', ".datepicker", function() {
+                $(this).datepicker();
+
+            });
+            $('body').on('focus', "select", function() {
+                M.AutoInit();
+            });
+            //$(document).on('click','.datapicker',M.datepicker);
+        });
+        $('select').on('contentChanged', function() {
+            $(this).material_select();
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems, {
+                minDate: new Date(1950, 1, 1),
+                maxDate: new Date(2010, 1, 1)
+            });
+        });
+
+        function save() {
+            let params = $("input[type=text]");
+            let dct = new Object();
+            for (let i = 0; i < params.length; i++) {
+                if (params[i].value) {
+                    dct[params[i].id] = params[i].value;
+                }
+            }
+            console.log(dct);
+            $.ajax({
+                url: "/admin/addjob",
+                method: "POST",
+                data: dct,
+                success: function(response) {
+                    console.log(response);
+                    array = response.messages
+                    array.forEach(a => {
+                        M.toast({
+                            html: "<b>" + a[0] + "</b>",
+                            classes: a[1]
+                        });
+
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

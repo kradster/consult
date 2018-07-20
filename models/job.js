@@ -22,7 +22,7 @@ var Job = new Schema({
         },
         phoneno: {
             type: String,
-            required: true,
+            required: [true, "Mandatory field"],
             trim: true,
             maxlength: [10, "Mobile Number can be of 10 digits only."],
             validate: {
@@ -39,7 +39,7 @@ var Job = new Schema({
         name: {
             type: String,
             trim: true,
-            maxlength: 20
+            maxlength: 32
         },
         about:{
             type: String,
@@ -61,7 +61,7 @@ var Job = new Schema({
             trim: true,
             maxlength: 20,
             validate:{
-                validator: validate.isURL,
+                validator: validator.isURL,
                 message: "Not a valid URL"
             }
         },
@@ -93,9 +93,6 @@ var Job = new Schema({
         experience: {
             minexp: {
                 type: [Number, "Wrong type"],
-            },
-            maxexp: {
-                type: [Number, "Wrong type"],
             }
         },
         joining_date: {
@@ -105,6 +102,9 @@ var Job = new Schema({
         vacancies: {
             type: Number,
             required: [true, "Vacancies are mandatory"]
+        },
+        location: {
+            type: String
         }
     }
 });

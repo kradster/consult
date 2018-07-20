@@ -111,3 +111,4 @@ module.exports.addprofile = function(user, data, callback) {
                 return callback(null, newProfile);
             });
         }
+};

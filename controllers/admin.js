@@ -19,6 +19,7 @@ module.exports.addjob = function(user, data, callback) {
                 newJob[dat] = data[dat];
             }
         })
+        console.log(newJob);
         newJob.save((err, profile) => {
             if (err) {
                 if (err.name === 'MongoError' && err.code === 11000) {

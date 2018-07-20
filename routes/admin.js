@@ -30,15 +30,30 @@ adminRouter.get('/dashboard', isauthenticated, (req, res) => {
     return res.render("admin/adminpanel", dct);
 });
 
-adminRouter.get('/jobadd', isauthenticated, (req, res) => {
+adminRouter.get('/addjob', isauthenticated, (req, res) => {
     return res.render("admin/jobadd", dct);
 });
 
 adminRouter.post('/addjob', isauthenticated, (req, res) => {
     data = req.body;
     adminController.addjob(user, data, (err, job) => {
-        console.log(job);
-    }
+        try {
+            if (err) {
+                console.log('errror')
+                console.error(err);
+                messages = [];
+                Object.keys(err.errors).forEach(error => {
+                    console.log(err.errors[error].message);
+                    messages.push([err.errors[error].message, "red"]);
+                });
+                return res.send({success: true, messages: messages})
+            } else {
+                return res.send({success: true, messages: [["Job added successfully", "green"]]})
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    });
 });
 
 adminRouter.get('/admin/editjobs', isauthenticated, (req, res) => {
