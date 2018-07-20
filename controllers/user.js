@@ -62,7 +62,6 @@ module.exports.addprofile = function(user, data, callback) {
             Object.keys(data).forEach(dat => {
                 if (dat.includes('-')) {
                     pri = dat.split('-')
-                    console.log(pri);
                     if (pri.length == 2) {
                         user.profile[pri[0]][pri[1]] = data[dat];
                     } else if (pri.length == 3) {
@@ -86,7 +85,6 @@ module.exports.addprofile = function(user, data, callback) {
             Object.keys(data).forEach(dat => {
                 if (dat.includes('-')) {
                     pri = dat.split('-')
-                    console.log(pri);
                     if (pri.length == 2) {
                         newProfile[pri[0]][pri[1]] = data[dat];
                     } else if (pri.length == 3) {
@@ -105,7 +103,6 @@ module.exports.addprofile = function(user, data, callback) {
                     }
                     return callback(err, null)
                 }
-                console.log(newProfile);
                 user.profile = newProfile._id;
                 user.save((err, profile) => {
                     if (err) {

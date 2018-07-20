@@ -16,6 +16,11 @@ function isauthenticated(req, res, next) {
 // Middlewares
 
 authRouter.post('/login', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return res.redirect('/user/profile');
+    }
+        next();
+    }, (req, res, next) => {
     passport.authenticate('local-login', {
         successRedirect: '/user/profile', // redirect to the secure profile section
         failureRedirect: '/login', // redirect back to the signup page if there is an error
