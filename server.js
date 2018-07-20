@@ -12,8 +12,8 @@ let Config = require('./config.json');
 let mainRouter = require('./routes/main.js');
 let authRouter = require('./routes/auth.js');
 let adminRouter = require('./routes/admin.js');
-var mongoose = require('mongoose');
 var passport = require('passport');
+var mongoose = require('mongoose');
 
 // Mongoose
 mongoose.connect('mongodb://localhost/joblana');
@@ -71,7 +71,6 @@ app.use(function(req, res, next){
     if (req.session.messages){
         res.locals.messages = req.session.messages;
     }
-    console.log('start')
     next();
 });
 // Routes

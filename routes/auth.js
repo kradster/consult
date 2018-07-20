@@ -54,16 +54,21 @@ authRouter.post('/signup', (req, res) => {
 authRouter.get('/profile', isauthenticated, (req, res) => {
     let dct = { title: "Dashboard" };
     let data = new Object();
-    data.firstname = req.user.name.first;
-    data.lastname = req.user.name.last;
+    data.fullname = req.user.fullname
     data.email = req.user.email;
     data.phoneno = req.user.phoneno;
     data.verified = req.user.verified;
     dct.data = data;
     dct.data["_removetags"] = true;
-    console.log(req.user.profile)
-    dct.data.CV = {};
-    return res.render("auth/profile", dct);
+    dct.data.profile = {};
+    userController.getUserProfile(req.user, (err, profile) => {
+        if (err){
+            console.error(err);
+            return res.render("auth/profile", dct);
+        }
+        dct.data.profile = profile;
+        return res.render("auth/profile", dct);
+    })
 });
 
 authRouter.get('/showcv', isauthenticated, (req, res) => {

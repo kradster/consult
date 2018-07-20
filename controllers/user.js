@@ -39,11 +39,9 @@ module.exports.createuser = function(user, callback) {
 // }
 
 module.exports.getUserProfile = function(user, callback) {
-    console.log('erorororor')
-    Profile.findOne({'user' :  user._id}, (err, user) =>{
-        return callback(null, { success: true, data: dct });
+    Profile.findOne({'user' :  user._id}, (err, profile) =>{
+        return callback(null, profile);
     }); 
-    console.log('nothing fond')
 }
 
 // module.exports.userlogin = function(email, password, callback) {
@@ -64,10 +62,10 @@ module.exports.getUserProfile = function(user, callback) {
 
 
 module.exports.addprofile = function(user, data, callback) {
-    Profile.findOne({'user' :  user._id}, (err, profile) =>{
-        console.log(profile);
-        return callback(null, profile);
-    }); 
+    if (user.profile){
+        console.log(user.profile);
+        return callback(null, user.profile)
+    }
     let newProfile = new Profile();
     newProfile.user = user._id;
     newProfile.details.fathername = data.fathername;
@@ -83,7 +81,7 @@ module.exports.addprofile = function(user, data, callback) {
             return callback(err, null)
         }
         user.profile = newProfile._id;
-        user.save((err, profile) => {
+        user.update((err, profile) => {
             if (err) {
                 if (err.name === 'MongoError' && err.code === 11000){
                     let error = new Error()

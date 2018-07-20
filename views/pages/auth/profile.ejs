@@ -172,7 +172,7 @@
                                         <b>Gender</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.gender %>
+                                        <%= data.profile.details %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -199,7 +199,7 @@
                                         <b>Aadhar no</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.aadharno %>
+                                        <%= data.profile.details %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -215,7 +215,7 @@
                                         <b>Address</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.fulladdress %>
+                                        <%= data.profile.fulladdress %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -224,7 +224,7 @@
                                         <b>State</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.state %>
+                                        <%= data.profile.state %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -233,7 +233,7 @@
                                         <b>City</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.city %>
+                                        <%= data.profile.city %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -242,7 +242,7 @@
                                         <b>ZIP CODE</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.zipcode %>
+                                        <%= data.profile.zipcode %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -266,7 +266,7 @@
                                         <b>School Name</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.school10 %>
+                                        <%= data.profile.school10 %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -275,7 +275,7 @@
                                         <b>Board</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.board10 %>
+                                        <%= data.profile.board10 %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -284,7 +284,7 @@
                                         <b>Passing Year</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.year10 %>
+                                        <%= data.profile.year10 %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -293,7 +293,7 @@
                                         <b>Marks</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.marks10 %>
+                                        <%= data.profile.marks10 %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -314,7 +314,7 @@
                                         <b>School Name</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.school12 %>
+                                        <%= data.profile.school12 %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -323,7 +323,7 @@
                                         <b>Board</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.board12 %>
+                                        <%= data.profile.board12 %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -332,7 +332,7 @@
                                         <b>Passing Year</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.year12 %>
+                                        <%= data.profile.year12 %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -341,7 +341,7 @@
                                         <b>Marks</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.marks12 %>
+                                        <%= data.profile.marks12 %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -358,7 +358,7 @@
                                         <b>College Name</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.collegename %>
+                                        <%= data.profile.collegename %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -367,7 +367,7 @@
                                         <b>Board</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.collegeboard %>
+                                        <%= data.profile.collegeboard %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -376,7 +376,7 @@
                                         <b>Passing Year</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.collegeyear %>
+                                        <%= data.profile.collegeyear %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -385,7 +385,7 @@
                                         <b>Marks</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.collegemarks %>
+                                        <%= data.profile.collegemarks %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -413,7 +413,7 @@
                                             <b>Project Name</b>
                                         </div>
                                         <div class="col s8" id="proj">
-                                            <%= data.CV.projects %>
+                                            <%= data.profile.projects %>
                                         </div>
                                     </div>
                                     <div class="row"></div>
@@ -422,7 +422,7 @@
                                             <b>Institute/Organisation</b>
                                         </div>
                                         <div class="col s8">
-                                            <%= data.CV.projectinstitute %>
+                                            <%= data.profile.projectinstitute %>
                                         </div>
                                     </div>
                                     <div class="row"></div>
@@ -431,8 +431,8 @@
                                             <b>Duration</b>
                                         </div>
                                         <div class="col s8">
-                                            <%= data.CV.projectstartdate %> to
-                                                <%= data.CV.projectenddate %>
+                                            <%= data.profile.projectstartdate %> to
+                                                <%= data.profile.projectenddate %>
                                         </div>
                                     </div>
                                     <div class="row"></div>
@@ -442,7 +442,7 @@
                                             <b>ProJect Details</b>
                                         </div>
                                         <div class="col s8">
-                                            <%= data.CV.projectdesc %>
+                                            <%= data.profile.projectdesc %>
                                         </div>
                                     </div>
                                     <div class="row"></div>
@@ -456,7 +456,7 @@
                                 <br>
                                 <div class="col s12">
                                     <div class="ui label">
-                                        <%= data.CV.skills %>
+                                        <%= data.profile.skills %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -472,7 +472,7 @@
                                         <b>Available for work after</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.jobavailability %>
+                                        <%= data.profile.jobavailability %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -482,7 +482,7 @@
                                         <b>Preferred City</b>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.CV.joblocation %>
+                                        <%= data.profile.joblocation %>
                                     </div>
                                 </div>
 
@@ -499,17 +499,17 @@
                                         <br>
                                         <br>
                                         <h4>
-                                            <b><%= data.CV.fullname %></b>
+                                            <b><%= data.fullname %></b>
                                         </h4>
                                         <div class="ui label blue-text blue">
-                                            <%= data.CV.email %>
+                                            <%= data.profile.email %>
                                         </div>
                                         <div>
-                                            <%= data.CV.contactno %>
+                                            <%= data.profile.contactno %>
                                         </div>
                                         <div>
-                                            <%= data.CV.city %>,
-                                                <%= data.CV.state %>
+                                            <%= data.profile.city %>,
+                                                <%= data.profile.state %>
                                         </div>
                                         <br>
                                         <div class="divider"></div>
@@ -521,34 +521,34 @@
                                             <div class="col s9">
                                                 <div>High School</div>
                                                 <div>
-                                                    <%= data.CV.school10 %>
+                                                    <%= data.profile.school10 %>
                                                 </div>
                                                 <div>
-                                                    <%= data.CV.board10 %>
+                                                    <%= data.profile.board10 %>
                                                 </div>
                                                 <div>
-                                                    <%= data.CV.marks10 %>
+                                                    <%= data.profile.marks10 %>
                                                 </div>
                                                 <div>
-                                                    <%= data.CV.course10 %>
+                                                    <%= data.profile.course10 %>
                                                 </div>
                                                 <br>
                                                 <div>Senior Secondary School</div>
                                                 <div>
-                                                    <%= data.CV.school12 %>
+                                                    <%= data.profile.school12 %>
                                                 </div>
                                                 <div>
-                                                    <%= data.CV.board12 %>
+                                                    <%= data.profile.board12 %>
                                                 </div>
                                                 <div>
-                                                    <%= data.CV.marks12 %>
+                                                    <%= data.profile.marks12 %>
                                                 </div>
                                                 <div>
-                                                    <%= data.CV.course12 %>
+                                                    <%= data.profile.course12 %>
                                                 </div>
                                                 <br>
                                                 <div>
-                                                    <a data-html2canvas-ignore id="r1" style="font-family: sans-serif;" href="/makecv/<%= data.CV.uniqueid %>">Add More+</a>
+                                                    <a data-html2canvas-ignore id="r1" style="font-family: sans-serif;" href="/makecv/id">Add More+</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -564,35 +564,35 @@
                                             <div class="col s9">
                                                 <div class="col s12 no-padd">
                                                     <div>
-                                                        <%= data.CV.collegename %>
+                                                        <%= data.profile.collegename %>
                                                     </div>
                                                     <div>
-                                                        <%= data.CV.collegeboard %>
+                                                        <%= data.profile.collegeboard %>
                                                     </div>
                                                     <div>
-                                                        <%= data.CV.collegemarks %>
+                                                        <%= data.profile.collegemarks %>
                                                     </div>
                                                     <br>
                                                 </div>
                                                 <div class="col s12 no-padd">
                                                     <div>POST GRADUATION DETAILS</div>
                                                     <div>
-                                                        <%= data.CV.postcollegename %>
+                                                        <%= data.profile.postcollegename %>
                                                     </div>
                                                     <div>
-                                                        <%= data.CV.postcollegeboard %>
+                                                        <%= data.profile.postcollegeboard %>
                                                     </div>
                                                     <div>
-                                                        <%= data.CV.postcollegecourse %>
+                                                        <%= data.profile.postcollegecourse %>
                                                     </div>
                                                     <div>
-                                                        <%= data.CV.postcollegemarks %>
+                                                        <%= data.profile.postcollegemarks %>
                                                     </div>
                                                     <br>
                                                 </div>
 
                                                 <div class="col s12 no-padd">
-                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/<%= data.CV.uniqueid %>">Add More+</a>
+                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecvid">Add More+</a>
 
                                                 </div>
                                             </div>
@@ -606,11 +606,11 @@
                                             <div class="col s9">
                                                 <div class="col s12 no-padd">
                                                     <div>
-                                                        <%= data.CV.projects %>
+                                                        <%= data.profile.projects %>
                                                     </div>
                                                     <br>
                                                     <div class="col s12 no-padd">
-                                                        <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/<%= data.CV.uniqueid %>">Add More+</a>
+                                                        <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/id">Add More+</a>
 
                                                     </div>
                                                 </div>
@@ -630,12 +630,12 @@
                                             <div class="col s9">
                                                 <div class="col s12 no-padd">
                                                     <div>
-                                                        <%= data.CV.skills %>
+                                                        <%= data.profile.skills %>
                                                     </div>
                                                     <br>
                                                 </div>
                                                 <div class="col s12 no-padd">
-                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/<%= data.CV.uniqueid %>">Add More+</a>
+                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/id">Add More+</a>
 
                                                 </div>
                                                 <br>
@@ -653,13 +653,13 @@
                                             <div class="col s9">
                                                 <div class="col s12 no-padd">
                                                     <div>
-                                                        <%= data.CV.joblocation %>
+                                                        <%= data.profile.joblocation %>
                                                     </div>
                                                     <br>
                                                 </div>
                                                 <br>
                                                 <div class="col s12 no-padd">
-                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/<%= data.CV.uniqueid %>">Add More+</a>
+                                                    <a data-html2canvas-ignore id="r2" style="font-family: sans-serif;" href="/makecv/id">Add More+</a>
 
                                                 </div>
                                             </div>
