@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Profile = require('../models/profile');
 
 module.exports.createuser = function(user, callback) {
     let userdat = new User({
@@ -37,18 +38,12 @@ module.exports.createuser = function(user, callback) {
 //     });
 // }
 
-module.exports.getUserProfile = function(uid, callback) {
-    db.get("SELECT * FROM Users WHERE uniqueid = ?", uid, (err, row) => {
-        let dct = {};
-         db.get("SELECT * FROM CV WHERE uniqueid = ?", uid, (err, row) => {
-            if (!row) {
-                callback(null, { success: true, data: dct });
-                return;
-            }
-            dct["CV"] = row;
-            callback(null, { success: true, data: dct });
-        });
-    });
+module.exports.getUserProfile = function(user, callback) {
+    console.log('erorororor')
+    Profile.findOne({'user' :  user._id}, (err, user) =>{
+        return callback(null, { success: true, data: dct });
+    }); 
+    console.log('nothing fond')
 }
 
 // module.exports.userlogin = function(email, password, callback) {

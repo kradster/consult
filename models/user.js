@@ -6,6 +6,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var User = new Schema({
+    profile: {
+        type: Schema.Types.ObjectId, ref: 'Profile'
+    },
     email: {
         type: String,
         unique: [true, "Email already registered with us"],
@@ -72,7 +75,6 @@ var User = new Schema({
         email: String,
         name: String
     }
-
 }, {timestamps: true}
 );
 

@@ -25,6 +25,7 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
     data.verified = req.user.verified;
     dct.data = data;
     dct.data["_removetags"] = true;
+    console.log(req.user.profile)
     dct.data.CV = {};
     return res.render("auth/profile", dct);
 });

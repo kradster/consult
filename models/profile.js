@@ -18,7 +18,6 @@ var Profile = new Schema({
         },
         dob: {
             type: Date,
-            required: false
         },
         aadharno: {
             type: Number,
@@ -29,7 +28,7 @@ var Profile = new Schema({
             type: String,
             enum: ["m", "f"]
         }
-    }
+    },
     address: {
         full_address: {
             type: String,
@@ -43,7 +42,8 @@ var Profile = new Schema({
 
     	},
         state: {
-            type: enum
+            type: String,
+            enum: ['Andhra Pradesh', 'Uttar Pradesh']
         },
         pincode: {
             type: Number
