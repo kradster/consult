@@ -87,7 +87,7 @@ authRouter.get('/myjob', isauthenticated, (req, res) => {
 });
 
 authRouter.get('/editcv', isauthenticated, (req, res) => {
-    let dct = { title: "Edit Cv" };
+    let dct = { title: "Edit Cv", user: req.user };
     console.log(req.user.profile);
     return res.render("auth/makecv", dct);
 });
