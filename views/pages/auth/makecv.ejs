@@ -15,147 +15,150 @@
 
     <!-- NAVIGATION BAR START -->
     <% include ../../partials/post_header %>
-    <!-- NAVIGATION BAR END -->
+        <!-- NAVIGATION BAR END -->
 
-    <div class="row">
+        <div class="row">
 
-        <form class="col s10 offset-s1" action="<%- link('cvbuilder', 'user') %>" method="post">
-            <div class="col s12" style="height:100px;"></div>
-            <div class="row">
-                <div class="col s10">
-                    <h3 class="indigo-text">CV BUILDER</h3>
+            <form class="col s10 offset-s1" action="<%- link('cvbuilder', 'user') %>" method="post">
+                <div class="col s12" style="height:100px;"></div>
+                <div class="row">
+                    <div class="col s10">
+                        <h3 class="indigo-text">CV BUILDER</h3>
+                    </div>
+                    <div class="col s1">
+                        <a class="btn light-blue white-text z-depth-0" style="border-radius:3px;width:100px;margin-top:35px" onclick="save()"><b>Save</b></a>
+                    </div>
+                    <div class="col s1">
+                        <a class="btn light-blue white-text z-depth-0" style="border-radius:3px;width:100px;margin-top:35px" href="/profile"><b>Cancel</b></a>
+                    </div>
                 </div>
-                <div class="col s2">
-                    <a class="btn light-blue white-text z-depth-0" style="border-radius:3px;width:100px;margin-top:35px" href="/profile"><b>Cancel</b></a>
-                </div>
-            </div>
-            <div class="card z-depth-0 col s12" style="padding:10px;">
-                <div id="form1" class="card z-depth-0 col s12" style="padding:10px;">
-                    <h5>
-                        <b>PERSONAL DETAILS</b>
-                    </h5>
-                    <br>
-                    <br>
-                    <div class="input-field col s6">
-                        <input placeholder="Full Name" type="text" name="fullname" id="fullname">
-                    </div>
+                <div class="card z-depth-0 col s12" style="padding:10px;">
+                    <div id="form1" class="card z-depth-0 col s12" style="padding:10px;">
+                        <h5>
+                            <b>PERSONAL DETAILS</b>
+                        </h5>
+                        <br>
+                        <br>
+                        <div class="input-field col s6">
+                            <input placeholder="Full Name" type="text" name="fullname" id="fullname">
+                        </div>
 
-                    <div class="input-field col s6">
-                        <input type="text" name="fathername" id="ftrname" placeholder="Father Name">
-                    </div>
-                    <div class="input-field col s6">
-                        <input class="datepicker" type="text" name="dob" id="dob" placeholder="Date Of Birth">
-                    </div>
-                    <!-- <div class="input-field col s6">
+                        <div class="input-field col s6">
+                            <input type="text" name="fathername" id="ftrname" placeholder="Father Name">
+                        </div>
+                        <div class="input-field col s6">
+                            <input class="datepicker" type="text" name="dob" id="dob" placeholder="Date Of Birth">
+                        </div>
+                        <!-- <div class="input-field col s6">
                         <input type="text" id="city" placeholder="City">
                     </div> -->
-                    <div class="input-field col s6">
-                        <input type="text" name="aadharno" id="aadharno" placeholder="Aadhar No">
-                    </div>
-                    <div class="input-field col s6">
-                        <div class="col s4">
-                            <label>
+                        <div class="input-field col s6">
+                            <input type="text" name="aadharno" id="aadharno" placeholder="Aadhar No">
+                        </div>
+                        <div class="input-field col s6">
+                            <div class="col s4">
+                                <label>
                                 <input name="gender" value="male" type="radio" checked />
                                 <span>Male</span>
                             </label>
-                        </div>
-                        <div class="col s4">
-                            <label>
+                            </div>
+                            <div class="col s4">
+                                <label>
                                 <input name="gender" value="female" type="radio" />
                                 <span>Female</span>
                             </label>
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-field col s6 offset-s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step1">
                         </div>
 
                     </div>
+                    <div id="form2" class="card z-depth-0 col s12" style="padding:10px;display:none;">
+                        <h5>
+                            <b>ADDRESS DETAILS</b>
+                        </h5>
+                        <br>
+                        <br>
+                        <div class="input-field col s6">
+                            <input placeholder="Full Address" type="text" name="fulladdress" id="fulladdress">
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" name="city" id="ftrname" placeholder="City">
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" name="state" id="state" placeholder="State">
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" name="zipcode" id="zipcode" placeholder="Zip Code">
+                        </div>
+                        <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
+                        </div>
+                        <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step2">
+                        </div>
 
+                    </div>
+                    <div id="form3" class="card z-depth-0 col s12" style="padding:10px;display:none;">
+                        <h5>
+                            <b>EDUCATION DETAILS</b>
+                        </h5>
+                        <br>
+                        <div class="ui label">10TH</div>
+                        <br>
 
-                    <div class="input-field col s6 offset-s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step1">
-                    </div>
+                        <div class="holder">
+                            <div class="input-field">
+                                <input id="school10" type="text" name="school10" placeholder="School Name">
+                            </div>
+                            <div class="input-field">
+                                <input id="board10" type="text" name="board10" placeholder="School Board">
+                            </div>
+                            <div class="input-field">
+                                <input id="board10" type="text" name="course10" placeholder="Course">
+                            </div>
+                            <div class="input-field">
+                                <input id="marks10" type="text" name="marks10" placeholder="Marks in % / CGPA">
+                            </div>
+                            <div class="input-field">
+                                <input id="year10" type="text" name="year10" placeholder="Passing Year">
+                            </div>
+                        </div>
+                        <br>
 
-                </div>
-                <div id="form2" class="card z-depth-0 col s12" style="padding:10px;display:none;">
-                    <h5>
-                        <b>ADDRESS DETAILS</b>
-                    </h5>
-                    <br>
-                    <br>
-                    <div class="input-field col s6">
-                        <input placeholder="Full Address" type="text" name="fulladdress" id="fulladdress">
-                    </div>
-                    <div class="input-field col s6">
-                        <input type="text" name="city" id="ftrname" placeholder="City">
-                    </div>
-                    <div class="input-field col s6">
-                        <input type="text" name="state" id="state" placeholder="State">
-                    </div>
-                    <div class="input-field col s6">
-                        <input type="text" name="zipcode" id="zipcode" placeholder="Zip Code">
-                    </div>
-                    <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
-                    </div>
-                    <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step2">
-                    </div>
-
-                </div>
-                <div id="form3" class="card z-depth-0 col s12" style="padding:10px;display:none;">
-                    <h5>
-                        <b>EDUCATION DETAILS</b>
-                    </h5>
-                    <br>
-                    <div class="ui label">10TH</div>
-                    <br>
-
-                    <div class="holder">
-                        <div class="input-field">
-                            <input id="school10" type="text" name="school10" placeholder="School Name">
+                        <div class="ui label">12TH</div>
+                        <br>
+                        <div class="holder">
+                            <div class="input-field">
+                                <input id="school12" type="text" name="school12" placeholder="School Name">
+                            </div>
+                            <div class="input-field">
+                                <input id="board12" type="text" name="board12" placeholder="School Board">
+                            </div>
+                            <div class="input-field">
+                                <input id="board10" type="text" name="course12" placeholder="Course">
+                            </div>
+                            <div class="input-field">
+                                <input id="marks12" type="text" name="marks12" placeholder="Marks in % / CGPA">
+                            </div>
+                            <div class="input-field">
+                                <input id="year12" type="text" name="year12" placeholder="Passing Year">
+                            </div>
                         </div>
-                        <div class="input-field">
-                            <input id="board10" type="text" name="board10" placeholder="School Board">
+                        <div class="ui label">GRADUATION</div>
+                        <br>
+                        <div class="input-field col s3">
+                            <input id="collegename" type="text" name="collegename" placeholder="Collage Name">
                         </div>
-                        <div class="input-field">
-                            <input id="board10" type="text" name="course10" placeholder="Course">
+                        <div class="input-field col s3">
+                            <input id="collegeboard" type="text" name="collegeboard" placeholder="Collage Board">
                         </div>
-                        <div class="input-field">
-                            <input id="marks10" type="text" name="marks10" placeholder="Marks in % / CGPA">
-                        </div>
-                        <div class="input-field">
-                            <input id="year10" type="text" name="year10" placeholder="Passing Year">
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="ui label">12TH</div>
-                    <br>
-                    <div class="holder">
-                        <div class="input-field">
-                            <input id="school12" type="text" name="school12" placeholder="School Name">
-                        </div>
-                        <div class="input-field">
-                            <input id="board12" type="text" name="board12" placeholder="School Board">
-                        </div>
-                        <div class="input-field">
-                            <input id="board10" type="text" name="course12" placeholder="Course">
-                        </div>
-                        <div class="input-field">
-                            <input id="marks12" type="text" name="marks12" placeholder="Marks in % / CGPA">
-                        </div>
-                        <div class="input-field">
-                            <input id="year12" type="text" name="year12" placeholder="Passing Year">
-                        </div>
-                    </div>
-                    <div class="ui label">GRADUATION</div>
-                    <br>
-                    <div class="input-field col s3">
-                        <input id="collegename" type="text" name="collegename" placeholder="Collage Name">
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="collegeboard" type="text" name="collegeboard" placeholder="Collage Board">
-                    </div>
-                    <div class="input-field col s3">
-                        <select class="no-autoinit" name="collegecourse">
+                        <div class="input-field col s3">
+                            <select class="no-autoinit" name="collegecourse">
                             <option value="" disabled selected>Choose your course</option>
                             <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
                             <option value="Bachelor of Education ( B.Ed)">Bachelor of Education ( B.Ed)</option>
@@ -201,21 +204,21 @@
                             <option value="Others">Others</option>
 
                         </select>
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="collegemarks" type="text" name="collegemarks" placeholder="Marks">
-                    </div>
+                        </div>
+                        <div class="input-field col s3">
+                            <input id="collegemarks" type="text" name="collegemarks" placeholder="Marks">
+                        </div>
 
-                    <div class="ui label">POST GRADUATION</div>
-                    <br>
-                    <div class="input-field col s3">
-                        <input id="mcollegename" type="text" name="postcollegename" placeholder="Collage Name">
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="mcollegeboard" type="text" name="postcollegeboard" placeholder="Collage Board">
-                    </div>
-                    <div class="input-field col s3">
-                        <select class="no-autoinit" name="postcollegecourse">
+                        <div class="ui label">POST GRADUATION</div>
+                        <br>
+                        <div class="input-field col s3">
+                            <input id="mcollegename" type="text" name="postcollegename" placeholder="Collage Name">
+                        </div>
+                        <div class="input-field col s3">
+                            <input id="mcollegeboard" type="text" name="postcollegeboard" placeholder="Collage Board">
+                        </div>
+                        <div class="input-field col s3">
+                            <select class="no-autoinit" name="postcollegecourse">
                                 <option value="" disabled selected>Choose your course</option>
                                 <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
                                 <option value="Bachelor of Education ( B.Ed)">Bachelor of Education ( B.Ed)</option>
@@ -261,143 +264,169 @@
                                 <option value="Others">Others</option>
     
                             </select>
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="mcollegemarks" type="text" name="postcollegemarks" placeholder="Marks">
-                    </div>
+                        </div>
+                        <div class="input-field col s3">
+                            <input id="mcollegemarks" type="text" name="postcollegemarks" placeholder="Marks">
+                        </div>
 
-                    <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
+                        <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
+                        </div>
+                        <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
+                        </div>
                     </div>
-                    <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
-                    </div>
-                </div>
-                <div id="form4" class="card z-depth-0 col s12" style="padding:10px;display:none;">
-                    <h5>
-                        <b>PROJECTS/INTERNSHIPS/JOBS</b>
-                    </h5>
-                    <br>
-                    <div id="jobspanel">
-                        <div class="col s12">
-                            <div class="input-field col s2">
-                                <select class="no-autoinit" name="projecttype[]">
+                    <div id="form4" class="card z-depth-0 col s12" style="padding:10px;display:none;">
+                        <h5>
+                            <b>PROJECTS/INTERNSHIPS/JOBS</b>
+                        </h5>
+                        <br>
+                        <div id="jobspanel">
+                            <div class="col s12">
+                                <div class="input-field col s2">
+                                    <select class="no-autoinit" name="projecttype[]">
                                     <option value="" disabled selected>Choose your course</option>
                                     <option value="internship"  selected>Internship</option>
                                     <option value="job"  selected>Job</option>
                                     <option value="projects"  selected>Project</option>
                                 </select>
-                            </div>
-                            <div class="input-field col s2">
-                                <input type="text" name="projectrole[]" id="projects" placeholder="title/role">
-                            </div>
-                            <div class="input-field col s2">
-                                <input type="text" name="projectinstitute[]" id="projects" placeholder="institute/organization">
-                            </div>
-                            <div class="input-field col s2">
-                                <input type="text" name="projectdetails[]" id="projects" placeholder="About work">
-                            </div>
-                            <div class="input-field col s3">
-                                <input class="datepicker col s5" type="text" name="projectstartdate[]" id="startdate" placeholder="Start Date">
-                                <input class="datepicker col s5" type="text" name="projectenddate[]" id="enddate" placeholder="End Date">
-                            </div>
-                            <div class="input-field col s1">
-                                <input id="addmorejobs" type="button" class="ui button mini white-text blue accent-4" value="Add More">
+                                </div>
+                                <div class="input-field col s2">
+                                    <input type="text" name="projectrole[]" id="projects" placeholder="title/role">
+                                </div>
+                                <div class="input-field col s2">
+                                    <input type="text" name="projectinstitute[]" id="projects" placeholder="institute/organization">
+                                </div>
+                                <div class="input-field col s2">
+                                    <input type="text" name="projectdetails[]" id="projects" placeholder="About work">
+                                </div>
+                                <div class="input-field col s3">
+                                    <input class="datepicker col s5" type="text" name="projectstartdate[]" id="startdate" placeholder="Start Date">
+                                    <input class="datepicker col s5" type="text" name="projectenddate[]" id="enddate" placeholder="End Date">
+                                </div>
+                                <div class="input-field col s1">
+                                    <input id="addmorejobs" type="button" class="ui button mini white-text blue accent-4" value="Add More">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col s12">
-                    </div>
-                    <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
-                    </div>
-                    <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step4">
-                    </div>
-
-                </div>
-                <div id="form5" class="card z-depth-0 col s12" style="padding:10px;display:none;">
-                    <h5>
-                        <b>SKILL</b>
-                    </h5>
-                    <br>
-                    <div id="skillspanel">
                         <div class="col s12">
-                            <div class="input-field col s10">
-                                <input type="text" name="skills[]" placeholder="Enter Your Skills">
-                            </div>
-                            <div class="input-field col s2">
-                                <input id="addmoreskills" type="button" class="ui button white-text mini blue accent-4" value="Add More">
-                            </div>
                         </div>
+                        <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
+                        </div>
+                        <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step4">
+                        </div>
+
                     </div>
-                    <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Back" id="back4">
-                    </div>
-                    <div class="input-field col s6">
-                        <input class="btn btn-large indigo col s12" type="button" value="Next" id="step5">
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div id="fulldetials" class="col s12 no-padd" style="padding:10px;display:none;">
-                    <div class="card z-depth-0 col s12" style="padding:10px;">
+                    <div id="form5" class="card z-depth-0 col s12" style="padding:10px;display:none;">
                         <h5>
-                            <b>JOB EXPECTATIONS</b>
+                            <b>SKILL</b>
                         </h5>
                         <br>
-
-                        <div class="input-field col s6">
-                            <input type="text" name="joblocation" placeholder="Enter Preferred city">
+                        <div id="skillspanel">
+                            <div class="col s12">
+                                <div class="input-field col s10">
+                                    <input type="text" name="skills[]" placeholder="Enter Your Skills">
+                                </div>
+                                <div class="input-field col s2">
+                                    <input id="addmoreskills" type="button" class="ui button white-text mini blue accent-4" value="Add More">
+                                </div>
+                            </div>
                         </div>
                         <div class="input-field col s6">
-                            <input class="datepicker" type="text" name="jobavailability" placeholder="Available to join">
+                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back4">
                         </div>
-
-
+                        <div class="input-field col s6">
+                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step5">
+                        </div>
                     </div>
-                    <div class="input-field col s12">
+                    <br>
+                    <br>
+                    <div id="fulldetials" class="col s12 no-padd" style="padding:10px;display:none;">
+                        <div class="card z-depth-0 col s12" style="padding:10px;">
+                            <h5>
+                                <b>JOB EXPECTATIONS</b>
+                            </h5>
+                            <br>
 
-                        <center>
-                            <input class="btn btn-large indigo" type="button" value="Back" id="back5">
-                            <input class="btn btn-large light-blue accent-4" type="submit" value="Make CV">
-                        </center>
+                            <div class="input-field col s6">
+                                <input type="text" name="joblocation" placeholder="Enter Preferred city">
+                            </div>
+                            <div class="input-field col s6">
+                                <input class="datepicker" type="text" name="jobavailability" placeholder="Available to join">
+                            </div>
+
+
+                        </div>
+                        <div class="input-field col s12">
+
+                            <center>
+                                <input class="btn btn-large indigo" type="button" value="Back" id="back5">
+                                <input class="btn btn-large light-blue accent-4" type="submit" value="Make CV">
+                            </center>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
-    
-    <!-- FOOTER START -->
-    <% include ../../partials/pre_footer %>
-    <!-- FOOTER END -->
+            </form>
+        </div>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="../js/stepform.js"></script>
-    <script src="../js/addmoreskills.js"></script>
-    <script>
-        $(document).ready(function() {
-            M.AutoInit();
-            $('body').on('focus', ".datepicker", function() {
-                $(this).datepicker();
+        <!-- FOOTER START -->
+        <% include ../../partials/pre_footer %>
+            <!-- FOOTER END -->
 
-            });
-            $('body').on('focus', "select", function() {
-                M.AutoInit();
-            });
+            <!-- Compiled and minified JavaScript -->
+            <script src="../js/stepform.js"></script>
+            <script src="../js/addmoreskills.js"></script>
+            <script>
+                $(document).ready(function() {
+                    M.AutoInit();
+                    $('body').on('focus', ".datepicker", function() {
+                        $(this).datepicker();
 
-            //$(document).on('click','.datapicker',M.datepicker);
-        });
-        $('select').on('contentChanged', function() {
-            $(this).material_select();
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.datepicker');
-            var instances = M.Datepicker.init(elems, {
-                minDate: new Date(1950, 1, 1),
-                maxDate: new Date(2010, 1, 1)
-            });
-        });
-    </script>
+                    });
+                    $('body').on('focus', "select", function() {
+                        M.AutoInit();
+                    });
+                    //$(document).on('click','.datapicker',M.datepicker);
+                });
+                $('select').on('contentChanged', function() {
+                    $(this).material_select();
+                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.datepicker');
+                    var instances = M.Datepicker.init(elems, {
+                        minDate: new Date(1950, 1, 1),
+                        maxDate: new Date(2010, 1, 1)
+                    });
+                });
+
+                function save() {
+                    console.log("saving");
+                    $.ajax({
+                        url: "/populatefields",
+                        method: get,
+                        dataType: "json",
+                        success: function(data) {
+                            Object.keys(data).forEach(key => {
+                                $("input[name=" + key + "]").value(data[key]);
+                            });
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+
+                    function recur(data) {
+                        if (Object.keys(data) <= 1)
+                            return;
+                        Object.keys(data).forEach(key => {
+                            recur(data.key);
+                        });
+                    }
+
+                }
+            </script>
 </body>
+
 </html>

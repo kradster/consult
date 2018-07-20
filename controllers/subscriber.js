@@ -2,11 +2,11 @@ var Subscriber = require('../models/subscriber');
 
 module.exports.subscribe_email = function(email, name, callback) {
 
-    let subscriber = new Subscriber({
+    let newsubscriber = new Subscriber({
         email: email,
         name: name
     });
-    subscriber.save((err, subscriber) => {
+    newsubscriber.save((err, subscriber) => {
         if (err) {
             console.log(err);
             return callback(err, null);
