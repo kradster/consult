@@ -1,25 +1,36 @@
 const express = require('express');
-var path = require('path');
-template = path.join(__dirname, '../static/templates');
 var adminRouter = express.Router();
+var userController = require('../controllers/user')
+var passport = require('passport');
+var sendEmail = require('../utils/email');
 
+// Middlewares
+function isauthenticated(req, res, next) {
+    if (!req.isAuthenticated()) {
+        req.session.messages.push(["Please login to access this page", "blue"])
+        req.session.next = req.originalUrl;
+        return res.redirect('/login');
+    }
+    if (!req.isAuthenticated()) {
+        req.session.messages.push(["Please login to access this page", "blue"])
+        req.session.next = req.originalUrl;
+        return res.redirect('/login');
+    }
+    if (req.user.role != "ADMIN"){
+        req.session.messages.push(["You are not authorised to visit this page", "red"])
+        req.session.next = req.originalUrl;
+        return res.redirect('/login');
+    }
+    next();
+}
 
-adminRouter.post('/adminlogin', (req, res) => {
-    if (req.body.password === Config.ADMIN_KEY) {
-        req.session.admin = "admin" + Config.ADMIN_KEY;
-        res.redirect('/admin');
-    } else
-        res.render('alert', { title: "Incorrect login attempt", link: "/", linkname: "Go back to home" });
+// Middlewares
+
+adminRouter.get('/dashboard', isauthenticated, (req, res) => {
+    return res.render("auth/adminpanel", dct);
 });
 
-adminRouter.get('/admin', (req, res) => {
-    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
-        res.sendFile('/admin/adminpanel.html', { root: __dirname });
-    } else
-        res.render('alert', { title: "Incorrect login attempt", link: "/", linkname: "Go back to home" });
-});
-
-adminRouter.get('/admin/jobadd', (req, res) => {
+adminRouter.get('/admin/jobadd', isauthenticated, (req, res) => {
     if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
         res.sendFile('/admin/jobadd.html', { root: __dirname });
     } else
@@ -27,7 +38,7 @@ adminRouter.get('/admin/jobadd', (req, res) => {
 
 });
 
-adminRouter.post('/addjob', (req, res) => {
+adminRouter.post('/addjob', isauthenticated, (req, res) => {
     if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
         data = req.body;
         data["listingid"] = Date.now() + "";
@@ -46,7 +57,7 @@ adminRouter.post('/addjob', (req, res) => {
         res.render('alert', { title: "Incorrect login activity", link: "/", linkname: "Go to Home" });
 });
 
-adminRouter.get('/admin/editjobs', (req, res) => {
+adminRouter.get('/admin/editjobs', isauthenticated, (req, res) => {
     db.all("SELECT * FROM JobListings", (err, rows) => {
         console.log("Fetched ", rows.length, "rows");
         rows = rows.slice(0, 3);
@@ -55,7 +66,7 @@ adminRouter.get('/admin/editjobs', (req, res) => {
 
 });
 
-adminRouter.get('/admin/download', (req, res) => {
+adminRouter.get('/admin/download', isauthenticated, (req, res) => {
     if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
         res.download(process.cwd() + '/database.db');
     } else
@@ -63,14 +74,14 @@ adminRouter.get('/admin/download', (req, res) => {
 })
 
 
-adminRouter.get('/adminpanel', (req, res) => {
+adminRouter.get('/adminpanel', isauthenticated, (req, res) => {
     if (req.session.user === "") {
         res.sendFile('/templates/adminpanel.html', { root: __dirname });
     } else
         res.redirect('/login');
 });
 
-adminRouter.post('/adminpanel', (req, res) => {
+adminRouter.post('/adminpanel', isauthenticated, (req, res) => {
     if (req.session.user === "") {
         db.all('SELECT * FROM JobListings', (err, row) => {
             res.send({ success: true, data: row });

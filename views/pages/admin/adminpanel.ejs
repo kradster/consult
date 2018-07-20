@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../../partials/pre_head %>
+        <title>Admin Pannel</title>
+        <meta name="description" content="JobLana is a platform giving opportunity to freshers and job seekers to get benchmarked score based on JL Test to bring themselves closer to more than 2000 recruiters for getting hired and also meeting companies demands to acquire the best talent.">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR START -->
+    <% include ../../partials/pre_header %>
+    <!-- NAVIGATION BAR END -->
+
+
+    <div class="row" style="height:50px;"></div>
+    <div id="userprofile" class="row no-padd">
+
+    </div>
+
+    <div class="row grey lighten-2">
+        <div class="col s12 grey lighten-2" style="height:50px;"></div>
+        <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
+            <div class="col s12">
+                <h5><b>OPERATIONS</b></h5>
+                <div class="divider"></div>
+                <br>
+                <div id="joblistcon">
+                    <a href="/admin/jobadd" class="btn indigo accent-4"><b>ADD JOB</b></a>
+                    <a href="/admin/editjobs" class="btn indigo accent-4"><b>EDIT JOBS</b></a>
+                    <a href="/admin/download" class="btn indigo accent-4"><b>DOWNLOAD DB</b></a>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+        <div class="col s12" style="height:50px;"></div>
+    </div>
+
+        <!-- FOOTER START -->
+        <% include ../../partials/pre_footer %>
+        <!-- FOOTER END -->
+</body>
+
+</html>

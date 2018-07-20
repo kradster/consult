@@ -30,11 +30,6 @@ mainRouter.get('/recruiters', (req, res, next) => {
     res.render('main/recruiters', dct);
 });
 
-mainRouter.get('/jobs', (req, res, next) => {
-    dct = { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana" };
-    res.render('main/comlist', dct);
-});
-
 mainRouter.get('/about-joblana', (req, res, next) => {
     dct = { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company" }
     res.render('main/about', dct);
@@ -46,79 +41,99 @@ mainRouter.get('/faq-joblana', (req, res, next) => {
 });
 
 mainRouter.get('/contact-joblana', (req, res) => {
-    res.render('main/contact', { title: "Contact JobLana | Reach out to us for JL assessment test, jobs and recruitment" });
+    dct = { title: "Contact JobLana | Reach out to us for JL assessment test, jobs and recruitment" };
+    res.render('main/contact', dct);
 });
 
 mainRouter.get('/why-joblana-jl-test', (req, res) => {
-    res.render('main/whyjl', { title: "Why JobLana - All reason to choose JobLana for your better career" });
+    dct = { title: "Why JobLana - All reason to choose JobLana for your better career" }
+    res.render('main/whyjl', dct);
 });
 
 mainRouter.get('/joblana-recruiting-partners', (req, res) => {
-    res.render('main/partners', { title: "Our Partners | JobLana" });
+    dct = { title: "Our Partners | JobLana" }
+    res.render('main/partners', dct);
 });
 
 mainRouter.get('/about-jl-test', (req, res) => {
-    res.render('main/jltest', { title: "About JL Test - All you need to know about this innovative assessment test." });
+    dct = { title: "About JL Test - All you need to know about this innovative assessment test." }
+    res.render('main/jltest', dct);
 });
 
 mainRouter.get('/how-it-works-joblana', (req, res) => {
-    res.render('main/how', { title: "How it works? | Path to get job through JobLana platform" });
+    dct = { title: "How it works? | Path to get job through JobLana platform" }
+    res.render('main/how', dct);
 });
 
 mainRouter.get('/joblana-sample-paper-jl-test', (req, res) => {
-    res.render('main/samplepaper', { title: "Sample Paper" });
+    dct = { title: "Sample Paper" }
+    res.render('main/samplepaper', dct);
 });
 
 mainRouter.get('/post-a-job-joblana', (req, res) => {
-    res.render('main/recruiters', { title: "Post a job on Joblana for free | Get access to 10k+ qualified candidates" });
+    dct = { title: "Post a job on Joblana for free | Get access to 10k+ qualified candidates" }
+    res.render('main/recruiters', dct);
 });
 
 mainRouter.get('/freshers-job-listings', (req, res) => {
-    res.render('main/joblist', { title: "Joblana" });
+    dct = { title: "Joblana" }
+    res.render('main/joblist', dct);
 });
 
 mainRouter.get('/it-jobs-for-freshers', (req, res) => {
-    res.render('main/itjob', { title: "All about IT jobs -Roles & Responsibilities, latest IT jobs vacancy in india | JobLana" });
+    dct = { title: "All about IT jobs -Roles & Responsibilities, latest IT jobs vacancy in india | JobLana" }
+    res.render('main/itjob', dct);
 });
 
 mainRouter.get('/human-resources-jobs-for-freshers', (req, res) => {
-    res.render('main/hrjob', { title: "All about HR jobs -Roles & Responsibilities, latest HR jobs vacancy in india | JobLana" });
+    dct = { title: "All about HR jobs -Roles & Responsibilities, latest HR jobs vacancy in india | JobLana" }
+    res.render('main/hrjob', dct);
 });
 
 mainRouter.get('/sales-and-marketing-jobs-for-freshers', (req, res) => {
-    res.render('main/smjob', { title: "All about Sales and Marketing jobs -Roles & Responsibilities, latest Sales and Marketing jobs vacancy in india | JobLana" });
+    dct = { title: "All about Sales and Marketing jobs -Roles & Responsibilities, latest Sales and Marketing jobs vacancy in india | JobLana" }
+    res.render('main/smjob', dct);
 });
 
 mainRouter.get('/accounting-jobs-for-freshers', (req, res) => {
-    res.render('main/accjob', { title: "All about Accounting jobs -Roles & Responsibilities, latest accounting jobs vacancy in india | JobLana" });
+    dct = { title: "All about Accounting jobs -Roles & Responsibilities, latest accounting jobs vacancy in india | JobLana" }
+    res.render('main/accjob', dct);
 });
 
 mainRouter.get('/digital-marketing-jobs-for-freshers', (req, res) => {
-    res.render('main/dmjob', { title: "Document" });
+    dct = { title: "Document" };
+    res.render('main/dmjob', dct);
 });
 
 mainRouter.get('/office-support-jobs-for-freshers', (req, res) => {
-    res.render('main/osjob', { title: "All about Office Sector jobs -Roles & Responsibilities, latest Office Sector jobs vacancy in india | JobLana" });
+    dct =  { title: "All about Office Sector jobs -Roles & Responsibilities, latest Office Sector jobs vacancy in india | JobLana" }
+    res.render('main/osjob', dct);
 });
 
 mainRouter.get('/calling-jobs-for-freshers', (req, res) => {
-    res.render('main/calljob', { title: "Call Jobs", messages: [] });
+    dct = { title: "Call Jobs"};
+    res.render('main/calljob', dct);
 });
 
 mainRouter.get('/operations-jobs-for-freshers', (req, res) => {
-    res.render('main/opjob', { title: "All about Operation jobs -Roles & Responsibilities, latest Operation jobs vacancy in india | JobLana", messages: [] });
+    dct = { title: "All about Operation jobs -Roles & Responsibilities, latest Operation jobs vacancy in india | JobLana"}
+    res.render('main/opjob', dct);
 });
 
 mainRouter.get('/privacy-policy', (req, res) => {
-    res.render('main/policy', { title: "Privacy Policy", messages: [] });
+    dct = { title: "Privacy Policy"}
+    res.render('main/policy', dct);
 });
 
 mainRouter.get('/terms-and-conditions', (req, res) => {
-    res.render('main/terms', { title: "Privacy Policy", messages: [] });
+    dct = { title: "Privacy Policy"}
+    res.render('main/terms', dct);
 });
 
 mainRouter.get('/job-opportunities', (req, res) => {
-    res.render('main/comlist', { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana", messages: [] });
+    dct = { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana"}
+    dct['listings'] = [];
+    res.render('main/comlist', dct);
 });
 
 

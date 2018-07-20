@@ -74,6 +74,10 @@ var User = new Schema({
         token: String,
         email: String,
         name: String
+    },
+    role: {
+        type: String,
+        enum: ["ADMIN", "USER", "MODERATOR"]
     }
 }, {timestamps: true}
 );
