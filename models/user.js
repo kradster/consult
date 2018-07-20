@@ -1,7 +1,7 @@
 'use strict';
 
 var validator = require('validator');
-
+let bcrypt = require('bcrypt-nodejs');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -24,7 +24,7 @@ var User = new Schema({
             trim: true,
             max: 20
         },
-        second: {
+        last: {
             type: String,
             required: [true, "Last name is required"],
             trim: true,
@@ -53,12 +53,40 @@ var User = new Schema({
     verified: {
         type: Boolean,
         default: false
+    },
+    facebook: {
+        id: String,
+        token: String,
+        name: String,
+        email: String
+    },
+    twitter: {
+        id: String,
+        token: String,
+        displayName: String,
+        username: String
+    },
+    google: {
+        id: String,
+        token: String,
+        email: String,
+        name: String
     }
+
 }, {timestamps: true}
 );
 
 User.virtual('fullname').get(function() {
     return this.name.first + ' ' + this.name.second;
 });
+
+User.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+User.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+};
 
 module.exports = mongoose.model('User', User, 'User');

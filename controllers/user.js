@@ -1,5 +1,4 @@
 var User = require('../models/user');
-let bcrypt = require('bcrypt-nodejs');
 
 module.exports.createuser = function(user, callback) {
     let userdat = new User({
@@ -8,7 +7,7 @@ module.exports.createuser = function(user, callback) {
             first: user.firstname,
             second: user.lastname
         },
-        password: bcrypt.hashSync(user.password),
+        password: User.generateHash(user.password),
         phoneno: user.phoneno
     });
     userdat.save((err, userdat) => {

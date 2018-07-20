@@ -1,31 +1,34 @@
 const express = require('express');
 var authRouter = express.Router();
 var userController = require('../controllers/user')
-
+var passport = require('passport');
 var sendEmail = require('../utils/email');
 
+// Middlewares
 function isauthenticated(req, res, next) {
-    if (!req.session.user) {
+    if (!req.isAuthenticated()) {
         req.session.messages.push(["Please login to access this page", "blue"])
         req.session.next = req.originalUrl;
         return res.redirect('/login');
     }
     next();
 }
+// Middlewares
 
 authRouter.get('/profile', isauthenticated, (req, res) => {
     let dct = { title: "Dashboard" };
-    userController.userdata(req.session.user, (err, response) => {
-        if (response.success == true) {
-            dct.data = response.data;
-            console.log(dct);
-            dct.data["_removetags"] = true;
-            return res.render("auth/profile", dct);
-        } else {
-            res.locals.messages.push([response.message, "red"]);
-            return res.redirect('/')
-        }
-    })
+    console.log(req.user);
+    let data = new Object();
+    data.firstname = req.user.name.first;
+    data.lastname = req.user.name.last;
+    data.email = req.user.email;
+    data.phoneno = req.user.phoneno;
+    data.verified = req.user.verified;
+    dct.data = data;
+    console.log(dct);
+    console.log(req.user.fullname);
+    dct.data["_removetags"] = true;
+    return res.render("auth/profile", dct);
 });
 
 authRouter.get('/showcv', isauthenticated, (req, res) => {
@@ -101,34 +104,37 @@ authRouter.post('/signup', (req, res) => {
     })
 });
 
-authRouter.post('/login', (req, res) => {
+authRouter.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/user/profile', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+    }));
 
-    console.log(req.session.next);
-    if (!req.body.email) {
-        res.locals.messages.push(["One or more fields are incorrect", "red"])
-        return res.redirect('/login');
-    }
-    userController.userlogin(req.body.email, req.body.password, (err, response) => {
-        if (err) {
-            console.error(err.message);
-            return
-        }
-        if (response.success == false) {
-            res.locals.messages.push([response.message, "red"])
-            return res.redirect('/login');
-        }
-        req.session.user = response.user.uniqueid;
-        req.session.email = response.user.email;
-        res.locals.messages.push(["Successfully Logged in", "green"])
-        if (req.session.next) {
-            let next = req.session.next;
-            delete req.session.next;
-            return res.redirect(next);
-        }
-        return res.redirect('/user/profile');
-    });
-    //res.send('TODO');
-});
+    // console.log(req.session.next);
+    // if (!req.body.email) {
+    //     res.locals.messages.push(["One or more fields are incorrect", "red"])
+    //     return res.redirect('/login');
+    // }
+    // userController.userlogin(req.body.email, req.body.password, (err, response) => {
+    //     if (err) {
+    //         console.error(err.message);
+    //         return
+    //     }
+    //     if (response.success == false) {
+    //         res.locals.messages.push([response.message, "red"])
+    //         return res.redirect('/login');
+    //     }
+    //     req.session.user = response.user.uniqueid;
+    //     req.session.email = response.user.email;
+    //     res.locals.messages.push(["Successfully Logged in", "green"])
+    //     if (req.session.next) {
+    //         let next = req.session.next;
+    //         delete req.session.next;
+    //         return res.redirect(next);
+    //     }
+    //     return res.redirect('/user/profile');
+    // });
+    // //res.send('TODO');
+// });
 
 authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
     data = req.body;
@@ -175,7 +181,7 @@ authRouter.post('/scheduletest', isauthenticated, (req, res) => {
 
 
 authRouter.get('/logout', isauthenticated, (req, res) => {
-    req.session.destroy();
+    req.logout();
     return res.redirect('/');
 });
 
