@@ -174,11 +174,16 @@ mainRouter.get('/company-info/:id', (req, res) => {
     let dct = {title: "Company Info"};
     adminController.getjob(req.params.id, (err, job) => {
         if (err){
-            dct[job] = {}
+            console.log(err)
+            return res.redirect('/');
+        }
+        else if(job){
+            dct[job] = job
         }
         else{
-            console.log(job);
-            dct[job] = job
+            dct[job] = {}
+            res.locals.messages.push(["No Job found", "red"])
+            return res.redirect('/');
         }
         return res.render('main/cominfo', dct);
     });

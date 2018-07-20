@@ -94,4 +94,12 @@ User.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
+User.methods.createtoken = function(){
+    return crypto.createHmac('sha512', Config.SECRET_KEY).update(this.id).digest('hex')
+}
+
+User.methods.verifytoken = function(token){
+    return token == crypto.createHmac('sha512', Config.SECRET_KEY).update(this.id).digest('hex')
+}
+
 module.exports = mongoose.model('User', User, 'User');

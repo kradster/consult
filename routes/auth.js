@@ -31,16 +31,14 @@ authRouter.post('/signup', (req, res) => {
     userController.createuser(data, (err, user) => {
         try {
             if (err) {
-                console.log('errror')
-                console.error(err);
                 Object.values(err.errors).forEach(error => {
-                    console.log(error.message);
                     res.locals.messages.push([error.message, "red"]);
                 });
                 return res.redirect('/signup')
             } else {
-                console.log(user);
-                sendEmail(user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
+                userController.createtoken(user, (err, token) => {
+                    sendEmail(user.email, "Welcome", { link: "http://127.0.0.1:5000/user/verify-email/" + token.token }, "verification");
+                })
                 res.locals.messages.push(["Successful signup", "green"]);
                 return res.redirect('/login')
             }
@@ -56,9 +54,9 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
     data.fullname = req.user.fullname
     data.email = req.user.email;
     data.phoneno = req.user.phoneno;
-    data.verified = req.user.verified;
+    data.verified = req.user.verified? "Verified": "Unverified" ;
     dct.data = data;
-    dct.data.profile = {details: {}, address: {}, education: {high: {}, intermediate: {}, graduation: {}}, experience: [], skills: []};
+    dct.data.profile = {details: {}, address: {}, education: {high: {}, intermediate: {}, graduation: {}, post_graduation: {}}, experience: [], skills: []};
     userController.getUserProfile(req.user, (err, profile) => {
         if (err){
             console.error(err);
@@ -87,22 +85,18 @@ authRouter.get('/myjob', isauthenticated, (req, res) => {
 });
 
 authRouter.get('/editcv', isauthenticated, (req, res) => {
-    let dct = { title: "Edit Cv", user: req.user };
-    console.log(req.user.profile);
+    let profile = req.user.profile ? req.user.profile : {details: {}, address: {}, education: {high: {}, intermediate: {}, graduation: {}, post_graduation: {}}, experience: [], skills: []};
+    let dct = { title: "Edit Cv", user: req.user, profile: profile };
     return res.render("auth/makecv", dct);
 });
 
 authRouter.post('/editcv', isauthenticated, (req, res, next) => {
     data = req.body;
-    console.log(data);
     userController.addprofile(req.user, data, (err, response) => {
         try {
             if (err) {
-                console.log('errror')
-                console.error(err);
                 messages = [];
                 Object.keys(err.errors).forEach(error => {
-                    console.log(err.errors[error].message);
                     messages.push([err.errors[error].message, "red"]);
                 });
                 return res.send({success: true, messages: messages})
@@ -118,28 +112,35 @@ authRouter.post('/editcv', isauthenticated, (req, res, next) => {
 });
 
 
-authRouter.get('/verify', (req, res) => {
-    console.log(req.protocol + ":/" + req.get('host'));
-    if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
-        console.log("Domain is matched. Information is from Authentic email");
-        if (runtime_obj.hasOwnProperty(req.query.id)) {
-            email = runtime_obj[req.query.id];
-            db.exec("UPDATE Users SET verified='yes' WHERE email = '" + email + "'", err => {
-                if (err) console.log(err);
-                console.log("email is verified");
-                return res.render('alert', { title: "Successfully verified your E-mail", link: "/login", linkname: "Login" });
-            });
-        } else {
-            console.log("email is not verified");
-            return res.render('alert', { title: 'Link expired.', link: "/", linkname: "Go to Home" });
+authRouter.get('/verify-email/:token', (req, res) => {
+    let token = req.params.token;
+    userController.verifytoken(token, (err, response) => {
+        if (err){
+            console.log(err)
+            return res.redirect('/')
         }
-    } else return res.render('alert', { title: 'Bad request', link: "/", linkname: "Go to Home" });
+        if (response) {
+            res.locals.messages.push(["Your email has been verified successfully", "green"])
+            return res.redirect('/')
+        }
+        else{
+            res.locals.messages.push(["Invalid link or expired", "red"])
+            return res.redirect('/')
+        }
+    })
+
 });
 
-authRouter.get('/resendemail', (req, res, next) => {
-    if (!req.session.user) return res.redirect('/login');
-    sendVerificatonEmail(req, res);
-    return res.render('alert', { title: "A verification link has been sent to your email. Please check your mail.", link: "/", linkname: "Go to Home" });
+authRouter.get('/resend-email', isauthenticated, (req, res, next) => {
+    if (req.user.verified){
+        res.locals.messages.push(["Your email is verified", "green"]);
+        return res.redirect('/user/profile')
+    }
+    userController.createtoken(req.user, (err, token) => {
+        res.locals.messages.push(["A verification link has been sent to your email. Please check your mail.", "green"])
+        sendEmail(req.user.email, "Welcome", { link: "http://127.0.0.1:5000/user/verify-email/" + token.token }, "verification");
+        return res.redirect('/')
+    })
 });
 
 

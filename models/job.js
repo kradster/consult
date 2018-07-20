@@ -88,12 +88,12 @@ var Job = new Schema({
             maxlength: 20
         },
         salary: {
-            type: [Number, "Wrong type"]
+            type: Number,
+            required: [true, "Mandatory Field"]
         },
         experience: {
-            minexp: {
-                type: [Number, "Wrong type"],
-            }
+            type: Number,
+            required: [true, "Mandatory Field"]
         },
         joining_date: {
             type: Date,
