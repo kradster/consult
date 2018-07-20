@@ -54,3 +54,15 @@ module.exports.getjob = function(id, callback) {
         }
     })
 }
+
+module.exports.addAdmin = function(email, callback){
+    User.findOne({"email": email}, (err, user) => {
+        user.role = "ADMIN";
+        user.save(err => {
+            if (err) {
+                return callback(err, null);
+            }
+            return callback(null, user);
+        })
+    })
+}

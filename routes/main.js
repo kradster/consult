@@ -3,6 +3,7 @@ var mainRouter = express.Router();
 var sendEmail = require('../utils/email');
 var adminController = require('../controllers/admin')
 var userController = require('../controllers/user')
+var testController = require('../controllers/test')
 let subscriberController = require('../controllers/subscriber');
 
 mainRouter.get('/', (req, res, next) => {
@@ -16,13 +17,29 @@ mainRouter.get('/signup', (req, res, next) => {
 });
 
 mainRouter.get('/login', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return res.redirect('/user/profile');
+    }
+    next();
+    },
+    (req, res, next) => {
     let dct = { title: "JobLana Login" };
     res.render('login/login', dct);
 });
 
 mainRouter.get('/upcoming-jl-test', (req, res, next) => {
     let dct = { title: "Upcoming JL Tests | Schedule your JL test Now" };
-    res.render('main/schedule', dct);
+    testController.getTests((err, tests) => {
+        if (err){
+            dct['tests'] = []
+        }
+        else{
+            if (tests) dct['tests'] = tests;
+            else dct['tests'] = []
+            
+        }
+        return res.render('main/schedule', dct);
+    });  
 });
 
 mainRouter.get('/recruiters', (req, res, next) => {
@@ -137,7 +154,8 @@ mainRouter.get('/job-opportunities', (req, res) => {
             dct['listings'] = []
         }
         else{
-            dct['listings'] = jobs
+            if (jobs) dct['listings'] = jobs;
+            else dct['listings'] = [];
         }
         return res.render('main/comlist', dct);
     });  

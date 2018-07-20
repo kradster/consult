@@ -9,6 +9,28 @@ var User = new Schema({
     profile: {
         type: Schema.Types.ObjectId, ref: 'Profile',
     },
+    applied_tests: [{
+        test: {
+            type: Schema.Types.ObjectId, ref: 'Test',
+            unique: [true, "You have already registered for this test"]
+        },
+        job:{
+            type: String
+        },
+        status: {
+            type: String,
+            enum: ["PENDING", "CLOSED", "ABSENT", "FAILED", "PASSED"],
+        },
+        marks: {
+            type: Number
+        },
+        rank: {
+            type: Number
+        },
+        applying_date: {
+            type: Date
+        }
+    }],
     email: {
         type: String,
         unique: [true, "Email already registered with us"],
@@ -93,13 +115,5 @@ User.methods.generateHash = function(password) {
 User.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
-
-User.methods.createtoken = function(){
-    return crypto.createHmac('sha512', Config.SECRET_KEY).update(this.id).digest('hex')
-}
-
-User.methods.verifytoken = function(token){
-    return token == crypto.createHmac('sha512', Config.SECRET_KEY).update(this.id).digest('hex')
-}
 
 module.exports = mongoose.model('User', User, 'User');

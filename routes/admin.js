@@ -1,6 +1,7 @@
 const express = require('express');
 var adminRouter = express.Router();
 var adminController = require('../controllers/admin')
+var testController = require('../controllers/test')
 var passport = require('passport');
 var sendEmail = require('../utils/email');
 
@@ -22,15 +23,17 @@ function isauthenticated(req, res, next) {
 // Middlewares
 
 adminRouter.get('/dashboard', isauthenticated, (req, res) => {
+    let dct = {title: "Dashboard"}
     return res.render("admin/adminpanel", dct);
 });
 
 adminRouter.get('/addjob', isauthenticated, (req, res) => {
+    let dct = {title: "Add Job"}
     return res.render("admin/jobadd", dct);
 });
 
 adminRouter.post('/addjob', isauthenticated, (req, res) => {
-    data = req.body;
+    let data = req.body;
     console.log(data);
     adminController.addjob(req.user, data, (err, job) => {
         try {
@@ -38,13 +41,12 @@ adminRouter.post('/addjob', isauthenticated, (req, res) => {
                 console.log('errror')
                 console.error(err);
                 Object.values(err.errors).forEach(error => {
-                    console.log(error.message);
                     res.locals.messages.push([error.message, "red"]);
                 });
                 return res.redirect('/admin/addjob')
             } else {
-                console.log(user);
-                sendEmail(user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
+                console.log(job);
+                // sendEmail(req.user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
                 res.locals.messages.push(["Successful signup", "green"]);
                 return res.redirect('/job-opportunities')
             }
@@ -54,12 +56,38 @@ adminRouter.post('/addjob', isauthenticated, (req, res) => {
     });
 });
 
-adminRouter.get('/admin/editjobs', isauthenticated, (req, res) => {
-    db.all("SELECT * FROM JobListings", (err, rows) => {
-        console.log("Fetched ", rows.length, "rows");
-        rows = rows.slice(0, 3);
-        res.render('comlist', { data: rows });
+adminRouter.get('/addtest', isauthenticated, (req, res) => {
+    let dct = {title: "Add test"}
+    return res.render("admin/testadd", dct);
+});
+
+adminRouter.post('/addtest', isauthenticated, (req, res) => {
+    let data = req.body;
+    let tmp = data.jobs.split('|');
+    tmp = tmp.map(t => t.trim().toUpperCase());
+    data.jobs = tmp;
+    console.log(data);
+    testController.createTest(req.user, data, (err, test) => {
+        try {
+            if (err) {
+                Object.values(err.errors).forEach(error => {
+                    res.locals.messages.push([error.message, "red"]);
+                });
+                return res.redirect('/admin/addjob')
+            } else {
+                console.log(test);
+                // sendEmail(req.user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
+                res.locals.messages.push(["Test uploaded", "green"]);
+                return res.redirect('/upcoming-jl-test')
+            }
+        } catch (error) {
+            console.error(error)
+        }
     });
+});
+
+
+adminRouter.get('/admin/editjobs', isauthenticated, (req, res) => {
 
 });
 

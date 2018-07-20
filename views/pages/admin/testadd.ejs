@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../../partials/pre_head %>
+        <title>Admin Pannel</title>
+        <meta name="description" content="JobLana is a platform giving opportunity to freshers and job seekers to get benchmarked score based on JL Test to bring themselves closer to more than 2000 recruiters for getting hired and also meeting companies demands to acquire the best talent.">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR START -->
+    <% include ../../partials/pre_header %>
+    <!-- NAVIGATION BAR END -->
+
+    <div class="row" style="height:30px;"></div>
+    <!-- HEADER START -->
+    <div class="row white-text blue darken-4">
+        <div class="col l6 offset-l1 s12">
+            <div class="row" style="height:50px;"></div>
+            <h4>
+                <B>Post your job for free - Hire from
+                    <br> over 3 million assessed candidates.</B>
+            </h4>
+            <div style="font-size:1.5em;">Reach the best candidates by posting a job within 60 seconds on India's largest assessed database.</div>
+            <div class="row" style="height:50px;"></div>
+        </div>
+    </div>
+    <!-- HEADER END -->
+
+    <!-- JOB DETAILS PANEL START -->
+    <div class="card" style="margin:50px">
+        <div class="row">
+            <div class="row" style="height:50px;"></div>
+            <div class="col l10 offset-l1 s12">
+                <div class="col s12">
+                    <h2>
+                        <b class="grey-text">Post a Job For Free</b>
+                    </h2>
+                </div>
+                <div class="col s12 card no-padd z-depth-0">
+                    <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
+                        <i class="fas fa-briefcase fa-2x"></i> POST YOUR JOB REQUIREMENTS
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row" style="height:50px;"></div>
+                    <form method="POST" action="/admin/addtest" enctype="multipart/form-data">
+                        <div class="col l10 offset-l2 s12">
+                            <div class="col s3 right-align" style="padding-top:10px;">Test Title</div>
+                            <div class="col s9">
+                                <input type="text" id="title" name="title" placeholder="Test Title">
+                            </div>
+                        </div>
+                        <div class="col l10 offset-l2 s12">
+                            <div class="col s3 right-align" style="padding-top:10px;">Test date</div>
+                            <div class="col s9">
+                                <input class="datepicker" type="text" id="date" name="date" placeholder="Enter date of test">
+                            </div>
+                        </div>
+                        <div class="col l10 offset-l2 s12">
+                            <div class="col s3 right-align" style="padding-top:10px;">Test Location</div>
+                            <div class="col s9">
+                                <input type="text" name="location" id="location" placeholder="location">
+                            </div>
+                        </div>
+                        <div class="col l10 offset-l2 s12">
+                            <div class="col s3 right-align" style="padding-top:10px;">Add Job</div>
+                            <div class="col s9">
+                                <textarea style="height:200px;" type="text" id="jobs" name="jobs" placeholder="Enter about you company"></textarea>
+                            </div>
+                        </div>
+                        <div class="col s12" style="height:50px;"></div>
+                        <div class="col l4 offset-l8 s12">
+                            <input style="border:1px solid #ccc;" class="btn btn-large white grey-text z-depth-0" type="reset" value="RESET">
+                            <input class="btn btn-large blue accent-4 z-depth-0" type="submit" value="Post Job">
+                        </div>
+
+                        <div class="col s12" style="height:50px;"></div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row" style="height:50px;"></div>
+
+        </div>
+        <!-- JOB DETAILS PANEL END -->
+    </div>
+
+    <!-- FOOTER START -->
+    <% include ../../partials/pre_footer %>
+    <!-- FOOTER END -->
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script>
+        $(document).ready(function() {
+            M.AutoInit();
+            $('body').on('focus', ".datepicker", function() {
+                $(this).datepicker();
+
+            });
+            $('body').on('focus', "select", function() {
+                M.AutoInit();
+            });
+            //$(document).on('click','.datapicker',M.datepicker);
+        });
+        $('select').on('contentChanged', function() {
+            $(this).material_select();
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker');
+            var instances = M.Datepicker.init(elems, {
+                minDate: new Date(1950, 1, 1),
+                maxDate: new Date(2010, 1, 1)
+            });
+        });
+    </script>
+</body>
+
+</html>

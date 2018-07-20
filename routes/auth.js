@@ -16,11 +16,6 @@ function isauthenticated(req, res, next) {
 // Middlewares
 
 authRouter.post('/login', (req, res, next) => {
-    if (req.isAuthenticated()) {
-        return res.redirect('/user/profile');
-    }
-        next();
-    }, (req, res, next) => {
     passport.authenticate('local-login', {
         successRedirect: '/user/profile', // redirect to the secure profile section
         failureRedirect: '/login', // redirect back to the signup page if there is an error
@@ -74,6 +69,24 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
     });
 });
 
+authRouter.post('/scheduletest/:id', isauthenticated, (req, res) => {
+    console.log(req.body);
+    data = req.body
+    let id = req.params.id;
+    userController.addTest(req.user, id, data, (err, test) => {
+        if(err) {
+            Object.values(err.errors).forEach(error => {
+                res.locals.messages.push([error.message, "red"]);
+            });
+            return res.redirect('/upcoming-jl-test');
+        }
+        else {
+            res.locals.messages.push(["Successfully applied to test", "green"])
+            return res.redirect('/user/profile');
+        }
+    });
+});
+
 authRouter.get('/showcv', isauthenticated, (req, res) => {
     let dct = { title: "View Cv" };
     return res.render("auth/showcv", dct);
@@ -96,7 +109,7 @@ authRouter.get('/editcv', isauthenticated, (req, res) => {
 });
 
 authRouter.post('/editcv', isauthenticated, (req, res, next) => {
-    data = req.body;
+    let data = req.body;
     userController.addprofile(req.user, data, (err, response) => {
         try {
             if (err) {
@@ -166,7 +179,7 @@ authRouter.get('/resend-email', isauthenticated, (req, res, next) => {
 // });
 
 authRouter.post('/scheduletest', isauthenticated, (req, res) => {
-    data = req.body;
+    let data = req.body;
     data["userid"] = req.session.user;
     sql = "INSERT INTO Tests(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
     db.exec(sql, (err, row) => {

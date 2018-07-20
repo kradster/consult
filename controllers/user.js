@@ -1,7 +1,9 @@
 var User = require('../models/user');
 var Token = require('../models/token');
+var Test = require('../models/test');
 var Profile = require('../models/profile');
-var crypto = require('crypto');
+var mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId
 
 module.exports.createuser = function(user, callback) {
     let userdat = new User({
@@ -57,6 +59,15 @@ module.exports.getUserProfile = function(user, callback) {
     });
 }
 
+module.exports.addTest = function(user, id, data, callback) {
+    Test.findOne({"_id": new ObjectId(id)}, (err, test) => {
+        user.applied_tests.push({test: test._id, job: data.job})
+        user.save(err => {
+            console.log(err)
+            return callback(err, test);
+        })
+    })
+}
 module.exports.addprofile = function(user, data, callback) {
         if (user.profile) {
             Object.keys(data).forEach(dat => {

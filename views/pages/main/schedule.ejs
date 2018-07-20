@@ -44,104 +44,34 @@
                 </div>
                 <div class="divider"></div>
                 <br>
-                <div class="col s12">
+                <% for(var i=0; i < tests.length; i++) { %>
+                    <div class="col s12">
+                        <form action="/user/scheduletest/<%= tests[i].id %>" class="col s12" method="POST">
+                            <div class="col s3">
+                                <select name="job">
+                                    <option value="" disabled selected>Choose your role</option>
+                                    <% for(var j=0; j < tests[i].job.length; j++) { %>
+                                        <option value="<%= tests[i].job[j] %>"><%= tests[i].job[j] %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="col s3">
 
-                    <form action="/scheduletest" class="col s12" method="POST">
-                        <div class="col s3">
-                            <select name="testname">
-                                <option value="" disabled selected>Choose your role</option>
-                                <option value="hr">HR</option>
-                                <option value="operations">OPERATIONS</option>
-                                <option value="calling">CALLING</option>
-                                <option value="sallesmkt">SALES AND MARKETING</option>
-                                <option value="digitalmkt">DIGITAL MARKETING</option>
-                                <option value="it">IT JOBS</option>
-                                <option value="office">OFFICE JOBS</option>
-                                <option value="accounting">ACCOUNTING</option>
-                            </select>
-                        </div>
-                        <div class="col s3">
+                                <input type="text" name="testlocation" id="dob" value="" placeholder="<%= tests[i].location %>" readonly>
 
-                            <input type="text" name="testlocation" id="dob" value="Delhi" readonly>
+                            </div>
+                            <div class="col s3">
 
-                        </div>
-                        <div class="col s3">
+                                <input type="text" name="testdate" id="dob" value="18/08/2018" placeholder="<%= tests[i].date %>" readonly>
 
-                            <input type="text" name="testdate" id="dob" value="18/08/2018" readonly>
-
-                        </div>
-                        <div class="col s3">
-                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
-                        </div>
-                        <div class="row"></div>
-                    </form>
-                </div>
-                <div class="col s12">
-
-                    <form action="/scheduletest" class="col s12" method="POST">
-                        <div class="col s3">
-                            <select name="testname">
-                                <option value="" disabled selected>Choose your role</option>
-                                <option value="hr">HR</option>
-                                <option value="operations">OPERATIONS</option>
-                                <option value="calling">CALLING</option>
-                                <option value="sallesmkt">SALES AND MARKETING</option>
-                                <option value="digitalmkt">DIGITAL MARKETING</option>
-                                <option value="it">IT JOBS</option>
-                                <option value="office">OFFICE JOBS</option>
-                                <option value="accounting">ACCOUNTING</option>
-                            </select>
-                        </div>
-                        <div class="col s3">
-
-                            <input type="text" name="testlocation" id="dob" value="Banglore" readonly>
-
-                        </div>
-                        <div class="col s3">
-
-                            <input type="text" name="testdate" id="dob" value="23/09/2018" readonly>
-
-                        </div>
-
-                        <div class="col s3">
-                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
-                        </div>
-                        <div class="row"></div>
-                    </form>
-                </div>
-                <div class="col s12">
-
-                    <form action="/scheduletest" class="col s12" method="POST">
-                        <div class="col s3">
-                            <select name="testname">
-                                <option value="" disabled selected>Choose your role</option>
-                                <option value="hr">HR</option>
-                                <option value="operations">OPERATIONS</option>
-                                <option value="calling">CALLING</option>
-                                <option value="sallesmkt">SALES AND MARKETING</option>
-                                <option value="digitalmkt">DIGITAL MARKETING</option>
-                                <option value="it">IT JOBS</option>
-                                <option value="office">OFFICE JOBS</option>
-                                <option value="accounting">ACCOUNTING</option>
-                            </select>
-                        </div>
-                        <div class="col s3">
-
-                            <input type="text" name="testlocation" id="dob" value="Bombay" readonly>
-
-                        </div>
-                        <div class="col s3">
-
-                            <input type="text" name="testdate" id="dob" value="28/10/2018" readonly>
-
-                        </div>
-                        <div class="col s3">
-                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
-                        </div>
-                        <div class="row"></div>
-                    </form>
-                </div>
-
+                            </div>
+                            <div class="col s3">
+                                <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                            </div>
+                            <div class="row"></div>
+                        </form>
+                    </div>
+                <% } %>
                 <div class="row" style="height:50px;"></div>
 
             </div>

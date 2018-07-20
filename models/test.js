@@ -6,9 +6,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Test = new Schema({
-    user: { 
+    admin: { 
         type: Schema.Types.ObjectId, ref: 'User',
         required: true
+    },
+    job: {
+        type: [String],
+        required: [true, "Mandatory field"]
     },
     date: {
         type: Date,
@@ -17,7 +21,11 @@ var Test = new Schema({
     location: {
         type: String,
         required: [true, "Location is required"]
+    },
+    title: {
+        type: String,
     }
+
 });
 
 module.exports = mongoose.model('Test', Test);
