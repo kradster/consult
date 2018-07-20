@@ -44,27 +44,27 @@
                         </div>
 
                         <div class="input-field col s6">
-                            <input type="text" name="fathername" id="ftrname" placeholder="Father Name">
+                            <input type="text" name="details_fathername" id="details_fathername" placeholder="Father Name">
                         </div>
                         <div class="input-field col s6">
-                            <input class="datepicker" type="text" name="dob" id="dob" placeholder="Date Of Birth">
+                            <input class="datepicker" type="text" name="details_dob" id="details_dob" placeholder="Date Of Birth">
                         </div>
                         <!-- <div class="input-field col s6">
                         <input type="text" id="city" placeholder="City">
                     </div> -->
                         <div class="input-field col s6">
-                            <input type="text" name="aadharno" id="aadharno" placeholder="Aadhar No">
+                            <input type="text" name="aadharno" id="details_aadharno" placeholder="Aadhar No">
                         </div>
                         <div class="input-field col s6">
                             <div class="col s4">
                                 <label>
-                                <input name="gender" value="male" type="radio" checked />
+                                <input name="details_gender" value="male" id="details_gender" type="radio" />
                                 <span>Male</span>
                             </label>
                             </div>
                             <div class="col s4">
                                 <label>
-                                <input name="gender" value="female" type="radio" />
+                                <input name="details_gender" value="female" id="details_gender" type="radio" />
                                 <span>Female</span>
                             </label>
                             </div>
@@ -402,29 +402,33 @@
                 });
 
                 function save() {
-                    console.log("saving");
+                    let params = $("input[type=text]");
+                    let dct = new Object();
+                    for (let i=0; i < params.length; i++){
+                        if (params[i].value){
+                            dct[params[i].id] = params[i].value;
+                        }
+                    }
+                    console.log(dct);
                     $.ajax({
-                        url: "/populatefields",
-                        method: get,
-                        dataType: "json",
-                        success: function(data) {
-                            Object.keys(data).forEach(key => {
-                                $("input[name=" + key + "]").value(data[key]);
+                        url: "/user/editcv",
+                        method: "POST",
+                        data: dct,
+                        success: function(response) {
+                            console.log(response);
+                            array = response.messages
+                            array.forEach(a => {
+                                M.toast({
+                                    html: "<b>" + a[0] + "</b>",
+                                    classes: a[1]
+                                });
+
                             });
                         },
                         error: function(error) {
                             console.log(error);
                         }
                     });
-
-                    function recur(data) {
-                        if (Object.keys(data) <= 1)
-                            return;
-                        Object.keys(data).forEach(key => {
-                            recur(data.key);
-                        });
-                    }
-
                 }
             </script>
 </body>

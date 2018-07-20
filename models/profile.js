@@ -21,9 +21,10 @@ var Profile = new Schema({
             type: Date,
         },
         aadharno: {
-            type: Number,
+            type: [Number, "Only digits are allowed"],
             trim: true,
-            maxlength: 12
+            maxlength: [12, "Aadhar number is of 12 digit"],
+            minlength: [12, "Aadhar number is of 12 digit"]
         },
         gender: {
             type: String,

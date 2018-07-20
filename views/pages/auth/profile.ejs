@@ -711,63 +711,8 @@
         <!-- FOOTER START -->
         <% include ../../partials/pre_footer %>
             <!-- FOOTER END -->
-
-
-
-
-
-            <!-- Compiled and minified JavaScript -->
-
             <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-            <script src="../js/mysidebar.js"></script>
-            <script src="../js/userprofile.js"></script>
             <script src="../js/profiletab.js"></script>
-            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-            <script>
-                $(document).ready(function() {
-                    M.AutoInit();
-                    data = $('#proj').html().split(";\n");
-                    str = "";
-                    data.forEach((d, i) => {
-                        key = d.split(", ");
-                        str += `
-                <div class="col s12">
-                        ` + (i + 1) + `.<br>
-                                    <div class="col s3">
-                                        <b>Project Name</b>
-                                    </div>
-                                    <div class="col s8" id="proj">` + key[0] + `<br>` + key[1] + `</div>
-                                    
-                                </div>
-                                <div class="row"></div>
-                                <div class="col s12">
-                                    <div class="col s3">
-                                        <b>Institute/Organisation</b>
-                                    </div>
-                                    <div class="col s8">` + key[2] + `</div>
-                                </div>
-                                <div class="row"></div>
-                                <div class="col s12">
-                                    <div class="col s3">
-                                        <b>Duration</b>
-                                    </div>
-                                    <div class="col s8">` + key[4] + ` to ` + key[5] + `</div>
-                                </div>
-                                <div class="row"></div>
-                                <div class="row"></div>
-                                <br>
-                                <div class="col s12">
-                                    <div class="col s3">
-                                        <b>Project Details</b>
-                                    </div>
-                                    <div class="col s8">` + key[3] + `</div>
-                                </div>
-                                <div class="row"></div>
-                `;
-                    });
-                    $('#cont').html(str);
-                });
-            </script>
 </body>
 
 </html>

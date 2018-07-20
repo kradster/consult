@@ -88,6 +88,7 @@ authRouter.get('/myjob', isauthenticated, (req, res) => {
 
 authRouter.get('/editcv', isauthenticated, (req, res) => {
     let dct = { title: "Edit Cv" };
+    console.log(req.user.profile);
     return res.render("auth/makecv", dct);
 });
 
@@ -99,14 +100,14 @@ authRouter.post('/editcv', isauthenticated, (req, res, next) => {
             if (err) {
                 console.log('errror')
                 console.error(err);
+                messages = [];
                 Object.keys(err.errors).forEach(error => {
                     console.log(err.errors[error].message);
-                    res.locals.messages.push([err.errors[error].message, "red"]);
+                    messages.push([err.errors[error].message, "red"]);
                 });
-                return res.redirect('/user/profile')
+                return res.send({success: true, messages: messages})
             } else {
-                res.locals.messages.push(["Profile updated successfully", "green"]);
-                return res.redirect('/user/profile')
+                return res.send({success: true, messages: [["Profile updated successfully", "green"]]})
             }
         } catch (error) {
             console.error(error)

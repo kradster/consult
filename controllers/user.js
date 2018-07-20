@@ -63,37 +63,54 @@ module.exports.getUserProfile = function(user, callback) {
 
 module.exports.addprofile = function(user, data, callback) {
     if (user.profile) {
-        console.log(user.profile);
-        return callback(null, user.profile)
-    }
-    let newProfile = new Profile();
-    newProfile.user = user._id;
-    newProfile.details.fathername = data.fathername;
-    newProfile.details.aadharno = data.aadharno;
-    newProfile.details.gender = data.gender;
-    newProfile.save((err, profile) => {
-        if (err) {
-            if (err.name === 'MongoError' && err.code === 11000) {
-                let error = new Error()
-                error.errors = { duplicate: { message: "Email or mobile already registered" } }
-                return callback(error, null)
-            }
-            return callback(err, null)
-        }
-        user.profile = newProfile._id;
-        user.update((err, profile) => {
-            if (err) {
-                if (err.name === 'MongoError' && err.code === 11000) {
-                    let error = new Error()
-                    error.errors = { duplicate: { message: "Email or mobile already registered" } }
-                    return callback(error, null)
+        Object.keys(data).forEach(dat => {
+            if (dat.includes('_')){
+                pri = dat.split('_')
+                if (pri.length == 2){
+                    user.profile[pri[0]][pri[1]] = data[dat];
                 }
-                return callback(err, null)
+                else if (pri.length == 3){
+                    user.profile[pri[0]][pri[1]][pri[2]] = data[dat];
+                }
             }
-        });
-        return callback(null, newProfile);
-    });
-    // data["projects"] = data.projecttype.map((x, i) => {
+        })
+        user.profile.save(err => {
+            if(err){
+                return callback(err, null);
+            }
+            else{
+                return callback(null, user.profile)
+            }
+        })
+        
+    }
+    else{
+        let newProfile = new Profile();
+            newProfile.user = user._id;
+            newProfile.save((err, profile) => {
+                if (err) {
+                    if (err.name === 'MongoError' && err.code === 11000) {
+                        let error = new Error()
+                        error.errors = { duplicate: { message: "Email or mobile already registered" } }
+                        return callback(error, null)
+                    }
+                    return callback(err, null)
+                }
+                user.profile = newProfile._id;
+                user.save((err, profile) => {
+                    if (err) {
+                        if (err.name === 'MongoError' && err.code === 11000) {
+                            let error = new Error()
+                            error.errors = { duplicate: { message: "Email or mobile already registered" } }
+                            return callback(error, null)
+                        }
+                        return callback(err, null)
+                    }
+                });
+                return callback(null, newProfile);
+            });
+    }
+        // data["projects"] = data.projecttype.map((x, i) => {
     //     return data.projecttype[i] + ", " + data.projectrole[i] + ", " + data.projectinstitute[i] + ", " + data.projectdetails[i] + ", " + data.projectstartdate[i] + " to " + data.projectenddate[i];
     // }).join(";\n");
     // delete data.projecttype;
@@ -118,4 +135,5 @@ module.exports.addprofile = function(user, data, callback) {
     //     }
     //     return callback(null, { success: true, message: "CV updated Successfully" })
     // });
+    // aaaaa_bbbbbbb_ccccccc
 }
