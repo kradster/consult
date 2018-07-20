@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 
 var User = new Schema({
     profile: {
-        type: Schema.Types.ObjectId, ref: 'Profile'
+        type: Schema.Types.ObjectId, ref: 'Profile',
     },
     email: {
         type: String,

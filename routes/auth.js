@@ -15,6 +15,40 @@ function isauthenticated(req, res, next) {
 }
 // Middlewares
 
+authRouter.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/user/profile', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+    }));
+
+authRouter.post('/signup', (req, res) => {
+    let data = req.body;
+    if (!data.password || !data.cpassword || (data.password !== data.cpassword)) {
+        res.locals.messages.push(["Passwords do not match", "red"])
+        return res.redirect('/signup');
+    }
+    userController.createuser(data, (err, user) => {
+        try {
+            if (err) {
+                console.log('errror')
+                console.error(err);
+                Object.keys(err.errors).forEach(error => {
+                    console.log(err.errors[error].message);
+                    res.locals.messages.push([err.errors[error].message, "red"]);
+                });
+                return res.redirect('/signup')
+            } else {
+                console.log(user);
+                sendEmail(user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
+                res.locals.messages.push(["Successful signup", "green"]);
+                return res.redirect('/login')
+            }
+        }
+        catch(error){
+            console.error(error)
+        }
+    })
+});
+
 authRouter.get('/profile', isauthenticated, (req, res) => {
     let dct = { title: "Dashboard" };
     let data = new Object();
@@ -74,13 +108,13 @@ authRouter.get('/resendemail', (req, res) => {
     return res.render('alert', { title: "A verification link has been sent to your email. Please check your mail.", link: "/", linkname: "Go to Home" });
 });
 
-authRouter.post('/signup', (req, res) => {
-    let data = req.body;
-    if (!data.password || !data.cpassword || (data.password !== data.cpassword)) {
-        res.locals.messages.push(["Passwords do not match", "red"])
-        return res.redirect('/signup');
-    }
-    userController.createuser(data, (err, user) => {
+
+
+
+authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
+    data = req.body;
+    console.log(data);
+    userController.addprofile(req.user, data, (err, response) => {
         try {
             if (err) {
                 console.log('errror')
@@ -89,41 +123,16 @@ authRouter.post('/signup', (req, res) => {
                     console.log(err.errors[error].message);
                     res.locals.messages.push([err.errors[error].message, "red"]);
                 });
-                return res.redirect('/signup')
+                return res.redirect('/user/profile')
             } else {
-                console.log(user);
-                sendEmail(user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
-                res.locals.messages.push(["Successful signup", "green"]);
-                return res.redirect('/login')
+                res.locals.messages.push(["Profile updated successfully", "green"]);
+                return res.redirect('/user/profile')
             }            
         }
         catch(error){
             console.error(error)
         }
-    })
-});
-
-authRouter.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/user/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-    }));
-
-authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
-    data = req.body;
-    userController.addcvdata(data, req.session.user, req.session.email, (err, response) => {
-        if (err) {
-            console.log(err);
-            req.session.messages.push([err.message, "red"])
-            return res.redirect('/user/profile');
-        }
-        if (response.success == false) {
-            res.locals.messages.push([response.message, "red"])
-            return res.redirect('/user/editcv');
-        } else {
-            res.locals.messages.push([response.message, "green"])
-            return res.redirect('/user/profile');
-        }
-    })
+    });
 
     //res.send({ success: true, data: req.body, message: "cv details" });
 });

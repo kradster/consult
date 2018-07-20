@@ -7,11 +7,12 @@ var Schema = mongoose.Schema;
 
 var Profile = new Schema({
     user: { 
-        type: Schema.Types.ObjectId, ref: 'User'
+        type: Schema.Types.ObjectId, ref: 'User',
+        unique: true
     },
     experience: [{ type: Schema.Types.ObjectId, ref: 'Experience' }],
     details: {
-        fathersname: {
+        fathername: {
             type: String,
             trim: true,
             maxlength: 20
@@ -26,7 +27,7 @@ var Profile = new Schema({
         },
         gender: {
             type: String,
-            enum: ["m", "f"]
+            enum: ["male", "female", "other"]
         }
     },
     address: {
