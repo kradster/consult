@@ -40,14 +40,14 @@
                         <br>
                         <br>
                         <div class="input-field col s6">
-                            <input placeholder="Full Name" type="text" name="fullname" id="details_fullname" class="tooltipped" data-tooltip="Full Name" placeholder="<%= user.profile.details.fullname %>">
+                            <input type="text" name="fullname" id="details-fullname" class="tooltipped" data-tooltip="Full Name" placeholder="<%= user.fullname %>">
                         </div>
 
                         <div class="input-field col s6">
-                            <input class="tooltipped" data-tooltip="Father's Name" type="text" name="details_fathername" id="details-father_name" placeholder="<%= user.profile.details.fathername %>">
+                            <input class="tooltipped" data-tooltip="Father's Name" type="text" name="details_fathername" id="details-father_name" placeholder="<%= user.profile.details.father_name %>">
                         </div>
                         <div class="input-field col s6">
-                            <input class="datepicker" type="text" name="details_dob" id="details_dob" class="tooltipped" data-tooltip="Date of Birth" placeholder="<%= user.profile.details.dob %>">
+                            <input class="datepicker" type="text" name="details_dob" id="details-dob" class="tooltipped" data-tooltip="Date of Birth" placeholder="<%= user.profile.details.dob %>">
                         </div>
                         <!-- <div class="input-field col s6">
                         <input type="text" id="city" placeholder="City">
@@ -58,13 +58,13 @@
                         <div class="input-field col s6">
                             <div class="col s4">
                                 <label>
-                                <input name="details_gender" value="male" id="details_gender" type="radio" />
+                                <input name="details_gender" value="male" id="details-gender" type="radio" />
                                 <span>Male</span>
                             </label>
                             </div>
                             <div class="col s4">
                                 <label>
-                                <input name="details_gender" value="female" id="details_gender" type="radio" />
+                                <input name="details_gender" value="female" id="details-gender" type="radio" />
                                 <span>Female</span>
                             </label>
                             </div>
@@ -84,13 +84,13 @@
                         <br>
                         <br>
                         <div class="input-field col s6">
-                            <input placeholder="Full Address" type="text" name="fulladdress" id="address_full_address" class="tooltipped" data-tooltip="Address" placeholder="<%= user.profile.address.full_address %>">
+                            <input type="text" name="fulladdress" id="address-full_address" class="tooltipped" data-tooltip="Address" placeholder="<%= user.profile.address.full_address %>">
                         </div>
                         <div class="input-field col s6">
                             <input type="text" name="city" id="address-city" class="tooltipped" data-tooltip="Address" placeholder="<%= user.profile.address.city %>">
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="state" id="address-state" placeholder="State" class="tooltipped" data-tooltip="State" placeholder="<%= user.profile.address.state %>">
+                            <input type="text" name="state" id="address-state" class="tooltipped" data-tooltip="State" placeholder="<%= user.profile.address.state %>">
                         </div>
                         <div class="input-field col s6">
                             <input type="text" name="zipcode" id="address-pincode" class="tooltipped" data-tooltip="Pin code" placeholder="<%= user.profile.address.pincode %>">
@@ -266,7 +266,7 @@
                             </select>
                         </div>
                         <div class="input-field col s3">
-                            <input id="education-post_graduation-marks" type="text" name="postcollegemarks" data-tooltip="Marks" placeholder="<%= user.profile.education.post_graduation-marks %>">
+                            <input id="education-post_graduation-marks" type="text" name="postcollegemarks" data-tooltip="Marks" placeholder="<%= user.profile.education.post_graduation.marks %>">
                         </div>
                         <div class="input-field col s3">
                             <input id="education-post_graduation-passing_year" type="text" name="postcollegename" class="tooltipped" data-tooltip="Passing Year" placeholder="<%= user.profile.education.post_graduation.passing_year %>">

@@ -62,33 +62,31 @@ module.exports.getUserProfile = function(user, callback) {
 
 
 module.exports.addprofile = function(user, data, callback) {
-    if (user.profile) {
-        Object.keys(data).forEach(dat => {
-            if (dat.includes('-')){
-                pri = dat.split('-')
-                if (pri.length == 2){
-                    user.profile[pri[0]][pri[1]] = data[dat];
+        if (user.profile) {
+            Object.keys(data).forEach(dat => {
+
+                if (dat.includes('-')) {
+                    pri = dat.split('-')
+                    console.log(pri);
+                    if (pri.length == 2) {
+                        user.profile[pri[0]][pri[1]] = data[dat];
+                    } else if (pri.length == 3) {
+                        user.profile[pri[0]][pri[1]][pri[2]] = data[dat];
+                    }
+                } else {
+                    user.profile[dat] = data[dat];
                 }
-                else if (pri.length == 3){
-                    user.profile[pri[0]][pri[1]][pri[2]] = data[dat];
+            })
+            user.profile.save(err => {
+                if (err) {
+                    return callback(err, null);
+                } else {
+                    return callback(null, user.profile)
                 }
-            }
-            else{
-                user.profile[dat] = data[dat];
-            }
-        })
-        user.profile.save(err => {
-            if(err){
-                return callback(err, null);
-            }
-            else{
-                return callback(null, user.profile)
-            }
-        })
-        
-    }
-    else{
-        let newProfile = new Profile();
+            })
+
+        } else {
+            let newProfile = new Profile();
             newProfile.user = user._id;
             newProfile.save((err, profile) => {
                 if (err) {
@@ -112,31 +110,4 @@ module.exports.addprofile = function(user, data, callback) {
                 });
                 return callback(null, newProfile);
             });
-    }
-        // data["projects"] = data.projecttype.map((x, i) => {
-    //     return data.projecttype[i] + ", " + data.projectrole[i] + ", " + data.projectinstitute[i] + ", " + data.projectdetails[i] + ", " + data.projectstartdate[i] + " to " + data.projectenddate[i];
-    // }).join(";\n");
-    // delete data.projecttype;
-    // delete data.projectrole;
-    // delete data.projectinstitute;
-    // delete data.projectdetails;
-    // delete data.projectstartdate;
-    // delete data.projectenddate;
-    // data.skills = data.skills.join(", ");
-    // data["email"] = email;
-    // let keys = Object.keys(data);
-    // let vals = Object.values(data).map(x => { if (typeof(x) == "string") return x.replace("'", "''") });
-    // sql = [];
-    // for (let i = 0; i < keys.length; i++)
-    //     sql.push(keys[i] + " = '" + vals[i] + "'");
-    // sql = "UPDATE CV SET " + sql.join(", ") + " WHERE uniqueid = '" + user_id + "'";
-    // console.log(sql);
-    // //sql = "INSERT INTO CV(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
-    // db.exec(sql, (err, response) => {
-    //     if (err) {
-    //         return callback(err, null);
-    //     }
-    //     return callback(null, { success: true, message: "CV updated Successfully" })
-    // });
-    // aaaaa_bbbbbbb_ccccccc
-}
+        }
