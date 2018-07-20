@@ -15,10 +15,12 @@ function isauthenticated(req, res, next) {
 }
 // Middlewares
 
-authRouter.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/user/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-    }));
+authRouter.post('/login', (req, res, next) => {
+        passport.authenticate('local-login', {
+            successRedirect : '/user/profile', // redirect to the secure profile section
+            failureRedirect : '/login', // redirect back to the signup page if there is an error
+        })(req, res, next);
+    });
 
 authRouter.post('/signup', (req, res) => {
     let data = req.body;
@@ -102,7 +104,7 @@ authRouter.get('/verify', (req, res) => {
     } else return res.render('alert', { title: 'Bad request', link: "/", linkname: "Go to Home" });
 });
 
-authRouter.get('/resendemail', (req, res) => {
+authRouter.get('/resendemail', (req, res, next) => {
     if (!req.session.user) return res.redirect('/login');
     sendVerificatonEmail(req, res);
     return res.render('alert', { title: "A verification link has been sent to your email. Please check your mail.", link: "/", linkname: "Go to Home" });
@@ -111,7 +113,7 @@ authRouter.get('/resendemail', (req, res) => {
 
 
 
-authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
+authRouter.post('/cvbuilder', isauthenticated, (req, res, next) => {
     data = req.body;
     console.log(data);
     userController.addprofile(req.user, data, (err, response) => {

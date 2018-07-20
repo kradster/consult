@@ -25,12 +25,12 @@ module.exports = function(passport) {
             }
             if (!user){
 		    	console.log('in local-loginuser')
-            	res.locals.message.push(['No email found', 'red']);
+            	req.session.messages.push(['No email found', 'red']);
                 return done(null, false); // req.flash is the way to set flashdata using connect-flash
             }
             if (!user.validPassword(password)){
 		    	console.log('in local-loginpassword')
-            	res.locals.message.push(['Wrong Password', 'red']);
+            	req.session.messages.push(['Wrong Password', 'red']);
                 return done(null, false); // create the loginMessage and save it to session as flashdata
             }
             return done(null, user);

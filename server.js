@@ -49,13 +49,10 @@ app.use(session({
 require('./passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
+// Middlewares
 app.use(function(req, res, next){
-    if (req.session.messages){
-        res.locals.messages = req.session.messages;
-    }
-    else{
-        res.locals.messages = [];
-        req.session.messages = []
+    if (!req.session.messages){
+        req.session.messages = [];
     }
     res.locals.removeMessages = function () {
         req.session.messages = [];
@@ -71,10 +68,12 @@ app.use(function(req, res, next){
             return url;
         }        
     }
+    if (req.session.messages){
+        res.locals.messages = req.session.messages;
+    }
+    console.log('start')
     next();
 });
-// Middlewares
-
 // Routes
 app.use('/', mainRouter);
 app.use('/user', authRouter);
@@ -82,7 +81,7 @@ app.use('/admin', adminRouter);
 // Routes
 
 // 404 Page redirect
-app.get('*', (req, res) => {
+app.get('*', (req, res, next) => {
     if (req.session.messages){
         req.session.messages.push(["The page you are looking for doesn't exist", "red"])
     }
