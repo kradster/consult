@@ -17,7 +17,6 @@ function isauthenticated(req, res, next) {
 
 authRouter.get('/profile', isauthenticated, (req, res) => {
     let dct = { title: "Dashboard" };
-    console.log(req.user);
     let data = new Object();
     data.firstname = req.user.name.first;
     data.lastname = req.user.name.last;
@@ -25,9 +24,8 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
     data.phoneno = req.user.phoneno;
     data.verified = req.user.verified;
     dct.data = data;
-    console.log(dct);
-    console.log(req.user.fullname);
     dct.data["_removetags"] = true;
+    dct.data.CV = {};
     return res.render("auth/profile", dct);
 });
 
@@ -95,7 +93,7 @@ authRouter.post('/signup', (req, res) => {
                 console.log(user);
                 sendEmail(user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
                 res.locals.messages.push(["Successful signup", "green"]);
-                return res.redirect('/signup')
+                return res.redirect('/login')
             }            
         }
         catch(error){
@@ -108,33 +106,6 @@ authRouter.post('/login', passport.authenticate('local-login', {
         successRedirect : '/user/profile', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
     }));
-
-    // console.log(req.session.next);
-    // if (!req.body.email) {
-    //     res.locals.messages.push(["One or more fields are incorrect", "red"])
-    //     return res.redirect('/login');
-    // }
-    // userController.userlogin(req.body.email, req.body.password, (err, response) => {
-    //     if (err) {
-    //         console.error(err.message);
-    //         return
-    //     }
-    //     if (response.success == false) {
-    //         res.locals.messages.push([response.message, "red"])
-    //         return res.redirect('/login');
-    //     }
-    //     req.session.user = response.user.uniqueid;
-    //     req.session.email = response.user.email;
-    //     res.locals.messages.push(["Successfully Logged in", "green"])
-    //     if (req.session.next) {
-    //         let next = req.session.next;
-    //         delete req.session.next;
-    //         return res.redirect(next);
-    //     }
-    //     return res.redirect('/user/profile');
-    // });
-    // //res.send('TODO');
-// });
 
 authRouter.post('/cvbuilder', isauthenticated, (req, res) => {
     data = req.body;

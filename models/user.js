@@ -77,14 +77,13 @@ var User = new Schema({
 );
 
 User.virtual('fullname').get(function() {
-    return this.name.first + ' ' + this.name.second;
+    return this.name.first + ' ' + this.name.last;
 });
 
 User.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-// checking if password is valid
 User.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };

@@ -5,11 +5,11 @@ module.exports.createuser = function(user, callback) {
         email: user.email,
         name: {
             first: user.firstname,
-            second: user.lastname
+            last: user.lastname
         },
-        password: User.generateHash(user.password),
         phoneno: user.phoneno
     });
+    userdat.password = userdat.generateHash(user.password)
     userdat.save((err, userdat) => {
         if (err) {
             if (err.name === 'MongoError' && err.code === 11000){
@@ -37,29 +37,19 @@ module.exports.createuser = function(user, callback) {
 //     });
 // }
 
-// module.exports.userdata = function(uid, callback) {
-//     db.get("SELECT * FROM Users WHERE uniqueid = ?", uid, (err, row) => {
-//         let dct = {};
-//         if (!row) {
-//             callback(null, { success: false, message: 'No User with the particular id found' });
-//             return;
-//         }
-//         data = row;
-//         dct.firstname = data.firstname;
-//         dct.lastname = data.lastname;
-//         dct.email = data.email;
-//         dct.phoneno = data.phoneno;
-//         dct.verified = data.verified;
-//         db.get("SELECT * FROM CV WHERE uniqueid = ?", uid, (err, row) => {
-//             if (!row) {
-//                 callback(null, { success: true, data: dct });
-//                 return;
-//             }
-//             dct["CV"] = row;
-//             callback(null, { success: true, data: dct });
-//         });
-//     });
-// }
+module.exports.getUserProfile = function(uid, callback) {
+    db.get("SELECT * FROM Users WHERE uniqueid = ?", uid, (err, row) => {
+        let dct = {};
+         db.get("SELECT * FROM CV WHERE uniqueid = ?", uid, (err, row) => {
+            if (!row) {
+                callback(null, { success: true, data: dct });
+                return;
+            }
+            dct["CV"] = row;
+            callback(null, { success: true, data: dct });
+        });
+    });
+}
 
 // module.exports.userlogin = function(email, password, callback) {
 //     db.get("SELECT * FROM Users WHERE email = ?", email, (err, userrow) => {
