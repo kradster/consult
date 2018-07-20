@@ -79,18 +79,24 @@ authRouter.post('/signup', (req, res) => {
         return res.redirect('/signup');
     }
     userController.createuser(data, (err, user) => {
-        if (err) {
-            console.error(err);
-            Object.keys(err.errors).forEach(error => {
-                console.log(err.errors[error].message);
-                res.locals.messages.push([err.errors[error].message, "red"]);
-            });
-            return res.redirect('/signup')
-        } else {
-            console.log(user);
-            sendEmail(user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
-            res.locals.messages.push(["Successful signup", "green"]);
-            return res.redirect('/signup')
+        try {
+            if (err) {
+                console.log('errror')
+                console.error(err);
+                Object.keys(err.errors).forEach(error => {
+                    console.log(err.errors[error].message);
+                    res.locals.messages.push([err.errors[error].message, "red"]);
+                });
+                return res.redirect('/signup')
+            } else {
+                console.log(user);
+                sendEmail(user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
+                res.locals.messages.push(["Successful signup", "green"]);
+                return res.redirect('/signup')
+            }            
+        }
+        catch(error){
+            console.error(error)
         }
     })
 });

@@ -11,9 +11,13 @@ module.exports.createuser = function(user, callback) {
         password: bcrypt.hashSync(user.password),
         phoneno: user.phoneno
     });
-    console.log(user.email, user.phoneno);
     userdat.save((err, userdat) => {
         if (err) {
+            if (err.name === 'MongoError' && err.code === 11000){
+                let error = new Error()
+                error.errors = {duplicate: {message: "Email or mobile already registered"}}
+                return callback(error, null)
+            }
             return callback(err, null)
         }
         return callback(null, userdat);
