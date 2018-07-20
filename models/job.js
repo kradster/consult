@@ -9,92 +9,103 @@ var Job = new Schema({
     recruiter: { 
         type: Schema.Types.ObjectId, ref: 'User'
     },
-    altemail: {
-        type: String,
-        required: false,
-        trim: true,
-        validate: {
-            isAsync: false,
-            validator: validator.isEmail,
-            message: 'Please fill a valid email address'
-        }
-    },
-    contactno: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: [10, "Mobile Number can be of 10 digits only."],
-        validate: {
-            validator: validator.isInt,
-            message: '{VALUE} is not a valid phone number!'
-        }
+    contact:{
+        email: {
+            type: String,
+            required: false,
+            trim: true,
+            validate: {
+                isAsync: false,
+                validator: validator.isEmail,
+                message: 'Please fill a valid email address'
+            }
+        },
+        phoneno: {
+            type: String,
+            required: true,
+            trim: true,
+            maxlength: [10, "Mobile Number can be of 10 digits only."],
+            validate: {
+                validator: validator.isInt,
+                message: '{VALUE} is not a valid phone number!'
+            }
+        },
     },
     approved: {
         type: Boolean,
         default: false,
     },
-    jobtitle: {
-        type: String,
-        trim: true,
-        maxlength: 20
-    },
-    companyname: {
-        type: String,
-        trim: true,
-        maxlength: 20
-    },
-    aboutcompany: {
-        type: String,
-        trim: true,
-        maxlength: 200
-    },
-    location: {
-        type: String,
-        trim: true,
-        maxlength: 50
-    },
-    jobdesc: {
-        type: String,
-        trim: true,
-        maxlength: 100
-    },
-    companywebsite: {
-        type: String,
-        trim: true,
-        maxlength: 20,
-        validate:{
-            validator: validate.isURL,
-            message: "Not a valid URL"
-        }
-    },
-    location: {
-        type: String,
-        trim: true,
-        maxlength: 20
-    },
-    jobdesc: {
-        type: String,
-        trim: true,
-        maxlength: 20
-    },
-    experience: {
-        minexp: {
-            type: [Number, "Wrong type"],
+    company: {
+        name: {
+            type: String,
+            trim: true,
+            maxlength: 20
         },
-        maxexp: {
-            type: [Number, "Wrong type"],
+        about:{
+            type: String,
+            trim: true,
+            maxlength: 200
+        },
+        location: {
+            type: String,
+            trim: true,
+            maxlength: 50
+        },
+        desc: {
+            type: String,
+            trim: true,
+            maxlength: 100
+        },
+        website: {
+            type: String,
+            trim: true,
+            maxlength: 20,
+            validate:{
+                validator: validate.isURL,
+                message: "Not a valid URL"
+            }
+        },
+        email: {
+            type: String,
+            required: false,
+            trim: true,
+            validate: {
+                isAsync: false,
+                validator: validator.isEmail,
+                message: 'Please fill a valid email address'
+            }
         }
     },
-    salary: {
-        type: [Number, "Wrong type"]
-    },
-    dateofjoin: {
-        type: Date,
-        required: false
-    },
-    vacancies: {
-        type: Number,
-        required: [true, "Vacancies are mandatory"]
+    job: {
+        title: {
+            type: String,
+            trim: true,
+            maxlength: 20
+        },
+        description: {
+            type: String,
+            trim: true,
+            maxlength: 20
+        },
+        salary: {
+            type: [Number, "Wrong type"]
+        },
+        experience: {
+            minexp: {
+                type: [Number, "Wrong type"],
+            },
+            maxexp: {
+                type: [Number, "Wrong type"],
+            }
+        },
+        joining_date: {
+            type: Date,
+            required: false
+        },
+        vacancies: {
+            type: Number,
+            required: [true, "Vacancies are mandatory"]
+        }
     }
 });
 

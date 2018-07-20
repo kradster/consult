@@ -1,6 +1,6 @@
 const express = require('express');
 var adminRouter = express.Router();
-var userController = require('../controllers/user')
+var adminController = require('../controllers/admin')
 var passport = require('passport');
 var sendEmail = require('../utils/email');
 
@@ -27,34 +27,18 @@ function isauthenticated(req, res, next) {
 // Middlewares
 
 adminRouter.get('/dashboard', isauthenticated, (req, res) => {
-    return res.render("auth/adminpanel", dct);
+    return res.render("admin/adminpanel", dct);
 });
 
-adminRouter.get('/admin/jobadd', isauthenticated, (req, res) => {
-    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
-        res.sendFile('/admin/jobadd.html', { root: __dirname });
-    } else
-        res.redirect('/');
-
+adminRouter.get('/jobadd', isauthenticated, (req, res) => {
+    return res.render("admin/jobadd", dct);
 });
 
 adminRouter.post('/addjob', isauthenticated, (req, res) => {
-    if (req.session.admin === ("admin" + Config.ADMIN_KEY)) {
-        data = req.body;
-        data["listingid"] = Date.now() + "";
-        data["approved"] = "no";
-        let vals = Object.values(data).map(x => x.replace("'", "''"));
-        sql = "INSERT INTO JobListings(" + Object.keys(data).join(",") + ") VALUES('" + vals.join("', '") + "');";
-
-        console.log(sql);
-        //console.log(req.body);
-        db.exec(sql, err => {
-            if (err) return res.render('alert', { title: err + "", link: "/", linkname: "Goto home" });
-            console.log('Job Listing added');
-            return res.render('alert', { title: "Job Listing added", link: "/jobs", linkname: "Goto Jobs" });
-        });
-    } else
-        res.render('alert', { title: "Incorrect login activity", link: "/", linkname: "Go to Home" });
+    data = req.body;
+    adminController.addjob(user, data, (err, job) => {
+        console.log(job);
+    }
 });
 
 adminRouter.get('/admin/editjobs', isauthenticated, (req, res) => {
