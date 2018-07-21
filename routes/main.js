@@ -12,6 +12,11 @@ mainRouter.get('/', (req, res, next) => {
 });
 
 mainRouter.get('/signup', (req, res, next) => {
+    if (req.isAuthenticated()) {
+        return res.redirect('/user/profile');
+    }
+    next();
+    }, (req, res, next) => {
     let dct = { title: "JobLana Signup" };
     res.render('login/signup', dct);
 });
