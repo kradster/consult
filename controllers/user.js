@@ -2,6 +2,7 @@ var User = require('../models/user');
 var Token = require('../models/token');
 var Test = require('../models/test');
 var Profile = require('../models/profile');
+var Experience = require('../models/experience');
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId
 
@@ -79,7 +80,24 @@ module.exports.addprofile = function(user, data, callback) {
                         user.profile[pri[0]][pri[1]][pri[2]] = data[dat];
                     }
                 } else {
-                    user.profile[dat] = data[dat];
+                    if (dat == "experience"){
+                        data[dat].forEach(exp => {
+                            let newExperience = new Experience({
+                                type: exp.type,
+                                profile: user.profile_id,
+                                role: exp.role,
+                                organization; exp.organization,
+                                description: exp.description,
+                                start_date: exp.start_date,
+                                end_date: exp.end_date,
+                            });
+                            console.log(exp)
+                            newExperience.save(err => {
+                                console.log('this is running save');
+                                user.profile.experience.push(newExperience._id);
+                            })
+                        })
+                    }else user.profile[dat] = data[dat];
                 }
             })
             user.profile.save(err => {
