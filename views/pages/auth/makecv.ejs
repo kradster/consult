@@ -58,13 +58,13 @@
                         <div class="input-field col s6">
                             <div class="col s4">
                                 <label>
-                                <input name="details_gender" value="male" id="details-gender" type="radio" />
+                                <input name="details_gender" value="male" id="details-gender" type="radio" <%= profile.details.gender=="male"?"checked":""%> />
                                 <span>Male</span>
                             </label>
                             </div>
                             <div class="col s4">
                                 <label>
-                                <input name="details_gender" value="female" id="details-gender" type="radio" />
+                                <input name="details_gender" value="female" id="details-gender" type="radio" <%= profile.details.gender=="female"?"checked":""%>/>
                                 <span>Female</span>
                             </label>
                             </div>
@@ -94,8 +94,8 @@
                                 <option value="" disabled selected>Choose your course</option>
                                 <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
                             </select>
-<!--                             <input type="text" name="state" id="address-state" class="tooltipped" data-tooltip="State" placeholder="<%= profile.address.state %>">
- -->                        </div>
+                            <!--                             <input type="text" name="state" id="address-state" class="tooltipped" data-tooltip="State" placeholder="<%= profile.address.state %>">
+ --></div>
                         <div class="input-field col s6">
                             <input type="text" name="zipcode" id="address-pincode" class="tooltipped" data-tooltip="Pin code" placeholder="<%= profile.address.pincode %>">
                         </div>
@@ -129,7 +129,7 @@
                                 <input id="education-high-marks" type="text" name="marks10" class="tooltipped" data-tooltip="Marks" placeholder="<%= profile.education.high.marks %>">
                             </div>
                             <div class="input-field">
-                                <input id="education-high-passing_year" type="text" name="year10" class="tooltipped" data-tooltip="Passing Year" placeholder="<%= profile.education.passing_year %>">
+                                <input id="education-high-passing_year" type="text" name="year10" class="tooltipped" data-tooltip="Passing Year" placeholder="<%= profile.education.high.passing_year %>">
                             </div>
                         </div>
                         <br>
@@ -378,70 +378,71 @@
             </form>
         </div>
 
-    <!-- FOOTER START -->
-    <% include ../../partials/pre_footer %>
-    <!-- FOOTER END -->
+        <!-- FOOTER START -->
+        <% include ../../partials/pre_footer %>
+            <!-- FOOTER END -->
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="/js/stepform.js" type="text/javaScript"></script>
-    <script>
-        $(document).ready(function() {
-            M.AutoInit();
-            $('body').on('focus', ".datepicker", function() {
-                $(this).datepicker();
-
-            });
-            $('body').on('focus', "select", function() {
-                M.AutoInit();
-            });
-            //$(document).on('click','.datapicker',M.datepicker);
-        });
-        $('select').on('contentChanged', function() {
-            $(this).material_select();
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.datepicker');
-            var instances = M.Datepicker.init(elems, {
-                minDate: new Date(1950, 1, 1),
-                maxDate: new Date(2010, 1, 1)
-            });
-        });
-
-        function save() {
-            let params = $("input[type=text]");
-            let rad_buttons = $("input[type=radio]");
-            for (let i = 0; i < rad_buttons.length; i++) {
-                params.push(rad_buttons[i]);
-            };
-            delete radios;
-            let dct = new Object();
-            for (let i = 0; i < params.length; i++) {
-                if (params[i].value) {
-                    dct[params[i].id] = params[i].value;
-                }
-            }
-            console.log(dct);
-            $.ajax({
-                url: "/user/editcv",
-                method: "POST",
-                data: dct,
-                success: function(response) {
-                    console.log(response);
-                    array = response.messages
-                    array.forEach(a => {
-                        M.toast({
-                            html: "<b>" + a[0] + "</b>",
-                            classes: a[1]
-                        });
+            <!-- Compiled and minified JavaScript -->
+            <script src="/js/stepform.js" type="text/javaScript"></script>
+            <script>
+                $(document).ready(function() {
+                    M.AutoInit();
+                    $('body').on('focus', ".datepicker", function() {
+                        $(this).datepicker();
 
                     });
-                },
-                error: function(error) {
-                    console.log(error);
+                    $('body').on('focus', "select", function() {
+                        M.AutoInit();
+                    });
+                    //$(document).on('click','.datapicker',M.datepicker);
+                });
+                $('select').on('contentChanged', function() {
+                    $(this).material_select();
+                });
+                document.addEventListener('DOMContentLoaded', function() {
+                    var elems = document.querySelectorAll('.datepicker');
+                    var instances = M.Datepicker.init(elems, {
+                        minDate: new Date(1950, 1, 1),
+                        maxDate: new Date(2010, 1, 1)
+                    });
+                });
+
+                function save() {
+                    let params = $("input[type=text]");
+                    let rad_buttons = $("input[type='radio'][name='details_gender']:checked");
+                    for (let i = 0; i < rad_buttons.length; i++) {
+                        params.push(rad_buttons[i]);
+                    };
+                    delete radios;
+                    let dct = new Object();
+                    for (let i = 0; i < params.length; i++) {
+                        if (params[i].value) {
+                            dct[params[i].id] = params[i].value;
+                        }
+                    }
+                    console.log(dct);
+
+                    $.ajax({
+                        url: "/user/editcv",
+                        method: "POST",
+                        data: dct,
+                        success: function(response) {
+                            console.log(response);
+                            array = response.messages
+                            array.forEach(a => {
+                                M.toast({
+                                    html: "<b>" + a[0] + "</b>",
+                                    classes: a[1]
+                                });
+
+                            });
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
                 }
-            });
-        }
-    </script>
+            </script>
 </body>
 
 </html>

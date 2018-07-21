@@ -16,7 +16,7 @@ var Profile = new Schema({
         father_name: {
             type: String,
             trim: true,
-            maxlength: 20
+            maxlength: 50
         },
         dob: {
             type: Date,

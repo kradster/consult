@@ -54,11 +54,11 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
     data.fullname = req.user.fullname
     data.email = req.user.email;
     data.phoneno = req.user.phoneno;
-    data.verified = req.user.verified? "Verified": "Unverified" ;
+    data.verified = req.user.verified ? "Verified" : "Unverified";
     dct.data = data;
-    dct.data.profile = {details: {}, address: {}, education: {high: {}, intermediate: {}, graduation: {}, post_graduation: {}}, experience: [], skills: []};
+    dct.data.profile = { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] };
     userController.getUserProfile(req.user, (err, profile) => {
-        if (err){
+        if (err) {
             console.error(err);
             return res.render("auth/profile", dct);
         }
@@ -74,13 +74,12 @@ authRouter.post('/scheduletest/:id', isauthenticated, (req, res) => {
     data = req.body
     let id = req.params.id;
     userController.addTest(req.user, id, data, (err, test) => {
-        if(err) {
+        if (err) {
             Object.values(err.errors).forEach(error => {
                 res.locals.messages.push([error.message, "red"]);
             });
             return res.redirect('/upcoming-jl-test');
-        }
-        else {
+        } else {
             res.locals.messages.push(["Successfully applied to test", "green"])
             return res.redirect('/user/profile');
         }
@@ -103,13 +102,14 @@ authRouter.get('/myjob', isauthenticated, (req, res) => {
 });
 
 authRouter.get('/editcv', isauthenticated, (req, res) => {
-    let profile = req.user.profile ? req.user.profile : {details: {}, address: {}, education: {high: {}, intermediate: {}, graduation: {}, post_graduation: {}}, experience: [], skills: []};
+    let profile = req.user.profile ? req.user.profile : { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] };
     let dct = { title: "Edit Cv", user: req.user, profile: profile };
     return res.render("auth/makecv", dct);
 });
 
 authRouter.post('/editcv', isauthenticated, (req, res, next) => {
     let data = req.body;
+    console.log(data);
     userController.addprofile(req.user, data, (err, response) => {
         try {
             if (err) {
@@ -117,9 +117,11 @@ authRouter.post('/editcv', isauthenticated, (req, res, next) => {
                 Object.keys(err.errors).forEach(error => {
                     messages.push([err.errors[error].message, "red"]);
                 });
-                return res.send({success: true, messages: messages})
+                return res.send({ success: true, messages: messages })
             } else {
-                return res.send({success: true, messages: [["Profile updated successfully", "green"]]})
+                return res.send({ success: true, messages: [
+                        ["Profile updated successfully", "green"]
+                    ] })
             }
         } catch (error) {
             console.error(error)
@@ -133,15 +135,14 @@ authRouter.post('/editcv', isauthenticated, (req, res, next) => {
 authRouter.get('/verify-email/:token', (req, res) => {
     let token = req.params.token;
     userController.verifytoken(token, (err, response) => {
-        if (err){
+        if (err) {
             console.log(err)
             return res.redirect('/')
         }
         if (response) {
             res.locals.messages.push(["Your email has been verified successfully", "green"])
             return res.redirect('/')
-        }
-        else{
+        } else {
             res.locals.messages.push(["Invalid link or expired", "red"])
             return res.redirect('/')
         }
@@ -150,7 +151,7 @@ authRouter.get('/verify-email/:token', (req, res) => {
 });
 
 authRouter.get('/resend-email', isauthenticated, (req, res, next) => {
-    if (req.user.verified){
+    if (req.user.verified) {
         res.locals.messages.push(["Your email is verified", "green"]);
         return res.redirect('/user/profile')
     }
