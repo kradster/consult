@@ -5,6 +5,7 @@ var Profile = require('../models/profile');
 var Experience = require('../models/experience');
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId
+var async = require('async');
 
 module.exports.createuser = function(user, callback) {
     let userdat = new User({
@@ -79,42 +80,41 @@ module.exports.addprofile = function(user, data, callback) {
                     } else if (pri.length == 3) {
                         user.profile[pri[0]][pri[1]][pri[2]] = data[dat];
                     }
-                } else {
-                    if (dat == "experience"){
-                        data[dat].forEach(exp => {
-                            let newExperience = new Experience({
-                                type: exp.type,
-                                profile: user.profile._id,
-                                role: exp.role,
-                                organization: exp.organization,
-                                description: exp.description,
-                                start_date: exp.start_date,
-                                end_date: exp.end_date,
+                } 
+                else if (dat == "experience"){
+                    lst = [];
+                    data[dat].forEach(exp => {
+                        lst.push(new Experience({
+                            type: exp.type,
+                            profile: user.profile._id,
+                            role: exp.role,
+                            organization: exp.organization,
+                            description: exp.description,
+                            start_date: exp.start_date,
+                            end_date: exp.end_date})
+                        );
+                    });
+                    lst.forEach(exp => {
+                        exp.save((err) => {
+                            user.profile.experience.push(exp);
+                            user.profile.save(err => {
+                                if (err) console.log(err);
                             });
-                            newExperience.save(err => {
-                                if (err) return callback(err, null)
-                                console.log('this is running save');
-                                user.profile.experience.push(newExperience);
-                                user.profile.save(err => {
-                                    if (err) {console.log(err);}
-                                })
-                                console.log(user.profile)
-                            })
-                            delete this.newExperience;
-                            console.log('newExperience', newExperience);
-                        })
-                    }else user.profile[dat] = data[dat];
+                        });
+                        console.log('newExperience', exp);
+                    });
                 }
-            })
+                    else user.profile[dat] = data[dat];
+                });
             user.profile.save(err => {
                 if (err) {
                     return callback(err, null);
                 } else {
                     return callback(null, user.profile)
                 }
-            })
-
-        } else {
+            });
+        }
+        else {
             let newProfile = new Profile();
             newProfile.user = user._id;
             Object.keys(data).forEach(dat => {
@@ -152,4 +152,4 @@ module.exports.addprofile = function(user, data, callback) {
                 return callback(null, newProfile);
             });
         }
-};
+}
