@@ -128,4 +128,8 @@ var Profile = new Schema({
     skills: [],
 }, { timestamps: true });
 
+Profile.virtual('getStates').get(function() {
+    return this.schema.path('address.state').enumValues
+})
+
 module.exports = mongoose.model('Profile', Profile);

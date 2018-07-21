@@ -87,11 +87,15 @@
                             <input type="text" name="fulladdress" id="address-full_address" class="tooltipped" data-tooltip="Address" placeholder="<%= profile.address.full_address %>">
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="city" id="address-city" class="tooltipped" data-tooltip="Address" placeholder="<%= profile.address.city %>">
+                            <input type="text" name="city" id="address-city" class="tooltipped" data-tooltip="City" placeholder="<%= profile.address.city %>">
                         </div>
                         <div class="input-field col s6">
-                            <input type="text" name="state" id="address-state" class="tooltipped" data-tooltip="State" placeholder="<%= profile.address.state %>">
-                        </div>
+                            <select name="address-state" id="address-state" class="tooltipped" data-tooltip="Course">
+                                <option value="" disabled selected>Choose your course</option>
+                                <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
+                            </select>
+<!--                             <input type="text" name="state" id="address-state" class="tooltipped" data-tooltip="State" placeholder="<%= profile.address.state %>">
+ -->                        </div>
                         <div class="input-field col s6">
                             <input type="text" name="zipcode" id="address-pincode" class="tooltipped" data-tooltip="Pin code" placeholder="<%= profile.address.pincode %>">
                         </div>
@@ -405,6 +409,11 @@
 
         function save() {
             let params = $("input[type=text]");
+            let rad_buttons = $("input[type=radio]");
+            for (let i = 0; i < rad_buttons.length; i++) {
+                params.push(rad_buttons[i]);
+            };
+            delete radios;
             let dct = new Object();
             for (let i = 0; i < params.length; i++) {
                 if (params[i].value) {
