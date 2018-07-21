@@ -94,24 +94,24 @@ function _funcB5() {
 
 }
 
-function AddMoreJobs(element) {
+function AddMoreProjects(element) {
     element.append(`<div class="col s12">
     <div class="input-field col s2">
-        <select class="no-autoinit" name="projecttype[]">
+        <select name="projecttype">
             <option value="" disabled selected>Choose your course</option>
-            <option value="internship"  selected>Internship</option>
-            <option value="job"  selected>Job</option>
-            <option value="projects"  selected>Project</option>
+            <option value="internship">Internship</option>
+            <option value="job"d>Job</option>
+            <option value="projects">Project</option>
         </select>
     </div>
     <div class="input-field col s2">
-        <input type="text" name="projectrole[]" id="projects" placeholder="title/role">
+        <input type="text" name="projectrole" id="projects" placeholder="title/role">
     </div>
     <div class="input-field col s2">
-        <input type="text" name="projectinstitute[]" id="projects" placeholder="institute/organization">
+        <input type="text" name="projectinstitute" id="projects" placeholder="institute/organization">
     </div>
     <div class="input-field col s2">
-        <input type="text" name="projectdetails[]" id="projects" placeholder="About work">
+        <input type="text" name="projectdetails" id="projects" placeholder="About work">
     </div>
     <div class="input-field col s2">
         <input class="datepicker" type="text" name="projectstartdate" id="startdate" placeholder="Start Date">
@@ -123,7 +123,7 @@ function AddMoreJobs(element) {
 }
 
 function AddMoreSkills(element) {
-    element.append('<div class="input-field col s12"><input type="text" name="skills[]" placeholder="Enter Your Skills"></div>');
+    element.append('<div class="input-field col s12"><input type="text" name="skills" placeholder="Enter Your Skills"></div>');
 }
 
 function Get_All_Page_Data() {

@@ -284,36 +284,38 @@
                         </div>
                     </div>
                     <div id="form4" class="card z-depth-0 col s12" style="padding:10px;display:none;">
-                        <h5>
-                            <b>PROJECTS/INTERNSHIPS/JOBS</b>
-                        </h5>
-                        <br>
+                        <div class="col s10">
+                            <h5>
+                                <b>PROJECTS/INTERNSHIPS/JOBS</b>
+                            </h5>
+                        </div>
+                        <div class="col s1"> <input id="addmoreprojects" type="button" class="ui button mini white-text blue accent-4" value="Add More"></div>
+                        <!-- <div class="col s1"> <input id="removeprojects" type="button" class="ui button mini white-text blue accent-4" value="Remove Fields"></div>
+                        <br> -->
                         <div id="jobspanel">
                             <div class="col s12">
                                 <div class="input-field col s2">
-                                    <select class="no-autoinit" name="projecttype[]">
-                                    <option value="" disabled selected>Choose your course</option>
-                                    <option value="internship"  selected>Internship</option>
-                                    <option value="job"  selected>Job</option>
-                                    <option value="projects"  selected>Project</option>
-                                </select>
+                                    <select name="projecttype">
+                                        <option value="" disabled selected>Choose your course</option>
+                                        <option value="internship">Internship</option>
+                                        <option value="job">Job</option>
+                                        <option value="projects">Project</option>
+                                    </select>
                                 </div>
                                 <div class="input-field col s2">
-                                    <input type="text" name="projectrole[]" id="projects" placeholder="title/role">
+                                    <input type="text" name="projectrole" id="projects" placeholder="title/role">
                                 </div>
                                 <div class="input-field col s2">
-                                    <input type="text" name="projectinstitute[]" id="projects" placeholder="institute/organization">
+                                    <input type="text" name="projectinstitute" id="projects" placeholder="institute/organization">
                                 </div>
                                 <div class="input-field col s2">
-                                    <input type="text" name="projectdetails[]" id="projects" placeholder="About work">
+                                    <input type="text" name="projectdetails" id="projects" placeholder="About work">
                                 </div>
                                 <div class="input-field col s3">
-                                    <input class="datepicker col s5" type="text" name="projectstartdate[]" id="startdate" placeholder="Start Date">
-                                    <input class="datepicker col s5" type="text" name="projectenddate[]" id="enddate" placeholder="End Date">
+                                    <input class="datepicker col s5" type="text" name="projectstartdate" id="startdate" placeholder="Start Date">
+                                    <input class="datepicker col s5" type="text" name="projectenddate" id="enddate" placeholder="End Date">
                                 </div>
-                                <div class="input-field col s1">
-                                    <input id="addmorejobs" type="button" class="ui button mini white-text blue accent-4" value="Add More">
-                                </div>
+
                             </div>
                         </div>
                         <div class="col s12">
@@ -334,7 +336,7 @@
                         <div id="skillspanel">
                             <div class="col s12">
                                 <div class="input-field col s10">
-                                    <input type="text" name="skills[]" placeholder="Enter Your Skills">
+                                    <input type="text" name="skills" placeholder="Enter Your Skills">
                                 </div>
                                 <div class="input-field col s2">
                                     <input id="addmoreskills" type="button" class="ui button white-text mini blue accent-4" value="Add More">
@@ -394,6 +396,14 @@
                     $('body').on('focus', "select", function() {
                         M.AutoInit();
                     });
+                    $('#addmoreprojects').click(() => {
+                        AddMoreProjects($('#jobspanel'));
+                        M.AutoInit();
+                    });
+                    $('#addmoreskills').click(() => {
+                        AddMoreSkills($('#skillspanel'));
+                        M.AutoInit();
+                    });
                     //$(document).on('click','.datapicker',M.datepicker);
                 });
                 $('select').on('contentChanged', function() {
@@ -419,6 +429,30 @@
                         if (params[i].value) {
                             dct[params[i].id] = params[i].value;
                         }
+                    }
+
+                    dct.experience = [];
+                    for (let i = 0; i < $('input[name=projectrole]').length; i++) {
+                        if ($('select[name=projecttype')[i].value == "" ||
+                            $('input[name=projectrole]')[i].value == "" ||
+                            $('input[name=projectinstitute')[i].value == "" ||
+                            $('input[name=projectdetails]')[i].value == "" ||
+                            $('input[name=projectstartdate]')[i].value == "" ||
+                            $('input[name=projectenddate]')[i].value == "")
+                            continue;
+                        dct.experience.push({
+                            type: $('select[name=projecttype')[i].value,
+                            role: $('input[name=projectrole]')[i].value,
+                            organization: $('input[name=projectinstitute')[i].value,
+                            description: $('input[name=projectdetails]')[i].value,
+                            start_date: $('input[name=projectstartdate]')[i].value,
+                            end_date: $('input[name=projectenddate]')[i].value
+                        });
+                    }
+
+                    dct.skills = [];
+                    for (let i = 0; i < $('input[name=skills').length; i++) {
+                        dct.skills.push($('input[name=skills')[i].value);
                     }
                     console.log(dct);
 
