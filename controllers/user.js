@@ -55,7 +55,7 @@ module.exports.verifytoken = function(token, callback){
     })
 }
 module.exports.getUserProfile = function(user, callback) {
-    Profile.findOne({ 'user': user._id }, (err, profile) => {
+    Profile.findOne({ 'user': user._id }).populate({path: 'experience', populate: {path: 'experience'}}).exec((err, profile) => {
         return callback(null, profile);
     });
 }
@@ -84,18 +84,24 @@ module.exports.addprofile = function(user, data, callback) {
                         data[dat].forEach(exp => {
                             let newExperience = new Experience({
                                 type: exp.type,
-                                profile: user.profile_id,
+                                profile: user.profile._id,
                                 role: exp.role,
-                                organization; exp.organization,
+                                organization: exp.organization,
                                 description: exp.description,
                                 start_date: exp.start_date,
                                 end_date: exp.end_date,
                             });
-                            console.log(exp)
                             newExperience.save(err => {
+                                if (err) return callback(err, null)
                                 console.log('this is running save');
-                                user.profile.experience.push(newExperience._id);
+                                user.profile.experience.push(newExperience);
+                                user.profile.save(err => {
+                                    if (err) {console.log(err);}
+                                })
+                                console.log(user.profile)
                             })
+                            delete this.newExperience;
+                            console.log('newExperience', newExperience);
                         })
                     }else user.profile[dat] = data[dat];
                 }

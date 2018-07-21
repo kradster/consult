@@ -11,7 +11,7 @@ var Profile = new Schema({
         ref: 'User',
         unique: true
     },
-    experience: [{ type: Schema.Types.ObjectId, ref: 'Experience' }],
+    experience: [{type: Schema.Types.ObjectId, ref: 'Experience'}],
     details: {
         father_name: {
             type: String,

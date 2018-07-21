@@ -7,7 +7,7 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(id, done) {
-        User.findById(id).populate('profile').exec(function(err, user) {
+        User.findById(id).populate({path: 'profile', populate: {path: 'experience', model: 'Experience', populate: {path: "experience"}}}).exec(function(err, user) {
             done(err, user);
         });
     });

@@ -65,6 +65,7 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
         if (profile) {
             dct.data.profile = profile;
         }
+        console.log(dct.data);
         return res.render("auth/profile", dct);
     });
 });
