@@ -88,8 +88,14 @@ var Job = new Schema({
             maxlength: 20
         },
         salary: {
-            type: Number,
-            required: [true, "Mandatory Field"]
+            min: {
+                type: Number,
+                required: false
+            },
+            max: {
+                type: Number,
+                required: [true, "Max salary mandatory"]
+            }
         },
         experience: {
             type: Number,
