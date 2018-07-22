@@ -292,9 +292,6 @@
                         <div class="col s1"> <input id="addmoreprojects" type="button" class="ui button mini white-text blue accent-4" value="Add More"></div>
                         <!-- <div class="col s1"> <input id="removeprojects" type="button" class="ui button mini white-text blue accent-4" value="Remove Fields"></div>
                         <br> -->
-                        <p>
-                            <%= profile.experience %>
-                        </p>
                         <div id="jobspanel">
                             <% for(let i=0 ; i<profile.experience.length; i++) { %>
                                 <div class="col s12">
@@ -310,10 +307,10 @@
                                         <input type="text" name="projectrole" id="projects" placeholder="title/role" value="<%= profile.experience[i].role %>">
                                     </div>
                                     <div class="input-field col s2">
-                                        <input type="text" name="projectinstitute" id="projects" placeholder="institute/organization">
+                                        <input type="text" name="projectinstitute" id="projects" placeholder="Organization" value="<%= profile.experience[i].organization %>">
                                     </div>
                                     <div class="input-field col s2">
-                                        <input type="text" name="projectdetails" id="projects" placeholder="About work">
+                                        <input type="text" name="projectdetails" id="projects" placeholder="Description" value="<%= profile.experience[i].description %>">
                                     </div>
                                     <div class="input-field col s3">
                                         <input class="datepicker col s5" type="text" name="projectstartdate" id="startdate" placeholder="Start Date">

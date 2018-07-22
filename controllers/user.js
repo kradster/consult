@@ -94,24 +94,26 @@ module.exports.addprofile = function(user, data, callback) {
                             end_date: exp.end_date})
                         );
                     });
-                    function savelist(list, callback){
+                    function savelist(list){
                         console.log('svaliet');
-                        let tmp_exp = 1
+                        let tmp_exp = 0
                         list.forEach(exp => {
                             exp.save((err, ex) => {
                                 if (err) console.log('error in savelist', err);
                                 tmp_exp++;
-                                if (tmp_exp == list.length) callback();
+                                console.log('list',list);
+                                if (tmp_exp == list.length) {
+                                    console.log('saveing');
+                                    user.profile.experience = list;
+                                    user.profile.save(err => {
+                                        if (err) console.log(err);
+                                        console.log('tp');
+                                    });
+                                };
                             });
                         })
                     }
-                    savelist(lst, err => {
-                        console.log('saveing');
-                        user.profile.experience = lst;
-                        user.profile.save(err => {
-                            if (err) console.log(err);
-                        });
-                    });
+                    savelist(lst);
                     // console.log('lst', lst)
                     // for( let i = 0; i < lst.length; i++){
                     //     lst[i].save((err) => {
