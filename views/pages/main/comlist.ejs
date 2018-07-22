@@ -55,28 +55,28 @@
                                         <small><i><%= listings[i].company.name %></i></small><br/>
                                         <div class="col s12 no-padd">
                                             <div class="col s12 no-padd">
-                                               <strong> EXP : <%= listings[i].job.experience.min %> </strong>
+                                                <strong> EXP : <%= listings[i].job.experience %> </strong>
                                             </div>
                                             <div class="col s12 no-padd">
-                                                <strong>  SALARY : <%= listings[i].job.salary %> LPA </strong>
+                                                <strong>  SALARY : <%= listings[i].job.salary.min %>-<%= listings[i].job.salary.max %> LPA </strong>
                                             </div>
                                             <div class="col s12 no-padd">
-                                                <strong>  LOCATION : <%= listings[i].job.location %></strong> 
+                                                <strong>  LOCATION : <%= listings[i].job.location %></strong>
                                             </div>
-                                        </div>
-                                        <div class="col s12 no-padd">  
-                                        <a href="/company-info/<%= listings[i].id %>">Read More</a>
                                         </div>
                                         <div class="col s12 no-padd">
-                                            <a href="/schedule" class="btn white indigo-text right accent-4 z-depth-0">
+                                            <a href="/company-info/<%= listings[i].id %>">Read More</a>
+                                        </div>
+                                        <div class="col s12 no-padd">
+                                            <a href="/upcoming-jl-test" class="btn white indigo-text right accent-4 z-depth-0">
                                                 <b>APPLY</b>
                                             </a>
                                         </div>
                                     </div>
-                                    </div>
+                                </div>
                                 <div class="row"></div>
                             </div>
-                        <% } %>
+                            <% } %>
                     </div>
                 </div>
             </div>
@@ -85,29 +85,29 @@
 
         <!-- FOOTER START -->
         <% include ../../partials/pre_footer %>
-        <!-- FOOTER END -->
+            <!-- FOOTER END -->
 
-        <!-- Compiled and minified JavaScript -->
-        <script>
-            $(document).ready(function() {
-                function expToMonth(exp) {
-                    switch (exp) {
-                        case 'ef':
-                            return '>12 MONTH';
-                            break;
-                        case 'e12':
-                            return '+12 MONTH';
-                            break;
-                        case 'e24':
-                            return '+24 MONTH';
-                            break;
-                        case 'e24p':
-                            return '>24 MONTH';
-                            break;
+            <!-- Compiled and minified JavaScript -->
+            <script>
+                $(document).ready(function() {
+                    function expToMonth(exp) {
+                        switch (exp) {
+                            case 'ef':
+                                return '>12 MONTH';
+                                break;
+                            case 'e12':
+                                return '+12 MONTH';
+                                break;
+                            case 'e24':
+                                return '+24 MONTH';
+                                break;
+                            case 'e24p':
+                                return '>24 MONTH';
+                                break;
+                        }
                     }
-                }
-            });
-        </script>
+                });
+            </script>
 </body>
 
 </html>

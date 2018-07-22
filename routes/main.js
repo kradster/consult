@@ -16,35 +16,34 @@ mainRouter.get('/signup', (req, res, next) => {
         return res.redirect('/user/profile');
     }
     next();
-    }, (req, res, next) => {
+}, (req, res, next) => {
     let dct = { title: "JobLana Signup" };
     res.render('login/signup', dct);
 });
 
 mainRouter.get('/login', (req, res, next) => {
-    if (req.isAuthenticated()) {
-        return res.redirect('/user/profile');
-    }
-    next();
+        if (req.isAuthenticated()) {
+            return res.redirect('/user/profile');
+        }
+        next();
     },
     (req, res, next) => {
-    let dct = { title: "JobLana Login" };
-    res.render('login/login', dct);
-});
+        let dct = { title: "JobLana Login" };
+        res.render('login/login', dct);
+    });
 
 mainRouter.get('/upcoming-jl-test', (req, res, next) => {
     let dct = { title: "Upcoming JL Tests | Schedule your JL test Now" };
     testController.getTests((err, tests) => {
-        if (err){
+        if (err) {
             dct['tests'] = []
-        }
-        else{
+        } else {
             if (tests) dct['tests'] = tests;
             else dct['tests'] = []
-            
+
         }
         return res.render('main/schedule', dct);
-    });  
+    });
 });
 
 mainRouter.get('/recruiters', (req, res, next) => {
@@ -128,42 +127,41 @@ mainRouter.get('/digital-marketing-jobs-for-freshers', (req, res) => {
 });
 
 mainRouter.get('/office-support-jobs-for-freshers', (req, res) => {
-    let dct =  { title: "All about Office Sector jobs -Roles & Responsibilities, latest Office Sector jobs vacancy in india | JobLana" }
+    let dct = { title: "All about Office Sector jobs -Roles & Responsibilities, latest Office Sector jobs vacancy in india | JobLana" }
     res.render('main/osjob', dct);
 });
 
 mainRouter.get('/calling-jobs-for-freshers', (req, res) => {
-    let dct = { title: "Call Jobs"};
+    let dct = { title: "Call Jobs" };
     res.render('main/calljob', dct);
 });
 
 mainRouter.get('/operations-jobs-for-freshers', (req, res) => {
-    let dct = { title: "All about Operation jobs -Roles & Responsibilities, latest Operation jobs vacancy in india | JobLana"}
+    let dct = { title: "All about Operation jobs -Roles & Responsibilities, latest Operation jobs vacancy in india | JobLana" }
     res.render('main/opjob', dct);
 });
 
 mainRouter.get('/privacy-policy', (req, res) => {
-    let dct = { title: "Privacy Policy"}
+    let dct = { title: "Privacy Policy" }
     res.render('main/policy', dct);
 });
 
 mainRouter.get('/terms-and-conditions', (req, res) => {
-    let dct = { title: "Privacy Policy"}
+    let dct = { title: "Privacy Policy" }
     res.render('main/terms', dct);
 });
 
 mainRouter.get('/job-opportunities', (req, res) => {
-    let dct = { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana"}
+    let dct = { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana" }
     adminController.getjobs((err, jobs) => {
-        if (err){
+        if (err) {
             dct['listings'] = []
-        }
-        else{
+        } else {
             if (jobs) dct['listings'] = jobs;
             else dct['listings'] = [];
         }
         return res.render('main/comlist', dct);
-    });  
+    });
 });
 
 
@@ -194,18 +192,17 @@ mainRouter.post('/subscribe', (req, res) => {
 });
 
 mainRouter.get('/company-info/:id', (req, res) => {
-    let dct = {title: "Company Info"};
+    let dct = { title: "Company Info" };
     adminController.getjob(req.params.id, (err, job) => {
-        if (err){
+        if (err) {
             console.log(err)
             return res.redirect('/');
-        }
-        else if(job){
-            dct[job] = job
-        }
-        else{
-            dct[job] = {}
-            res.locals.messages.push(["No Job found", "red"])
+        } else if (job) {
+            dct.job = job;
+            console.log(dct.job);
+        } else {
+            dct.job = {};
+            res.locals.messages.push(["No Job found", "red"]);
             return res.redirect('/');
         }
         return res.render('main/cominfo', dct);

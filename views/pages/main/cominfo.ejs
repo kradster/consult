@@ -8,102 +8,118 @@
 </head>
 
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- NAVIGATION BAR START -->
     <% include ../../partials/pre_header %>
-    <!-- NAVIGATION BAR END -->
+        <!-- NAVIGATION BAR END -->
 
-    <div class="row" style="height:50px;"></div>
-    <div class="row no-padd">
-        <div class="col s12 no-padd">
-            <div class="col l2 s12 no-padd">
-                <center>
-                    <br>
-                    <i class="fas fa-building fa-6x grey-text lighten-2"></i>
-                </center>
-            </div>
-            <div class="col l8 s12 no-padd">
-                <h5>
-                    <b class="show-on-small-only">&nbsp;</b>
-                    <b>Company Name</b>
-                </h5>
-                <br>
-                <div>
-                    <b class="show-on-small-only">&nbsp;</b>Location</div>
-                <br>
-                <div class="col s12 no-padd">
-
-                    <div class="col l2 s4 no-padd">
+        <div class="row" style="height:50px;"></div>
+        <div class="row no-padd">
+            <div class="col s12 no-padd">
+                <div class="col l2 s12 no-padd">
+                    <center>
+                        <br>
+                        <i class="fas fa-building fa-6x grey-text lighten-2"></i>
+                    </center>
+                </div>
+                <div class="col l8 s12 no-padd">
+                    <h5>
                         <b class="show-on-small-only">&nbsp;</b>
-                        <i class="fas fa-calendar"></i> 0-0 YEAR</div>
-                    <div class="col l2 s4 no-padd">
-                        <i class="fas fa-rupee-sign"></i> 0-3 LPA</div>
-                    <div class="col l2 s4 no-padd">
-                        <i class="fas fa-map-marker"></i> city,city,city</div>
+                        <b><%= job.company.name %></b>
+                    </h5>
+                    <br>
+                    <div>
+                        <b class="show-on-small-only">&nbsp;</b>
+                        <%= job.company.location %>
+                    </div>
+                    <br>
+                    <div class="col s12 no-padd">
+
+                        <div class="col l2 s4 no-padd">
+                            <b class="show-on-small-only">&nbsp;</b>
+                            <i class="fas fa-calendar"></i>
+                            <%= job.job.experience %> YEAR</div>
+                        <div class="col l2 s4 no-padd">
+                            <i class="fas fa-rupee-sign"></i>
+                            <%= job.job.salary.min %>-
+                                <%= job.job.salary.max %> LPA</div>
+                        <div class="col l2 s4 no-padd">
+                            <i class="fas fa-map-marker"></i>
+                            <%= job.job.location %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l2 s12 no-padd">
+                    <br class="hide-on-small-only">
+                    <br class="hide-on-small-only">
+                    <i class="fas fa-certificate fa-4x amber-text"></i>
                 </div>
             </div>
-            <div class="col l2 s12 no-padd">
-                <br class="hide-on-small-only">
-                <br class="hide-on-small-only">
-                <i class="fas fa-certificate fa-4x amber-text"></i>
-            </div>
         </div>
-    </div>
 
-    <div class="row grey lighten-2">
-        <div class="col s12 grey lighten-2" style="height:50px;"></div>
-        <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
-            <div class="col s12">
-                <h5>
-                    <b>JOBS DESCRIPTION</b>
-                </h5>
-                <div class="divider"></div>
-                <br>
-                <br>
-                <div class="col s12 no-padd">
+        <div class="row grey lighten-2">
+            <div class="col s12 grey lighten-2" style="height:50px;"></div>
+            <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
+                <div class="col s12">
+                    <h5>
+                        <b>JOB DESCRIPTION</b>
+                    </h5>
+                    <div class="divider"></div>
+                    <br>
+                    <br>
                     <div class="col s12 no-padd">
-                        <div class="col s12">
-                            <h6>
-                                <b>About the Comany</b>
-                            </h6>
-                            <br>
-                            <div>
-                                <div>Lorem ipsum dolor sit 
-                                    <br>
-                                    <br>
+                        <div class="col s12 no-padd">
+                            <div class="col s12">
+                                <h6>
+                                    <b>About the Company</b>
+                                </h6>
+                                <br>
+                                <div>
+                                    <div>
+                                        <%= job.company.about %>
+                                            <br>
+                                            <br>
+                                    </div>
                                 </div>
-                            </div> 
-                        </div>
-                        <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Contact no:
-                                    <a href="">5678903457</a>
+                            </div>
+                            <div class="col s12">
+                                <br>
+                                <h6>
+                                    <b>Contact no:
+                                    <a href=""><%= job.contact.phoneno %></a>
                                 </b>
-                            </h6>
-                        </div>
-                        <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Email
-                                    <a href="">myjob@loremepsum.com</a>
+                                </h6>
+                            </div>
+                            <div class="col s12">
+                                <br>
+                                <h6>
+                                    <b>Email
+                                    <a href=""><%= job.recruiter.email %></a>
                                 </b>
-                            </h6>
-                        </div>
-                        <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Website
-                                    <a href="">www.loremepsum.com</a>
+                                </h6>
+                            </div>
+                            <div class="col s12">
+                                <br>
+                                <h6>
+                                    <b>Alternate Email
+                                    <a href=""><%= job.contact.email %></a>
                                 </b>
-                            </h6>
-                        </div>
-                        <!-- <div class="col s12">
+                                </h6>
+                            </div>
+                            <div class="col s12">
+                                <br>
+                                <h6>
+                                    <b>Website
+                                    <a href=""><%= job.company.website %></a>
+                                </b>
+                                </h6>
+                            </div>
+                            <!-- <div class="col s12">
                             <br>
                             <h6>
                                 <b>Target Audience</b>
@@ -114,16 +130,17 @@
                                 quo laboriosam minus provident dignissimos temporibus?
                             </div>
                         </div> -->
-                        <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Job Title</b>
-                            </h6>
-                            <div>
-                                <br> The selected candidate will be on-boarded anytime between July 2018 and April 2019.
+                            <div class="col s12">
+                                <br>
+                                <h6>
+                                    <b>Job Title</b>
+                                </h6>
+                                <div>
+                                    <br>
+                                    <%= job.job.title %>
+                                </div>
                             </div>
-                        </div>
-                        <!-- <div class="col s12">
+                            <!-- <div class="col s12">
                             <br>
                             <h6>
                                 <b>Interview Location</b>
@@ -132,7 +149,7 @@
                                 <br> Pune, Bangalore
                             </div>
                         </div> -->
-                        <!-- <div class="col s12">
+                            <!-- <div class="col s12">
                             <br>
                             <h6>
                                 <b>Pre-requisites:</b>
@@ -147,37 +164,37 @@
                                 in at least one contemporary area of engineering. Awards/recognitions in any field (academics/sports/extra-curricular).
                             </div>
                         </div> -->
-                        <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Job Profile:</b>
-                            </h6>
-                            <div>
-                                <br> Splz Associate Infra Engg for our Infra Service Line Teams – For Level 1 Administrator and
-                                Monitoring
+                            <div class="col s12">
+                                <br>
+                                <h6>
+                                    <b>Job Profile:</b>
+                                </h6>
+                                <div>
+                                    <br>
+                                    <%= job.job.title %>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>Locations of work</b>
-                            </h6>
-                            <div>
-                                <br> Pune, Bangalore, Chennai
+                            <div class="col s12">
+                                <br>
+                                <h6>
+                                    <b>Locations of work</b>
+                                </h6>
+                                <div>
+                                    <br>
+                                    <%= job.job.location %>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col s12">
-                            <br>
-                            <h6>
-                                <b>About Job</b>
-                            </h6>
-                            <div>
-                                <br>  Timing based on Business Need. ITIL
-                                experience is a plus. Project work in Cloud/Unix/Windows/Database/Storage/Backup/Network/Information
-                                Security technologies will be an added advantage.
+                            <div class="col s12">
+                                <br>
+                                <h6>
+                                    <b>About Job</b>
+                                </h6>
+                                <div>
+                                    <br>
+                                    <%= job.job.description %>
+                                </div>
                             </div>
-                        </div>
-                        <!-- <div class="col s12">
+                            <!-- <div class="col s12">
                             <br>
                             <h6>
                                 <b>Profile/Designation</b>
@@ -199,7 +216,7 @@
                                 <br>
                             </div>
                         </div> -->
-                        <!-- <div class="col s12">
+                            <!-- <div class="col s12">
                             <br>
                             <h6>
                                 <b>Interview Rounds</b>
@@ -212,7 +229,7 @@
                             </div>
                         </div> -->
 
-                        <!-- <div class="col s12">
+                            <!-- <div class="col s12">
                             <br>
                             <h6>
                                 <b>Education</b>
@@ -223,38 +240,43 @@
                         </div> -->
 
 
-                        <div class="col s12">
-                            <br>
-                            <div class="col l2 s4 no-padd">
-                                <i class="fas fa-calendar grey-text lighten-2"></i> 0-0 YEAR</div>
-                            <div class="col l2  s4 no-padd">
-                                <i class="fas fa-rupee-sign grey-text lighten-2"></i> 0-3 LPA</div>
-                            <div class="col l2 s4 no-padd">
-                                <i class="fas fa-map-marker grey-text lighten-2"></i> city,city,city</div>
-                            <div class="col l2 s12 no-padd">
-                                <div class="row" class="show-on-small-only hide-on-med-and-up"></div>
-                                <center>
-                                    <a href="" class="btn indigo accent-4">
-                                        <b>APPLY</b>
-                                    </a>
-                                </center>
+                            <div class="col s12">
+                                <br>
+                                <div class="col l2 s4 no-padd">
+                                    <i class="fas fa-calendar grey-text lighten-2"></i>
+                                    <%= job.job.experience %> YEAR</div>
+                                <div class="col l2  s4 no-padd">
+                                    <i class="fas fa-rupee-sign grey-text lighten-2"></i>
+                                    <%= job.job.salary.min %>-
+                                        <%= job.job.salary.max %> LPA</div>
+                                <div class="col l2 s4 no-padd">
+                                    <i class="fas fa-map-marker grey-text lighten-2"></i>
+                                    <%= job.job.location %>
+                                </div>
+                                <div class="col l2 s12 no-padd">
+                                    <div class="row" class="show-on-small-only hide-on-med-and-up"></div>
+                                    <center>
+                                        <a href="" class="btn indigo accent-4">
+                                            <b>APPLY</b>
+                                        </a>
+                                    </center>
+                                </div>
                             </div>
+
                         </div>
+                        <div class="col s12">
 
-                    </div>
-                    <div class="col s12">
-
-                        <br>
+                            <br>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col s12" style="height:50px;"></div>
-    </div>
+        <div class="col s12" style="height:50px;"></div>
+        </div>
         <!-- FOOTER START -->
         <% include ../../partials/pre_footer %>
-        <!-- FOOTER END -->
+            <!-- FOOTER END -->
 
 </body>
 
