@@ -82,7 +82,7 @@ module.exports.addprofile = function(user, data, callback) {
                     }
                 } 
                 else if (dat == "experience"){
-                    lst = [];
+                    let lst = [];
                     data[dat].forEach(exp => {
                         lst.push(new Experience({
                             type: exp.type,
@@ -94,20 +94,43 @@ module.exports.addprofile = function(user, data, callback) {
                             end_date: exp.end_date})
                         );
                     });
-                    lst.forEach(exp => {
-                        exp.save((err) => {
-                            user.profile.experience.push(exp);
-                            user.profile.save(err => {
-                                if (err) console.log(err);
+                    function savelist(list, callback){
+                        console.log('svaliet');
+                        let tmp_exp = 1
+                        list.forEach(exp => {
+                            exp.save((err, ex) => {
+                                if (err) console.log('error in savelist', err);
+                                tmp_exp++;
+                                if (tmp_exp == list.length) callback();
                             });
+                        })
+                    }
+                    savelist(lst, err => {
+                        console.log('saveing');
+                        user.profile.experience = lst;
+                        user.profile.save(err => {
+                            if (err) console.log(err);
                         });
-                        console.log('newExperience', exp);
                     });
+                    // console.log('lst', lst)
+                    // for( let i = 0; i < lst.length; i++){
+                    //     lst[i].save((err) => {
+                    //         if (err) console.log('error in exp saving', err);
+                    //         user.profile.experience.set(user.profile.experience.length + i, lst[i]);
+                    //         console.log('lst[i]', user.profile);
+                    //         if (i == lst.length-1)
+                    //         user.profile.save(err => {
+                    //             if (err) console.log("error", err);
+                    //             console.log('done', user.profile);
+                    //         });
+                    //     });
+                    // };
                 }
-                    else user.profile[dat] = data[dat];
-                });
+                else user.profile[dat] = data[dat];
+            });
             user.profile.save(err => {
                 if (err) {
+                    console.log('eror in last save');
                     return callback(err, null);
                 } else {
                     return callback(null, user.profile)
