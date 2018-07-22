@@ -20,16 +20,18 @@ module.exports.addjob = function(user, data, callback) {
                 newJob[dat] = data[dat];
             }
         })
-        console.log(newJob);
-        newJob.save((err, profile) => {
+        console.log("job uplodaed", newJob);
+        Job.find({}, console.log);
+        newJob.save((err, job) => {
             if (err) {
                 if (err.name === 'MongoError' && err.code === 11000) {
                     let error = new Error()
                     error.errors = { duplicate: { message: "Email or mobile already registered" } }
                     return callback(error, null)
                 }
-                return callback(null, newJob)
+                return callback(err, null);
             }
+            return callback(null, job);
         });
 }
 

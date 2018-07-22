@@ -38,8 +38,6 @@ adminRouter.post('/addjob', isauthenticated, (req, res) => {
     adminController.addjob(req.user, data, (err, job) => {
         try {
             if (err) {
-                console.log('errror')
-                console.error(err);
                 Object.values(err.errors).forEach(error => {
                     res.locals.messages.push([error.message, "red"]);
                 });
@@ -47,7 +45,7 @@ adminRouter.post('/addjob', isauthenticated, (req, res) => {
             } else {
                 console.log(job);
                 // sendEmail(req.user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
-                res.locals.messages.push(["Successful signup", "green"]);
+                res.locals.messages.push(["Job Uploaded Successfully", "green"]);
                 return res.redirect('/job-opportunities')
             }
         } catch (error) {
