@@ -292,31 +292,36 @@
                         <div class="col s1"> <input id="addmoreprojects" type="button" class="ui button mini white-text blue accent-4" value="Add More"></div>
                         <!-- <div class="col s1"> <input id="removeprojects" type="button" class="ui button mini white-text blue accent-4" value="Remove Fields"></div>
                         <br> -->
+                        <p>
+                            <%= profile.experience %>
+                        </p>
                         <div id="jobspanel">
-                            <div class="col s12">
-                                <div class="input-field col s2">
-                                    <select name="projecttype">
+                            <% for(let i=0 ; i<profile.experience.length; i++) { %>
+                                <div class="col s12">
+                                    <div class="input-field col s2">
+                                        <select name="projecttype">
                                         <option value="" disabled selected>Choose your course</option>
                                         <option value="internship">Internship</option>
                                         <option value="job">Job</option>
                                         <option value="projects">Project</option>
                                     </select>
-                                </div>
-                                <div class="input-field col s2">
-                                    <input type="text" name="projectrole" id="projects" placeholder="title/role">
-                                </div>
-                                <div class="input-field col s2">
-                                    <input type="text" name="projectinstitute" id="projects" placeholder="institute/organization">
-                                </div>
-                                <div class="input-field col s2">
-                                    <input type="text" name="projectdetails" id="projects" placeholder="About work">
-                                </div>
-                                <div class="input-field col s3">
-                                    <input class="datepicker col s5" type="text" name="projectstartdate" id="startdate" placeholder="Start Date">
-                                    <input class="datepicker col s5" type="text" name="projectenddate" id="enddate" placeholder="End Date">
-                                </div>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input type="text" name="projectrole" id="projects" placeholder="title/role" value="<%= profile.experience[i].role %>">
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input type="text" name="projectinstitute" id="projects" placeholder="institute/organization">
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input type="text" name="projectdetails" id="projects" placeholder="About work">
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <input class="datepicker col s5" type="text" name="projectstartdate" id="startdate" placeholder="Start Date">
+                                        <input class="datepicker col s5" type="text" name="projectenddate" id="enddate" placeholder="End Date">
+                                    </div>
 
-                            </div>
+                                </div>
+                                <% } %>
                         </div>
                         <div class="col s12">
                         </div>
@@ -335,12 +340,14 @@
                         <br>
                         <div id="skillspanel">
                             <div class="col s12">
-                                <div class="input-field col s10">
-                                    <input type="text" name="skills" placeholder="Enter Your Skills">
-                                </div>
-                                <div class="input-field col s2">
-                                    <input id="addmoreskills" type="button" class="ui button white-text mini blue accent-4" value="Add More">
-                                </div>
+                                <% for(let i=0 ; i<profile.skills.length; i++){ %>
+                                    <div class="input-field col s10">
+                                        <input type="text" name="skills" placeholder="Enter Your Skills" value="<%= profile.skills[i] %>">
+                                    </div>
+                                    <% } %>
+                                        <div class="input-field col s2">
+                                            <input id="addmoreskills" type="button" class="ui button white-text mini blue accent-4" value="Add More">
+                                        </div>
                             </div>
                         </div>
                         <div class="input-field col s6">
