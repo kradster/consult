@@ -3,7 +3,7 @@ var authRouter = express.Router();
 var userController = require('../controllers/user')
 var passport = require('passport');
 var sendEmail = require('../utils/email');
-
+let User = require('../models/user.js');
 // Middlewares
 function isauthenticated(req, res, next) {
     if (!req.isAuthenticated()) {
@@ -36,7 +36,7 @@ authRouter.post('/signup', (req, res) => {
                 });
                 return res.redirect('/signup')
             } else {
-                userController.createtoken(user, (err, token) => {
+                userController.createtoken(user, "VERIFY", (err, token) => {
                     sendEmail(user.email, "Welcome", { link: "http://127.0.0.1:5000/user/verify-email/" + token.token }, "verification");
                 })
                 res.locals.messages.push(["Successful signup", "green"]);
@@ -135,9 +135,12 @@ authRouter.post('/editcv', isauthenticated, (req, res, next) => {
                 });
                 return res.send({ success: true, messages: messages })
             } else {
-                return res.send({ success: true, messages: [
+                return res.send({
+                    success: true,
+                    messages: [
                         ["Profile updated successfully", "green"]
-                    ] })
+                    ]
+                })
             }
         } catch (error) {
             console.error(error)
@@ -150,7 +153,7 @@ authRouter.post('/editcv', isauthenticated, (req, res, next) => {
 
 authRouter.get('/verify-email/:token', (req, res) => {
     let token = req.params.token;
-    userController.verifytoken(token, (err, response) => {
+    userController.verifytoken(token, "VERIFY", (err, response) => {
         if (err) {
             console.log(err)
             return res.redirect('/')
@@ -171,11 +174,74 @@ authRouter.get('/resend-email', isauthenticated, (req, res, next) => {
         res.locals.messages.push(["Your email is verified", "green"]);
         return res.redirect('/user/profile')
     }
-    userController.createtoken(req.user, (err, token) => {
+    userController.createtoken(req.user, "VERIFY", (err, token) => {
         res.locals.messages.push(["A verification link has been sent to your email. Please check your mail.", "green"])
         sendEmail(req.user.email, "Welcome", { link: "http://127.0.0.1:5000/user/verify-email/" + token.token }, "verification");
         return res.redirect('/')
     })
+});
+
+authRouter.post('/reset-password/:token', (req, res) => {
+    let token = req.params.token;
+    let data = req.body;
+    if (data.password != data.confirm_password) {
+        res.locals.messages.push(["Passwords don't match", "red"]);
+        return res.render('login/resetpassword', { title: "Reset Password", token: token });
+    }
+    userController.verifytoken(token, "RESET_PASSWORD", (err, response) => {
+        if (err) {
+            console.log(err)
+            return res.redirect('/')
+        }
+        if (response) {
+            console.log(response);
+            response.user.password = response.user.generateHash(data.password);
+            response.user.save((err, data) => {
+                res.locals.messages.push(["Password has been reset successfully", "green"]);
+                return res.redirect('/login');
+            });
+        } else {
+            res.locals.messages.push(["Invalid link or expired", "red"]);
+            return res.redirect('/');
+        }
+    })
+
+});
+
+authRouter.get('/reset-password/:token', (req, res, next) => {
+    userController.verifytoken(req.params.token, "RESET_PASSWORD", (err, response) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/')
+        }
+        if (!response) {
+            res.locals.messages.push(["Invalid link or expired", "red"]);
+            return res.redirect('/');
+        }
+
+        let dct = { title: "Reset Password", token: req.params.token };
+        return res.render('login/resetpassword', dct);
+
+    });
+});
+
+authRouter.post('/forgot-password', (req, res, next) => {
+    console.log(req.body);
+    User.findOne({ "email": req.body.email }, (err, user) => {
+        if (err) console.log(err);
+        console.log(user);
+        if (user) {
+            res.locals.messages.push(["A password reset link has been sent to your email. Please check your mail.", "green"]);
+            userController.createtoken(user, "RESET_PASSWORD", (err, token) => {
+                sendEmail(req.body.email, "Welcome", { link: "http://127.0.0.1:5000/user/reset-password/" + token.token }, "passwordreset");
+                res.redirect('/');
+            });
+        } else {
+            res.locals.messages.push(["No user with the matching email found.", "red"]);
+            res.redirect('/forgot-password');
+        }
+    });
+
 });
 
 authRouter.get('/logout', isauthenticated, (req, res) => {
