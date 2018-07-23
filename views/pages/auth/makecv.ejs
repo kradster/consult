@@ -297,10 +297,9 @@
                                 <div class="col s12">
                                     <div class="input-field col s2">
                                         <select name="projecttype">
-                                        <option value="" disabled selected>Choose your course</option>
-                                        <option value="internship">Internship</option>
-                                        <option value="job">Job</option>
-                                        <option value="projects">Project</option>
+                                        <option value="internship" <% if(profile.experience[i].type=="internship") { %>selected<% } %>>Internship</option>
+                                        <option value="job" <% if(profile.experience[i].type=="job") { %>selected<% } %>>Job</option>
+                                        <option value="projects" <% if(profile.experience[i].type=="projects") { %>selected<% } %>>Project</option>
                                     </select>
                                     </div>
                                     <div class="input-field col s2">
@@ -313,8 +312,8 @@
                                         <input type="text" name="projectdetails" id="projects" placeholder="Description" value="<%= profile.experience[i].description %>">
                                     </div>
                                     <div class="input-field col s3">
-                                        <input class="datepicker col s5" type="text" name="projectstartdate" id="startdate" placeholder="Start Date">
-                                        <input class="datepicker col s5" type="text" name="projectenddate" id="enddate" placeholder="End Date">
+                                        <input class="datepicker col s5" type="text" name="projectstartdate" id="startdate" placeholder="Start Date" value="<%= profile.experience[i].start_date %>">
+                                        <input class="datepicker col s5" type="text" name="projectenddate" id="enddate" placeholder="End Date" value="<%= profile.experience[i].end_date %>">
                                     </div>
 
                                 </div>
@@ -392,7 +391,7 @@
             <script src="/js/stepform.js" type="text/javaScript"></script>
             <script>
                 $(document).ready(function() {
-                    M.AutoInit();
+                    // M.AutoInit();
                     $('body').on('focus', ".datepicker", function() {
                         $(this).datepicker();
 
