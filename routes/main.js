@@ -183,7 +183,7 @@ mainRouter.post('/subscribe', (req, res) => {
                     });
                     return
                 }
-                sendEmail(req.body.email, "Email Newsletter Subscribed", { link: "https://www.joblana.com" }, "verification");
+                sendEmail(req.body.email, "Email Newsletter Subscribed", { link: req.headers.host }, "verification");
                 res.send({
                     success: true,
                     messages: [

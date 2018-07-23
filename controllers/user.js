@@ -92,50 +92,16 @@ module.exports.addprofile = function(user, data, callback) {
             } else if (dat == "experience") {
                 let lst = [];
                 data[dat].forEach(exp => {
-                    lst.push(new Experience({
+                    lst.push({
                         type: exp.type,
-                        profile: user.profile._id,
                         role: exp.role,
                         organization: exp.organization,
                         description: exp.description,
                         start_date: exp.start_date,
                         end_date: exp.end_date
-                    }));
+                    });
                 });
-
-                function savelist(list) {
-                    console.log('svaliet');
-                    let tmp_exp = 0
-                    list.forEach(exp => {
-                        exp.save((err, ex) => {
-                            if (err) console.log('error in savelist', err);
-                            tmp_exp++;
-                            console.log('list', list);
-                            if (tmp_exp == list.length) {
-                                console.log('saveing');
-                                user.profile.experience = list;
-                                user.profile.save(err => {
-                                    if (err) console.log(err);
-                                    console.log('tp');
-                                });
-                            };
-                        });
-                    })
-                }
-                savelist(lst);
-                // console.log('lst', lst)
-                // for( let i = 0; i < lst.length; i++){
-                //     lst[i].save((err) => {
-                //         if (err) console.log('error in exp saving', err);
-                //         user.profile.experience.set(user.profile.experience.length + i, lst[i]);
-                //         console.log('lst[i]', user.profile);
-                //         if (i == lst.length-1)
-                //         user.profile.save(err => {
-                //             if (err) console.log("error", err);
-                //             console.log('done', user.profile);
-                //         });
-                //     });
-                // };
+                user.profile.experience = lst;
             } else user.profile[dat] = data[dat];
         });
         user.profile.save(err => {
@@ -157,7 +123,21 @@ module.exports.addprofile = function(user, data, callback) {
                 } else if (pri.length == 3) {
                     newProfile[pri[0]][pri[1]][pri[2]] = data[dat];
                 }
-            } else {
+            } else if (dat == "experience") {
+                let lst = [];
+                data[dat].forEach(exp => {
+                    lst.push({
+                        type: exp.type,
+                        role: exp.role,
+                        organization: exp.organization,
+                        description: exp.description,
+                        start_date: exp.start_date,
+                        end_date: exp.end_date
+                    });
+                });
+                newProfile.experience = lst;
+            } 
+            else {
                 newProfile[dat] = data[dat];
             }
         })

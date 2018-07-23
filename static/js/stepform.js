@@ -99,9 +99,9 @@ function AddMoreProjects(element) {
     <div class="input-field col s2">
         <select name="projecttype">
             <option value="" disabled selected>Choose your course</option>
-            <option value="internship">Internship</option>
-            <option value="job"d>Job</option>
-            <option value="projects">Project</option>
+            <option value="Internship">Internship</option>
+            <option value="Job"d>Job</option>
+            <option value="Project">Project</option>
         </select>
     </div>
     <div class="input-field col s2">

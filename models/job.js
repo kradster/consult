@@ -44,7 +44,7 @@ var Job = new Schema({
         about:{
             type: String,
             trim: true,
-            maxlength: 200
+            maxlength: 500
         },
         location: {
             type: String,
@@ -54,7 +54,7 @@ var Job = new Schema({
         desc: {
             type: String,
             trim: true,
-            maxlength: 100
+            maxlength: 500
         },
         website: {
             type: String,
@@ -85,7 +85,11 @@ var Job = new Schema({
         description: {
             type: String,
             trim: true,
-            maxlength: 20
+            maxlength: 500
+        },
+        requirements: {
+            type: [String],
+            trim: true
         },
         salary: {
             min: {

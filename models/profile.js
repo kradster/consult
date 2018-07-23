@@ -11,7 +11,34 @@ var Profile = new Schema({
         ref: 'User',
         unique: true
     },
-    experience: [{type: Schema.Types.ObjectId, ref: 'Experience'}],
+    experience: [{
+        type: {
+            type: String,
+            enum: ["Project", "Internship", "Job"],
+            required: true
+        },
+        role: {
+            type: String,
+            required: true
+        },
+        organization: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true,
+            maxlength: 200
+        },
+        start_date: {
+            type: Date,
+            required: true
+        },
+        end_date: {
+            type: Date,
+            required: true
+        }
+    }],
     details: {
         father_name: {
             type: String,
@@ -122,10 +149,11 @@ var Profile = new Schema({
             }
         }
     },
-    preferred_city: {
-        type: String
+    preferred_city: [String],
+    available: {
+        type: Date
     },
-    skills: [],
+    skills: []
 }, { timestamps: true });
 
 Profile.virtual('getStates').get(function() {
