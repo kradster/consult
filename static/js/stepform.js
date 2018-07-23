@@ -97,7 +97,7 @@ function _funcB5() {
 function AddMoreProjects(element) {
     element.append(`<div class="col s12">
     <div class="input-field col s2">
-        <select name="projecttype">
+        <select name="projecttype" class="no-autoinit">
             <option value="" disabled selected>Choose your course</option>
             <option value="Internship">Internship</option>
             <option value="Job"d>Job</option>
@@ -105,25 +105,25 @@ function AddMoreProjects(element) {
         </select>
     </div>
     <div class="input-field col s2">
-        <input type="text" name="projectrole" id="projects" placeholder="title/role">
+        <input class="center-align" type="text" name="projectrole" id="projects" placeholder="title/role">
     </div>
     <div class="input-field col s2">
-        <input type="text" name="projectinstitute" id="projects" placeholder="institute/organization">
+        <input class="center-align" type="text" name="projectinstitute" id="projects" placeholder="organization">
     </div>
     <div class="input-field col s2">
-        <input type="text" name="projectdetails" id="projects" placeholder="About work">
+        <input class="center-align" type="text" name="projectdetails" id="projects" placeholder="About work">
     </div>
     <div class="input-field col s2">
-        <input class="datepicker" type="text" name="projectstartdate" id="startdate" placeholder="Start Date">
+        <input class="center-align"  type="date" name="projectstartdate" id="startdate" placeholder="Start Date">
     </div>
     <div class="input-field col s2">
-        <input class="datepicker" type="text" name="projectenddate" id="enddate" placeholder="End Date">
+        <input class="center-align"  type="date" name="projectenddate" id="enddate" placeholder="End Date">
     </div>
 </div>`);
 }
 
 function AddMoreSkills(element) {
-    element.append('<div class="input-field col s12"><input type="text" name="skills" placeholder="Enter Your Skills"></div>');
+    element.append('<div class="input-field col s6 offset-s3"><div>Enter Your Skills</div><input type="text" name="skills"></div>');
 }
 
 function Get_All_Page_Data() {

@@ -4,6 +4,53 @@
 <head>
     <meta name='description' content='Dashboard on JobLana Platform to get in front of 500+ recruiters across the globe.'>
     <% include ../../partials/post_head %>
+    <style>
+            input:not([type]),
+                input[type=text]:not(.browser-default),
+                input[type=password]:not(.browser-default),
+                input[type=date]:not(.browser-default),
+                input[type=email]:not(.browser-default) {
+                    border:solid  2px  #ccc  !important;
+                    outline: none;
+                    height: 3rem;
+                    width: 100%;
+                    font-size: 16px;
+                    margin: 0 0 8px 0;
+                    padding: 0;
+                    background-color: transparent;
+                    box-shadow: 0px
+                }
+                
+                input:not([type]):focus:not([readonly]),
+                input[type=text]:not(.browser-default):focus:not([readonly]),
+                input[type=password]:not(.browser-default):focus:not([readonly]),
+                input[type=date]:not(.browser-default):focus:not([readonly]),
+                input[type=email]:not(.browser-default):focus:not([readonly]) {
+                    border:solid  2px  #646af2  !important;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+                }
+                
+                input::-webkit-input-value {
+                    color: grey;
+                }
+                
+                .no-padd {
+                    padding: 0px !important;
+                }
+                .signup-body{
+                        background:url('/img/signup.png');
+                        background-repeat: no-repeat;
+                        background-position:bottom left;
+                    }
+                    div.input-field > div {
+                        color: #646af2;
+                    }
+                    select{
+                        display:block;
+                    }
+                
+        </style>
 </head>
 
 <body>
@@ -33,29 +80,33 @@
                     </div>
                 </div>
                 <div class="card z-depth-0 col s12" style="padding:10px;">
-                    <div id="form1" class="card z-depth-0 col s12" style="padding:10px;">
+                    <div id="form1" class="card z-depth-0 col s12" style="padding:10px;display:none;">
                         <h5>
                             <b>PERSONAL DETAILS</b>
                         </h5>
                         <br>
                         <br>
-                        <div class="input-field col s6">
-                            <input type="text" name="fullname" id="details-fullname" class="tooltipped" data-tooltip="Full Name" placeholder="<%= user.fullname %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Enter your name here </div>
+                            <input type="text" name="fullname" id="details-fullname" value="<%= user.fullname %>" style="padding:5px;">
                         </div>
 
-                        <div class="input-field col s6">
-                            <input class="tooltipped" data-tooltip="Father's Name" type="text" name="details_fathername" id="details-father_name" placeholder="<%= profile.details.father_name %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Enter your father's name here </div>
+                            <input type="text" name="details_fathername" id="details-father_name" value="<%= profile.details.father_name %>"style="padding:5px;">
                         </div>
-                        <div class="input-field col s6">
-                            <input class="datepicker" type="text" name="details_dob" id="details-dob" class="tooltipped" data-tooltip="Date of Birth" placeholder="<%= profile.details.dob %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Enter your DOB here </div>
+                            <input type="date" name="details_dob" id="details-dob" value="<%= profile.details.dob %>"style="padding:5px;">
                         </div>
                         <!-- <div class="input-field col s6">
-                        <input type="text" id="city" placeholder="City">
+                        <input type="text" id="city" value="City">
                     </div> -->
-                        <div class="input-field col s6">
-                            <input type="text" name="aadharno" id="details-aadharno" class="tooltipped" data-tooltip="Aadhar No." placeholder="<%= profile.details.aadharno %>">
+                        <div class="input-field col s6 offset-s3">
+                                <div>Enter your Aadhar no here </div>
+                            <input type="text" name="aadharno" id="details-aadharno" value="<%= profile.details.aadharno %>" style="padding:5px;">
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 offset-s3">
                             <div class="col s4">
                                 <label>
                                 <input name="details_gender" value="male" id="details-gender" type="radio" <%= profile.details.gender=="male"?"checked":""%> />
@@ -72,7 +123,7 @@
                         </div>
 
 
-                        <div class="input-field col s6 offset-s6">
+                        <div class="input-field col s6 offset-s3">
                             <input class="btn btn-large indigo col s12" type="button" value="Next" id="step1">
                         </div>
 
@@ -83,27 +134,33 @@
                         </h5>
                         <br>
                         <br>
-                        <div class="input-field col s6">
-                            <input type="text" name="fulladdress" id="address-full_address" class="tooltipped" data-tooltip="Address" placeholder="<%= profile.address.full_address %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Enter your address here</div>
+                            <input type="text" name="fulladdress" id="address-full_address" value="<%= profile.address.full_address %>"style="padding:5px;">
                         </div>
-                        <div class="input-field col s6">
-                            <input type="text" name="city" id="address-city" class="tooltipped" data-tooltip="City" placeholder="<%= profile.address.city %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Enter your city here</div>
+                            <input type="text" name="city" id="address-city" value="<%= profile.address.city %>"style="padding:5px;">
                         </div>
-                        <div class="input-field col s6">
-                            <select name="address-state" id="address-state" class="tooltipped" data-tooltip="Course">
+                        <div class="input-field col s6 offset-s3">
+                            
+                            <select name="address-state" id="address-state" style="padding:5px;">
                                 <option value="" disabled selected>Choose your course</option>
                                 <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
                             </select>
-                            <!--                             <input type="text" name="state" id="address-state" class="tooltipped" data-tooltip="State" placeholder="<%= profile.address.state %>">
+                            <!--                             <input type="text" name="state" id="address-state" "State" value="<%= profile.address.state %>">
  --></div>
-                        <div class="input-field col s6">
-                            <input type="text" name="zipcode" id="address-pincode" class="tooltipped" data-tooltip="Pin code" placeholder="<%= profile.address.pincode %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Enter your zip code here</div>
+                            <input type="text" name="zipcode" id="address-pincode" value="<%= profile.address.pincode %>" style="padding:5px;">
                         </div>
+                        <div class="col s6 offset-s3">
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back1">
                         </div>
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Next" id="step2">
+                        </div>
                         </div>
 
                     </div>
@@ -112,57 +169,68 @@
                             <b>EDUCATION DETAILS</b>
                         </h5>
                         <br>
-                        <div class="ui label">10TH</div>
+                        <div class="ui label col s12">10TH</div>
                         <br>
 
                         <div class="holder">
-                            <div class="input-field">
-                                <input id="education-high-institute_name" type="text" name="school10" class="tooltipped" data-tooltip="Institute Name" placeholder="<%= profile.education.high.institute_name %>">
+                            <div class="input-field col s6 offset-s3">
+                                    <div>Institute Name</div>
+                                <input id="education-high-institute_name" type="text" name="school10"  value="<%= profile.education.high.institute_name %>">
                             </div>
-                            <div class="input-field">
-                                <input id="education-high-board" type="text" name="board10" class="tooltipped" data-tooltip="Board" placeholder="<%= profile.education.high.board %>">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Board</div>
+                                <input id="education-high-board" type="text" name="board10"  value="<%= profile.education.high.board %>">
                             </div>
-                            <div class="input-field">
-                                <input id="education-high-course" type="text" name="course10" class="tooltipped" data-tooltip="Course" placeholder="<%= profile.education.high.course %>">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Course</div>
+                                <input id="education-high-course" type="text" name="course10"  value="<%= profile.education.high.course %>">
                             </div>
-                            <div class="input-field">
-                                <input id="education-high-marks" type="text" name="marks10" class="tooltipped" data-tooltip="Marks" placeholder="<%= profile.education.high.marks %>">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Marks</div>
+                                <input id="education-high-marks" type="text" name="marks10"  value="<%= profile.education.high.marks %>">
                             </div>
-                            <div class="input-field">
-                                <input id="education-high-passing_year" type="text" name="year10" class="tooltipped" data-tooltip="Passing Year" placeholder="<%= profile.education.high.passing_year %>">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Passing Year</div>
+                                <input id="education-high-passing_year" type="text" name="year10"  value="<%= profile.education.high.passing_year %>">
                             </div>
                         </div>
                         <br>
-
-                        <div class="ui label">12TH</div>
+                        <div class="ui label col s12">12TH</div>
                         <br>
                         <div class="holder">
-                            <div class="input-field">
-                                <input id="education-intermediate-institute_name" type="text" name="school12" class="tooltipped" data-tooltip="Full Name" placeholder="<%= profile.education.intermediate.institute_name %>">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Full Name</div>
+                                <input id="education-intermediate-institute_name" type="text" name="school12"  value="<%= profile.education.intermediate.institute_name %>">
                             </div>
-                            <div class="input-field">
-                                <input id="education-intermediate-board" type="text" name="board12" class="tooltipped" data-tooltip="Board" placeholder="<%= profile.education.intermediate.board %>">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Board</div>
+                                <input id="education-intermediate-board" type="text" name="board12"  value="<%= profile.education.intermediate.board %>">
                             </div>
-                            <div class="input-field">
-                                <input id="education-intermediate-course" type="text" name="course12" class="tooltipped" data-tooltip="Course" placeholder="<%= profile.education.intermediate.course %>">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Course</div>
+                                <input id="education-intermediate-course" type="text" name="course12"  value="<%= profile.education.intermediate.course %>">
                             </div>
-                            <div class="input-field">
-                                <input id="education-intermediate-marks" type="text" name="marks12" class="tooltipped" data-tooltip="Marks in % / CGPA" placeholder="<%= profile.education.intermediate.marks %>">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Marks in % / CGPA</div>
+                                <input id="education-intermediate-marks" type="text" name="marks12"  value="<%= profile.education.intermediate.marks %>">
                             </div>
-                            <div class="input-field">
-                                <input id="education-intermediate-passing_year" type="text" name="year12" class="tooltipped" data-tooltip="Passing Year" placeholder="<%= profile.education.intermediate.passing_year %>">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Passing Year</div>
+                                <input id="education-intermediate-passing_year" type="text" name="year12" "" value="<%= profile.education.intermediate.passing_year %>">
                             </div>
                         </div>
-                        <div class="ui label">GRADUATION</div>
+                        <div class="ui label col s12">GRADUATION</div>
                         <br>
-                        <div class="input-field col s3">
-                            <input id="education-graduation-institute_name" type="text" name="collegename" class="tooltipped" data-tooltip="Institute Name" placeholder="<%= profile.education.graduation.institute_name %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Institute Name</div>
+                            <input id="education-graduation-institute_name" type="text" name="collegename"  value="<%= profile.education.graduation.institute_name %>">
                         </div>
-                        <div class="input-field col s3">
-                            <input id="education-graduation-board" type="text" name="collegeboard" class="tooltipped" data-tooltip="Board" placeholder="<%= profile.education.graduation.board %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Board</div>
+                            <input id="education-graduation-board" type="text" name="collegeboard"  value="<%= profile.education.graduation.board %>">
                         </div>
-                        <div class="input-field col s3">
-                            <select class="no-autoinit" name="collegecourse" id="education-graduation-course" class="tooltipped" data-tooltip="Course">
+                        <div class="input-field col s6 offset-s3">
+                            <select class="no-autoinit" name="collegecourse" id="education-graduation-course" "Course">
                             <option value="" disabled selected>Choose your course</option>
                             <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
                             <option value="Bachelor of Education ( B.Ed)">Bachelor of Education ( B.Ed)</option>
@@ -209,19 +277,22 @@
 
                         </select>
                         </div>
-                        <div class="input-field col s3">
-                            <input id="education-graduation-marks" type="text" name="collegemarks" class="tooltipped" data-tooltip="Marks" placeholder="<%= profile.education.graduation.marks %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Marks</div>
+                            <input id="education-graduation-marks" type="text" name="collegemarks"  value="<%= profile.education.graduation.marks %>">
                         </div>
 
-                        <div class="ui label">POST GRADUATION</div>
+                        <div class="ui label col s12">POST GRADUATION</div>
                         <br>
-                        <div class="input-field col s3">
-                            <input id="education-post_graduation-institute_name" type="text" name="postcollegename" class="tooltipped" data-tooltip="Institute Name" placeholder="<%= profile.education.post_graduation.institute_name %>">
+                        <div class="input-field  col s6 offset-s3">
+                            <div>Institute Name</div>
+                            <input id="education-post_graduation-institute_name" type="text" name="postcollegename"  value="<%= profile.education.post_graduation.institute_name %>">
                         </div>
-                        <div class="input-field col s3">
-                            <input id="education-post_graduation-board" type="text" name="postcollegeboard" data-tooltip="Marks" placeholder="<%= profile.education.post_graduation.board %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Board</div>
+                            <input id="education-post_graduation-board" type="text" name="postcollegeboard"  value="<%= profile.education.post_graduation.board %>">
                         </div>
-                        <div class="input-field col s3">
+                        <div class="input-field col s6 offset-s3">
                             <select class="no-autoinit" name="postcollegecourse" id="education-post_graduation-course" data-tooltip="Course">
                                 <option value="" disabled selected>Choose your course</option>
                                 <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
@@ -269,21 +340,24 @@
     
                             </select>
                         </div>
-                        <div class="input-field col s3">
-                            <input id="education-post_graduation-marks" type="text" name="postcollegemarks" data-tooltip="Marks" placeholder="<%= profile.education.post_graduation.marks %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Marks</div>
+                            <input id="education-post_graduation-marks" type="text" name="postcollegemarks"  value="<%= profile.education.post_graduation.marks %>">
                         </div>
-                        <div class="input-field col s3">
-                            <input id="education-post_graduation-passing_year" type="text" name="postcollegename" class="tooltipped" data-tooltip="Passing Year" placeholder="<%= profile.education.post_graduation.passing_year %>">
+                        <div class="input-field col s6 offset-s3">
+                            <div>Passing Year</div>
+                            <input id="education-post_graduation-passing_year" type="text" name="postcollegename"  value="<%= profile.education.post_graduation.passing_year %>">
                         </div>
-
+                        <div class="col s6 offset-s3">
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
                         </div>
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
                         </div>
+                        </div>
                     </div>
-                    <div id="form4" class="card z-depth-0 col s12" style="padding:10px;display:none;">
+                    <div id="form4" class="card z-depth-0 col s12" style="padding:10px;">
                         <div class="col s10">
                             <h5>
                                 <b>PROJECTS/INTERNSHIPS/JOBS</b>
@@ -296,36 +370,37 @@
                             <% for(let i=0 ; i<profile.experience.length; i++) { %>
                                 <div class="col s12">
                                     <div class="input-field col s2">
-                                        <select name="projecttype">
+                                        <select name="projecttype" class="no-autoinit">
                                         <option value="Internship" <% if(profile.experience[i].type=="Internship") { %>selected<% } %>>Internship</option>
                                         <option value="Job" <% if(profile.experience[i].type=="Job") { %>selected<% } %>>Job</option>
                                         <option value="Project" <% if(profile.experience[i].type=="Project") { %>selected<% } %>>Project</option>
                                     </select>
                                     </div>
                                     <div class="input-field col s2">
-                                        <input type="text" name="projectrole" id="projects" placeholder="title/role" value="<%= profile.experience[i].role %>">
+                                        <input type="text" name="projectrole" id="projects" value="title/role" value="<%= profile.experience[i].role %>">
                                     </div>
                                     <div class="input-field col s2">
-                                        <input type="text" name="projectinstitute" id="projects" placeholder="Organization" value="<%= profile.experience[i].organization %>">
+                                        <input type="text" name="projectinstitute" id="projects" value="Organization" value="<%= profile.experience[i].organization %>">
                                     </div>
                                     <div class="input-field col s2">
-                                        <input type="text" name="projectdetails" id="projects" placeholder="Description" value="<%= profile.experience[i].description %>">
+                                        <input type="text" name="projectdetails" id="projects" value="Description" value="<%= profile.experience[i].description %>">
                                     </div>
                                     <div class="input-field col s3">
-                                        <input class="datepicker col s5" type="text" name="projectstartdate" id="startdate" placeholder="Start Date" value="<%= profile.experience[i].start_date %>">
-                                        <input class="datepicker col s5" type="text" name="projectenddate" id="enddate" placeholder="End Date" value="<%= profile.experience[i].end_date %>">
+                                        <input class="col s5" type="date" name="projectstartdate" id="startdate"  value="<%= profile.experience[i].start_date %>">
+                                        <input class="col s5" type="datetime" name="projectenddate" id="enddate"  value="<%= profile.experience[i].end_date %>">
                                     </div>
 
                                 </div>
                                 <% } %>
                         </div>
-                        <div class="col s12">
-                        </div>
+                        <div class="col s6 offset-s3">
+                        
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
                         </div>
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Next" id="step4">
+                        </div>
                         </div>
 
                     </div>
@@ -338,7 +413,8 @@
                             <div class="col s12">
                                 <% for(let i=0 ; i<profile.skills.length; i++){ %>
                                     <div class="input-field col s10">
-                                        <input type="text" name="skills" placeholder="Enter Your Skills" value="<%= profile.skills[i] %>">
+                                        <div>Enter Your Skills</div>
+                                        <input type="text" name="skills" value="<%= profile.skills[i] %>">
                                     </div>
                                     <% } %>
                                         <div class="input-field col s2">
@@ -346,11 +422,13 @@
                                         </div>
                             </div>
                         </div>
+                        <div class="col s6 offset-s3">
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back4">
                         </div>
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Next" id="step5">
+                        </div>
                         </div>
                     </div>
                     <br>
@@ -362,11 +440,13 @@
                             </h5>
                             <br>
 
-                            <div class="input-field col s6">
-                                <input type="text" name="joblocation" placeholder="Enter Preferred city">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Enter Preferred city</div>
+                                <input type="text" name="joblocation">
                             </div>
-                            <div class="input-field col s6">
-                                <input class="datepicker" type="text" name="jobavailability" placeholder="Available to join">
+                            <div class="input-field col s6 offset-s3">
+                                <div>Available to join</div>
+                                <input class="datepicker" type="text" name="jobavailability">
                             </div>
 
 
@@ -392,33 +472,33 @@
             <script>
                 $(document).ready(function() {
                     // M.AutoInit();
-                    $('body').on('focus', ".datepicker", function() {
-                        $(this).datepicker();
+                    // $('body').on('focus', ".datepicker", function() {
+                    //     $(this).datepicker();
 
-                    });
+                    // });
                     $('body').on('focus', "select", function() {
-                        M.AutoInit();
+                        //M.AutoInit();
                     });
                     $('#addmoreprojects').click(() => {
                         AddMoreProjects($('#jobspanel'));
-                        M.AutoInit();
+                       // M.AutoInit();
                     });
                     $('#addmoreskills').click(() => {
                         AddMoreSkills($('#skillspanel'));
-                        M.AutoInit();
+                       // M.AutoInit();
                     });
                     //$(document).on('click','.datapicker',M.datepicker);
                 });
-                $('select').on('contentChanged', function() {
-                    $(this).material_select();
-                });
-                document.addEventListener('DOMContentLoaded', function() {
-                    var elems = document.querySelectorAll('.datepicker');
-                    var instances = M.Datepicker.init(elems, {
-                        minDate: new Date(1950, 1, 1),
-                        maxDate: new Date(2010, 1, 1)
-                    });
-                });
+                // $('select').on('contentChanged', function() {
+                //    // $(this).material_select();
+                // });
+                // document.addEventListener('DOMContentLoaded', function() {
+                //     var elems = document.querySelectorAll('.datepicker');
+                //     var instances = M.Datepicker.init(elems, {
+                //         minDate: new Date(1950, 1, 1),
+                //         maxDate: new Date(2010, 1, 1)
+                //     });
+                // });
 
                 function save() {
                     let params = $("input[type=text]");

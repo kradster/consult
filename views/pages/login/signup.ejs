@@ -4,6 +4,45 @@
 <head>
     <meta name='description' content='Signup on JobLana Platform to get in front of 500+ recruiters across the globe.'>
     <% include ../../partials/pre_head %>
+    <style>
+        input:not([type]),
+            input[type=text]:not(.browser-default),
+            input[type=password]:not(.browser-default),
+            input[type=email]:not(.browser-default) {
+                border:solid  2px  #ccc  !important;
+                outline: none;
+                height: 3rem;
+                width: 100%;
+                font-size: 16px;
+                margin: 0 0 8px 0;
+                padding: 0;
+                background-color: transparent;
+                box-shadow: 0px
+            }
+            
+            input:not([type]):focus:not([readonly]),
+            input[type=text]:not(.browser-default):focus:not([readonly]),
+            input[type=password]:not(.browser-default):focus:not([readonly]),
+            input[type=email]:not(.browser-default):focus:not([readonly]) {
+                border:solid  2px  #646af2  !important;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+            
+            input::-webkit-input-placeholder {
+                color: grey;
+            }
+            
+            .no-padd {
+                padding: 0px !important;
+            }
+            .signup-body{
+                    background:url('/img/signup.png');
+                    background-repeat: no-repeat;
+                    background-position:bottom left;
+                }
+            
+    </style>
 </head>
 
 <body>
@@ -17,33 +56,34 @@
     <% include ../../partials/pre_header %>
     <!-- NAVIGATION BAR END -->
 
-    <div class="row">
-        <div class="col s12" style="height:100px;"></div>
+    <div class="row signup-body" style="display:flex;height:110%;">
+        <div style="flex:1;margin: auto;width:100%;">
         <form class="col l6 offset-l3 s12" action="<%- link('signup', 'user') %>" method="POST">
-            <div class="card col l8 offset-l2 s12 z-depth-3" style="padding:10px;border-radius:10px; border-top:5px solid #2962ff;">
+            <div class="card col l8 offset-l2 s12 z-depth-3" style="border-radius:10px; border-top:5px solid #2962ff;background:rgba(255,255,255,0.8);">
                 <center>
                     <h4 class="indigo-text">Signup</h4>
+                    <br>
                 </center>
-                <br>
-                <div class="input-field col s6" style="border-radius:10px;">
-                    <input placeholder="First Name" name="firstname" id="firstname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                <div class="col s6">
+                    <input placeholder="First Name" name="firstname" id="firstname" type="text" class="blue-text" style="padding:5px;font-size:1em;margin-left:-5px;">
                 </div>
-                <div class="input-field col s6" style="border-radius:10px;">
-                    <input placeholder="Last Name" name="lastname" id="lastname" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                <div class="col s6">
+                    <input placeholder="Last Name" name="lastname" id="lastname" type="text" class="blue-text" style="padding:5px;font-size:1em;margin-left:-5px;">
                 </div>
-                <div class="input-field col s12" style="border-radius:10px;">
-                    <input placeholder="Phone No" name="phoneno" id="phoneno" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                <div class="col s12">
+                    <input placeholder="Phone No" name="phoneno" id="phoneno" type="text" class="blue-text" style="padding:5px;font-size:1em;margin-left:-5px;">
                 </div>
-                <div class="input-field col s12">
-                    <input placeholder="Email" name="email" id="email" type="text" class="blue-text" style="padding:5px;font-size:1.5em;">
+                <div class="col s12">
+                    <input placeholder="Email" name="email" id="email" type="text" class="blue-text" style="padding:5px;font-size:1em;margin-left:-5px;">
                 </div>
-                <div class="input-field col s6" style="border-radius:10px;">
-                    <input placeholder="Passowrd" name="password" id="password" type="password" class="blue-text" style="padding:5px;font-size:1.5em;">
+                <div class="col s6">
+                    <input placeholder="Passowrd" name="password" id="password" type="password" class="blue-text" style="padding:5px;font-size:1em;margin-left:-5px;">
                 </div>
 
-                <div class="input-field col s6" style="border-radius:10px;">
-                    <input placeholder="Confirm Passowrd" name="cpassword" id="cpassword" type="password" class="blue-text" style="padding:5px;font-size:1.5em;">
+                <div class="col s6">
+                    <input placeholder="Confirm Passowrd" name="cpassword" id="cpassword" type="password" class="blue-text" style="padding:5px;font-size:1em;margin-left:-5px;">
                 </div>
+                <div class="row"></div>
                 <br> You agree to <a href="/terms-and-conditions">terms and conditions</a> and <a href="/privacy-policy">Privacy Policy</a> on Sign up.
                 <br><br>
                 <div class="input-filed col s12">
@@ -57,7 +97,7 @@
 
             </div>
         </form>
-        <div class="col s12" style="height:150px;"></div>
+        </div>
     </div>
 
 <!-- FOOTER START -->
