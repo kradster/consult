@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name='description' content='Book your seat now for the next test and get the chance to highlight yourself in front of 500+ recruiters.'>
+    <% include ../../partials/pre_head %>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- NAVIGATION BAR START -->
+    <% include ../../partials/pre_header %>
+    <!-- NAVIGATION BAR END -->
+    
+    <!-- HEADER START -->
+    <div class="row white-text blue darken-4">
+        <div class="col  s12">
+            <div class="row" style="height:50px;"></div>
+            <h1>
+                <b>SCHEDULE YOUR JL TEST NOW</b>
+            </h1>
+
+            <div class="row" style="height:50px;"></div>
+        </div>
+    </div>
+    <!-- HEADER END -->
+    <div class="row" style="height:40px;"></div>
+
+    <!-- TEST SCHEDULE DETAILS PANEL START -->
+    <div class="row">
+        <div class="row" style="height:50px;"></div>
+        <div class="col s10 offset-s1">
+            <div class="col s12">
+                <h2 class="grey-text">BOOK YOUR TEST SEAT NOW</h2>
+            </div>
+            <div class="col s12 card no-padd z-depth-0">
+                <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
+                    <span style="font-size:1.7em">Choose your Slot.</span>
+                </div>
+                <div class="divider"></div>
+                <br>
+                <% for(var i=0; i < tests.length; i++) { %>
+                    <div class="col s12">
+                        <form action="/user/scheduletest/<%= tests[i].id %>" class="col s12" method="POST">
+                            <div class="col s3">
+                                <select name="job">
+                                    <option value="" disabled selected>Choose your role</option>
+                                    <% for(var j=0; j < tests[i].job.length; j++) { %>
+                                        <option value="<%= tests[i].job[j] %>"><%= tests[i].job[j] %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="col s3">
+
+                                <input type="text" name="location" id="location" value="" placeholder="<%= tests[i].location %>" readonly>
+
+                            </div>
+                            <div class="col s3">
+
+                                <input type="text" name="date" id="date" value="" placeholder="<%= tests[i].date %>" readonly>
+
+                            </div>
+                            <div class="col s3">
+                                <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                            </div>
+                            <div class="row"></div>
+                        </form>
+                    </div>
+                <% } %>
+                <div class="row" style="height:50px;"></div>
+
+            </div>
+        </div>
+
+        <div class="row" style="height:50px;"></div>
+
+    </div>
+
+<!-- FOOTER START -->
+    <% include ../../partials/pre_footer %>
+<!-- FOOTER END -->
+
+</body>
+</html>

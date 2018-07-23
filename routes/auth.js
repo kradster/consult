@@ -70,6 +70,21 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
     });
 });
 
+authRouter.get('/upcoming-jl-test', (req, res, next) => {
+    let dct = { title: "Upcoming JL Tests | Schedule your JL test Now" };
+    testController.getTests((err, tests) => {
+        if (err) {
+            dct['tests'] = []
+        } else {
+            if (tests) dct['tests'] = tests;
+            else dct['tests'] = []
+
+        }
+        return res.render('auth/schedule', dct);
+    });
+});
+
+
 authRouter.post('/scheduletest/:id', isauthenticated, (req, res) => {
     console.log(req.body);
     data = req.body
@@ -162,34 +177,6 @@ authRouter.get('/resend-email', isauthenticated, (req, res, next) => {
         return res.redirect('/')
     })
 });
-
-
-
-
-
-
-// authRouter.get('/getcv', (req, res) => {
-//     if (!req.session.user) return res.send({ success: false, message: "You need to login first" });
-//     db.get("SELECT * FROM CV WHERE uniqueid = ?", req.session.user, (err, row) => {
-//         if (!row) {
-//             console.log("No id found");
-//             return res.send({ success: false, message: "No such userid exists in the database" });
-//         }
-//         console.log("Fetching cv details for", req.session.user);
-//         return res.send({ success: true, data: row });
-//     });
-// });
-
-authRouter.post('/scheduletest', isauthenticated, (req, res) => {
-    let data = req.body;
-    data["userid"] = req.session.user;
-    sql = "INSERT INTO Tests(" + Object.keys(data).join(",") + ") VALUES('" + Object.values(data).join("', '") + "');";
-    db.exec(sql, (err, row) => {
-        if (err) console.log(err);
-        return res.render('alert', { title: "Successfully booked for the test ", link: "/templates/profile.html", linkname: "Goto Profile" });
-    });
-});
-
 
 authRouter.get('/logout', isauthenticated, (req, res) => {
     req.logout();
