@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="card z-depth-0 col s12" style="padding:10px;">
-                    <div id="form1" class="card z-depth-0 col s12" style="padding:10px;display:none;">
+                    <div id="form1" class="card z-depth-0 col s12" style="padding:10px;">
                         <h5>
                             <b>PERSONAL DETAILS</b>
                         </h5>
@@ -357,7 +357,7 @@
                         </div>
                         </div>
                     </div>
-                    <div id="form4" class="card z-depth-0 col s12" style="padding:10px;">
+                    <div id="form4" class="card z-depth-0 col s12" style="padding:10px;display:none;">
                         <div class="col s10">
                             <h5>
                                 <b>PROJECTS/INTERNSHIPS/JOBS</b>
@@ -377,16 +377,16 @@
                                     </select>
                                     </div>
                                     <div class="input-field col s2">
-                                        <input type="text" name="projectrole" id="projects" value="title/role" value="<%= profile.experience[i].role %>">
+                                        <input type="text" name="projectrole" id="projects" placeholder="Title/Role" value="<%= profile.experience[i].role %>">
                                     </div>
                                     <div class="input-field col s2">
-                                        <input type="text" name="projectinstitute" id="projects" value="Organization" value="<%= profile.experience[i].organization %>">
+                                        <input type="text" name="projectinstitute" id="projects" placeholder="Organization" value="<%= profile.experience[i].organization %>">
                                     </div>
                                     <div class="input-field col s2">
-                                        <input type="text" name="projectdetails" id="projects" value="Description" value="<%= profile.experience[i].description %>">
+                                        <input type="text" name="projectdetails" id="projects" placeholder="Description" value="<%= profile.experience[i].description %>">
                                     </div>
                                     <div class="input-field col s3">
-                                        <input class="col s5" type="date" name="projectstartdate" id="startdate"  value="<%= profile.experience[i].start_date %>">
+                                        <input class="col s5" type="datetime" name="projectstartdate" id="startdate"  value="<%= profile.experience[i].start_date %>">
                                         <input class="col s5" type="datetime" name="projectenddate" id="enddate"  value="<%= profile.experience[i].end_date %>">
                                     </div>
 
