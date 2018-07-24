@@ -4,6 +4,50 @@
 <head>
     <meta name='description' content='Login on JobLana Platform to get in front of 500+ recruiters across the globe.'>
     <% include ../../partials/pre_head %>
+    <style>
+            input:not([type]),
+                input[type=text]:not(.browser-default),
+                input[type=password]:not(.browser-default),
+                input[type=email]:not(.browser-default) {
+                    border:solid  2px  #ccc  !important;
+                    outline: none;
+                    height: 3rem;
+                    width: 100%;
+                    font-size: 16px;
+                    margin: 0 0 8px 0;
+                    padding: 0;
+                    background-color: transparent;
+                    box-shadow: 0px
+                }
+                
+                input:not([type]):focus:not([readonly]),
+                input[type=text]:not(.browser-default):focus:not([readonly]),
+                input[type=password]:not(.browser-default):focus:not([readonly]),
+                input[type=email]:not(.browser-default):focus:not([readonly]) {
+                    border:solid  2px  #646af2  !important;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+                }
+                
+                input::-webkit-input-placeholder {
+                    color: grey;
+                }
+                
+                .no-padd {
+                    padding: 0px !important;
+                }
+                .login-body{
+                    background:url('/img/login.png');
+                    background-repeat: no-repeat;
+                    background-position:bottom right;
+                }
+                .login-header{
+                    background:url('/img/login-header.png');
+                    background-repeat: no-repeat;
+                    background-position:right center;
+                }
+    
+    </style>
 </head>
 
 <body>
@@ -17,30 +61,51 @@
     <% include ../../partials/pre_header %>
     <!-- NAVIGATION BAR END -->
     
-    <div class="row">
-        <div class="col s12" style="height:150px;"></div>
+    <div class="row login-body" style="display:flex;height:100%;">
+        <div style="flex:1;margin:auto;width:100%;">
+        <div class="col s12 " style="height:50px;"></div>
         <form class="col l6 offset-l3 s12" action="/user/login" method="POST">
-            <div class="card col l8 offset-l2 s12 z-depth-3" style="padding:10px;border-radius:10px; border-top:5px solid #2962ff;">
+            <div class="card col l8 offset-l2 s12 z-depth-3 no-padd" style="padding:10px;border-radius:10px; border-top:5px solid #2962ff;background:rgba(255,255,255,0.8);overflow: hidden;">
+                <div class="col s12 no-padd login-header" style="height:130px;overflow: hidden;">
                 <center>
                     <h4 class="indigo-text">LOGIN</h4>
                 </center>
+                </div>
                 <br>
-                <div class="input-field col s12">
-                        <input placeholder="Email" id="email" name="email" type="text" class="blue-text"/> 
-                    </div>
-                <div class="input-field col s12">
-                        <input placeholder="password" id="password" name="password" type="password" class="blue-text"/>
-                    </div><br>
-                    <a href="/forgot-password">Forgot password?</a>
+                <div class="col s12">
+                    <br>
+                <div class="col s2" style="padding-top:30px;">
+                        <i class="far fa-envelope fa-3x grey-text lighten-3"></i>
+                </div>
+                <div class="col s10">
+                        <div>Enter your Email Here</div>
+                        <input placeholder="Email" id="email" name="email" type="text" class="blue-text" style="padding:5px;margin-left:-5px;" > 
+                </div>
+                </div>
+                <div class="col s12">
+                    <br>
+                <div class="col s2"style="padding-top:30px;">
+                        <i class="fas fa-key fa-3x  grey-text lighten-3"></i>
+                </div>
+                <div class="col s10">
+                    <div>Enter your Password Here</div>
+                        <input placeholder="password" id="password" name="password" type="password" class="blue-text" style="padding:5px;margin-left:-5px;">
+                </div>
+                </div>
                      <div class="input-field col s12">
                          <center>
                              <input name="loginsubmit" style="margin-top:0px;border-radius:5px;transition:all .3s ease-in-out;" type="submit" class="btn btn-large blue accent-4 z-depth-5 white-text" value="Login">
                          </center>
                      </div>
+                     <div class="col s12">
+                         You agree to <a href="/terms-and-conditions">terms and conditions</a> and <a href="/privacy-policy">Privacy Policy</a> on Sign up.
+                         <br><br>
+                     </div>
                 
             </div>
         </form>
-        <div class="col s12" style="height:150px;"></div>
+        </div>
+        
     </div>
 
 <!-- FOOTER START -->
