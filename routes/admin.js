@@ -12,7 +12,7 @@ function isauthenticated(req, res, next) {
         req.session.next = req.originalUrl;
         return res.redirect('/login');
     }
-    if (req.user.role != "ADMIN"){
+    if (req.user.role != "ADMIN") {
         req.session.messages.push(["You are not authorised to visit this page", "red"])
         req.session.next = req.originalUrl;
         return res.redirect('/login');
@@ -23,18 +23,18 @@ function isauthenticated(req, res, next) {
 // Middlewares
 
 adminRouter.get('/dashboard', isauthenticated, (req, res) => {
-    let dct = {title: "Dashboard"}
+    let dct = { title: "Dashboard" }
     return res.render("admin/adminpanel", dct);
 });
 
 adminRouter.get('/addjob', isauthenticated, (req, res) => {
-    let dct = {title: "Add Job"}
+    let dct = { title: "Add Job" }
     return res.render("admin/jobadd", dct);
 });
 
 adminRouter.post('/addjob', isauthenticated, (req, res) => {
     let data = req.body;
-    console.log(data);
+    console.log("form data", data);
     adminController.addjob(req.user, data, (err, job) => {
         try {
             if (err) {
@@ -55,7 +55,7 @@ adminRouter.post('/addjob', isauthenticated, (req, res) => {
 });
 
 adminRouter.get('/addtest', isauthenticated, (req, res) => {
-    let dct = {title: "Add test"}
+    let dct = { title: "Add test" }
     return res.render("admin/testadd", dct);
 });
 
@@ -84,9 +84,31 @@ adminRouter.post('/addtest', isauthenticated, (req, res) => {
     });
 });
 
+adminRouter.get('/editjobs', isauthenticated, (req, res) => {
+    adminController.getjobs((err, jobs) => {
+        if (err) console.log(err);
+        let dct = { title: "Edit jobs" };
+        dct.jobs = jobs;
+        res.render('admin/editjoblist', dct);
+    });
+});
 
-adminRouter.get('/admin/editjobs', isauthenticated, (req, res) => {
-
+adminRouter.get('/edit-info/:id', isauthenticated, (req, res) => {
+    let dct = { title: "Company Info" };
+    adminController.getjob(req.params.id, (err, job) => {
+        if (err) {
+            console.log(err)
+            return res.redirect('/');
+        } else if (job) {
+            dct.job = job;
+            console.log(dct.job);
+        } else {
+            dct.job = {};
+            res.locals.messages.push(["No Job found", "red"]);
+            return res.redirect('/');
+        }
+        return res.render('admin/editjobinfo', dct);
+    });
 });
 
 module.exports = adminRouter;

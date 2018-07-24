@@ -11,13 +11,16 @@ module.exports.addjob = function(user, data, callback) {
             pri = dat.split('-')
             if (pri.length == 2) {
                 newJob[pri[0]][pri[1]] = data[dat];
+                if (dat == "job-location") {
+                    console.log(data[dat], newJob);
+                }
             } else if (pri.length == 3) {
                 newJob[pri[0]][pri[1]][pri[2]] = data[dat];
             }
         } else {
             newJob[dat] = data[dat];
         }
-    })
+    });
     console.log("job uplodaed", newJob);
     Job.find({}, console.log);
     newJob.save((err, job) => {

@@ -35,12 +35,12 @@
                 <div class="col l10 offset-l1 s12">
                     <div class="col s12">
                         <h2>
-                            <b class="grey-text">Post a Job For Free</b>
+                            <b class="grey-text">EDIT JOB</b>
                         </h2>
                     </div>
                     <div class="col s12 card no-padd z-depth-0">
                         <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
-                            <i class="fas fa-briefcase fa-2x"></i> POST YOUR JOB REQUIREMENTS
+                            <i class="fas fa-briefcase fa-2x"></i> Modfiy fields
                         </div>
                         <div class="divider"></div>
                         <div class="row" style="height:50px;"></div>
@@ -48,62 +48,64 @@
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">Company Name</div>
                                 <div class="col s9">
-                                    <input type="text" id="company-name" name="company-name" placeholder="Company Name">
+                                    <input type="text" id="company-name" name="company-name" placeholder="Company Name" value="<%= job.company.name %>">
                                 </div>
                             </div>
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">Alternate Email</div>
                                 <div class="col s9">
-                                    <input type="text" name="contact-email" id="contact-email" placeholder="Enter Email id">
+                                    <input type="text" name="contact-email" id="contact-email" placeholder="Enter Email id" value="<%= job.contact.email %>">
                                 </div>
                             </div>
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">Contact No</div>
                                 <div class="col s9">
-                                    <input type="text" name="contact-phoneno" id="contact-phoneno" placeholder="Enter comapny contact no">
+                                    <input type="text" name="contact-phoneno" id="contact-phoneno" placeholder="Enter comapny contact no" value="<%= job.contact.phoneno %>">
                                 </div>
                             </div>
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">Company Website</div>
                                 <div class="col s9">
-                                    <input type="text" name="company-website" id="company-website" placeholder="Website link">
+                                    <input type="text" name="company-website" id="company-website" placeholder="Website link" value="<%= job.company.website %>">
                                 </div>
                             </div>
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">About the Company</div>
                                 <div class="col s9">
-                                    <textarea style="height:200px;" type="text" id="company-about" name="company-about" placeholder="Enter about you company"></textarea>
+                                    <textarea style="height:200px;" type="text" id="company-about" name="company-about" placeholder="Enter about you company"><%= job.company.about %></textarea>
                                 </div>
                             </div>
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">Job Title</div>
                                 <div class="col s9">
-                                    <select id="job-title" name="job-title">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="hr">HR</option>
-                                    <option value="Operations">OPERATIONS</option>
-                                    <option value="Calling">CALLING</option>
-                                    <option value="Sales and Marketing">SALES AND MARKETING</option>
-                                    <option value="Digital Marketing">DIGITAL MARKETING</option>
-                                    <option value="IT">IT JOBS</option>
-                                    <option value="Office">OFFICE JOBS</option>
-                                    <option value="Accounting">ACCOUNTING</option>
-                                </select>
+                                <select id="job-title" name="job-title">
+                                <option value="" disabled>Choose your option</option>
+                                <option value="hr" <% if(job.job.title=="hr") { %>selected<% } %>>HR</option>
+                                <option value="Operations" <% if(job.job.title=="Operations") { %>selected<% } %>>OPERATIONS</option>
+                                <option value="Calling" <% if(job.job.title=="Calling") { %>selected<% } %>>CALLING</option>
+                                <option value="Sales and Marketing" <% if(job.job.title=="Sales and Marketing") { %>selected<% } %>>SALES AND MARKETING</option>
+                                <option value="Digital Marketing" <% if(job.job.title=="Digital Marketing") { %>selected<% } %>>DIGITAL MARKETING</option>
+                                <option value="IT" <% if(job.job.title=="IT") { %>selected<% } %>>IT JOBS</option>
+                                <option value="Office" <% if(job.job.title=="Office") { %>selected<% } %>>OFFICE JOBS</option>
+                                <option value="Accounting" <% if(job.job.title=="Accounting") { %>selected<% } %>>ACCOUNTING</option>
+                            </select>
                                 </div>
                             </div>
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">No of Vacancies</div>
                                 <div class="col s9">
-                                    <input type="text" name="job-vacancies" id="job-vacancies" placeholder="Enter no vacancies">
+                                    <input type="text" name="job-vacancies" id="job-vacancies" placeholder="Enter no vacancies" value="<%= job.job.vacancies %>">
                                 </div>
                             </div>
                             <div id="location-container" class="col l10 offset-l2 s12">
                                 <div id="location-parent">
                                     <div class="col s3 right-align" style="padding-top:10px;">Location</div>
+
                                     <div class="col s8" id="locationpanel">
-                                        <div id="locationselect">
-                                        <select name="job-location[]" id="job-location[]">
-                                        <option value="" disabled selected>Choose your option</option>
+                                    <% for(let i=0; i<job.job.location.length; i++) { %>
+                                        <div id="locationselect" data="<%= job.job.location[i] %>">
+                                        <select name="job-location[]" id="job-location">
+                                        <option value="" disabled>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="New Delhi">New Delhi</option>
                                         <option value="Noida">Noida</option>
@@ -120,10 +122,17 @@
                                         <option value="Agra">Agra</option>
                                         <option value="Dehradun">Dehradun</option>
                                         <option value="Chandigarh">Chandigarh</option>
-                                    </select>
+                                        </select>
+                                        </div>
+                                        <script>
+                                            $(document).ready(()=>{
+                                                $('div[data="<%= job.job.location[i] %>"]').find('option[value="<%= job.job.location[i] %>"]').attr("selected","");
+                                            });
+                                        </script>
+                                    <% } %>
                                     </div>
-                                    </div>
-                                    <div class="col s1">
+                                    
+                                    <div class="col s1">    
                                         <input id="add-location" type="button" class="ui button mini light-blue white-text" value="ADD MORE">
                                     </div>
                                     <div class="col s12" style="height:5px;"></div>
@@ -133,32 +142,30 @@
                                 <div class="col s12 no-padd">
                                     <div class="col s3 right-align" style="padding-top:10px;">Salary (Min)</div>
                                     <div class="col s9">
-                                        <select id="job-salary-min" name="job-salary-min">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="2">Less than 2 lac</option>
-                                        <option value="3">2 lac</option>
-                                        <option value="4">3 lac</option>
-                                        <option value="5">4 lac</option>
-                                        <option value="6">5 lac</option>
-                                        <option value="7">More than 6 lac</option>
-
+                                    <select id="job-salary-min" name="job-salary-min">
+                                    <option value="" disabled>Choose your option</option>
+                                    <option value="2" <% if(job.job.salary.min=="2") { %>selected<% } %>>Less than 2 lac</option>
+                                    <option value="3" <% if(job.job.salary.min=="3") { %>selected<% } %>>2 lac</option>
+                                    <option value="4" <% if(job.job.salary.min=="4") { %>selected<% } %>>3 lac</option>
+                                    <option value="5" <% if(job.job.salary.min=="5") { %>selected<% } %>>4 lac</option>
+                                    <option value="6" <% if(job.job.salary.min=="6") { %>selected<% } %>>5 lac</option>
+                                    <option value="7" <% if(job.job.salary.min=="7") { %>selected<% } %>>More than 6 lac</option>
                                     </select>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s12 no-padd">
                                     <div class="col s3 right-align" style="padding-top:10px;">Salary (Max)</div>
                                     <div class="col s9">
-                                        <select id="job-salary-max" name="job-salary-max">
-                                        <option value="" disabled selected>Choose your option</option>
-                                        <option value="2">Less than 2 lac</option>
-                                        <option value="3">2 lac</option>
-                                        <option value="4">3 lac</option>
-                                        <option value="5">4 lac</option>
-                                        <option value="6">5 lac</option>
-                                        <option value="7">More than 6 lac</option>
-
+                                    <select id="job-salary-max" name="job-salary-max">
+                                    <option value="" disabled>Choose your option</option>
+                                    <option value="2" <% if(job.job.salary.max=="2") { %>selected<% } %>>Less than 2 lac</option>
+                                    <option value="3" <% if(job.job.salary.max=="3") { %>selected<% } %>>2 lac</option>
+                                    <option value="4" <% if(job.job.salary.max=="4") { %>selected<% } %>>3 lac</option>
+                                    <option value="5" <% if(job.job.salary.max=="5") { %>selected<% } %>>4 lac</option>
+                                    <option value="6" <% if(job.job.salary.max=="6") { %>selected<% } %>>5 lac</option>
+                                    <option value="7" <% if(job.job.salary.max=="7") { %>selected<% } %>>More than 6 lac</option>
                                     </select>
                                     </div>
                                 </div>
@@ -167,7 +174,7 @@
                                 <div class="col s12 no-padd">
                                     <div class="col s3 right-align" style="padding-top:10px;">Experience</div>
                                     <div class="col s9">
-                                        <input type="text" id="job-experience" name="job-experience" placeholder="Enter months of experience">
+                                        <input type="text" id="job-experience" name="job-experience" placeholder="Enter months of experience" value="<%= job.job.experience %>">
                                         </input>
                                     </div>
                                 </div>
@@ -175,19 +182,21 @@
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">Job Description</div>
                                 <div class="col s9">
-                                    <textarea style="height:200px;" type="text" id="job-description" name="job-description" placeholder="Enter about you company"></textarea>
+                                    <textarea style="height:200px;" type="text" id="job-description" name="job-description" placeholder="Enter about you company"><%= job.job.description %></textarea>
                                 </div>
                             </div>
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">Joining Date</div>
                                 <div class="col s9">
-                                    <input class="datepicker" type="text" id="job-joining_date" name="job-joining_date" placeholder="Enter date of joining">
+                                    <input class="datepicker" type="text" id="job-joining_date" name="job-joining_date" placeholder="Enter date of joining" value="<%= job.job.joining_date %>">
                                 </div>
                             </div>
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">Requirements</div>
                                 <div class="col s8" id="reqpanel">
-                                    <input type="text" id="requirements" name="job-requirements[]" placeholder="Requirement">
+                                <% for(let i=0; i<job.job.requirements.length; i++) { %>
+                                    <input type="text" id="requirements" name="job-requirements[]" placeholder="Requirement" value="<%= job.job.requirements[i] %>">
+                                <% } %>
                                 </div>
                                 <div class="col s1">
                                 <input id="add-requirements" type="button" class="ui button mini light-blue white-text" value="ADD MORE">

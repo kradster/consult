@@ -6,10 +6,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Job = new Schema({
-    recruiter: { 
-        type: Schema.Types.ObjectId, ref: 'User'
+    recruiter: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
-    contact:{
+    contact: {
         email: {
             type: String,
             required: false,
@@ -41,7 +42,7 @@ var Job = new Schema({
             trim: true,
             maxlength: 32
         },
-        about:{
+        about: {
             type: String,
             trim: true,
             maxlength: 500
@@ -60,7 +61,7 @@ var Job = new Schema({
             type: String,
             trim: true,
             maxlength: 20,
-            validate:{
+            validate: {
                 validator: validator.isURL,
                 message: "Not a valid URL"
             }
@@ -114,7 +115,7 @@ var Job = new Schema({
             required: [true, "Vacancies are mandatory"]
         },
         location: {
-            type: String
+            type: [String]
         }
     }
 });
