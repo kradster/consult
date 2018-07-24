@@ -111,14 +111,23 @@ adminRouter.get('/edit-info/:id', isauthenticated, (req, res) => {
     });
 });
 
-adminRouter.post('/editjob/:id', isauthenticated, (req, res) => {
-    console.log(req.body);
-    adminController.editjob(req.params.id, req.body, (err, job) => {
+adminRouter.post('/edit-info/:id', isauthenticated, (req, res) => {
+    let id = req.params.id;
+    let data = req.body;
+    Object.keys(data).forEach(key => {
+        if (data[key] == '') {
+            delete data[key];
+        }
+    });
+    adminController.editjob(id, data, (err, job) => {
         if (err) {
-            console.log(err);
-            return res.redirect('/');
+            Object.values(err.errors).forEach(error => {
+                res.locals.messages.push([error.message, "red"]);
+            });
+            return res.redirect('/admin/edit-info/' + id)
         } else if (job) {
-            res.redirect('/admin/editjobs');
+            res.locals.messages.push(["Job updated Successfully", "green"]);
+            res.redirect('/company-info/' + id);
         } else {
             res.locals.message.push(["Incorrect parameters", "red"]);
             return res.redirect('/');
