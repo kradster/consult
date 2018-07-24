@@ -5,6 +5,15 @@
     <% include ../../partials/pre_head %>
         <title>Admin Pannel</title>
         <meta name="description" content="JobLana is a platform giving opportunity to freshers and job seekers to get benchmarked score based on JL Test to bring themselves closer to more than 2000 recruiters for getting hired and also meeting companies demands to acquire the best talent.">
+        <style>
+            .body{
+                background-image:url('/img/adminpanel.png');
+                background-position:bottom center;
+            }
+            .no-padd {
+                padding: 0px !important;
+            }
+        </style>
 </head>
 
 <body>
@@ -14,27 +23,32 @@
         <!-- NAVIGATION BAR END -->
 
 
-        <div class="row" style="height:50px;"></div>
-        <div id="userprofile" class="row no-padd">
+        
 
-        </div>
+        <div class="row body" style="height:100%;">
+            <div style="display:flex;width:100%;height:100%;background:rgba(7, 116, 199, 0.581) !important;">
+            <div style="flex:1;margin:auto">
+            <div class="col l6 offset-l3 s12 card no-padd" style="border-radius:5px;">
+                <div class="col s12 no-padd">
+                    <div class="col s6" style="position:relative;height:400px;background-image: url('/img/adminpanelavatar.gif');background-position:center;background-size:cover;">
+                        <h2></h2>
+                    </div>
 
-        <div class="row grey lighten-2">
-            <div class="col s12 grey lighten-2" style="height:50px;"></div>
-            <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
-                <div class="col s12">
-                    <h5><b>OPERATIONS</b></h5>
-                    <div class="divider"></div>
                     <br>
-                    <div id="joblistcon">
-                        <a href="/admin/addjob" class="btn indigo accent-4"><b>ADD JOB</b></a>
-                        <a href="/admin/editjobs" class="btn indigo accent-4"><b>EDIT JOBS</b></a>
-                        <a href="/admin/addtest" class="btn indigo accent-4"><b>ADD TEST</b></a>
+                    <div class="col s6"style="height:375px;background-image: url('/img/ladydev.jpg');background-position:bottom right;background-size:200px 150px;background-repeat: no-repeat;">
+                        <br>
+                            <h6 class="indigo-text  center-align" style="letter-spacing:15px;"><b>OPERATIONS</b></h4><br>
+                        <a style="width:100%;border:2px solid rgb(241, 200, 63);" href="/admin/addjob" class=" btn amber-text white   z-depth-0"><b>ADD JOB</b></a><br><br>
+                        <a style="width:100%;border:2px solid rgb(241, 200, 63);" href="/admin/editjobs" class="btn amber-text white z-depth-0"><b>EDIT JOBS</b></a><br><br>
+                        <a style="width:100%;border:2px solid rgb(241, 200, 63);" href="/admin/addtest" class="btn amber-text white  z-depth-0"><b>ADD TEST</b></a><br><br>
+                        
                         <br><br>
                     </div>
                 </div>
             </div>
-            <div class="col s12" style="height:50px;"></div>
+            </div>
+            </div>
+           
         </div>
 
         <!-- FOOTER START -->
