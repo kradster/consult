@@ -51,10 +51,11 @@ authRouter.post('/signup', (req, res) => {
 authRouter.get('/profile', isauthenticated, (req, res) => {
     let dct = { title: "Dashboard" };
     let data = new Object();
+    console.log(req.user);
     data.fullname = req.user.fullname
     data.email = req.user.email;
+    data.verified = req.user.verified;
     data.phoneno = req.user.phoneno;
-    data.verified = req.user.verified ? "Verified" : "Unverified";
     dct.data = data;
     dct.data.profile = { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] };
     userController.getUserProfile(req.user, (err, profile) => {

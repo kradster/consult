@@ -87,10 +87,18 @@
                                 <br>
                                 <h4><b id="u_name"><%= data.fullname %></b></h4>
                                 <span id="u_email" class="blue-text"><%= data.email %></span>
-                                <div class="ui label green dark-green-text">
-                                    <%= data.verified %>
-                                </div>
-                                <i class="fas fa-check green-text"></i>
+                                <% if (data.verified) { %>
+                                    <div class="ui label green dark-green-text">
+                                        Verified
+                                    </div>
+                                    <i class="fas fa-check green-text"></i>
+                                <% } else {%>
+                                    <a href="/user/resend-email"><div class="ui label red dark-green-text">
+                                        Unverified
+                                    </div></a>
+                                    <i class="fas fa-times red-text"></i>
+                                <% } %>
+
                                 <span id="u_city"><%= data.profile.address.city %></span>
                                 <span id="u_edu"><%= data.profile.address.state %></span>
                             </center>
