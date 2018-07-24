@@ -111,4 +111,19 @@ adminRouter.get('/edit-info/:id', isauthenticated, (req, res) => {
     });
 });
 
+adminRouter.post('/editjob/:id', isauthenticated, (req, res) => {
+    console.log(req.body);
+    adminController.editjob(req.params.id, req.body, (err, job) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/');
+        } else if (job) {
+            res.redirect('/admin/editjobs');
+        } else {
+            res.locals.message.push(["Incorrect parameters", "red"]);
+            return res.redirect('/');
+        }
+    });
+});
+
 module.exports = adminRouter;

@@ -56,6 +56,31 @@ module.exports.getjob = function(id, callback) {
     })
 }
 
+module.exports.editjob = function(id, data, callback) {
+    Job.findOne({ "_id": id }).populate().exec((err, job) => {
+        console.log("job found", job)
+        Object.keys(data).forEach(dat => {
+            if (dat.includes('-')) {
+                pri = dat.split('-')
+                if (pri.length == 2) {
+                    job[pri[0]][pri[1]] = data[dat];
+                } else if (pri.length == 3) {
+                    job[pri[0]][pri[1]][pri[2]] = data[dat];
+                }
+            } else job[dat] = data[dat];
+        });
+        job.save(err => {
+            if (err) {
+                console.log('error in save');
+                return callback(err, null);
+            } else {
+                console.log("edited");
+                return callback(null, job);
+            }
+        });
+    });
+}
+
 module.exports.addAdmin = function(email, callback) {
     User.findOne({ "email": email }, (err, user) => {
         user.role = "ADMIN";
