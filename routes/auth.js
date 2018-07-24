@@ -65,7 +65,6 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
         if (profile) {
             dct.data.profile = profile;
         }
-        console.log(dct.data);
         return res.render("auth/profile", dct);
     });
 });
@@ -86,7 +85,6 @@ authRouter.get('/upcoming-jl-test', (req, res, next) => {
 
 
 authRouter.post('/scheduletest/:id', isauthenticated, (req, res) => {
-    console.log(req.body);
     data = req.body
     let id = req.params.id;
     userController.addTest(req.user, id, data, (err, test) => {

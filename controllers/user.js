@@ -72,11 +72,17 @@ module.exports.getUserProfile = function(user, callback) {
 
 module.exports.addTest = function(user, id, data, callback) {
     Test.findOne({ "_id": new ObjectId(id) }, (err, test) => {
-        user.applied_tests.push({ test: test._id, job: data.job })
-        user.save(err => {
-            console.log(err)
-            return callback(err, test);
-        })
+        flag = user.applied_tests.find(obj => (obj.test.toString()) == (test._id.toString()));
+        if (!flag){
+            user.applied_tests.push({ test: test._id, job: data.job })
+            user.save(err => {
+                if (err) console.error(err);
+                return callback(null, test);
+            })
+        }
+        let newErr = new Error();
+        newErr.errors = [{test: "Error", message: "Test already applied"}];
+        return callback(newErr, null);
     })
 }
 module.exports.addprofile = function(user, data, callback) {
