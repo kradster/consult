@@ -181,7 +181,9 @@
                                 </h6>
                                 <div>
                                     <br>
-                                    <%= job.job.location %>
+                                    <% for(let i=0 ; i<job.job.location.length; i++) { %>
+                                    <% job.job.location[i] %><br>
+                                    <% } %>
                                 </div>
                             </div>
                             <div class="col s12">
@@ -192,6 +194,18 @@
                                 <div>
                                     <br>
                                     <%= job.job.description %>
+                                </div>
+                            </div>
+                            <div class="col s12">
+                                <br>
+                                <h6>
+                                    <b>Requirements</b>
+                                </h6>
+                                <div>
+                                    <br>
+                                    <% for(let i=0 ; i<job.job.requirements.length; i++) { %>
+                                    <% job.job.requirements[i] %><br>
+                                    <% } %>
                                 </div>
                             </div>
                             <!-- <div class="col s12">
