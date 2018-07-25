@@ -37,7 +37,7 @@ authRouter.post('/signup', (req, res) => {
                 return res.redirect('/signup')
             } else {
                 userController.createtoken(user, "VERIFY", (err, token) => {
-                    sendEmail(user.email, "Welcome", { link: req.headers.host + "/user/verify-email/" + token.token }, "verification");
+                    sendEmail(user.email, "Welcome", { link: req.protocol + "://" + req.headers.host + "/user/verify-email/" + token.token }, "verification");
                 })
                 res.locals.messages.push(["Successful signup", "green"]);
                 return res.redirect('/login')
@@ -198,7 +198,7 @@ authRouter.get('/resend-email', isauthenticated, (req, res, next) => {
     }
     userController.createtoken(req.user, "VERIFY", (err, token) => {
         res.locals.messages.push(["A verification link has been sent to your email. Please check your mail.", "green"])
-        sendEmail(req.user.email, "Welcome", { link: req.headers.host + "/user/verify-email/" + token.token }, "verification");
+        sendEmail(req.user.email, "Welcome", { link: req.protocol + "://" + req.headers.host + "/user/verify-email/" + token.token }, "verification");
         return res.redirect('/')
     })
 });

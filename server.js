@@ -35,6 +35,7 @@ app.use(bodyParser.json());
 app.use(upload.array());
 app.set('views', path.join(__dirname, 'views/pages'));
 app.set('view engine', 'ejs');
+app.set('trust proxy', 'loopback');
 app.use(session({
     secret: Config.SESSION_KEY,
     saveUninitialized: true,
