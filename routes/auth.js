@@ -116,6 +116,11 @@ authRouter.get('/myjob', isauthenticated, (req, res) => {
     return res.render("auth/myjob", dct);
 });
 
+authRouter.get('/mytests', isauthenticated, (req, res) => {
+    let dct = { title: "My Tests" };
+    return res.render('auth/mytests', dct);
+});
+
 authRouter.get('/editcv', isauthenticated, (req, res) => {
     let profile = req.user.profile ? req.user.profile : { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] };
     let dct = { title: "Edit Cv", user: req.user, profile: profile };
