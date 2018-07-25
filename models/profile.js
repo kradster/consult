@@ -49,7 +49,7 @@ var Profile = new Schema({
             type: Date,
         },
         aadharno: {
-            type: [Number, "Only digits are allowed"],
+            type: Number,
             trim: true,
             maxlength: [12, "Aadhar number is of 12 digit"],
             minlength: [12, "Aadhar number is of 12 digit"]
