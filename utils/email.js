@@ -1,6 +1,6 @@
 let nodemailer = require('nodemailer');
 var ejs = require("ejs");
-let Config = require('../config.json');
+let Config = require('../config');
 var path = require('path');
 
 

@@ -119,6 +119,10 @@ authRouter.get('/myjob', isauthenticated, (req, res) => {
 authRouter.get('/mytests', isauthenticated, (req, res) => {
     let dct = { title: "My Tests" };
     let data = new Object();
+<<<<<<< HEAD
+=======
+    console.log(req.user);
+>>>>>>> 20ca1d1568e02a52b158db851b5cbe3acd46be4f
     data.fullname = req.user.fullname
     data.email = req.user.email;
     data.verified = req.user.verified;
@@ -135,6 +139,10 @@ authRouter.get('/mytests', isauthenticated, (req, res) => {
         }
         return res.render("auth/mytests", dct);
     });
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 20ca1d1568e02a52b158db851b5cbe3acd46be4f
 });
 
 authRouter.get('/editcv', isauthenticated, (req, res) => {

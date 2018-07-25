@@ -70,47 +70,45 @@
                 <div class="col s12" style="height:100px;"></div>
                 <div class="row">
                     <div class="col s12">
-                        <h3 class="indigo-text hide-on-small-only">CV BUILDER</h3>
+                        <h3 class="indigo-text hide-on-small-only center-align">CV BUILDER</h3>
                         <h4 class="indigo-text show-on-small-only hide-on-med-and-up">CV BUILDER</h4>
                     </div>
-                    <div class="col s6">
-                        <a class="btn light-blue white-text z-depth-0" style="border-radius:3px;width:100px;margin-top:35px" onclick="save()"><b>Save</b></a>
-                    </div>
-                    <div class="col s6">
-                        <a class="btn light-blue white-text z-depth-0" style="border-radius:3px;width:100px;margin-top:35px" href="/profile"><b>Cancel</b></a>
+                    <div class="col s4 offset-s4">
+                        <center>
+                            <a class="col s12 btn light-blue btn-large white-text z-depth-0" style="border-radius:5px;" onclick="save()"><b>Save</b></a>
+                        </center>
                     </div>
                 </div>
                 <div class="card z-depth-0 col s12" style="padding:10px;">
-                    <div id="form1" class="card z-depth-0 col s12" style="padding:10px;">
-                        <h5 class="hide-on-small-only">
+                    <div id="form1" class="card z-depth-0 col s12" style="padding:10px;display:none;">
+                        <div class="col l6 offset-l3 card z-depth-5" style="padding:10px;border-radius:10px;">
+                        <h6 class="hide-on-small-only center-align" style="letter-spacing:10px;">
                             <b>PERSONAL DETAILS</b>
-                        </h5>
+                        </h6>
                         <h6 class="hide-on-med-and-up show-on-small-only">
                             <b>PERSONAL DETAILS</b>
                         </h6>
-                        <br>
-                        <br>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div>Enter your name here </div>
                             <input type="text" name="fullname" id="details-fullname" value="<%= user.fullname %>" style="padding:5px;">
                         </div>
 
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div>Enter your father's name here </div>
                             <input type="text" name="details_fathername" id="details-father_name" value="<%= profile.details.father_name %>"style="padding:5px;">
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div>Enter your DOB here </div>
                             <input type="date" name="details_dob" id="details-dob" value="<%= profile.details.dob %>"style="padding:5px;">
                         </div>
                         <!-- <div class="input-field col s6">
                         <input type="text" id="city" value="City">
                     </div> -->
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6  s12">
                                 <div>Enter your Aadhar no here </div>
                             <input type="text" name="aadharno" id="details-aadharno" value="<%= profile.details.aadharno %>" style="padding:5px;">
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div class="col l4 s12">
                                 <label>
                                 <input name="details_gender" value="male" id="details-gender" type="radio" <%= profile.details.gender=="male"?"checked":""%> />
@@ -127,34 +125,35 @@
                         </div>
 
 
-                        <div class="input-field col s6 offset-s3">
+                        <div class="input-field col s12">
                             <input class="btn btn-large indigo col s12" type="button" value="Next" id="step1">
+                        </div>
                         </div>
 
                     </div>
+
                     <div id="form2" class="card z-depth-0 col s12" style="padding:10px;display:none;">
-                        <h5>
+                        <div class="col l6 offset-l3 card z-depth-5" style="padding:10px;border-radius:10px;">
+                        <h6 class="center-align"style="letter-spacing:10px;">
                             <b>ADDRESS DETAILS</b>
-                        </h5>
-                        <br>
-                        <br>
-                        <div class="input-field col l6 offset-l3 s12">
+                        </h6>
+                        <div class="input-field col l6  s12">
                             <div>Enter your address here</div>
                             <input type="text" name="fulladdress" id="address-full_address" value="<%= profile.address.full_address %>"style="padding:5px;">
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6  s12">
                             <div>Enter your city here</div>
                             <input type="text" name="city" id="address-city" value="<%= profile.address.city %>"style="padding:5px;">
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             
                             <select class="no-autoinit" name="address-state" id="address-state" style="padding:5px;">
                                 <option value="" disabled selected>Choose your course</option>
                                 <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
                             </select>
-                            <!--                             <input type="text" name="state" id="address-state" "State" value="<%= profile.address.state %>">
- --></div>
-                        <div class="input-field col l6 offset-l3 s12">
+                            </div>
+                            
+                        <div class="input-field col l6 s12">
                             <div>Enter your zip code here</div>
                             <input type="text" name="zipcode" id="address-pincode" value="<%= profile.address.pincode %>" style="padding:5px;">
                         </div>
@@ -166,74 +165,77 @@
                             <input class="btn btn-large indigo col s12" type="button" value="Next" id="step2">
                         </div>
                         </div>
-
+                        </div>
                     </div>
+                    
                     <div id="form3" class="card z-depth-0 col s12" style="padding:10px;display:none;">
-                        <h5>
+                        <h6 class="center-align" style="letter-spacing:10px;">
                             <b>EDUCATION DETAILS</b>
                         </h5>
-                        <br>
+                        <div class="col l6  card z-depth-5" style="padding:10px;border-radius:10px;transform:scale(.9)">
                         <div class="ui label col s12">10TH</div>
                         <br>
 
                         <div class="holder">
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l6  s12">
                                     <div>Institute Name</div>
                                 <input id="education-high-institute_name" type="text" name="school10"  value="<%= profile.education.high.institute_name %>">
                             </div>
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l6  s12">
                                 <div>Board</div>
                                 <input id="education-high-board" type="text" name="board10"  value="<%= profile.education.high.board %>">
                             </div>
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l6 s12">
                                 <div>Course</div>
                                 <input id="education-high-course" type="text" name="course10"  value="<%= profile.education.high.course %>">
                             </div>
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l6  s12">
                                 <div>Marks</div>
                                 <input id="education-high-marks" type="text" name="marks10"  value="<%= profile.education.high.marks %>">
                             </div>
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l12  s12">
                                 <div>Passing Year</div>
                                 <input id="education-high-passing_year" type="text" name="year10"  value="<%= profile.education.high.passing_year %>">
                             </div>
                         </div>
-                        <br>
+                        </div>
+                        <div class="col l6  card z-depth-5" style="padding:10px;border-radius:10px;transform:scale(.9)">
                         <div class="ui label col s12">12TH</div>
                         <br>
                         <div class="holder">
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l6 s12">
                                 <div>Full Name</div>
                                 <input id="education-intermediate-institute_name" type="text" name="school12"  value="<%= profile.education.intermediate.institute_name %>">
                             </div>
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l6 s12">
                                 <div>Board</div>
                                 <input id="education-intermediate-board" type="text" name="board12"  value="<%= profile.education.intermediate.board %>">
                             </div>
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l6  s12">
                                 <div>Course</div>
                                 <input id="education-intermediate-course" type="text" name="course12"  value="<%= profile.education.intermediate.course %>">
                             </div>
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l6  s12">
                                 <div>Marks in % / CGPA</div>
                                 <input id="education-intermediate-marks" type="text" name="marks12"  value="<%= profile.education.intermediate.marks %>">
                             </div>
-                            <div class="input-field col l6 offset-l3 s12">
+                            <div class="input-field col l12 s12">
                                 <div>Passing Year</div>
                                 <input id="education-intermediate-passing_year" type="text" name="year12" "" value="<%= profile.education.intermediate.passing_year %>">
                             </div>
                         </div>
+                        </div>
+                        <div class="col l6  card z-depth-5" style="padding:10px;border-radius:10px;transform:scale(.9)">
                         <div class="ui label col s12">GRADUATION</div>
-                        <br>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div>Institute Name</div>
                             <input id="education-graduation-institute_name" type="text" name="collegename"  value="<%= profile.education.graduation.institute_name %>">
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div>Board</div>
                             <input id="education-graduation-board" type="text" name="collegeboard"  value="<%= profile.education.graduation.board %>">
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l12 s12">
                             <select class="no-autoinit" name="collegecourse" id="education-graduation-course" "Course">
                             <option value="" disabled selected>Choose your course</option>
                             <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
@@ -281,22 +283,24 @@
 
                         </select>
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div>Marks</div>
                             <input id="education-graduation-marks" type="text" name="collegemarks"  value="<%= profile.education.graduation.marks %>">
                         </div>
-
+                        
+                        </div>
+                        
+                        <div class="col l6  card z-depth-5" style="padding:10px;border-radius:10px;transform:scale(.9)">
                         <div class="ui label col s12">POST GRADUATION</div>
-                        <br>
-                        <div class="input-field  col l6 offset-l3 s12">
+                        <div class="input-field  col l6  s12">
                             <div>Institute Name</div>
                             <input id="education-post_graduation-institute_name" type="text" name="postcollegename"  value="<%= profile.education.post_graduation.institute_name %>">
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div>Board</div>
                             <input id="education-post_graduation-board" type="text" name="postcollegeboard"  value="<%= profile.education.post_graduation.board %>">
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l12 s12">
                             <select class="no-autoinit" name="postcollegecourse" id="education-post_graduation-course" data-tooltip="Course">
                                 <option value="" disabled selected>Choose your course</option>
                                 <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
@@ -344,35 +348,37 @@
     
                             </select>
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div>Marks</div>
                             <input id="education-post_graduation-marks" type="text" name="postcollegemarks"  value="<%= profile.education.post_graduation.marks %>">
                         </div>
-                        <div class="input-field col l6 offset-l3 s12">
+                        <div class="input-field col l6 s12">
                             <div>Passing Year</div>
                             <input id="education-post_graduation-passing_year" type="text" name="postcollegename"  value="<%= profile.education.post_graduation.passing_year %>">
                         </div>
-                        <div class="col s6 l6 offset-l3 s12">
-                        <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
+                        
                         </div>
-                        <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
-                        </div>
+                        <div class="col l4 offset-l4 card z-depth-5  s12" style="border-radius:10px;">
+                                <div class="input-field col s6">
+                                    <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
+                                </div>
+                                <div class="input-field col s6">
+                                    <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
+                                </div>
                         </div>
                     </div>
-                    <div id="form4" class="card z-depth-0 col s12" style="padding:10px;display:none;">
-                        <div class="col l10 s12">
+
+                    <div id="form4" class="card z-depth-0 col s12" style="padding:10px;">
+                        <div class="col l12 s12">
                             <h6>
                                 <b>PROJECTS/INTERNSHIPS/JOBS</b>
                             </h6>
-                        <div class="col s12"> <input id="addmoreprojects" type="button" class="ui button mini white-text blue accent-4" value="Add More"></div>
                         </div>
                         <!-- <div class="col s1"> <input id="removeprojects" type="button" class="ui button mini white-text blue accent-4" value="Remove Fields"></div>
                         <br> -->
                         <div id="jobspanel">
                             <% for(let i=0 ; i<profile.experience.length; i++) { %>
-                                <div class="col s12 grey lighten-4">
+                                <div class="col l12 card z-depth-2" style="border-radius:10px;">
                                     <div class="input-field col l2 s12">
                                         <select name="projecttype" class="no-autoinit">
                                         <option value="Internship" <% if(profile.experience[i].type=="Internship") { %>selected<% } %>>Internship</option>
@@ -389,15 +395,17 @@
                                     <div class="input-field col l2 s12">
                                         <input type="text" name="projectdetails" id="projects" placeholder="Description" value="<%= profile.experience[i].description %>">
                                     </div>
-                                    <div class="input-field col l3 s12">
-                                        <input class="col l5 s12" type="datetime" name="projectstartdate" id="startdate"  value="<%= profile.experience[i].start_date %>">
-                                        <input class="col l5 s12" type="datetime" name="projectenddate" id="enddate"  value="<%= profile.experience[i].end_date %>">
+                                    <div class="input-field col l4 s12">
+                                        <input class="col l4 s12" type="text" name="projectstartdate" id="startdate"  value="<%= profile.experience[i].start_date %>">
+                                        <input class="col l4 offset-l1 s12" type="text" name="projectenddate" id="enddate"  value="<%= profile.experience[i].end_date %>">
                                     </div>
 
                                 </div>
                                 <% } %>
                         </div>
-                        <div class="col l6 offset-l3 s12">
+                        <div class="col s12"> <input id="addmoreprojects" type="button" class="ui button mini white-text blue accent-4" value="Add More"></div>
+
+                        <div class="col l4 offset-l4 card z-depth-5  s12" style="border-radius:10px;">
                         
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
@@ -409,23 +417,23 @@
 
                     </div>
                     <div id="form5" class="card z-depth-0 col s12" style="padding:10px;display:none;">
-                        <h5>
+                        <div class="col l6 offset-l3 card z-depth-5" style="padding:10px;border-radius:10px;">
+                        <h6 class="center-align" style="letter-spacing:10px;">
                             <b>SKILL</b>
-                        </h5>
+                        </h6>
                         <br>
                         <div id="skillspanel">
                             <div class="col s12">
                                 <% for(let i=0 ; i<profile.skills.length; i++){ %>
-                                    <div class="input-field col l10 s12">
-                                        <div>Enter Your Skills</div>
-                                        <input type="text" name="skills" value="<%= profile.skills[i] %>">
+                                    <div class="ui label red white-text large">
+                                        <%= profile.skills[i] %>
                                     </div>
                                     <% } %>
                             </div>
                         </div>
-                        <div class="col l6 offset-l3 s12">
-                                <div class="input-field col l2 s12">
-                                        <input id="addmoreskills" type="button" class="ui button white-text mini blue accent-4" value="Add More">
+                        <div class="col l12 s12">
+                                <div class="input-field col l12 s12">
+                                        <input id="addmoreskills" type="button" class="col s12 ui button white-text mini blue accent-4" value="Add More">
                                     </div>
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back4">
@@ -434,21 +442,23 @@
                             <input class="btn btn-large indigo col s12" type="button" value="Next" id="step5">
                         </div>
                         </div>
+                        </div>
                     </div>
                     <br>
                     <br>
                     <div id="fulldetials" class="col s12 no-padd" style="padding:10px;display:none;">
+                            <div class="col l6 offset-l3 s12 card z-depth-5" style="padding:10px;border-radius:10px;">
                         <div class="card z-depth-0 col s12" style="padding:10px;">
-                            <h5>
+                            <h5 class="center-align" style="letter-spacing:10px;">
                                 <b>JOB EXPECTATIONS</b>
                             </h5>
                             <br>
 
-                            <div class="input-field col s6 offset-s3">
+                            <div class="input-field col s12">
                                 <div>Enter Preferred city</div>
                                 <input type="text" name="joblocation">
                             </div>
-                            <div class="input-field col s6 offset-s3">
+                            <div class="input-field col s12">
                                 <div>Available to join</div>
                                 <input class="datepicker" type="text" name="jobavailability">
                             </div>
@@ -463,12 +473,13 @@
                             </center>
                         </div>
                     </div>
+                    </div>
                 </div>
             </form>
         </div>
 
         <!-- FOOTER START -->
-        <% include ../../partials/pre_footer %>
+        <% include ../../partials/post_footer %>
             <!-- FOOTER END -->
 
             <!-- Compiled and minified JavaScript -->

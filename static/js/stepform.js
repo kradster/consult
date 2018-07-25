@@ -39,13 +39,13 @@ $BACK5.on('click', _funcB5);
 
 function nextStep(showform, hideform) {
     showform.css('display', 'block');
-    showform.addClass('animated zoomIn');
+    showform.addClass('animated fadeIn');
     hideform.css('display', 'none');
 }
 
 function backStep(showform, hideform) {
     showform.css('display', 'block');
-    showform.addClass('animated zoomIn');
+    showform.addClass('animated fadeIn');
     hideform.css('display', 'none');
 }
 
@@ -95,8 +95,8 @@ function _funcB5() {
 }
 
 function AddMoreProjects(element) {
-    element.append(`<div class="col s12 grey lighten-4">
-    <div class="input-field col l2 s12">
+    element.append(`<div class="col l5 offset-l1 card z-depth-2" style='border-radius:10px'>
+    <div class="input-field col l6 s12">
         <select name="projecttype" class="no-autoinit">
             <option value="" disabled selected>Choose your course</option>
             <option value="Internship">Internship</option>
@@ -104,22 +104,21 @@ function AddMoreProjects(element) {
             <option value="Project">Project</option>
         </select>
     </div>
-    <div class="input-field col l2 s12">
+    <div class="input-field col l6 s12">
         <input class="center-align" type="text" name="projectrole" id="projects" placeholder="title/role">
     </div>
-    <div class="input-field col l2 s12">
+    <div class="input-field col l6 s12">
         <input class="center-align" type="text" name="projectinstitute" id="projects" placeholder="organization">
     </div>
-    <div class="input-field col l2 s12">
+    <div class="input-field col l6 s12">
         <input class="center-align" type="text" name="projectdetails" id="projects" placeholder="About work">
     </div>
-    <div class="input-field col l2 s12">
+    <div class="input-field col l5 s12">
         <input class="center-align"  type="date" name="projectstartdate" id="startdate" placeholder="Start Date">
     </div>
-    <div class="input-field col l2 s12">
+    <div class="input-field col l5  s12">
         <input class="center-align"  type="date" name="projectenddate" id="enddate" placeholder="End Date">
     </div>
-    <hr>
 </div>`);
 }
 
