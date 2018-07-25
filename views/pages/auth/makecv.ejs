@@ -75,13 +75,12 @@
                     </div>
                     <div class="col s4 offset-s4">
                         <center>
-                            <a class="btn light-blue white-text z-depth-0" style="border-radius:3px;width:100px;margin-top:35px" onclick="save()"><b>Save</b></a>
-                            <a class="btn light-blue white-text z-depth-0" style="border-radius:3px;width:100px;margin-top:35px" href="/profile"><b>Cancel</b></a>
+                            <a class="col s12 btn light-blue btn-large white-text z-depth-0" style="border-radius:5px;" onclick="save()"><b>Save</b></a>
                         </center>
                     </div>
                 </div>
                 <div class="card z-depth-0 col s12" style="padding:10px;">
-                    <div id="form1" class="card z-depth-0 col s12" style="padding:10px;">
+                    <div id="form1" class="card z-depth-0 col s12" style="padding:10px;display:none;">
                         <div class="col l6 offset-l3 card z-depth-5" style="padding:10px;border-radius:10px;">
                         <h6 class="hide-on-small-only center-align" style="letter-spacing:10px;">
                             <b>PERSONAL DETAILS</b>
@@ -357,18 +356,19 @@
                             <div>Passing Year</div>
                             <input id="education-post_graduation-passing_year" type="text" name="postcollegename"  value="<%= profile.education.post_graduation.passing_year %>">
                         </div>
-                        <div class="col l12  s12">
-                        <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
+                        
                         </div>
-                        <div class="input-field col s6">
-                            <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
-                        </div>
-                        </div>
+                        <div class="col l4 offset-l4 card z-depth-5  s12" style="border-radius:10px;">
+                                <div class="input-field col s6">
+                                    <input class="btn btn-large indigo col s12" type="button" value="Back" id="back2">
+                                </div>
+                                <div class="input-field col s6">
+                                    <input class="btn btn-large indigo col s12" type="button" value="Next" id="step3">
+                                </div>
                         </div>
                     </div>
 
-                    <div id="form4" class="card z-depth-0 col s12" style="padding:10px;display:none;">
+                    <div id="form4" class="card z-depth-0 col s12" style="padding:10px;">
                         <div class="col l12 s12">
                             <h6>
                                 <b>PROJECTS/INTERNSHIPS/JOBS</b>
@@ -405,7 +405,7 @@
                         </div>
                         <div class="col s12"> <input id="addmoreprojects" type="button" class="ui button mini white-text blue accent-4" value="Add More"></div>
 
-                        <div class="col l6 offset-l3 s12">
+                        <div class="col l4 offset-l4 card z-depth-5  s12" style="border-radius:10px;">
                         
                         <div class="input-field col s6">
                             <input class="btn btn-large indigo col s12" type="button" value="Back" id="back3">
