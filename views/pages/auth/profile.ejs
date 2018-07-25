@@ -21,12 +21,12 @@
         div.col.s12>button{
             transition:all .3s ease-in-out;
             height:50px !important;
+            margin-top:10px !important;
             top:3px;
         }
         .active-tab{
             border:3px solid rgb(16, 59, 248) !important;
             background-color:rgb(16, 59, 248) !important;
-            margin-top:10px !important;
             position: relative;
             top:3px;
             color:#fff !important;
@@ -85,7 +85,8 @@
                         <div class="col s12">
                             <center>
                                 <br>
-                                <h4><b id="u_name"><%= data.fullname %></b></h4>
+                                <h4 class="hide-on-small-only"><b id="u_name"><%= data.fullname %></b></h4>
+                                <h5 class="hide-on-med-and-up show-on-small-only"><b id="u_name"><%= data.fullname %></b></h5>
                                 <span id="u_email" class="blue-text"><%= data.email %></span>
                                 <% if (data.verified) { %>
                                     <div class="ui label green dark-green-text">
@@ -128,6 +129,9 @@
                                     <a id="l6" href="/user/editcv" class="z-depth-0 btn white indigo-text text-lighten-1 accent-4">
                                         <b>EDIT PROFILE</b>
                                     </a>
+                                    <a id="l6" href="/user/mytests" class="z-depth-0 btn white indigo-text text-lighten-1 accent-4">
+                                        <b>MY TEST</b>
+                                    </a>
                                 </center>
                                                 
                             
@@ -145,18 +149,18 @@
 
         <div class="row no-padd grd"style="background-image:url('/img/userprofile.png');background-position:right bottom;background-repeat: no-repeat;background-attachment: fixed;">
             <div class="row no-padd">
-                <div class="col  l8 offset-l2 s10 offset-s1 card no-padd z-depth-0" style="background:transparent">
-                    <div class="col s12 no-padd">
+                <div class="col  l8 offset-l2 s12  card no-padd z-depth-0" style="background:transparent">
+                    <div class="col s12 no-padd white">
                         <h5 style="padding-left:10px;">
                             <b>My Profile</b>
                         </h5>
                     </div>
                     <div class="col s12 no-padd">
                         <div class="col s12 no-padd">
-                            <button style="border-radius:0px;border-bottom:3px solid #fff;" id="tab1" class="active-tab no-padd col l2 s12 btn z-depth-0 grey-text lighten-2 white">Personal Details</button>
-                            <button style="border-radius:0px;border-bottom:3px solid #fff;" id="tab2" class="no-padd col l2 s12 btn z-depth-0 grey-text lighten-2 white">Education</button>
-                            <button style="border-radius:0px;border-bottom:3px solid #fff;" id="tab3" class="no-padd col l2 s12 btn z-depth-0 grey-text lighten-2 white">Technical</button>
-                            <button style="border-radius:0px;border-bottom:3px solid #fff;" id="tab4" class="no-padd col l2 s12 btn z-depth-0 grey-text lighten-2 white">View CV</button>
+                            <button style="border-radius:0px;border-bottom:3px solid #fff;" id="tab1" class="active-tab no-padd col l2 s3 btn z-depth-0 grey-text lighten-2 white"><i class="fas fa-user fa-2x"></i></button>
+                            <button style="border-radius:0px;border-bottom:3px solid #fff;" id="tab2" class="no-padd col l2 s3 btn z-depth-0 grey-text lighten-2 white"><i class="fas fa-graduation-cap fa-2x"></i></button>
+                            <button style="border-radius:0px;border-bottom:3px solid #fff;" id="tab3" class="no-padd col l2 s3 btn z-depth-0 grey-text lighten-2 white"><i class="fas fa-wrench fa-2x"></i></button>
+                            <button style="border-radius:0px;border-bottom:3px solid #fff;" id="tab4" class="no-padd col l2 s3 btn z-depth-0 grey-text lighten-2 white"><i class="fas fa-file-alt fa-2x"></i></button>
                         </div>
 
                         <div id="panel1" class="animated fadeIn col s12">
@@ -723,14 +727,14 @@
 
                 </div>
             </div>
-            <div class="col s12" style="height:50px;"></div>
+            
         </div>
         </div>
 
         
 
         <!-- FOOTER START -->
-        <% include ../../partials/pre_footer %>
+        <% include ../../partials/post_footer %>
             <!-- FOOTER END -->
             <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
             <script src="../js/profiletab.js"></script>

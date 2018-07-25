@@ -118,7 +118,25 @@ authRouter.get('/myjob', isauthenticated, (req, res) => {
 
 authRouter.get('/mytests', isauthenticated, (req, res) => {
     let dct = { title: "My Tests" };
-    return res.render('auth/mytests', dct);
+    let data = new Object();
+    console.log(req.user);
+    data.fullname = req.user.fullname
+    data.email = req.user.email;
+    data.verified = req.user.verified;
+    data.phoneno = req.user.phoneno;
+    dct.data = data;
+    dct.data.profile = { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] };
+    userController.getUserProfile(req.user, (err, profile) => {
+        if (err) {
+            console.error(err);
+            return res.render("auth/mytests", dct);
+        }
+        if (profile) {
+            dct.data.profile = profile;
+        }
+        return res.render("auth/mytests", dct);
+    });
+    
 });
 
 authRouter.get('/editcv', isauthenticated, (req, res) => {
