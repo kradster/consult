@@ -135,4 +135,14 @@ adminRouter.post('/edit-info/:id', isauthenticated, (req, res) => {
     });
 });
 
+adminRouter.get('/viewusers', isauthenticated, (req, res) => {
+    let dct = { title: "Users" };
+    adminController.getusers((err, users) => {
+        if (err) console.log(err);
+        dct.users = users;
+        res.render('admin/viewusers', dct);
+    });
+
+});
+
 module.exports = adminRouter;

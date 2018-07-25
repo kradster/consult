@@ -81,6 +81,13 @@ module.exports.editjob = function(id, data, callback) {
     });
 }
 
+module.exports.getusers = function(callback) {
+    User.find({}).populate({ path: 'profile', populate: { path: 'experience', model: 'Experience', populate: { path: "experience" } } }).exec((err, users) => {
+        if (err) return callback(err, null);
+        return callback(null, users);
+    });
+}
+
 module.exports.addAdmin = function(email, callback) {
     User.findOne({ "email": email }, (err, user) => {
         user.role = "ADMIN";
