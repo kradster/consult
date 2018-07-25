@@ -58,10 +58,30 @@
                                     Verfied: <%= users[i].verified %><br>
                                     Email: <%= users[i].email %><br>
                                     Phone No.: <%= users[i].phoneno %><br>
-                                    Created At: <% users[i].createdAt %><br>
                                     Role: <%= users[i].role %><br>
+                                    <a href="#modal<%= users[i]._id %>" class="btn right modal-trigger">View all data</a>
                                 </div>
                                 <div class="row"></div>
+
+                                <!-- Modal Structure -->
+                                <div id="modal<%= users[i]._id %>" class="modal">
+                                    <div class="modal-content">
+                                        <h4><%= users[i].name.first %> <%= users[i].name.last %></h4>
+                                        <p>Verfied: <%= users[i].verified %>,
+                                    Email: <%= users[i].email %>,
+                                    Phone No.: <%= users[i].phoneno %>,
+                                    Role: <%= users[i].role %></p>
+                                        <p><%= users[i].profile %></p>
+                                        <p>Father's Name: <%= users[i].profile.details.father_name %></p>
+                                        <p>Aadhar No.: <%= users[i].profile.details.aadharno %></p>
+                                        <p>Gender: <%= users[i].profile.details.gender %></p>
+                                        <p>Education: <%= users[i].profile.education.high.institute_name %></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                                    </div>
+                                </div>
+
                             </div>
                             <% } %>
                     </div>
