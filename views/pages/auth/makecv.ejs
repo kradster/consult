@@ -99,7 +99,7 @@
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Enter your DOB here </div>
-                            <input type="date" name="details_dob" id="details-dob" value="<%= (new Date(user.profile.details.dob)).toLocaleDateString() %>"style="padding:5px;">
+                            <input type="date" name="details_dob" id="details-dob" value="<%= (new Date(profile.details.dob)) %>"style="padding:5px;">
                         </div>
                         <!-- <div class="input-field col s6">
                             <input type="text" id="city" value="City">
@@ -196,7 +196,7 @@
                             </div>
                             <div class="input-field col l12  s12">
                                 <div>Passing Year</div>
-                                <input id="education-high-passing_year" type="text" name="year10"  value="<%= profile.education.high.passing_year %>">
+                                <input id="education-high-passing_year" type="text" name="year10"  value="<%= (new Date(profile.education.high.passing_year)).getFullYear() %>">
                             </div>
                         </div>
                         </div>
@@ -222,7 +222,7 @@
                             </div>
                             <div class="input-field col l12 s12">
                                 <div>Passing Year</div>
-                                <input id="education-intermediate-passing_year" type="text" name="year12" "" value="<%= profile.education.intermediate.passing_year %>">
+                                <input id="education-intermediate-passing_year" type="text" name="year12" "" value="<%= (new Date(profile.education.intermediate.passing_year)).getFullYear() %>">
                             </div>
                         </div>
                         </div>
@@ -287,6 +287,10 @@
                         <div class="input-field col l6 s12">
                             <div>Marks</div>
                             <input id="education-graduation-marks" type="text" name="collegemarks"  value="<%= profile.education.graduation.marks %>">
+                        </div>
+                        <div class="input-field col l6 s12">
+                            <div>Passing Year</div>
+                            <input id="education-graduation-passing_year" type="text" name="collegeyear"  value="<%= (new Date(profile.education.graduation.passing_year)) %>">
                         </div>
                         
                         </div>
@@ -355,7 +359,7 @@
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Passing Year</div>
-                            <input id="education-post_graduation-passing_year" type="text" name="postcollegename"  value="<%= profile.education.post_graduation.passing_year %>">
+                            <input id="education-post_graduation-passing_year" type="text" name="postcollegename"  value="<%= (new Date(profile.education.post_graduation.passing_year)).getFullYear() %>">
                         </div>
                         
                         </div>

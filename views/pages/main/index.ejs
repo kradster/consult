@@ -147,7 +147,7 @@
                                     <div class="col s12 no-padd ">
                                             <div class="col l6 offset-l3 no-padd s12">
                                                 <div class="col  s12">
-                                                <form class="col s12 no-padd" action="/signup" method="GET">
+                                                <form class="col s12 no-padd" action="/subscribe" method="POST">
                                                     <div class="card col no-padd s12 z-depth-5" style="padding:10px;border-radius:20px;overflow: hidden;">
                                                         <div class="col s12 no-padd" style="height:200px;overflow: hidden;">
                                                             <img style="width:100%;" src="/img/getstarted.jpg" alt="">
@@ -185,7 +185,7 @@
                         <div class="col s12 no-padd ">
                                 <div class="col l6 offset-l3 no-padd s12">
                                     <div class="col  s12">
-                                    <form class="col s12 no-padd" action="/signup" method="GET">
+                                    <form class="col s12 no-padd" action="/subscribe" method="POST">
                                         <div class="card col no-padd s12 z-depth-0" style="padding:10px;border-radius:10px;">
                                             <div class="col s12 no-padd" style="height:200px;overflow: hidden;">
                                                 <img style="width:100%;" src="/img/getstarted.jpg" alt="">
@@ -556,41 +556,8 @@
         <script>
             $(document).ready(function() {
                 M.AutoInit();
-                $('#GetStarted').on('click', function(e) {
-                    e.preventDefault();
-                    localStorage.setItem('name', $('#name').val());
-                    localStorage.setItem('email', $('#email').val());
-                    location.href = location.origin + "/signup "
-                });
             });
 
-            function subscribe() {
-                let email = $("#email_val").val();
-                console.log('asdf', $("#email").val());
-
-                obj = {email: email};
-                $.ajax({
-                    url: window.location.origin + "/subscribe",
-                    method: "POST",
-                    data: obj,
-                    success: function(response) {
-                        console.log(response);
-                        array = response.messages
-                        array.forEach(a => {
-                            M.toast({
-                                html: "<b>" + a[0] + "</b>",
-                                classes: a[1]
-                            });
-
-                        });
-
-                    },
-                    error: function(err) {
-                        console.log(err);
-                    }
-                });
-            }
-            $('#email_submit').on('click', subscribe);
             $("a.brand-logo > img").css('margin-left','0px');
         </script>
         <script>

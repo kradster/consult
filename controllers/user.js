@@ -78,26 +78,25 @@ module.exports.addTest = function(user, id, data, callback) {
             console.error(err);
             return callback(err, null);
         }
-        flag = BookTest.findOne({test: test._id, user: user._id}, (err, oldtest)=>{
+        flag = BookTest.findOne({ test: test._id, user: user._id }, (err, oldtest) => {
             console.log('test', test, oldtest);
-            if (err){
+            if (err) {
                 console.log(err);
                 return callback(err, null);
             }
-            if (!oldtest){
-                newBooking = new BookTest({ test: test._id, job: data.job, user: user._id})
-                newBooking.save((err, book)=>{
+            if (!oldtest) {
+                newBooking = new BookTest({ test: test._id, job: data.job, user: user._id })
+                newBooking.save((err, book) => {
                     if (err) console.error(err);
-                    user.applied_tests.push({ test: newBooking._id});
+                    user.applied_tests.push({ test: newBooking._id });
                     user.save(err => {
                         if (err) console.error(err);
                         return callback(null, test);
                     })
                 })
-            }
-            else{
+            } else {
                 let newErr = new Error();
-                newErr.errors = [{test: "Error", message: "Test already applied"}];
+                newErr.errors = [{ test: "Error", message: "Test already applied" }];
                 return callback(newErr, null);
             }
         });

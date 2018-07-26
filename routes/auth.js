@@ -119,16 +119,17 @@ authRouter.get('/myjob', isauthenticated, (req, res) => {
 
 authRouter.get('/mytests', isauthenticated, (req, res) => {
     let dct = { title: "My Tests" };
-    if (req.user.applied_tests){
+    if (req.user.applied_tests) {
         dct['tests'] = req.user.applied_tests;
-    }
-    else dct['tests'] = [];
+    } else dct['tests'] = [];
     return res.render('auth/mytests', dct);
 });
 
 authRouter.get('/editcv', isauthenticated, (req, res) => {
     let profile = req.user.profile ? req.user.profile : { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] };
+
     let dct = { title: "Edit Cv", user: req.user, profile: profile };
+    console.log(dct);
     return res.render("auth/makecv", dct);
 });
 

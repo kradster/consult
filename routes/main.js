@@ -175,21 +175,12 @@ mainRouter.post('/subscribe', (req, res) => {
         if (req.body.email != "") {
             subscriberController.subscribe_email(req.body.email, req.body.name, (err, data) => {
                 if (err) {
-                    res.send({
-                        success: false,
-                        messages: [
-                            [err.message, "red"]
-                        ]
-                    });
-                    return
+                    res.locals.messages.push([err.message, "red"]);
+                    return res.redirect('/');
                 }
                 sendEmail(req.body.email, "Email Newsletter Subscribed", { link: req.headers.host }, "verification");
-                res.send({
-                    success: true,
-                    messages: [
-                        ["Subscribed to Joblana Job Alerts!!", "green"]
-                    ]
-                });
+                res.locals.messages.push(["Successfully subscribed to Joblana Job Alerts!!", "green"]);
+                res.redirect('/');
             });
 
         }
