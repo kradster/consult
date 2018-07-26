@@ -94,8 +94,9 @@ module.exports.addTest = function(user, id, data, callback) {
                     user.save(err => {
                         if (err) {
                             console.error(err);
-                            return callback(null, test);
+                            return callback(err, null);
                         }
+                        return callback(null, test)
                     })
                 })
             }
