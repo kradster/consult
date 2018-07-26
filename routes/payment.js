@@ -31,7 +31,7 @@ paymentRouter.post('/create-request', isauthenticated, (req, res, next) => {
                     amount: amount,
                     phone: req.user.phoneno,
                     buyer_name: req.user.fullname,
-                    redirect_url: Config.REQ_PROTOCOL + "://" + Config.REQ_HOST + "/user/profile",
+                    redirect_url: Config.REQ_PROTOCOL + "://" + Config.REQ_HOST + "/payment/redirect",
                     send_email: true,
                     webhook: Config.REQ_PROTOCOL + "://" + Config.REQ_HOST + "/payment/webhook",
                     send_sms: false,
@@ -72,7 +72,14 @@ paymentRouter.post('/create-request', isauthenticated, (req, res, next) => {
 
 paymentRouter.post('/webhook', (req, res, next) => {
     console.log(req.body);
+    console.log(typeof(req.body));
     console.log(req.headers);
-    res.send({status: 200});
+    return res.send({status: 200});
 });
+
+paymentRouter.post('/redirect', (req, res, next) => {
+    res.locals.messages.push(["Your Payment is successful", "green"]);
+    return res.redirect("/user/profile");
+});
+
 module.exports = paymentRouter;
