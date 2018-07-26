@@ -52,7 +52,6 @@ authRouter.post('/signup', (req, res) => {
 authRouter.get('/profile', isauthenticated, (req, res) => {
     let dct = { title: "Dashboard" };
     let data = new Object();
-    console.log(req.user);
     data.fullname = req.user.fullname
     data.email = req.user.email;
     data.verified = req.user.verified;
@@ -135,7 +134,6 @@ authRouter.get('/editcv', isauthenticated, (req, res) => {
 
 authRouter.post('/editcv', isauthenticated, (req, res, next) => {
     let data = req.body;
-    console.log(data);
     userController.addprofile(req.user, data, (err, response) => {
         try {
             if (err) {
@@ -165,7 +163,7 @@ authRouter.get('/verify-email/:token', (req, res) => {
     let token = req.params.token;
     userController.verifytoken(token, "VERIFY", (err, response) => {
         if (err) {
-            console.log(err)
+            console.error(err)
             return res.redirect('/')
         }
         if (response) {
@@ -200,11 +198,10 @@ authRouter.post('/reset-password/:token', (req, res) => {
     }
     userController.verifytoken(token, "RESET_PASSWORD", (err, response) => {
         if (err) {
-            console.log(err)
+            console.error(err)
             return res.redirect('/')
         }
         if (response) {
-            console.log(response);
             response.user.password = response.user.generateHash(data.password);
             response.user.save((err, data) => {
                 res.locals.messages.push(["Password has been reset successfully", "green"]);
@@ -221,7 +218,7 @@ authRouter.post('/reset-password/:token', (req, res) => {
 authRouter.get('/reset-password/:token', (req, res, next) => {
     userController.verifytoken(req.params.token, "RESET_PASSWORD", (err, response) => {
         if (err) {
-            console.log(err);
+            console.error(err);
             return res.redirect('/')
         }
         if (!response) {
@@ -236,10 +233,8 @@ authRouter.get('/reset-password/:token', (req, res, next) => {
 });
 
 authRouter.post('/forgot-password', (req, res, next) => {
-    console.log(req.body);
     User.findOne({ "email": req.body.email }, (err, user) => {
-        if (err) console.log(err);
-        console.log(user);
+        if (err) console.error(err);
         if (user) {
             res.locals.messages.push(["A password reset link has been sent to your email. Please check your mail.", "green"]);
             userController.createtoken(user, "RESET_PASSWORD", (err, token) => {
