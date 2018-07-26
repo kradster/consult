@@ -41,6 +41,8 @@ function complete_payment(payment_id, callback) {
                     return callback(err, null);
                 }
                 payment.book_id.payment_done = true;
+                payment.book_id.status = "PENDING";
+                payment.book_id.payment = payment._id;
                 payment.book_id.save((err, pay)=> {
                     if (err){
                         console.error(err);
