@@ -63,7 +63,11 @@
     <!-- NAVIGATION BAR START -->
     <% include ../../partials/post_header %>
         <!-- NAVIGATION BAR END -->
-
+        <div class="row" style="height:50px;"></div>
+            <form ref='uploadForm' id='uploadForm' action='/user/resume-upload' method='post' encType="multipart/form-data">
+                    <input type="file" name="sampleFile" />
+                    <input type='submit' value='Upload!' />
+                </form>
         <div class="row">
 
             <form class="col l10 offset-l1 s12" action="<%- link('cvbuilder', 'user') %>" method="post">
@@ -105,7 +109,7 @@
                         
                         <div class="input-field col l6  s12">
                                 <div>Enter your Aadhar no here </div>
-                            <input type="text" name="aadharno" id="details-aadharno" value="<%= profile.details.aadharno %>" style="padding:5px;">
+                            <input type="text" name="aadharno" id="details-aadharno" value="<%= profile.details.aadharno %>" style="padding:5px;" placeholder="Example: 234312324321">
                         </div>
                         <div class="input-field col l6 s12">
                             <div class="col l4 s12">
@@ -138,11 +142,11 @@
                         </h6>
                         <div class="input-field col l6  s12">
                             <div>Enter your address here</div>
-                            <input type="text" name="fulladdress" id="address-full_address" value="<%= profile.address.full_address %>"style="padding:5px;">
+                            <input type="text" name="fulladdress" id="address-full_address" value="<%= profile.address.full_address %>"style="padding:5px;" placeholder="Max 50 characters">
                         </div>
                         <div class="input-field col l6  s12">
                             <div>Enter your city here</div>
-                            <input type="text" name="city" id="address-city" value="<%= profile.address.city %>"style="padding:5px;">
+                            <input type="text" name="city" id="address-city" value="<%= profile.address.city %>" style="padding:5px;" placeholder="Example: Delhi">
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Pick state</div>
@@ -155,7 +159,7 @@
                             
                         <div class="input-field col l6 s12">
                             <div>Enter your zip code here</div>
-                            <input type="text" name="zipcode" id="address-pincode" value="<%= profile.address.pincode %>" style="padding:5px;">
+                            <input type="text" name="zipcode" id="address-pincode" value="<%= profile.address.pincode %>" style="padding:5px;" placeholder="Example: 110008">
                         </div>
                         <div class="col l6 offset-l3 s12">
                         <div class="input-field col s6">
@@ -205,19 +209,19 @@
                         <div class="holder">
                             <div class="input-field col l6 s12">
                                 <div>Full Name</div>
-                                <input id="education-intermediate-institute_name" type="text" name="school12"  value="<%= profile.education.intermediate.institute_name %>">
+                                <input id="education-intermediate-institute_name" type="text" name="school12"  value="<%= profile.education.intermediate.institute_name %>" placeholder="Example: Delhi Public School">
                             </div>
                             <div class="input-field col l6 s12">
                                 <div>Board</div>
-                                <input id="education-intermediate-board" type="text" name="board12"  value="<%= profile.education.intermediate.board %>">
+                                <input id="education-intermediate-board" type="text" name="board12"  value="<%= profile.education.intermediate.board %>" placeholder="Example: CBSE">
                             </div>
                             <div class="input-field col l6  s12">
                                 <div>Course</div>
-                                <input id="education-intermediate-course" type="text" name="course12"  value="<%= profile.education.intermediate.course %>">
+                                <input id="education-intermediate-course" type="text" name="course12"  value="<%= profile.education.intermediate.course %>" placeholder="Example: PCM">
                             </div>
                             <div class="input-field col l6  s12">
-                                <div>Marks in % / CGPA</div>
-                                <input id="education-intermediate-marks" type="text" name="marks12"  value="<%= profile.education.intermediate.marks %>">
+                                <div>Marks in %</div>
+                                <input id="education-intermediate-marks" type="text" name="marks12"  value="<%= profile.education.intermediate.marks %>" placeholder="Example: 234312324321">
                             </div>
                             <div class="input-field col l12 s12">
                                 <div>Passing Year</div>

@@ -1,11 +1,14 @@
 const express = require('express');
 var authRouter = express.Router();
 var userController = require('../controllers/user')
+var storageController = require('../controllers/storage')
 var passport = require('passport');
 var sendEmail = require('../utils/email');
 let User = require('../models/user.js');
 var Config = require('../config')
-    // Middlewares
+var storage = require('../utils/storage');
+
+// Middlewares
 function isauthenticated(req, res, next) {
     if (!req.isAuthenticated()) {
         req.session.messages.push(["Please login to access this page", "blue"])
@@ -68,6 +71,10 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
         }
         return res.render("auth/profile", dct);
     });
+});
+
+authRouter.post('/resume-upload', isauthenticated, function(req, res) {
+    storageController.upload_file(req, res);
 });
 
 authRouter.get('/upcoming-jl-test', (req, res, next) => {

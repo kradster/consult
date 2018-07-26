@@ -19,5 +19,10 @@ module.exports = {
         "API_KEY": process.env["JL_INSTA_API_KEY"] || "",
         "AUTH_KEY": process.env["JL_INSTA_AUTH_KEY"] || "",
         "SALT_KEY": process.env["JL_INSTA_SALT_KEY"] || "",
+    },
+    "GOOGLE_CLOUD_SERVER": {
+        'PROJECT_ID': "careful-hangar-210010",
+        'BUCKET': 'joblana_prod'
+
     }
 }

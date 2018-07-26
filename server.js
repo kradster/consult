@@ -5,7 +5,6 @@ var path = require('path');
 let session = require('express-session');
 let bodyParser = require('body-parser');
 let multer = require('multer');
-let upload = multer();
 let cookieparser = require('cookie-parser');
 let nodemailer = require('nodemailer');
 let Config = require('./config');
@@ -13,6 +12,7 @@ let mainRouter = require('./routes/main.js');
 let authRouter = require('./routes/auth.js');
 let adminRouter = require('./routes/admin.js');
 let paymentRouter = require('./routes/payment.js');
+var fileUpload = require('express-fileupload');
 var passport = require('passport');
 var mongoose = require('mongoose');
 
@@ -33,7 +33,7 @@ app.use('/downloads', express.static('static/downloads'));
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(upload.array());
+app.use(fileUpload({limits: { fileSize: 1 * 1024 * 1024}, safeFileNames: true, preserveExtension: true }));
 app.set('views', path.join(__dirname, 'views/pages'));
 app.set('view engine', 'ejs');
 app.set('trust proxy', 'loopback');
