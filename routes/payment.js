@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId
 var Payment = require('../models/payment');
 var BookTest = require('../models/bookTest');
+var crypto = require('crypto');
 
 // Middlewares
 function isauthenticated(req, res, next) {
@@ -28,6 +29,7 @@ function complete_payment(payment_id, callback) {
             return callback(error, null)
         }
         else if (payment.completed){
+            console.error('Payment already done');
             return callback(null, payment);
         }
         else{
@@ -107,9 +109,37 @@ paymentRouter.post('/create-request', isauthenticated, (req, res, next) => {
 });
 
 paymentRouter.post('/webhook', (req, res, next) => {
-    console.log(req.body);
-    console.log(typeof(req.body));
-    console.log(req.headers);
+    dct = req.body;
+    let mac = dct.mac;
+    delete dct.mac;
+    let key_lst = Object.keys(dct).sort();
+    let val_lst = [];
+    key_lst.forEach(item=>{
+        val_lst.push(dct[item])
+    });
+    let payload = val_lst.join('|');
+    let signature_calc = crypto.createHmac('sha1', Config.instamojo.SALT_KEY).update(payload).digest('hex')
+    if (signature_calc == mac) {
+        if (dct.status == "Credit"){
+            complete_payment(dct.payment_request_id, (err, pay)=>{
+                if (err){
+                    console.error(err);
+                    res.locals.messages.push([err.message, "red"]);
+                    return res.redirect("/user/profile")
+                }
+                res.locals.messages.push(["Your Payment is successful", "green"]);
+                return res.redirect("/user/profile");
+            });
+        }
+        else {
+            console.error(req.body);
+            return res.send({status: 200})
+        }
+    }
+    else {
+        console.error("Wrong webhook authorization");
+        return res.send({status: 200})
+    }
     return res.send({status: 200});
 });
 
@@ -137,5 +167,10 @@ paymentRouter.get('/redirect', (req, res, next) => {
         }
     })    
 });
+
+function fu(dct){
+    
+
+}
 
 module.exports = paymentRouter;
