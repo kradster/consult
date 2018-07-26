@@ -99,11 +99,10 @@
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Enter your DOB here </div>
-                            <input type="date" name="details_dob" id="details-dob" value="<%= (new Date(profile.details.dob)) %>"style="padding:5px;">
+                            <input type="date" name="details_dob" id="details-dob" value="<%= profile.details.dob!=''?'01-01-2018':(new Date(profile.details.dob)).toISOString().slice(0,10) %>"style="padding:5px;">
                         </div>
-                        <!-- <div class="input-field col s6">
-                            <input type="text" id="city" value="City">
-                        </div> -->
+                        
+                        
                         <div class="input-field col l6  s12">
                                 <div>Enter your Aadhar no here </div>
                             <input type="text" name="aadharno" id="details-aadharno" value="<%= profile.details.aadharno %>" style="padding:5px;">
@@ -290,7 +289,7 @@
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Passing Year</div>
-                            <input id="education-graduation-passing_year" type="text" name="collegeyear"  value="<%= (new Date(profile.education.graduation.passing_year)) %>">
+                            <input id="education-graduation-passing_year" type="text" name="collegeyear"  value="<%= (new Date(profile.education.graduation.passing_year)).getFullYear() %>">
                         </div>
                         
                         </div>
@@ -359,7 +358,7 @@
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Passing Year</div>
-                            <input id="education-post_graduation-passing_year" type="text" name="postcollegename"  value="<%= (new Date(profile.education.post_graduation.passing_year)).getFullYear() %>">
+                            <input id="education-post_graduation-passing_year" type="text" name="postcollegeyear"  value="<%= (new Date(profile.education.post_graduation.passing_year)).getFullYear() %>">
                         </div>
                         
                         </div>

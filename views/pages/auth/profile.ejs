@@ -169,6 +169,7 @@
                                 <h6>
                                     PERSONAL DETAILS
                                 </h6>
+                                <%= JSON.stringify(data) %>
                                 <br>
                                 <div class="col s12">
                                     <div class="col s3">
@@ -305,7 +306,7 @@
                                         <small><b>Passing Year</b></small>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.education.high.passing_year %>
+                                        <%= (new Date(data.profile.education.high.passing_year)).getFullYear() %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -329,7 +330,7 @@
                                         <small><b>School Name</b></small>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.education.intermediate.institute_nam %>
+                                        <%= data.profile.education.intermediate.institute_name %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -347,7 +348,7 @@
                                        <small> <b>Passing Year</b></small>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.education.intermediate.passing_year %>
+                                        <%= (new Date(data.profile.education.intermediate.passing_year)).getFullYear() %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -389,7 +390,7 @@
                                         <small><b>Passing Year</b></small>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.education.graduation.passing_year %>
+                                        <%= (new Date(data.profile.education.graduation.passing_year)).getFullYear() %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -553,8 +554,10 @@
                                                     <%= data.profile.education.high.marks %>
                                                 </div>
                                                 <div>
-                                                    <%= data.profile.course %>
+                                                    <%= data.profile.education.course %>
                                                 </div>
+                                                <div>
+                                                    <%= (new Date(data.profile.education.passing_year)).getFullYear() %>
                                                 <br>
                                                 <div>Senior Secondary School</div>
                                                 <div>
@@ -569,6 +572,10 @@
                                                 <div>
                                                     <%= data.profile.education.intermediate.course %>
                                                 </div>
+                                                <div>
+                                                    <%= (new Date(data.profile.education.intermediate.passing_year)).getFullYear() %>
+                                                </div>
+                                                
                                                 <br>
                                                 <div>
                                                     <a data-html2canvas-ignore id="r1" style="font-family: sans-serif;" href="/makecv/id">Add More+</a>
@@ -595,6 +602,9 @@
                                                     <div>
                                                         <%= data.profile.education.graduation.marks %>
                                                     </div>
+                                                    <div>
+                                                        <%= (new Date(data.profile.education.graduation.passing_year)).getFullYear() %>
+                                                    </div>
                                                     <br>
                                                 </div>
                                                 <div class="col s12 no-padd">
@@ -611,6 +621,10 @@
                                                     <div>
                                                         <%= data.profile.education.post_graduation.marks %>
                                                     </div>
+                                                    <div>
+                                                        <%= (new Date(data.profile.education.post_graduation.passing_year)).getFullYear() %>
+                                                    </div>
+                                                    
                                                     <br>
                                                 </div>
 

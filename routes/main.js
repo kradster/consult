@@ -151,10 +151,15 @@ mainRouter.get('/terms-and-conditions', (req, res) => {
     res.render('main/terms', dct);
 });
 
+mainRouter.get('/syllabus', (req, res) => {
+    let dct = { title: "Syllabus for JL Test" };
+    res.render('main/syllabus', dct);
+});
+
 mainRouter.get('/forgot-password', (req, res) => {
     let dct = { title: "Forgot password" };
     res.render('login/forgotpassword', dct);
-})
+});
 
 mainRouter.get('/job-opportunities', (req, res) => {
     let dct = { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana" }
