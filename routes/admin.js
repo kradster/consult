@@ -62,7 +62,7 @@ adminRouter.get('/addtest', isauthenticated, (req, res) => {
 
 adminRouter.post('/addtest', isauthenticated, (req, res) => {
     let data = req.body;
-    let tmp = data.jobs.split('|');
+    let tmp = data.jobs;
     tmp = tmp.map(t => t.trim().toUpperCase());
     data.jobs = tmp;
     console.log(data);

@@ -35,7 +35,7 @@
             <div class="col l10 offset-l1 s12">
                 <div class="col s12">
                     <h2>
-                        <b class="grey-text">Post a Job For Free</b>
+                        <b class="grey-text">Add New Test</b>
                     </h2>
                 </div>
                 <div class="col s12 card no-padd z-depth-0">
@@ -66,7 +66,10 @@
                         <div class="col l10 offset-l2 s12">
                             <div class="col s3 right-align" style="padding-top:10px;">Add Job</div>
                             <div class="col s9">
-                                <textarea style="height:200px;" type="text" id="jobs" name="jobs" placeholder="Enter about you company"></textarea>
+                                <div id="jobspanel">
+                                    <input type="text" name="jobs[]" id="jobs[]" placeholder="Job">
+                                </div>
+                                <a class="btn" onclick="addmorejobfields()">Add More</a>
                             </div>
                         </div>
                         <div class="col s12" style="height:50px;"></div>
@@ -114,6 +117,10 @@
                 maxDate: new Date(2010, 1, 1)
             });
         });
+
+        function addmorejobfields(){
+            $('#jobspanel').append('<input type="text" name="jobs[]" id="jobs[]" placeholder="Job">');
+        }
     </script>
 </body>
 
