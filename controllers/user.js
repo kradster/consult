@@ -86,11 +86,16 @@ module.exports.addTest = function(user, id, data, callback) {
             if (!oldtest){
                 newBooking = new BookTest({ test: test._id, job: data.job, user: user._id})
                 newBooking.save((err, book)=>{
-                    if (err) console.error(err);
+                    if (err) {
+                        console.error(err);
+                        return callback(err, null)
+                    }
                     user.applied_tests.push({ test: newBooking._id});
                     user.save(err => {
-                        if (err) console.error(err);
-                        return callback(null, test);
+                        if (err) {
+                            console.error(err);
+                            return callback(null, test);
+                        }
                     })
                 })
             }
