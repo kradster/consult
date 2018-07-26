@@ -99,7 +99,7 @@
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Enter your DOB here </div>
-                            <input type="date" name="details_dob" id="details-dob" value="<%= profile.details.dob %>"style="padding:5px;">
+                            <input type="date" name="details_dob" id="details-dob" value="<%= (new Date(user.profile.details.dob)).toLocaleDateString() %>"style="padding:5px;">
                         </div>
                         <!-- <div class="input-field col s6">
                             <input type="text" id="city" value="City">
@@ -146,12 +146,13 @@
                             <input type="text" name="city" id="address-city" value="<%= profile.address.city %>"style="padding:5px;">
                         </div>
                         <div class="input-field col l6 s12">
-                            
+                            <div>Pick state</div>
                             <select class="no-autoinit" name="address-state" id="address-state" style="padding:5px;">
-                                <option value="" disabled selected>Choose your course</option>
-                                <option value="Bachelor of Arts (B.A)">Bachelor of Arts (B.A)</option>
+                                <option value="" disabled selected>Choose State</option>
+                                <option value="UP">UP</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
                             </select>
-                            </div>
+                        </div>
                             
                         <div class="input-field col l6 s12">
                             <div>Enter your zip code here</div>

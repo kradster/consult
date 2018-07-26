@@ -21,7 +21,8 @@ module.exports.createuser = function(user, callback) {
     userdat.save((err, userdat) => {
         if (err) {
             if (err.name === 'MongoError' && err.code === 11000) {
-                let error = new Error()
+                let error = new Error();
+                console.log(err);
                 error.errors = { duplicate: { message: "Email or mobile already registered" } }
                 return callback(error, null)
             }
@@ -73,7 +74,7 @@ module.exports.getUserProfile = function(user, callback) {
 module.exports.addTest = function(user, id, data, callback) {
     Test.findOne({ "_id": new ObjectId(id) }, (err, test) => {
         flag = user.applied_tests.find(obj => (obj.test.toString()) == (test._id.toString()));
-        if (!flag){
+        if (!flag) {
             user.applied_tests.push({ test: test._id, job: data.job })
             user.save(err => {
                 if (err) console.error(err);
@@ -81,7 +82,7 @@ module.exports.addTest = function(user, id, data, callback) {
             })
         }
         let newErr = new Error();
-        newErr.errors = [{test: "Error", message: "Test already applied"}];
+        newErr.errors = [{ test: "Error", message: "Test already applied" }];
         return callback(newErr, null);
     })
 }
@@ -142,8 +143,7 @@ module.exports.addprofile = function(user, data, callback) {
                     });
                 });
                 newProfile.experience = lst;
-            } 
-            else {
+            } else {
                 newProfile[dat] = data[dat];
             }
         })

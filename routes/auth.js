@@ -5,7 +5,7 @@ var passport = require('passport');
 var sendEmail = require('../utils/email');
 let User = require('../models/user.js');
 var Config = require('../config')
-// Middlewares
+    // Middlewares
 function isauthenticated(req, res, next) {
     if (!req.isAuthenticated()) {
         req.session.messages.push(["Please login to access this page", "blue"])
@@ -40,7 +40,7 @@ authRouter.post('/signup', (req, res) => {
                 userController.createtoken(user, "VERIFY", (err, token) => {
                     sendEmail(user.email, "Welcome", { link: Config.REQ_PROTOCOL + "://" + Config.REQ_HOST + "/user/verify-email/" + token.token }, "verification");
                 })
-                res.locals.messages.push(["Successful signup", "green"]);
+                res.locals.messages.push(["Successful signup. A verification email has been sent to your account.", "green"]);
                 return res.redirect('/login')
             }
         } catch (error) {

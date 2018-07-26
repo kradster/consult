@@ -7,16 +7,17 @@ var Schema = mongoose.Schema;
 
 var User = new Schema({
     profile: {
-        type: Schema.Types.ObjectId, ref: 'Profile',
+        type: Schema.Types.ObjectId,
+        ref: 'Profile',
     },
     applied_tests: {
         type: [{
-            _id : false,
+            _id: false,
             test: {
-                type: Schema.Types.ObjectId, 
+                type: Schema.Types.ObjectId,
                 ref: 'Test'
             },
-            job:{
+            job: {
                 type: String
             },
             status: {
@@ -102,10 +103,10 @@ var User = new Schema({
     },
     role: {
         type: String,
-        enum: ["ADMIN", "USER", "MODERATOR"]
+        enum: ["ADMIN", "USER", "MODERATOR"],
+        default: "USER"
     }
-}, {timestamps: true}
-);
+}, { timestamps: true });
 
 User.virtual('fullname').get(function() {
     return this.name.first + ' ' + this.name.last;

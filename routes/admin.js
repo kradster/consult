@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express');
 var adminRouter = express.Router();
 var adminController = require('../controllers/admin')
@@ -136,10 +137,23 @@ adminRouter.post('/edit-info/:id', isauthenticated, (req, res) => {
 });
 
 adminRouter.get('/viewusers', isauthenticated, (req, res) => {
-    let dct = { title: "Users" };
+    let dct = { title: "Users", users: [] };
     adminController.getusers((err, users) => {
         if (err) console.log(err);
-        dct.users = users;
+        console.log(typeof(users), users);
+        for (let i = 0; i < users.length; i++) {
+            dct.users.push({
+                name: users[i].name,
+                verified: users[i].verified,
+                role: users[i].role,
+                email: users[i].email,
+                phoneno: users[i].phoneno,
+                applied_tests: users[i].applied_tests,
+                profile: users[i].profile ? users[i].profile : { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] }
+            });
+        }
+
+        console.log("dct", dct.users);
         res.render('admin/viewusers', dct);
     });
 
