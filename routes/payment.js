@@ -168,7 +168,7 @@ paymentRouter.get('/redirect', (req, res, next) => {
     })    
 });
 
-paymentRouter.post('/redirect', (req, res, next) => {
+paymentRouter.get('/redirect', (req, res, next) => {
     var headers = { 'X-Api-Key': Config.instamojo.API_KEY, 'X-Auth-Token': Config.instamojo.AUTH_KEY}
     id = req.query.payment_request_id
     request.get('https://www.instamojo.com/api/1.1/payment-requests/' + id , {headers: headers}, function(error, response, body){
