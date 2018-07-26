@@ -5,6 +5,7 @@ var request= require('request');
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId
 var Payment = require('../models/payment');
+var BookTest = require('../models/bookTest');
 
 // Middlewares
 function isauthenticated(req, res, next) {
@@ -14,6 +15,41 @@ function isauthenticated(req, res, next) {
         return res.redirect('/login');
     }
     next();
+}
+
+function complete_payment(payment_id, callback) {
+    Payment.findOne({"payment_id": payment_id}).populate("book_id").exec((err, payment)=>{
+        if (err){
+            console.error(err);
+            return callback(err, null)
+        }
+        if (!payment){
+            let error = new Error("No Payment Found");
+            return callback(error, null)
+        }
+        else if (payment.completed){
+            return callback(null, payment);
+        }
+        else{
+            payment.completed = true;
+            payment.status = "Completed";
+            payment.save((err, pay)=>{
+                if(err){
+                    console.error(err);
+                    return callback(err, null);
+                }
+                payment.book_id.payment_done = true;
+                payemtn.book_id.save((err, pay)=> {
+                    if (err){
+                        console.error(err);
+                        return callback(err, null)
+                    }
+                    return callback(null, payment)
+                })
+            })
+        }
+    })
+
 }
 // Middlewares
 
@@ -77,9 +113,29 @@ paymentRouter.post('/webhook', (req, res, next) => {
     return res.send({status: 200});
 });
 
-paymentRouter.post('/redirect', (req, res, next) => {
-    res.locals.messages.push(["Your Payment is successful", "green"]);
-    return res.redirect("/user/profile");
+paymentRouter.get('/redirect', (req, res, next) => {
+    var headers = { 'X-Api-Key': Config.instamojo.API_KEY, 'X-Auth-Token': Config.instamojo.AUTH_KEY}
+    id = req.query.payment_request_id
+    request.get('https://www.instamojo.com/api/1.1/payment-requests/' + id , {headers: headers}, function(error, response, body){
+        if(!error && response.statusCode == 200){
+            let body_json = JSON.parse(body);
+            if (body_json.payment_request.status == "Completed" && body_json.payment_request.payments[0].status == "Credit"){
+                complete_payment(id, (err, pay)=>{
+                    if (err){
+                        console.error(err);
+                        res.locals.messages.push([err.message, "red"]);
+                        return res.redirect("/user/profile")
+                    }
+                    res.locals.messages.push(["Your Payment is successful", "green"]);
+                    return res.redirect("/user/profile");
+                });
+            }
+            else{
+                res.locals.messages.push(["Some Problem in payment processing", "red"]);
+                return res.redirect("/user/profile");
+            }
+        }
+    })    
 });
 
 module.exports = paymentRouter;
