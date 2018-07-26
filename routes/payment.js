@@ -22,7 +22,6 @@ paymentRouter.post('/create-request', isauthenticated, (req, res, next) => {
     let amount = '10';
     Payment.findOne({"book_id": new ObjectId(data.book_id)}, (err, payment)=> {
         if (payment){
-            console.log('booked already');
             return res.redirect("https://www.instamojo.com/@joblanatest/" + payment.payment_id);
         }
         else{
@@ -34,7 +33,7 @@ paymentRouter.post('/create-request', isauthenticated, (req, res, next) => {
                     buyer_name: req.user.fullname,
                     redirect_url: Config.REQ_PROTOCOL + "://" + Config.REQ_HOST + "/user/profile",
                     send_email: true,
-                    webhook: Config.REQ_PROTOCOL + "://" + Config.REQ_HOST + "/payment/webook",
+                    webhook: Config.REQ_PROTOCOL + "://" + Config.REQ_HOST + "/payment/webhook",
                     send_sms: false,
                     email: req.user.email,
                     allow_repeated_payments: false
@@ -61,7 +60,7 @@ paymentRouter.post('/create-request', isauthenticated, (req, res, next) => {
                     })
                 }
                 else {
-                    console.log(body);
+                    console.error(body);
                     res.locals.messages.push(["Some Error occured", "red"]);
                     return res.redirect('/user/profile');
                 }

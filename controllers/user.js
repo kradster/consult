@@ -23,7 +23,7 @@ module.exports.createuser = function(user, callback) {
         if (err) {
             if (err.name === 'MongoError' && err.code === 11000) {
                 let error = new Error();
-                console.log(err);
+                console.error(err);
                 error.errors = { duplicate: { message: "Email or mobile already registered" } }
                 return callback(error, null)
             }
@@ -79,9 +79,8 @@ module.exports.addTest = function(user, id, data, callback) {
             return callback(err, null);
         }
         flag = BookTest.findOne({test: test._id, user: user._id}, (err, oldtest)=>{
-            console.log('test', test, oldtest);
             if (err){
-                console.log(err);
+                console.error(err);
                 return callback(err, null);
             }
             if (!oldtest){
@@ -132,7 +131,7 @@ module.exports.addprofile = function(user, data, callback) {
         });
         user.profile.save(err => {
             if (err) {
-                console.log('eror in last save');
+                console.error('eror in last save');
                 return callback(err, null);
             } else {
                 return callback(null, user.profile)

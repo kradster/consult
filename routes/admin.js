@@ -35,7 +35,6 @@ adminRouter.get('/addjob', isauthenticated, (req, res) => {
 
 adminRouter.post('/addjob', isauthenticated, (req, res) => {
     let data = req.body;
-    console.log("form data", data);
     adminController.addjob(req.user, data, (err, job) => {
         try {
             if (err) {
@@ -44,7 +43,6 @@ adminRouter.post('/addjob', isauthenticated, (req, res) => {
                 });
                 return res.redirect('/admin/addjob')
             } else {
-                console.log(job);
                 // sendEmail(req.user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
                 res.locals.messages.push(["Job Uploaded Successfully", "green"]);
                 return res.redirect('/job-opportunities')
@@ -65,7 +63,6 @@ adminRouter.post('/addtest', isauthenticated, (req, res) => {
     let tmp = data.jobs;
     tmp = tmp.map(t => t.trim().toUpperCase());
     data.jobs = tmp;
-    console.log(data);
     testController.createTest(req.user, data, (err, test) => {
         try {
             if (err) {
@@ -74,7 +71,6 @@ adminRouter.post('/addtest', isauthenticated, (req, res) => {
                 });
                 return res.redirect('/admin/addjob')
             } else {
-                console.log(test);
                 // sendEmail(req.user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
                 res.locals.messages.push(["Test uploaded", "green"]);
                 return res.redirect('/upcoming-jl-test')
@@ -87,7 +83,7 @@ adminRouter.post('/addtest', isauthenticated, (req, res) => {
 
 adminRouter.get('/editjobs', isauthenticated, (req, res) => {
     adminController.getjobs((err, jobs) => {
-        if (err) console.log(err);
+        if (err) console.error(err);
         let dct = { title: "Edit jobs" };
         dct.jobs = jobs;
         res.render('admin/editjoblist', dct);
@@ -98,11 +94,10 @@ adminRouter.get('/edit-info/:id', isauthenticated, (req, res) => {
     let dct = { title: "Company Info" };
     adminController.getjob(req.params.id, (err, job) => {
         if (err) {
-            console.log(err)
+            console.error(err)
             return res.redirect('/');
         } else if (job) {
             dct.job = job;
-            console.log(dct.job);
         } else {
             dct.job = {};
             res.locals.messages.push(["No Job found", "red"]);
@@ -139,8 +134,7 @@ adminRouter.post('/edit-info/:id', isauthenticated, (req, res) => {
 adminRouter.get('/viewusers', isauthenticated, (req, res) => {
     let dct = { title: "Users", users: [] };
     adminController.getusers((err, users) => {
-        if (err) console.log(err);
-        console.log(typeof(users), users);
+        if (err) console.error(err);
         for (let i = 0; i < users.length; i++) {
             dct.users.push({
                 name: users[i].name,
@@ -152,8 +146,6 @@ adminRouter.get('/viewusers', isauthenticated, (req, res) => {
                 profile: users[i].profile ? users[i].profile : { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] }
             });
         }
-
-        console.log("dct", dct.users);
         res.render('admin/viewusers', dct);
     });
 
