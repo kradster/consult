@@ -3,6 +3,7 @@ var Token = require('../models/token');
 var Test = require('../models/test');
 var Profile = require('../models/profile');
 var Experience = require('../models/experience');
+var BookTest = require('../models/bookTest');
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId
 var async = require('async');
@@ -73,19 +74,37 @@ module.exports.getUserProfile = function(user, callback) {
 
 module.exports.addTest = function(user, id, data, callback) {
     Test.findOne({ "_id": new ObjectId(id) }, (err, test) => {
-        flag = user.applied_tests.find(obj => (obj.test.toString()) == (test._id.toString()));
-        if (!flag) {
-            user.applied_tests.push({ test: test._id, job: data.job })
-            user.save(err => {
-                if (err) console.error(err);
-                return callback(null, test);
-            })
+        if (err) {
+            console.error(err);
+            return callback(err, null);
         }
-        let newErr = new Error();
-        newErr.errors = [{ test: "Error", message: "Test already applied" }];
-        return callback(newErr, null);
+        flag = BookTest.findOne({test: test._id, user: user._id}, (err, oldtest)=>{
+            console.log('test', test, oldtest);
+            if (err){
+                console.log(err);
+                return callback(err, null);
+            }
+            if (!oldtest){
+                newBooking = new BookTest({ test: test._id, job: data.job, user: user._id})
+                newBooking.save((err, book)=>{
+                    if (err) console.error(err);
+                    user.applied_tests.push({ test: newBooking._id});
+                    user.save(err => {
+                        if (err) console.error(err);
+                        return callback(null, test);
+                    })
+                })
+            }
+            else{
+                let newErr = new Error();
+                newErr.errors = [{test: "Error", message: "Test already applied"}];
+                return callback(newErr, null);
+            }
+        });
+        // user.applied_tests.find(obj => (obj.test.toString()) == (test._id.toString()))
     })
 }
+
 module.exports.addprofile = function(user, data, callback) {
     if (user.profile) {
         Object.keys(data).forEach(dat => {

@@ -14,26 +14,10 @@ var User = new Schema({
         type: [{
             _id: false,
             test: {
-                type: Schema.Types.ObjectId,
-                ref: 'Test'
-            },
-            job: {
-                type: String
-            },
-            status: {
-                type: String,
-                enum: ["PENDING", "CLOSED", "ABSENT", "FAILED", "PASSED"],
-            },
-            marks: {
-                type: Number
-            },
-            rank: {
-                type: Number
-            },
-            applying_date: {
-                type: Date
+                type: Schema.Types.ObjectId, 
+                ref: 'BookTest'
             }
-        }]
+        }],
     },
     email: {
         type: String,

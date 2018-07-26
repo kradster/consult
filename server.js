@@ -12,6 +12,7 @@ let Config = require('./config');
 let mainRouter = require('./routes/main.js');
 let authRouter = require('./routes/auth.js');
 let adminRouter = require('./routes/admin.js');
+let paymentRouter = require('./routes/payment.js');
 var passport = require('passport');
 var mongoose = require('mongoose');
 
@@ -78,6 +79,7 @@ app.use(function(req, res, next){
 app.use('/', mainRouter);
 app.use('/user', authRouter);
 app.use('/admin', adminRouter);
+app.use('/payment', paymentRouter);
 // Routes
 
 // 404 Page redirect

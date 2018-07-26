@@ -15,4 +15,9 @@ module.exports = {
         "profileURL": "https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email",
         "profileFields" : ["id", "email", "name"] // For requesting permissions from Facebook API
     },
+    "instamojo": {
+        "API_KEY": process.env["JL_INSTA_API_KEY"] || "",
+        "AUTH_KEY": process.env["JL_INSTA_AUTH_KEY"] || "",
+        "SALT_KEY": process.env["JL_INSTA_SALT_KEY"] || "",
+    }
 }
