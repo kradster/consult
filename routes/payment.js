@@ -170,34 +170,5 @@ paymentRouter.get('/redirect', (req, res, next) => {
     })    
 });
 
-paymentRouter.get('/redirect', (req, res, next) => {
-    var headers = { 'X-Api-Key': Config.instamojo.API_KEY, 'X-Auth-Token': Config.instamojo.AUTH_KEY}
-    id = req.query.payment_request_id
-    request.get('https://www.instamojo.com/api/1.1/payment-requests/' + id , {headers: headers}, function(error, response, body){
-        if(!error && response.statusCode == 200){
-            let body_json = JSON.parse(body);
-            if (body_json.payment_request.status == "Completed" && body_json.payment_request.payments[0].status == "Credit"){
-                complete_payment(id, (err, pay)=>{
-                    if (err){
-                        console.error(err);
-                        res.locals.messages.push([err.message, "red"]);
-                        return res.redirect("/user/profile")
-                    }
-                    res.locals.messages.push(["Your Payment is successful", "green"]);
-                    return res.redirect("/user/profile");
-                });
-            }
-            else{
-                res.locals.messages.push(["Some Problem in payment processing", "red"]);
-                return res.redirect("/user/profile");
-            }
-        }
-    })    
-});
-
-function fu(dct){
-    
-
-}
 
 module.exports = paymentRouter;
