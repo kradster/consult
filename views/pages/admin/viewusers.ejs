@@ -59,12 +59,12 @@
                                     Email: <%= users[i].email %><br>
                                     Phone No.: <%= users[i].phoneno %><br>
                                     Role: <%= users[i].role %><br>
-                                    <a href="#modal<%= users[i]._id %>" class="btn right modal-trigger">View all data</a>
+                                    <a href="#modal<%= i %>" class="btn right modal-trigger">View all data</a>
                                 </div>
                                 <div class="row"></div>
 
                                 <!-- Modal Structure -->
-                                <div id="modal<%= users[i]._id %>" class="modal">
+                                <div id="modal<%= i %>" class="modal">
                                     <div class="modal-content">
                                         <h4><%= users[i].name.first %> <%= users[i].name.last %></h4>
                                         <div class="row">
