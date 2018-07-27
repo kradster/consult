@@ -103,7 +103,7 @@
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Enter your DOB here </div>
-                            <input type="date" name="details_dob" id="details-dob" value="<%= profile.details.dob!=''?'01-01-2018':(new Date(profile.details.dob)).toISOString().slice(0,10) %>"style="padding:5px;">
+                            <input type="text" class="datepicker" name="details_dob" id="details-dob" value="<%= profile.details.dob!=''?'01-01-2018':(new Date(profile.details.dob)).toISOString().slice(0,10) %>"style="padding:5px;">
                         </div>
                         
                         
@@ -122,6 +122,12 @@
                                 <label>
                                 <input name="details_gender" value="female" id="details-gender" type="radio" <%= profile.details.gender=="female"?"checked":""%>/>
                                 <span>Female</span>
+                            </label>
+                            </div>
+                            <div class="col l4 s12">
+                                <label>
+                                <input name="details_gender" value="female" id="details-gender" type="radio" <%= profile.details.gender=="other"?"checked":""%>/>
+                                <span>Other</span>
                             </label>
                             </div>
 
@@ -150,10 +156,11 @@
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Pick state</div>
-                            <select class="no-autoinit" name="address-state" id="address-state" style="padding:5px;">
+                            <select  class="no-autoinit" name="address-state" id="address-state">
                                 <option value="" disabled selected>Choose State</option>
-                                <option value="UP">UP</option>
-                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <% for(let i=0; i<statelist.length; i++) { %>
+                                    <option value="<%= statelist[i] %>"><%= statelist[i] %></option>
+                                <% } %>
                             </select>
                         </div>
                             
@@ -471,7 +478,6 @@
                                 <input class="datepicker" type="text" name="jobavailability">
                             </div>
 
-
                         </div>
                         <div class="input-field col s12">
 
@@ -494,35 +500,21 @@
             <script src="/js/stepform.js" type="text/javaScript"></script>
             <script>
                 $(document).ready(function() {
-                    // M.AutoInit();
-                    // $('body').on('focus', ".datepicker", function() {
-                    //     $(this).datepicker();
-
-                    // });
-                    $('body').on('focus', "select", function() {
-                        //M.AutoInit();
-                    });
+                    $('.datepicker').datepicker();
+                    var elems = document.querySelectorAll('.datepicker');
+                    let options = {
+                        yearRange:[1950, 2005]
+                    };
+                    var instances = M.Datepicker.init(elems, options);
                     $('#addmoreprojects').click(() => {
                         AddMoreProjects($('#jobspanel'));
-                       // M.AutoInit();
+                        $('.datepicker').datepicker();
                     });
                     $('#addmoreskills').click(() => {
                         AddMoreSkills($('#skillspanel'));
-                       // M.AutoInit();
                     });
-                    //$(document).on('click','.datapicker',M.datepicker);
                 });
-                // $('select').on('contentChanged', function() {
-                //    // $(this).material_select();
-                // });
-                // document.addEventListener('DOMContentLoaded', function() {
-                //     var elems = document.querySelectorAll('.datepicker');
-                //     var instances = M.Datepicker.init(elems, {
-                //         minDate: new Date(1950, 1, 1),
-                //         maxDate: new Date(2010, 1, 1)
-                //     });
-                // });
-
+                
                 function save() {
                     let params = $("input[type=text]");
                     let rad_buttons = $("input[type='radio'][name='details_gender']:checked");

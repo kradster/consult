@@ -134,7 +134,8 @@ authRouter.get('/mytests', isauthenticated, (req, res) => {
 authRouter.get('/editcv', isauthenticated, (req, res) => {
     let profile = req.user.profile ? req.user.profile : { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] };
 
-    let dct = { title: "Edit Cv", user: req.user, profile: profile };
+    let statelist = Profile.schema.path('address.state').enumValues;
+    let dct = { title: "Edit Cv", user: req.user, profile: profile, statelist: statelist };
     console.log(dct);
     return res.render("auth/makecv", dct);
 });

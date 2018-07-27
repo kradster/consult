@@ -52,25 +52,24 @@ require('./passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 // Middlewares
-app.use(function(req, res, next){
-    if (!req.session.messages){
+app.use(function(req, res, next) {
+    if (!req.session.messages) {
         req.session.messages = [];
     }
-    res.locals.removeMessages = function () {
+    res.locals.removeMessages = function() {
         req.session.messages = [];
         res.locals.messages = [];
     };
-    res.locals.link = function(view, namespace){
-        if (namespace){
+    res.locals.link = function(view, namespace) {
+        if (namespace) {
             let url = "/" + namespace + "/" + view;
             return url;
-        }
-        else {
+        } else {
             let url = "/" + view;
             return url;
-        }        
+        }
     }
-    if (req.session.messages){
+    if (req.session.messages) {
         res.locals.messages = req.session.messages;
     }
     next();
@@ -84,11 +83,12 @@ app.use('/payment', paymentRouter);
 
 // 404 Page redirect
 app.get('*', (req, res, next) => {
-    if (req.session.messages){
+    if (req.session.messages) {
         req.session.messages.push(["The page you are looking for doesn't exist", "red"])
-    }
-    else {
-        req.session.messages = [["The page you are looking for doesn't exist", "red"]]
+    } else {
+        req.session.messages = [
+            ["The page you are looking for doesn't exist", "red"]
+        ]
     }
     res.redirect('/');
 });

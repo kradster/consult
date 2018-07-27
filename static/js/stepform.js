@@ -114,10 +114,10 @@ function AddMoreProjects(element) {
         <input class="center-align" type="text" name="projectdetails" id="projects" placeholder="About work">
     </div>
     <div class="input-field col l5 s12">
-        <input class="center-align"  type="date" name="projectstartdate" id="startdate" placeholder="Start Date">
+        <input class="center-align datepicker"  type="text" name="projectstartdate" id="startdate" placeholder="Start Date">
     </div>
     <div class="input-field col l5  s12">
-        <input class="center-align"  type="date" name="projectenddate" id="enddate" placeholder="End Date">
+        <input class="center-align datepicker"  type="text" name="projectenddate" id="enddate" placeholder="End Date">
     </div>
 </div>`);
 }

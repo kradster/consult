@@ -185,7 +185,7 @@
                                         <small><b>Date of birth</b></small>
                                     </div>
                                     <div class="col s8">
-                                        <%= data.profile.details.dob %>
+                                        <%= (new Date(data.profile.details.dob)).toLocaleDateString() %>
                                     </div>
                                 </div>
                                 <div class="row"></div>
@@ -455,8 +455,8 @@
                                                 <small><b>Duration</b></small>
                                             </div>
                                             <div class="col s8">
-                                                <%= data.profile.experience[i].start_date %> to
-                                                    <%= data.profile.experience[i].end_date %>
+                                                <%= (new Date(data.profile.experience[i].start_date)).toLocaleDateString() %> to
+                                                    <%= (new Date(data.profile.experience[i].end_date)).toLocaleDateString() %>
                                             </div>
                                         </div>
                                         <div class="col s12">
@@ -554,10 +554,10 @@
                                                     <%= data.profile.education.high.marks %>
                                                 </div>
                                                 <div>
-                                                    <%= data.profile.education.course %>
+                                                    <%= data.profile.education.high.course %>
                                                 </div>
                                                 <div>
-                                                    <%= (new Date(data.profile.education.passing_year)).getFullYear() %>
+                                                    <%= (new Date(data.profile.education.high.passing_year)).getFullYear() %>
                                                 <br>
                                                 <div>Senior Secondary School</div>
                                                 <div>
@@ -648,8 +648,8 @@
                                                             <%= data.profile.experience[i].type %><br>
                                                             <%= data.profile.experience[i].organization %><br>
                                                             <%= data.profile.experience[i].description %><br>
-                                                            <%= data.profile.experience[i].start_date %> to
-                                                            <%= data.profile.experience[i].end_date %>
+                                                            <%= (new Date(data.profile.experience[i].start_date)).toLocaleDateString() %> to
+                                                            <%= (new Date(data.profile.experience[i].end_date)).toLocaleDateString() %>
                                                         </div>
                                                         <br>
                                                         <div class="col s12 no-padd">
