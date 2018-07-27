@@ -45,31 +45,68 @@
                 <div class="divider"></div>
                 <br>
                 <% for(var i=0; i < tests.length; i++) { %>
-                    <div class="col s12">
-                        <div class="col s3">
-                            <p><%= tests[i].test.job %></p>
+                    <div class="col s4">
+                        <div class="col s12 card z-depth-2"style="border-radius:0px;">
+                        <div class="col s12 no-padd">
+                            <h6 style="border-bottom: 3px solid blue;padding-bottom:10px;" class="center-align"><b><%= tests[i].test.job %></b></h6>
+                            <br>
+                            <fieldset>
+                                <legend>
+                                        <small><b style="letter-spacing:5px;">PAYMENT OF</b></small>
+                                </legend>
+                                <br>
+                                <div><b>Rs 900 + (18 % GST)</b></div>
+                                <br>
+                            </fieldset>
+                            <fieldset>
+                                    <legend>
+                                            <small><b style="letter-spacing:5px;">VENUE AND DATE</b></small>
+                                    </legend>
+                                    <br>
+                                    <div><b>DELHI / 31/07/2018</b></div>
+                                    <br>
+                            </fieldset>
+                            <fieldset>
+                                <legend>
+                                        <small><b style="letter-spacing:5px;">PAYMENT STATUS</b></small>
+                                </legend>
+                                <br>
+                                <% if (tests[i].test.status) { %>
+                                    <div class="green-text"><b>COMPLETED <i class="fas fa-check"></i></b></div>
+                                <% } else { %>
+                                    <div class="amber-text"><b>PENDING <i class="fas fa-exclamation"></i></b></div><br>
+                                <% } %>
+                                <div>
+                                        <form action="/payment/create-request" class="col s12" method="POST">
+                                        <input style="display: none" type="text" name="purpose" value="<%= tests[i].test.test.title %>">
+                                        <input style="display: none" type="text" name="test_id" value="<%= tests[i].test.test._id %>">
+                                        <input style="display: none" type="text" name="book_id" value="<%= tests[i].test._id %>">
+                                        <input class="btn red z-depth-0 right" type="submit" name="submit" value="Make Payment">
+                                        </form>
+                                    </div>
+                                <br>
+                            </fieldset>
+                            <fieldset>
+                                    <legend>
+                                            <small><b style="letter-spacing:5px;">TEST STATUS</b></small>
+                                    </legend>
+                                    <br>
+                                    <div><b><%= tests[i].status %></b></div>
+                                    <br>
+                            </fieldset>
+                            
+                            <!-- <div><%= tests[i].test.status %></div>
+                            
+                            
+                            <div><%= tests[i].test.payment %></div>
+                            <div><%= tests[i].test.payment_done %></div> -->
+                       
+                        
+                            
                         </div>
-                        <div class="col s3">
-                            <p><%= tests[i].test.status %></p>
-                        </div>
-                        <div class="col s3">
-                            <p><%= tests[i].test.payment %></p>
-                        </div>
-                        <div class="col s3">
-                            <p><%= tests[i].test.payment_done %></p>
-                        </div>
-                        <div class="col s3">
-                            <p>Rs 900 + (18 % GST)</p>
-                        </div>
-                        <div class="col s3">
-                            <form action="/payment/create-request" class="col s12" method="POST">
-                            <input style="display: none" type="text" name="purpose" value="<%= tests[i].test.test.title %>">
-                            <input style="display: none" type="text" name="test_id" value="<%= tests[i].test.test._id %>">
-                            <input style="display: none" type="text" name="book_id" value="<%= tests[i].test._id %>">
-                            <input type="submit" name="submit" value="Make Payment">
-                            </form>
-                        </div>
+                        
                         <div class="row"></div>
+                    </div>
                     </div>
                 <% } %>
                 <div class="row" style="height:50px;"></div>
