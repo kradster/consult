@@ -163,7 +163,7 @@ mainRouter.get('/forgot-password', (req, res) => {
 
 mainRouter.get('/job-opportunities', (req, res) => {
     let dct = { title: "Freshers job in India , Job opportunity in India , Job offers in India | JobLana" }
-    adminController.getjobs((err, jobs) => {
+    userController.getjobs((err, jobs) => {
         if (err) {
             dct['listings'] = []
         } else {

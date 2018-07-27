@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var Token = require('../models/token');
+var Job = require('../models/job');
 var Test = require('../models/test');
 var Profile = require('../models/profile');
 var Experience = require('../models/experience');
@@ -193,4 +194,14 @@ module.exports.addprofile = function(user, data, callback) {
             return callback(null, newProfile);
         });
     }
+}
+
+module.exports.getjobs = function(callback) {
+    Job.find({"approved": true}, (err, jobs) => {
+        if (err) {
+            return callback(err, null);
+        } else {
+            return callback(null, jobs);
+        }
+    });
 }

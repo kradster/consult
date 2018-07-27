@@ -132,6 +132,15 @@
                                     <a id="l6" href="/user/mytests" class="z-depth-0 btn white indigo-text text-lighten-1 accent-4">
                                         <b>MY TEST</b>
                                     </a>
+                                    <% if (data.role == "ADMIN"){ %> 
+                                        <a id="l6" href="/admin/dashboard" class="z-depth-0 btn white indigo-text text-lighten-1 accent-4">
+                                        <b>Admin Dashboard</b>
+                                        </a>
+                                    <% } else if (data.role == "RECRUITER") { %> 
+                                        <a id="l6" href="/recruiter/dashboard" class="z-depth-0 btn white indigo-text text-lighten-1 accent-4">
+                                        <b>Recruiter Dashboard</b>
+                                        </a>
+                                    <% } %>
                                 </center>
                                                 
                             

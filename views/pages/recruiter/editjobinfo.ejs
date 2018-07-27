@@ -195,7 +195,7 @@
                                 <div class="col s3 right-align" style="padding-top:10px;">Requirements</div>
                                 <div class="col s8" id="reqpanel">
                                 <% for(let i=0; i<job.job.requirements.length; i++) { %>
-                                    <input type="text" id="requirements" name="job-requirements[]" placeholder="Requirement" value="<%= job.job.requirements[i] %>">
+                                    <input type="text" id="requirements" name="job-requirements" placeholder="Requirement" value="<%= job.job.requirements[i] %>">
                                 <% } %>
                                 </div>
                                 <div class="col s1">
@@ -278,7 +278,7 @@
                 });
 
                 $("#add-requirements").click(()=>{
-                    $('#reqpanel').append(`<input type="text" id="requirements" name="job-requirements[]" placeholder="Requirement">`);
+                    $('#reqpanel').append(`<input type="text" id="requirements" name="job-requirements" placeholder="Requirement">`);
                 });
                 document.addEventListener('DOMContentLoaded', function() {
                     var elems = document.querySelectorAll('.datepicker');

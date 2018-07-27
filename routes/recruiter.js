@@ -40,11 +40,11 @@ recruiterRouter.post('/addjob', isauthenticated, (req, res) => {
                 Object.values(err.errors).forEach(error => {
                     res.locals.messages.push([error.message, "red"]);
                 });
-                return res.redirect('/admin/addjob')
+                return res.redirect('/recruiter/addjob')
             } else {
                 // sendEmail(req.user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
                 res.locals.messages.push(["Job Uploaded Successfully", "green"]);
-                return res.redirect('/job-opportunities')
+                return res.redirect('/recruiter/editjob')
             }
         } catch (error) {
             console.error(error)
@@ -57,7 +57,7 @@ recruiterRouter.get('/editjobs', isauthenticated, (req, res) => {
         if (err) console.error(err);
         let dct = { title: "Edit jobs" };
         dct.jobs = jobs;
-        res.render('admin/editjoblist', dct);
+        res.render('recruiter/editjoblist', dct);
     });
 });
 
@@ -74,7 +74,7 @@ recruiterRouter.get('/edit-info/:id', isauthenticated, (req, res) => {
             res.locals.messages.push(["No Job found", "red"]);
             return res.redirect('/');
         }
-        return res.render('admin/editjobinfo', dct);
+        return res.render('recruiter/editjobinfo', dct);
     });
 });
 
@@ -91,7 +91,7 @@ recruiterRouter.post('/edit-info/:id', isauthenticated, (req, res) => {
             Object.values(err.errors).forEach(error => {
                 res.locals.messages.push([error.message, "red"]);
             });
-            return res.redirect('/admin/edit-info/' + id)
+            return res.redirect('/recruiter/edit-info/' + id)
         } else if (job) {
             res.locals.messages.push(["Job updated Successfully", "green"]);
             res.redirect('/company-info/' + id);

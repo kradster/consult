@@ -66,6 +66,7 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
     data.email = req.user.email;
     data.verified = req.user.verified;
     data.phoneno = req.user.phoneno;
+    data.role = req.user.role;
     dct.data = data;
     dct.data.profile = { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] };
     userController.getUserProfile(req.user, (err, profile) => {
