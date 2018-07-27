@@ -67,7 +67,7 @@
                             <div class="col s3 right-align" style="padding-top:10px;">Add Job</div>
                             <div class="col s9">
                                 <div id="jobspanel">
-                                    <input type="text" name="jobs[]" id="jobs[]" placeholder="Job">
+                                    <input type="text" name="jobs" id="jobs" placeholder="Job">
                                 </div>
                                 <a class="btn" onclick="addmorejobfields()">Add More</a>
                             </div>
@@ -119,7 +119,7 @@
         });
 
         function addmorejobfields(){
-            $('#jobspanel').append('<input type="text" name="jobs[]" id="jobs[]" placeholder="Job">');
+            $('#jobspanel').append('<input type="text" name="jobs" id="jobs" placeholder="Job">');
         }
     </script>
 </body>

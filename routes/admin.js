@@ -61,6 +61,7 @@ adminRouter.get('/addtest', isauthenticated, (req, res) => {
 adminRouter.post('/addtest', isauthenticated, (req, res) => {
     let data = req.body;
     let tmp = data.jobs;
+    console.log(data);
     tmp = tmp.map(t => t.trim().toUpperCase());
     data.jobs = tmp;
     testController.createTest(req.user, data, (err, test) => {
