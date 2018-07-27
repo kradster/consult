@@ -6,7 +6,7 @@ var userController = require('../controllers/user')
 let subscriberController = require('../controllers/subscriber');
 
 mainRouter.get('/', (req, res, next) => {
-    let dct = { title: "JobLana | India’s fastest assessment test for freshers job offering and recruitment company" }
+    let dct = { title: "JobLana | India’s most Trusted Assessment Test for freshers job offering and recruitment company" }
     res.render("main/index", dct);
 });
 
