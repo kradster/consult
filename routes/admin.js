@@ -62,6 +62,10 @@ adminRouter.post('/addtest', isauthenticated, (req, res) => {
     let data = req.body;
     let tmp = data.jobs;
     console.log(data);
+    if (!tmp || title == "" || date == "" || location == "") {
+        res.locals.messages.push(["You need to fill in all fields", "red"]);
+        return res.redirect('/admin/addtest');
+    }
     tmp = tmp.map(t => t.trim().toUpperCase());
     data.jobs = tmp;
     testController.createTest(req.user, data, (err, test) => {
@@ -70,7 +74,7 @@ adminRouter.post('/addtest', isauthenticated, (req, res) => {
                 Object.values(err.errors).forEach(error => {
                     res.locals.messages.push([error.message, "red"]);
                 });
-                return res.redirect('/admin/addjob')
+                return res.redirect('/admin/addtest');
             } else {
                 // sendEmail(req.user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
                 res.locals.messages.push(["Test uploaded", "green"]);

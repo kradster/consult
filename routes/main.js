@@ -205,6 +205,7 @@ mainRouter.get('/company-info/:id', (req, res) => {
             res.locals.messages.push(["No Job found", "red"]);
             return res.redirect('/');
         }
+        console.log("job", job);
         return res.render('main/cominfo', dct);
     });
 
