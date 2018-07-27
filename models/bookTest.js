@@ -20,8 +20,8 @@ var BookTest = new Schema({
     },
     status: {
         type: String,
-        enum: ["","PENDING", "CLOSED", "ABSENT", "FAILED", "PASSED"],
-        default: ""
+        enum: ["INACTIVE","PENDING", "CLOSED", "ABSENT", "FAILED", "PASSED"],
+        default: "INACTIVE"
     },
     marks: {
         type: Number
