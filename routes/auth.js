@@ -7,6 +7,7 @@ var sendEmail = require('../utils/email');
 let User = require('../models/user.js');
 var Config = require('../config')
 var storage = require('../utils/storage');
+let Profile = require('../models/profile');
 
 // Middlewares
 function isauthenticated(req, res, next) {
