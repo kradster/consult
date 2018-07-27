@@ -59,7 +59,7 @@ function complete_payment(payment_id, callback) {
 
 paymentRouter.post('/create-request', isauthenticated, (req, res, next) => {
     let data = req.body;
-    let amount = '10';
+    let amount = '1062';
     Payment.findOne({"book_id": new ObjectId(data.book_id)}, (err, payment)=> {
         if (payment){
             return res.redirect("https://www.instamojo.com/@joblanatest/" + payment.payment_id);

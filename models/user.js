@@ -87,7 +87,7 @@ var User = new Schema({
     },
     role: {
         type: String,
-        enum: ["ADMIN", "USER", "MODERATOR"],
+        enum: ["ADMIN", "USER", "MODERATOR", "RECRUITER"],
         default: "USER"
     }
 }, { timestamps: true });

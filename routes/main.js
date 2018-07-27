@@ -210,5 +210,9 @@ mainRouter.get('/company-info/:id', (req, res) => {
 
 })
 
+mainRouter.get('/sitemap.xml', (req, res) => {
+    let dct = { title: "JobLana | Sitemap" };
+    res.render('main/sitemap', dct);
+});
 
 module.exports = mainRouter;

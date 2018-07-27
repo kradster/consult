@@ -33,6 +33,10 @@ authRouter.post('/signup', (req, res) => {
         res.locals.messages.push(["Passwords do not match", "red"])
         return res.redirect('/signup');
     }
+    if (!(data.role == "USER" || data.role == "RECRUITER")) {
+        res.locals.messages.push(["Incorect Role", "red"])
+        return res.redirect('/signup');
+    }
     userController.createuser(data, (err, user) => {
         try {
             if (err) {

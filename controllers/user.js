@@ -6,7 +6,6 @@ var Experience = require('../models/experience');
 var BookTest = require('../models/bookTest');
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId
-var async = require('async');
 let crypto = require('crypto');
 
 module.exports.createuser = function(user, callback) {
@@ -16,7 +15,8 @@ module.exports.createuser = function(user, callback) {
             first: user.firstname,
             last: user.lastname
         },
-        phoneno: user.phoneno
+        phoneno: user.phoneno,
+        role: user.role
     });
     userdat.password = userdat.generateHash(user.password)
     userdat.save((err, userdat) => {

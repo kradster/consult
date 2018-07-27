@@ -11,6 +11,7 @@ let Config = require('./config');
 let mainRouter = require('./routes/main.js');
 let authRouter = require('./routes/auth.js');
 let adminRouter = require('./routes/admin.js');
+let recruiterRouter = require('./routes/recruiter.js');
 let paymentRouter = require('./routes/payment.js');
 var fileUpload = require('express-fileupload');
 var passport = require('passport');
@@ -79,6 +80,7 @@ app.use('/', mainRouter);
 app.use('/user', authRouter);
 app.use('/admin', adminRouter);
 app.use('/payment', paymentRouter);
+app.use('/recruiter', recruiterRouter);
 // Routes
 
 // 404 Page redirect
