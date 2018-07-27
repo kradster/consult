@@ -34,6 +34,49 @@
     <!-- TEST SCHEDULE DETAILS PANEL START -->
     <div class="row">
         <div class="row" style="height:50px;"></div>
+
+        <div class="col s10 offset-s1">
+            <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
+                <span style="font-size:1.7em">Book New Tests</span>
+            </div>
+            <div class="divider"></div>
+            <div class="divider"></div>
+            <br>
+            <% for(var i=0; i < all_tests.length; i++) { %>
+                <div class="col s12">
+                    <form action="/user/scheduletest/<%= all_tests[i].id %>" class="col s12" method="POST">
+                        <div class="col s3">
+                            <input type="text" placeholder="<%= all_tests[i].title %>" readonly>
+                        </div>
+                        <div class="col s3">
+                            <select name="job">
+                                <option value="" disabled selected>Choose your role</option>
+                                <% for(var j=0; j < all_tests[i].job.length; j++) { %>
+                                    <option value="<%= all_tests[i].job[j] %>"><%= all_tests[i].job[j] %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="location" id="location" value="" placeholder="<%= all_tests[i].location %>" readonly>
+
+                        </div>
+                        <div class="col s3">
+
+                            <input type="text" name="date" id="date" value="" placeholder="<%= all_tests[i].date %>" readonly>
+
+                        </div>
+                        <div class="col s3">
+                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                        </div>
+                        <div class="row"></div>
+                    </form>
+                </div>
+            <% } %>
+            <div class="row" style="height:50px;"></div>
+
+        </div>
+
         <div class="col s10 offset-s1">
             <div class="col s12 card no-padd z-depth-0">
                 <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
@@ -45,8 +88,16 @@
                     <div class="col s4">
                         <div class="col s12 card z-depth-2"style="border-radius:0px;">
                         <div class="col s12 no-padd">
-                            <h6 style="border-bottom: 3px solid blue;padding-bottom:10px;" class="center-align"><b><%= tests[i].test.job %></b></h6>
+                            <h6 style="border-bottom: 3px solid blue;padding-bottom:10px;" class="center-align"><b><%= tests[i].test.test.title %></b></h6>
                             <br>
+                            <fieldset>
+                                <legend>
+                                        <small><b style="letter-spacing:5px;">For</b></small>
+                                </legend>
+                                <br>
+                                <div><b><%= tests[i].test.job %></b></div>
+                                <br>
+                            </fieldset>
                             <fieldset>
                                 <legend>
                                         <small><b style="letter-spacing:5px;">PAYMENT OF</b></small>

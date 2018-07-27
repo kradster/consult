@@ -2,7 +2,6 @@
 const express = require('express');
 var adminRouter = express.Router();
 var adminController = require('../controllers/admin')
-var testController = require('../controllers/test')
 var passport = require('passport');
 var sendEmail = require('../utils/email');
 
@@ -68,7 +67,7 @@ adminRouter.post('/addtest', isauthenticated, (req, res) => {
     }
     tmp = tmp.map(t => t.trim().toUpperCase());
     data.jobs = tmp;
-    testController.createTest(req.user, data, (err, test) => {
+    adminController.createTest(req.user, data, (err, test) => {
         try {
             if (err) {
                 Object.values(err.errors).forEach(error => {

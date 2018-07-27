@@ -205,3 +205,10 @@ module.exports.getjobs = function(callback) {
         }
     });
 }
+
+module.exports.getAllTests = function(callback) {
+    Test.find({}).populate('admin').exec((err, tests) =>{
+        if (err) return callback(err, null);
+        else return callback(null, tests);
+    });
+}

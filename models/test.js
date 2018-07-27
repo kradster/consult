@@ -24,6 +24,7 @@ var Test = new Schema({
     },
     title: {
         type: String,
+        required: [true, "Title of JL is required"]
     }
 
 });

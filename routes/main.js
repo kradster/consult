@@ -3,7 +3,6 @@ var mainRouter = express.Router();
 var sendEmail = require('../utils/email');
 var adminController = require('../controllers/admin')
 var userController = require('../controllers/user')
-var testController = require('../controllers/test')
 let subscriberController = require('../controllers/subscriber');
 
 mainRouter.get('/', (req, res, next) => {
@@ -34,13 +33,12 @@ mainRouter.get('/login', (req, res, next) => {
 
 mainRouter.get('/upcoming-jl-test', (req, res, next) => {
     let dct = { title: "Upcoming JL Tests | Schedule your JL test Now" };
-    testController.getTests((err, tests) => {
+    userController.getAllTests((err, tests) => {
         if (err) {
-            dct['tests'] = []
+            dct['tests'] = [];
         } else {
             if (tests) dct['tests'] = tests;
-            else dct['tests'] = []
-
+            else dct['tests'] = [];
         }
         return res.render('main/schedule', dct);
     });

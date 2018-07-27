@@ -85,21 +85,6 @@ authRouter.post('/resume-upload', isauthenticated, function(req, res) {
     storageController.upload_file(req, res);
 });
 
-authRouter.get('/upcoming-jl-test', (req, res, next) => {
-    let dct = { title: "Upcoming JL Tests | Schedule your JL test Now" };
-    testController.getTests((err, tests) => {
-        if (err) {
-            dct['tests'] = []
-        } else {
-            if (tests) dct['tests'] = tests;
-            else dct['tests'] = []
-
-        }
-        return res.render('auth/schedule', dct);
-    });
-});
-
-
 authRouter.post('/scheduletest/:id', isauthenticated, (req, res) => {
     data = req.body
     let id = req.params.id;
@@ -108,10 +93,10 @@ authRouter.post('/scheduletest/:id', isauthenticated, (req, res) => {
             Object.values(err.errors).forEach(error => {
                 res.locals.messages.push([error.message, "red"]);
             });
-            return res.redirect('/upcoming-jl-test');
+            return res.redirect('/user/mytests');
         } else {
             res.locals.messages.push(["Successfully applied to test", "green"])
-            return res.redirect('/user/profile');
+            return res.redirect('/user/mytests');
         }
     });
 });
@@ -121,9 +106,9 @@ authRouter.get('/showcv', isauthenticated, (req, res) => {
     return res.render("auth/showcv", dct);
 });
 
-authRouter.get('/myscore', isauthenticated, (req, res) => {
-    let dct = { title: "My Score" };
-    return res.render("auth/myscore", dct);
+authRouter.get('/admit-card', isauthenticated, (req, res) => {
+    let dct = { title: "My Admit Card" };
+    return res.render("auth/admitcard", dct);
 });
 
 authRouter.get('/myjob', isauthenticated, (req, res) => {
@@ -136,7 +121,16 @@ authRouter.get('/mytests', isauthenticated, (req, res) => {
     if (req.user.applied_tests) {
         dct['tests'] = req.user.applied_tests;
     } else dct['tests'] = [];
-    return res.render('auth/mytests', dct);
+    userController.getAllTests((err, tests) => {
+        if (err) {
+            dct['all_tests'] = [];
+            return res.render('auth/mytests', dct);
+        } else {
+            if (tests) dct['all_tests'] = tests;
+            else dct['all_tests'] = []
+        }
+        return res.render('auth/mytests', dct);
+    });
 });
 
 authRouter.get('/editcv', isauthenticated, (req, res) => {

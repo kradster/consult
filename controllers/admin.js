@@ -2,7 +2,25 @@ var User = require('../models/user');
 var Job = require('../models/job');
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId
+var Test = require('../models/test');
 
+module.exports.createTest = function(user, data, callback) {
+    let newTest = new Test({
+        admin: user._id,
+        job: data.jobs,
+        date: data.date,
+        location: data.location,
+        title: data.title
+    });
+    newTest.save((err) => {
+        if (err) {
+            console.log(err);
+            return callback(err, null);
+        }
+        console.log("test", newTest);
+        return callback(null, newTest);
+    });
+}
 module.exports.addjob = function(user, data, callback) {
     let newJob = new Job();
     newJob.recruiter = user._id;

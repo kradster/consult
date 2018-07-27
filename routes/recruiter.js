@@ -2,8 +2,6 @@
 const express = require('express');
 var recruiterRouter = express.Router();
 var recruiterController = require('../controllers/recruiter')
-var testController = require('../controllers/test')
-var passport = require('passport');
 var sendEmail = require('../utils/email');
 
 // Middlewares
