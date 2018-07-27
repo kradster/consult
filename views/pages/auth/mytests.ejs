@@ -35,12 +35,9 @@
     <div class="row">
         <div class="row" style="height:50px;"></div>
         <div class="col s10 offset-s1">
-            <div class="col s12">
-                <h2 class="grey-text">BOOK YOUR TEST SEAT NOW</h2>
-            </div>
             <div class="col s12 card no-padd z-depth-0">
                 <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
-                    <span style="font-size:1.7em">Choose your Slot.</span>
+                    <span style="font-size:1.7em">Your Pending Tests</span>
                 </div>
                 <div class="divider"></div>
                 <br>
@@ -74,16 +71,15 @@
                                 <% if (tests[i].test.status) { %>
                                     <div class="green-text"><b>COMPLETED <i class="fas fa-check"></i></b></div>
                                 <% } else { %>
-                                    <div class="amber-text"><b>PENDING <i class="fas fa-exclamation"></i></b></div><br>
-                                <% } %>
-                                <div>
+                                    <div>
                                         <form action="/payment/create-request" class="col s12" method="POST">
                                         <input style="display: none" type="text" name="purpose" value="<%= tests[i].test.test.title %>">
                                         <input style="display: none" type="text" name="test_id" value="<%= tests[i].test.test._id %>">
                                         <input style="display: none" type="text" name="book_id" value="<%= tests[i].test._id %>">
-                                        <input class="btn red z-depth-0 right" type="submit" name="submit" value="Make Payment">
+                                        <input class="btn red z-depth-0" type="submit" name="submit" value="Make Payment">
                                         </form>
                                     </div>
+                                <% } %>
                                 <br>
                             </fieldset>
                             <fieldset>
@@ -91,7 +87,7 @@
                                             <small><b style="letter-spacing:5px;">TEST STATUS</b></small>
                                     </legend>
                                     <br>
-                                    <div><b><%= tests[i].status %></b></div>
+                                    <div><b><%= tests[i].test.status %></b></div>
                                     <br>
                             </fieldset>
                             
