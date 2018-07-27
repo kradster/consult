@@ -104,7 +104,7 @@
                                     <div class="col s8" id="locationpanel">
                                     <% for(let i=0; i<job.job.location.length; i++) { %>
                                         <div id="locationselect" data="<%= job.job.location[i] %>">
-                                        <select name="job-location[]" id="job-location">
+                                        <select name="job-location" id="job-location">
                                         <option value="" disabled>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="New Delhi">New Delhi</option>
@@ -253,7 +253,7 @@
                 $('#add-location').click(()=>{
                     $('#locationpanel').append(`
                     <div id="locationselect">
-                                        <select name="job-location[]" id="job-location[]">
+                                        <select name="job-location" id="job-location">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="New Delhi">New Delhi</option>

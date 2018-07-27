@@ -102,7 +102,7 @@
                                     <div class="col s3 right-align" style="padding-top:10px;">Location</div>
                                     <div class="col s8" id="locationpanel">
                                         <div id="locationselect">
-                                        <select name="job-location[]" id="job-location[]">
+                                        <select name="job-location" id="job-location">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="New Delhi">New Delhi</option>
@@ -187,7 +187,7 @@
                             <div class="col l10 offset-l2 s12">
                                 <div class="col s3 right-align" style="padding-top:10px;">Requirements</div>
                                 <div class="col s8" id="reqpanel">
-                                    <input type="text" id="requirements" name="job-requirements[]" placeholder="Requirement">
+                                    <input type="text" id="requirements" name="job-requirements" placeholder="Requirement">
                                 </div>
                                 <div class="col s1">
                                 <input id="add-requirements" type="button" class="ui button mini light-blue white-text" value="ADD MORE">
@@ -244,7 +244,7 @@
                 $('#add-location').click(()=>{
                     $('#locationpanel').append(`
                     <div id="locationselect">
-                                        <select name="job-location[]" id="job-location[]">
+                                        <select name="job-location" id="job-location">
                                         <option value="" disabled selected>Choose your option</option>
                                         <option value="Delhi">Delhi</option>
                                         <option value="New Delhi">New Delhi</option>
@@ -269,7 +269,7 @@
                 });
 
                 $("#add-requirements").click(()=>{
-                    $('#reqpanel').append(`<input type="text" id="requirements" name="job-requirements[]" placeholder="Requirement">`);
+                    $('#reqpanel').append(`<input type="text" id="requirements" name="job-requirements" placeholder="Requirement">`);
                 });
                 document.addEventListener('DOMContentLoaded', function() {
                     var elems = document.querySelectorAll('.datepicker');

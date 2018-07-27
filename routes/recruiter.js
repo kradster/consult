@@ -44,7 +44,7 @@ recruiterRouter.post('/addjob', isauthenticated, (req, res) => {
             } else {
                 // sendEmail(req.user.email, "Welcome", { link: "https://www.joblana.com" }, "verification");
                 res.locals.messages.push(["Job Uploaded Successfully", "green"]);
-                return res.redirect('/recruiter/editjob')
+                return res.redirect('/recruiter/editjobs');
             }
         } catch (error) {
             console.error(error)
