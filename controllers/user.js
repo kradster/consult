@@ -10,7 +10,7 @@ let crypto = require('crypto');
 
 module.exports.createuser = function(user, callback) {
     let userdat = new User({
-        email: user.email,
+        email: user.email.toLowerCase(),
         name: {
             first: user.firstname,
             last: user.lastname

@@ -36,8 +36,8 @@ module.exports.addjob = function(user, data, callback) {
     });
 }
 
-module.exports.getjobs = function(callback) {
-    Job.find({}, (err, jobs) => {
+module.exports.getjobs = function(user, callback) {
+    Job.find({"recruiter": user._id}, (err, jobs) => {
         if (err) {
             return callback(err, null);
         } else {
@@ -46,8 +46,8 @@ module.exports.getjobs = function(callback) {
     });
 }
 
-module.exports.getjob = function(id, callback) {
-    Job.findOne({ "_id": new ObjectId(id) }).populate("recruiter").exec((err, job) => {
+module.exports.getjob = function(user, id, callback) {
+    Job.findOne({ "_id": new ObjectId(id), "recruiter": user._id }).populate("recruiter").exec((err, job) => {
         if (err) {
             return callback(err, null);
         } else {
@@ -56,9 +56,17 @@ module.exports.getjob = function(id, callback) {
     })
 }
 
-module.exports.editjob = function(id, data, callback) {
-    Job.findOne({ "_id": id }).populate().exec((err, job) => {
-        console.log("job found", job)
+module.exports.editjob = function(user, id, data, callback) {
+    Job.findOne({ "_id": id, "recruiter": user._id }).populate().exec((err, job) => {
+        if (err) {
+            console.error(err);
+            return callback(err, null);
+        }
+        if (!job) {
+            console.error('No Job found');
+            let error = new Error("No Job found");
+            return callback(error, null)
+        }
         Object.keys(data).forEach(dat => {
             if (dat.includes('-')) {
                 pri = dat.split('-')

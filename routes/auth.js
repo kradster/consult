@@ -21,8 +21,10 @@ function isauthenticated(req, res, next) {
 // Middlewares
 
 authRouter.post('/login', (req, res, next) => {
+    let next_url = req.session.next;
+    delete req.session.next
     passport.authenticate('local-login', {
-        successRedirect: '/user/profile', // redirect to the secure profile section
+        successRedirect: next_url || '/user/profile', // redirect to the secure profile section
         failureRedirect: '/login', // redirect back to the signup page if there is an error
     })(req, res, next);
 });

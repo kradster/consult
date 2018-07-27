@@ -48,7 +48,7 @@ var User = new Schema({
         type: String,
         required: [true, "Password is required"],
         trim: true,
-        min: [4, "Password must be of 4 digits"],
+        min: [8, "Password must be of 8 digits"],
         max: [16, "Password cannot be greater than 16 digits"]
     },
     phoneno: {

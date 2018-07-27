@@ -53,7 +53,7 @@ recruiterRouter.post('/addjob', isauthenticated, (req, res) => {
 });
 
 recruiterRouter.get('/editjobs', isauthenticated, (req, res) => {
-    recruiterController.getjobs((err, jobs) => {
+    recruiterController.getjobs(req.user, (err, jobs) => {
         if (err) console.error(err);
         let dct = { title: "Edit jobs" };
         dct.jobs = jobs;
@@ -63,7 +63,7 @@ recruiterRouter.get('/editjobs', isauthenticated, (req, res) => {
 
 recruiterRouter.get('/edit-info/:id', isauthenticated, (req, res) => {
     let dct = { title: "Company Info" };
-    recruiterController.getjob(req.params.id, (err, job) => {
+    recruiterController.getjob(req.user, req.params.id, (err, job) => {
         if (err) {
             console.error(err)
             return res.redirect('/');
@@ -86,7 +86,7 @@ recruiterRouter.post('/edit-info/:id', isauthenticated, (req, res) => {
             delete data[key];
         }
     });
-    recruiterController.editjob(id, data, (err, job) => {
+    recruiterController.editjob(req.user, id, data, (err, job) => {
         if (err) {
             Object.values(err.errors).forEach(error => {
                 res.locals.messages.push([error.message, "red"]);

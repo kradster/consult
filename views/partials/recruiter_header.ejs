@@ -1,0 +1,70 @@
+<!-- NAVIGATION BAR START -->
+<meta name="keyword" content="Assessment test, freshers jobs, aptitude test, recruitment company, job offers, test for jobs, cv , resume, IT jobs, sales & marketing jobs, BPO jobs , accounting jobs , digital marketing jobs, operation jobs, HR jobs, office support jobs, freshers jobs after 12th ,  freshers jobs after bba,  freshers jobs after bca,  freshers jobs after graduation,  freshers jobs after btech,  freshers jobs after b.com,  freshers jobs after m.com, best assessment test,  freshers jobs in Delhi, freshers jobs in Banglore, freshers jobs in mumbai, freshers jobs in Ahmedabad, freshers jobs in chennai, freshers jobs in pune, cv for IT jobs , cv for sales job, cv for marking jobs ">
+<style>
+    
+    ul li>a {
+        transition:all .3s ease-in;
+    }
+    
+    ul li>a:hover {
+        background-color: transparent !important;
+        color: grey !important;
+    }
+    
+    .slide {
+        height: 250px !important;
+    }
+</style>
+<div class="navbar-fixed white-text" style="position: fixed;top:0px;">
+    <nav class="z-depth-0 indigo accent-4">
+        <div class="nav-wrapper">
+            <a class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <a href="/" class="brand-logo">
+                <img style="width:130px;" src="/img/logo.png" alt="">
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a class="" style="border-radius:3px;" href="/user/profile"><b>User Pannel</b></a>
+                </li>
+                <li>
+                    <a class="" style="border-radius:3px;" href="/recruiter/dashboard"><b>Dashboard</b></a>
+                </li>
+                <li>
+                    <a class="" style="border-radius:3px;margin-right:-10px;" href="/user/logout"><b>Logout</b></a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</div>
+<div id="nav-mobile" class="blue accent-4" style="position:fixed;top:55px;z-index:999;overflow:hidden;height:0px; transition:all .3s linear;">
+    <nav class="blue accent-4 z-depth-0">
+        <div class="nav-wrapper blue accent-4">
+            <div class="row">
+
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a class="" style="border-radius:3px;" href="/user/profile"><b>User Pannel</b></a>
+                </li>
+                <li>
+                    <a class="" style="border-radius:3px;" href="/admin/dashboard"><b>Dashboard</b></a>
+                </li>
+                <li>
+                    <a class="" style="border-radius:3px;margin-right:-10px;" href="/user/logout"><b>Logout</b></a>
+                </li>
+            </ul>
+
+            </div>
+
+        </div>
+    </nav>
+</div>
+<script type="text/javascript">
+    $(".sidenav-trigger").on('click', function() {
+        var el = document.getElementById('nav-mobile');
+        $(el).toggleClass('slide');
+    });
+</script>
+<!-- NAVIGATION BAR END -->

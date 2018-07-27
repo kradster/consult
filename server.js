@@ -85,6 +85,7 @@ app.use('/recruiter', recruiterRouter);
 
 // 404 Page redirect
 app.get('*', (req, res, next) => {
+    console.error(req.originalUrl)
     if (req.session.messages) {
         req.session.messages.push(["The page you are looking for doesn't exist", "red"])
     } else {
