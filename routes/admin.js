@@ -115,11 +115,14 @@ adminRouter.get('/edit-info/:id', isauthenticated, (req, res) => {
 adminRouter.post('/edit-info/:id', isauthenticated, (req, res) => {
     let id = req.params.id;
     let data = req.body;
+    console.log(data);
     Object.keys(data).forEach(key => {
         if (data[key] == '') {
             delete data[key];
         }
     });
+    if (!data.approved)
+        data.approved = false;
     adminController.editjob(id, data, (err, job) => {
         if (err) {
             Object.values(err.errors).forEach(error => {

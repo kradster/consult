@@ -58,7 +58,7 @@ module.exports.getjob = function(id, callback) {
 
 module.exports.editjob = function(id, data, callback) {
     Job.findOne({ "_id": id }).populate().exec((err, job) => {
-        console.log("job found", job)
+
         Object.keys(data).forEach(dat => {
             if (dat.includes('-')) {
                 pri = dat.split('-')
