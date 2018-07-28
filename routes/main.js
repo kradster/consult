@@ -209,10 +209,6 @@ mainRouter.get('/company-info/:id', (req, res) => {
 
 })
 
-mainRouter.get('/error', (req, res, next) => {
-    let dct = { title: "internal server error" }
-    res.render("main/error", dct);
-});
 
 mainRouter.get('/sitemap.xml', (req, res) => {
     let dct = { title: "JobLana | Sitemap" };

@@ -88,6 +88,13 @@ app.get('*', (req, res, next) => {
 });
 // 404 Page redirect
 
+// 500 Page
+app.use(function(error, req, res, next) {
+    let dct = { title: "Internal Server Error" }
+    return res.render("main/error", dct);
+});
+//500 Page
+
 app.listen(Config.PORT || 5000, Config.HOST || "0.0.0.0", () => {
     console.log('listening on ' + (Config.HOST || "0.0.0.0") + ": " + (Config.PORT || 5000));
 });

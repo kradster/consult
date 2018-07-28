@@ -169,7 +169,6 @@ adminRouter.get('/view-booked-tests', isauthenticated, (req, res) => {
             res.locals.message.push(["Some error occurec", "red"]);
             return res.redirect('/admin/dashboard')
         }
-        console.log(tests);
         for (let i = 0; i < tests.length; i++) {
             dct.tests.push({
                 user: tests[i].user._id,
