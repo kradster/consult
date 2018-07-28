@@ -88,7 +88,7 @@ app.get('*', (req, res, next) => {
 
 // 500 Page
 app.use(function(error, req, res, next) {
-    console.error(error);
+    console.error("500 ERROR: ", error);
     let dct = { title: "Internal Server Error" }
     return res.render("main/error", dct);
 });

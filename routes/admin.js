@@ -196,7 +196,6 @@ adminRouter.get('/usercsv', isauthenticated, function(req, res, next) {
         users.forEach(user=> {
             csv_users.push({name: user.fullname, email: user.email});
         })
-        console.log(csv_users);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/csv');
         res.setHeader("Content-Disposition", 'attachment; filename='+filename);
