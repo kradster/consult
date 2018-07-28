@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../../partials/pre_head %>
+        <title>Admin Pannel</title>
+        <meta name="description" content="JobLana is a platform giving opportunity to freshers and job seekers to get benchmarked score based on JL Test to bring themselves closer to more than 2000 recruiters for getting hired and also meeting companies demands to acquire the best talent.">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR START -->
+    <% include ../../partials/admin_header %>
+        <!-- NAVIGATION BAR END -->
+
+        <div class="row" style="height:30px;"></div>
+        <!-- HEADER START -->
+        <div class="row white-text blue darken-4">
+            <div class="col l6 offset-l1 s12">
+                <div class="row" style="height:50px;"></div>
+                <h4>
+                    <B>Post your job for free - Hire from
+                    <br> over 3 million assessed candidates.</B>
+                </h4>
+                <div style="font-size:1.5em;">Reach the best candidates by posting a job within 60 seconds on India's largest assessed database.</div>
+                <div class="row" style="height:50px;"></div>
+            </div>
+        </div>
+        <!-- HEADER END -->
+
+        <!-- JOB DETAILS PANEL START -->
+        <div class="card" style="margin:50px">
+            <div class="row">
+                <div class="row" style="height:50px;"></div>
+                <div class="col l10 offset-l1 s12">
+                    <div class="col s12">
+                        <h2>
+                            <b class="grey-text">EDIT USER</b>
+                        </h2>
+                    </div>
+                    <div class="col s12 card no-padd z-depth-0">
+                        <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
+                            <i class="fas fa-briefcase fa-2x"></i> Modfiy fields
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row" style="height:50px;"></div>
+                        <form method="POST" action="/admin/user/<%= user._id %>" enctype="multipart/form-data">
+                                        <div>
+                                            <h4><%= user.name.first %> <%= user.name.last %></h4>
+                                            <div class="row">
+                                            <div class="col s6">
+                                            <p>Verfied: <%= user.verified %></p>
+                                            <p>Email: <%= user.email %></p>
+                                            <p>Phone No.: <%= user.phoneno %></p>
+                                            
+                                            <p>Father's Name: <%= user.profile.details.father_name %></p>
+                                            <p>Aadhar No.: <%= user.profile.details.aadharno %></p>
+                                            <p>Gender: <%= user.profile.details.gender %></p>
+                                            <p>Date of Birth: <%= new Date(user.profile.details.dob) %></p>
+                                            <p>Role</p>
+                                            <select name="updatedrole" style="width:200px !important">
+                                                <% for(let j=0 ; j<rolelist.length ; j++) { %>
+                                                <option value="<%= rolelist[j] %>" ><%= rolelist[j] %></option>
+                                                <% } %>
+                                            </select>
+                                            <input type="submit" value="Update" class="btn"/>
+                                            <script>
+                                                $('option[value=<%= user.role %>').attr("selected", true);
+                                            </script>
+                                        </div>
+                                        <div class="col s6">
+                                            <b>Address:</b>
+                                            <p>Address: <%= user.profile.address.full_address %></p>
+                                            <p>City: <%= user.profile.address.city %></p>
+                                            <p>State: <%= user.profile.address.state %></p>
+                                            <p>Pincode: <%= user.profile.address.pincode %></p>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s6">
+                                            <b>10th education:</b>
+                                            <p>School: <%= user.profile.education.high.institute_name %></p>
+                                            <p>Board: <%= user.profile.education.high.board %></p>
+                                            <p>Marks: <%= user.profile.education.high.marks %></p>
+                                            <p>Course: <%= user.profile.education.high.course %></p>
+                                        </div>
+                                        <div class="col s6">
+                                            <b>12th education:</b>
+                                            <p>School: <%= user.profile.education.intermediate.institute_name %></p>
+                                            <p>Board: <%= user.profile.education.intermediate.board %></p>
+                                            <p>Marks: <%= user.profile.education.intermediate.marks %></p>
+                                            <p>Course: <%= user.profile.education.intermediate.course %></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s6">
+                                        <b>Graduation:</b>
+                                        <p>Institute Name: <%= user.profile.education.graduation.institute_name %></p>
+                                        <p>Board: <%= user.profile.education.graduation.board %></p>
+                                        <p>Marks: <%= user.profile.education.graduation.marks %></p>
+                                        <p>Passing Year: <%= user.profile.education.graduation.passing_year %></p>
+                                        </div>
+                                        <div class="col s6">
+                                        <b>Post Graduation:</b>
+                                        <p>Institute Name: <%= user.profile.education.post_graduation.institute_name %></p>
+                                        <p>Board: <%= user.profile.education.post_graduation.board %></p>
+                                        <p>Marks: <%= user.profile.education.post_graduation.marks %></p>
+                                        <p>Passing Year: <%= user.profile.education.post_graduation.passing_year %></p>
+                                        </div>
+                                    </div>
+
+                                        <p>Preferred City: <%= user.preferred_city %></p>
+                                        <p>Skills: <%= user.profile.skills %></p>
+                                        <b>Experience:</b>
+                                        <% for(let j=0 ; j<user.profile.experience.length ; j++) { %>
+                                            <p><b>Project <%= j+1 %></b><p>
+                                            <div class="row">
+                                            <div class="col s6">
+                                            <p>Type: <%= user.profile.experience[j].type %></p>
+                                            <p>Role: <%= user.profile.experience[j].role %></p>
+                                            <p>Organization: <%= user.profile.experience[j].organization %></p>
+                                            </div>
+                                            <div class="col s6">
+                                            <p>Description: <%= user.profile.experience[j].description %></p>
+                                            <p>Start Date: <%= user.profile.experience[j].start_date %></p>
+                                            <p>End Date: <%= user.profile.experience[j].end_date %></p>
+                                            </div>
+                                            </div>
+                                        <% } %>
+                                    
+                                    
+                        
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row" style="height:50px;"></div>
+
+            </div>
+            <!-- JOB DETAILS PANEL END -->
+        </div>
+
+        <!-- FOOTER START -->
+        <% include ../../partials/pre_footer %>
+            <!-- FOOTER END -->
+
+
+            <!-- Compiled and minified JavaScript -->
+            <script>
+                $(document).ready(function() {
+                    
+                    M.AutoInit();
+                    $('body').on('focus', ".datepicker", function() {
+                        $(this).datepicker();
+
+                    });
+                    $('body').on('focus', "select", function() {
+                        M.AutoInit();
+                    });
+                    //$(document).on('click','.datapicker',M.datepicker);
+                });
+                $('select').on('contentChanged', function() {
+                    $(this).material_select();
+                });
+                
+                
+            </script>
+</body>
+
+</html>

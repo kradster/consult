@@ -152,7 +152,8 @@ adminRouter.get('/viewusers', isauthenticated, (req, res) => {
                 email: users[i].email,
                 phoneno: users[i].phoneno,
                 applied_tests: users[i].applied_tests,
-                profile: users[i].profile ? users[i].profile : { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] }
+                profile: users[i].profile ? users[i].profile : { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] },
+                _id: users[i]._id
             });
         }
         res.render('admin/viewusers', dct);
@@ -185,7 +186,7 @@ adminRouter.get('/view-booked-tests', isauthenticated, (req, res) => {
 });
 
 adminRouter.get('/usercsv', isauthenticated, function(req, res, next) {
-    var filename   = "users.csv";
+    var filename = "users.csv";
     var dataArray;
     User.find().exec({}, (err, users) => {
         if (err) {
@@ -193,15 +194,48 @@ adminRouter.get('/usercsv', isauthenticated, function(req, res, next) {
             return res.send(err);
         }
         let csv_users = [];
-        users.forEach(user=> {
-            csv_users.push({name: user.fullname, email: user.email});
+        users.forEach(user => {
+            csv_users.push({ name: user.fullname, email: user.email });
         })
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/csv');
-        res.setHeader("Content-Disposition", 'attachment; filename='+filename);
+        res.setHeader("Content-Disposition", 'attachment; filename=' + filename);
         res.csv(csv_users, true);
     });
 });
 
+
+adminRouter.get('/user/:id', isauthenticated, (req, res) => {
+    let rolelist = User.schema.path('role').enumValues;
+    let dct = { title: req.params.id, rolelist: rolelist };
+    adminController.getusers((err, users) => {
+        dct.user = {
+            name: users[0].name,
+            verified: users[0].verified,
+            role: users[0].role,
+            email: users[0].email,
+            phoneno: users[0].phoneno,
+            applied_tests: users[0].applied_tests,
+            profile: users[0].profile ? users[0].profile : { details: {}, address: {}, education: { high: {}, intermediate: {}, graduation: {}, post_graduation: {} }, experience: [], skills: [] },
+            _id: users[0]._id
+        }
+
+        console.log(dct.user);
+        res.render('admin/edituser', dct);
+    }, { _id: req.params.id });
+});
+
+adminRouter.post('/user/:id', isauthenticated, (req, res) => {
+    console.log(req.body);
+
+    adminController.edituser({ id: req.params.id, newrole: req.body.updatedrole }, (err, user) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/admin/user/' + req.params.id);
+        }
+        res.locals.messages.push(["Updated role for the user.", "green"]);
+        return res.redirect('/admin/viewusers');
+    })
+});
 
 module.exports = adminRouter;

@@ -100,8 +100,8 @@ module.exports.editjob = function(id, data, callback) {
     });
 }
 
-module.exports.getusers = function(callback) {
-    User.find({}).populate({ path: 'profile', populate: { path: 'experience', model: 'Experience', populate: { path: "experience" } } }).exec((err, users) => {
+module.exports.getusers = function(callback, data = {}) {
+    User.find(data).populate({ path: 'profile', populate: { path: 'experience', model: 'Experience', populate: { path: "experience" } } }).exec((err, users) => {
         if (err) return callback(err, null);
         return callback(null, users);
     });
@@ -111,6 +111,16 @@ module.exports.getBookTests = function(callback) {
     BookTest.find({}).populate('user').populate('test').populate('payment').exec((err, tests) => {
         if (err) return callback(err, null);
         return callback(null, tests);
+    });
+}
+
+module.exports.edituser = function(data, callback) {
+    User.findOne({ "_id": data.id }, (err, user) => {
+        user.role = data.newrole;
+        user.save(err => {
+            if (err) return callback(err, null);
+            return callback(null, user);
+        });
     });
 }
 

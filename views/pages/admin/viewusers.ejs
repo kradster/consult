@@ -62,95 +62,14 @@
                                 </tr>
                             </thead>
                             <tbody id="userlist">
-                        <% for(var i=0; i < users.length; i++) { %>
+                            <% for(var i=0; i < users.length; i++) { %>
                             <tr id="<%= users[i].name.first %>">
                                 <td><%= users[i].name.first %> <%= users[i].name.last %></td>
                                 <td><%= users[i].verified %></td>
                                 <td><%= users[i].email %></td>
                                 <td><%= users[i].phoneno %></td>
                                 <td><%= users[i].role %></td>
-                                <td><a href="#modal<%= i %>" class="btn right modal-trigger">View all data</a>
-
-                                <!-- Modal Structure -->
-                                    <div id="modal<%= i %>" class="modal">
-                                        <div class="modal-content">
-                                            <h4><%= users[i].name.first %> <%= users[i].name.last %></h4>
-                                            <div class="row">
-                                            <div class="col s6">
-                                            <p>Verfied: <%= users[i].verified %></p>
-                                            <p>Email: <%= users[i].email %></p>
-                                            <p>Phone No.: <%= users[i].phoneno %></p>
-                                            <p>Role: <%= users[i].role %></p>
-                                            <p>Father's Name: <%= users[i].profile.details.father_name %></p>
-                                            <p>Aadhar No.: <%= users[i].profile.details.aadharno %></p>
-                                            <p>Gender: <%= users[i].profile.details.gender %></p>
-                                            <p>Date of Birth: <%= new Date(users[i].profile.details.dob) %></p>
-                                        </div>
-                                        <div class="col s6">
-                                            <b>Address:</b>
-                                            <p>Address: <%= users[i].profile.address.full_address %></p>
-                                            <p>City: <%= users[i].profile.address.city %></p>
-                                            <p>State: <%= users[i].profile.address.state %></p>
-                                            <p>Pincode: <%= users[i].profile.address.pincode %></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s6">
-                                            <b>10th education:</b>
-                                            <p>School: <%= users[i].profile.education.high.institute_name %></p>
-                                            <p>Board: <%= users[i].profile.education.high.board %></p>
-                                            <p>Marks: <%= users[i].profile.education.high.marks %></p>
-                                            <p>Course: <%= users[i].profile.education.high.course %></p>
-                                        </div>
-                                        <div class="col s6">
-                                            <b>12th education:</b>
-                                            <p>School: <%= users[i].profile.education.intermediate.institute_name %></p>
-                                            <p>Board: <%= users[i].profile.education.intermediate.board %></p>
-                                            <p>Marks: <%= users[i].profile.education.intermediate.marks %></p>
-                                            <p>Course: <%= users[i].profile.education.intermediate.course %></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s6">
-                                        <b>Graduation:</b>
-                                        <p>Institute Name: <%= users[i].profile.education.graduation.institute_name %></p>
-                                        <p>Board: <%= users[i].profile.education.graduation.board %></p>
-                                        <p>Marks: <%= users[i].profile.education.graduation.marks %></p>
-                                        <p>Passing Year: <%= users[i].profile.education.graduation.passing_year %></p>
-                                        </div>
-                                        <div class="col s6">
-                                        <b>Post Graduation:</b>
-                                        <p>Institute Name: <%= users[i].profile.education.post_graduation.institute_name %></p>
-                                        <p>Board: <%= users[i].profile.education.post_graduation.board %></p>
-                                        <p>Marks: <%= users[i].profile.education.post_graduation.marks %></p>
-                                        <p>Passing Year: <%= users[i].profile.education.post_graduation.passing_year %></p>
-                                        </div>
-                                    </div>
-
-                                        <p>Preferred City: <%= users[i].preferred_city %></p>
-                                        <p>Skills: <%= users[i].profile.skills %></p>
-                                        <b>Experience:</b>
-                                        <% for(let j=0 ; j<users[i].profile.experience.length ; j++) { %>
-                                            <p><b>Project <%= j+1 %></b><p>
-                                            <div class="row">
-                                            <div class="col s6">
-                                            <p>Type: <%= users[i].profile.experience[j].type %></p>
-                                            <p>Role: <%= users[i].profile.experience[j].role %></p>
-                                            <p>Organization: <%= users[i].profile.experience[j].organization %></p>
-                                            </div>
-                                            <div class="col s6">
-                                            <p>Description: <%= users[i].profile.experience[j].description %></p>
-                                            <p>Start Date: <%= users[i].profile.experience[j].start_date %></p>
-                                            <p>End Date: <%= users[i].profile.experience[j].end_date %></p>
-                                            </div>
-                                            </div>
-                                        <% } %>
-                                    
-                                    <div class="modal-footer">
-                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-                                    </div>
-                                </div>
-
+                                <td><a href="/admin/user/<%= users[i]._id %>" class="btn right">View all data</a>
                             <% } %>
                                 </td>
                             </tbody>
