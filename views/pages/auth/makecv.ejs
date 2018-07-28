@@ -96,7 +96,7 @@
 
                         <div class="input-field col l6 s12">
                             <div>Enter your father's name here </div>
-                            <input type="text" name="details_fathername" id="details-father_name" value="<%= profile.details.father_name %>"style="padding:5px;">
+                            <input type="text" name="details_fathername" id="details-father_name" placeholder="<%= profile.details.father_name ? profile.details.father_name : ""%>"style="padding:5px;">
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Enter your DOB here </div>
@@ -106,7 +106,7 @@
                         
                         <div class="input-field col l6  s12">
                                 <div>Enter your Aadhar no here </div>
-                            <input type="text" name="aadharno" id="details-aadharno" value="<%= profile.details.aadharno %>" style="padding:5px;" placeholder="Example: 234312324321">
+                            <input type="text" name="aadharno" id="details-aadharno" placeholder="<%= profile.details.aadharno ? profile.details.aadharno : 'Example: 234312324321' %>" style="padding:5px;">
                         </div>
                         <div class="input-field col l6 s12">
                             <div class="col l4 s12">
@@ -145,11 +145,11 @@
                         </h6>
                         <div class="input-field col l6  s12">
                             <div>Enter your address here</div>
-                            <input type="text" name="fulladdress" id="address-full_address" value="<%= profile.address.full_address %>"style="padding:5px;" placeholder="Max 50 characters">
+                            <input type="text" name="fulladdress" id="address-full_address" style="padding:5px;" placeholder="<%= profile.address.full_address ? profile.address.full_address : 'Max 50 characters' %>">
                         </div>
                         <div class="input-field col l6  s12">
                             <div>Enter your city here</div>
-                            <input type="text" name="city" id="address-city" value="<%= profile.address.city %>" style="padding:5px;" placeholder="Example: Delhi">
+                            <input type="text" name="city" id="address-city" style="padding:5px;" placeholder="<%= profile.address.city ? profile.address.city: 'Example: Delhi'%>">
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Pick state</div>
@@ -163,7 +163,7 @@
                             
                         <div class="input-field col l6 s12">
                             <div>Enter your zip code here</div>
-                            <input type="text" name="zipcode" id="address-pincode" value="<%= profile.address.pincode %>" style="padding:5px;" placeholder="Example: 110008">
+                            <input type="text" name="zipcode" id="address-pincode" style="padding:5px;" placeholder="<%= profile.address.pincode ? profile.address.pincode : 'Example: 110008'%> ">
                         </div>
                         <div class="col l6 offset-l3 s12">
                         <div class="input-field col s6">
