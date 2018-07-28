@@ -101,6 +101,11 @@ authRouter.post('/scheduletest/:id', isauthenticated, (req, res) => {
     });
 });
 
+authRouter.get('/applyjob', isauthenticated, (req, res, next) => {
+    req.session.messages.push(["Your don't have a JL score. Please book a test first", "blue"])
+    return res.redirect('/user/mytests');
+});
+
 authRouter.get('/showcv', isauthenticated, (req, res) => {
     let dct = { title: "View Cv" };
     return res.render("auth/showcv", dct);
