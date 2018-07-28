@@ -50,8 +50,8 @@
                         </div>
                     </div>
                     <br>
-                    <div id="userlist">
-                        <table>
+                    <div>
+                        <table class="striped highlight">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -61,7 +61,7 @@
                                     <th>Role</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="userlist">
                         <% for(var i=0; i < users.length; i++) { %>
                             <tr id="<%= users[i].name.first %>">
                                 <td><%= users[i].name.first %> <%= users[i].name.last %></td>
@@ -174,7 +174,7 @@
                         str="";
                         for(let  i=0; i<userlist.length ; i++){
                             if(userlist[i].id.toLowerCase().indexOf(term) > -1 )
-                                str+= userlist[i].innerHTML;
+                                str+= "<tr>"+userlist[i].innerHTML+"</tr>";
                         }
                         if(str)
                             $('#userlist').html(str);
