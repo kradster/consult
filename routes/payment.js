@@ -156,15 +156,15 @@ paymentRouter.get('/redirect', (req, res, next) => {
                     if (err){
                         console.error(err);
                         res.locals.messages.push([err.message, "red"]);
-                        return res.redirect("/user/profile")
+                        return res.redirect("/user/mytests")
                     }
                     res.locals.messages.push(["Your Payment is successful", "green"]);
-                    return res.redirect("/user/profile");
+                    return res.redirect("/user/mytests");
                 });
             }
             else{
                 res.locals.messages.push(["Some Problem in payment processing", "red"]);
-                return res.redirect("/user/profile");
+                return res.redirect("/user/mytests");
             }
         }
     })    

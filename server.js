@@ -2,17 +2,15 @@
 const express = require('express');
 const app = express();
 var path = require('path');
-let session = require('express-session');
-let bodyParser = require('body-parser');
-let multer = require('multer');
-let cookieparser = require('cookie-parser');
-let nodemailer = require('nodemailer');
-let Config = require('./config');
+var session = require('express-session');
+var bodyParser = require('body-parser');
+var Config = require('./config');
 let mainRouter = require('./routes/main.js');
 let authRouter = require('./routes/auth.js');
 let adminRouter = require('./routes/admin.js');
 let recruiterRouter = require('./routes/recruiter.js');
 let paymentRouter = require('./routes/payment.js');
+var csv = require('csv-express');
 var fileUpload = require('express-fileupload');
 var passport = require('passport');
 var mongoose = require('mongoose');
@@ -90,6 +88,7 @@ app.get('*', (req, res, next) => {
 
 // 500 Page
 app.use(function(error, req, res, next) {
+    console.error(error);
     let dct = { title: "Internal Server Error" }
     return res.render("main/error", dct);
 });

@@ -184,4 +184,25 @@ adminRouter.get('/view-booked-tests', isauthenticated, (req, res) => {
 
 });
 
+adminRouter.get('/usercsv', isauthenticated, function(req, res, next) {
+    var filename   = "users.csv";
+    var dataArray;
+    User.find().exec({}, (err, users) => {
+        if (err) {
+            console.error(err);
+            return res.send(err);
+        }
+        let csv_users = [];
+        users.forEach(user=> {
+            csv_users.push({name: user.fullname, email: user.email});
+        })
+        console.log(csv_users);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader("Content-Disposition", 'attachment; filename='+filename);
+        res.csv(csv_users, true);
+    });
+});
+
+
 module.exports = adminRouter;
