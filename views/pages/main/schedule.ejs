@@ -67,7 +67,7 @@
                             </div>
                             <div class="col l3 s6">
 
-                                <input type="text" name="date" id="date" value="" placeholder="<%= tests[i].date %>" readonly>
+                                <input type="text" name="date" id="date" placeholder="<%= (new Date(tests[i].date)).toLocaleDateString() %>" readonly>
 
                             </div>
                             <div class="col l3 s12">
