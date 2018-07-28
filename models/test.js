@@ -20,10 +20,12 @@ var Test = new Schema({
     },
     location: {
         type: String,
+        trim: true,
         required: [true, "Location is required"]
     },
     title: {
         type: String,
+        trim: true,
         required: [true, "Title of JL is required"]
     }
 

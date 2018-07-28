@@ -16,10 +16,12 @@ var BookTest = new Schema({
     },
     job:{
         type: String,
+        trim: true,
         required: [true, "Job is required"]
     },
     status: {
         type: String,
+        trim: true,
         enum: ["INACTIVE","PENDING", "CLOSED", "ABSENT", "FAILED", "PASSED"],
         default: "INACTIVE"
     },

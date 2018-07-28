@@ -8,6 +8,7 @@ var Schema = mongoose.Schema;
 var Experience = new Schema({
     type: {
         type: String,
+        time: true,
         enum: ["project", "internship", "job"],
         required: true
     },
@@ -17,14 +18,17 @@ var Experience = new Schema({
     },
     role: {
         type: String,
+        trim: true,
         required: true
     },
     organization: {
         type: String,
+        trim: true,
         required: true
     },
     description: {
         type: String,
+        trim: true,
         required: true,
         maxlength: 200
     },

@@ -87,6 +87,7 @@ var User = new Schema({
     },
     role: {
         type: String,
+        trim: true,
         enum: ["ADMIN", "USER", "MODERATOR", "RECRUITER"],
         default: "USER"
     }

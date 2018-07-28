@@ -14,19 +14,23 @@ var Profile = new Schema({
     experience: [{
         type: {
             type: String,
+            trim: true,
             enum: ["Project", "Internship", "Job"],
             required: true
         },
         role: {
             type: String,
+            trim: true,
             required: true
         },
         organization: {
             type: String,
+            trim: true,
             required: true
         },
         description: {
             type: String,
+            trim: true,
             required: true,
             maxlength: 200
         },
