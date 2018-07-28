@@ -1,30 +1,9 @@
 <!-- NAVIGATION BAR START -->
 <meta name="keyword" content="Assessment test, freshers jobs, aptitude test, recruitment company, job offers, test for jobs, cv , resume, IT jobs, sales & marketing jobs, BPO jobs , accounting jobs , digital marketing jobs, operation jobs, HR jobs, office support jobs, freshers jobs after 12th ,  freshers jobs after bba,  freshers jobs after bca,  freshers jobs after graduation,  freshers jobs after btech,  freshers jobs after b.com,  freshers jobs after m.com, best assessment test,  freshers jobs in Delhi, freshers jobs in Banglore, freshers jobs in mumbai, freshers jobs in Ahmedabad, freshers jobs in chennai, freshers jobs in pune, cv for IT jobs , cv for sales job, cv for marking jobs ">
-
-<style>
-    ul li>a {
-        box-shadow: 0px 0px 0px 0px #fff !important;
-        transition:all .3s ease-in-out;
-        transform:scale(0.9);
-    }
-    
-    ul li>a:hover {
-        background-color: transparent !important;
-        transform:scale(1);
-        
-        
-    }
-    
-    .slide {
-        height: 250px !important;
-    }
-</style>
 <div class="navbar-fixed white-text" style="position: fixed;top:0px;">
     <nav class="indigo accent-4 z-depth-0">
         <div class="nav-wrapper">
-            <a class="sidenav-trigger">
-                        <i class="material-icons">menu</i>
-            </a>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <a href="/" class="brand-logo">
                 <img style="width:130px;" src="../img/logo.png" alt="">
             </a>
@@ -54,42 +33,37 @@
         </div>
     </nav>
 </div>
-<div id="nav-mobile" class="blue accent-4" style="position:fixed;top:55px;z-index:999;overflow:hidden;height:0px; transition:all .3s linear;">
-    <nav class="blue accent-4 z-depth-0">
-        <div class="nav-wrapper blue accent-4">
-            <div class="row">
-
-                <ul class="blue accent-4 col s12">
-                    <li>
-                        <a class="btn white blue-text z-depth-0" style="border-radius:3px;" href="/user/dashboard">
-                            <b>Dashboard</b>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn white blue-text z-depth-0" style="border-radius:3px;" href="/user/mytests">
-                            <b>Book JL Test</b>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn white blue-text z-depth-0" style="border-radius:3px;" href="/job-opportunities">
-                            <b>Job Opportunities</b>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="btn light-blue white-text z-depth-0" style="border-radius:3px;" href="/user/logout">
-                            <b>Logout</b>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
+<ul id="slide-out" class="sidenav">
+        <li><div class="user-view">
+          <div class="background">
+            <img src="/img/reason.png">
+          </div>
+          <div style="height:50px !important;"></div>
+          <a href="#user"><img class="circle" src="/img/profilepic.jpg"></a>
+          <div style="height:50px !important;"></div>
         </div>
-    </nav>
-</div>
-<script type="text/javascript">
-    $(".sidenav-trigger").on('click', function() {
-        var el = document.getElementById('nav-mobile');
-        $(el).toggleClass('slide');
-    });
-</script>
+    </li>
+    <li>
+            <a  href="/user/profile">
+                <b>Dashboard</b>
+            </a>
+        </li>
+        <li>
+            <a href="/user/mytests">
+                <b>Book JL Test</b>
+            </a>
+        </li>
+        <li>
+            <a href="/job-opportunities">
+                <b>Job Opportunities</b>
+            </a>
+        </li>
+        <li>
+            <a  href="/user/logout">
+                <b>Logout</b>
+            </a>
+        </li>
+      </ul>
+
+
 <!-- NAVIGATION BAR END -->

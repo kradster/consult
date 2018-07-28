@@ -109,6 +109,21 @@
 <!-- FOOTER START -->
     <% include ../../partials/pre_footer %>
 <!-- FOOTER END -->
+<script>
+        var WindowWidth = $(window).width();
+        var rows = $('div.login-body');
+        console.log(WindowWidth);
+        if(WindowWidth <= 425){
+            rows.each(function(i){
+                if(i==0){
 
+                }
+                else{
+                $(this).css({'height':'auto'});
+                }
+            });
+        }
+       
+    </script>
 </body>
 </html>

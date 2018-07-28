@@ -29,14 +29,15 @@
         </div>
     </div>
     <!-- HEADER END -->
-    <div class="row" style="height:40px;"></div>
+    <div class="row hide-on-small-only" style="height:40px;"></div>
 
     <!-- TEST SCHEDULE DETAILS PANEL START -->
     <div class="row">
-        <div class="row" style="height:50px;"></div>
-        <div class="col s10 offset-s1">
+        <div class="row hide-on-small-only" style="height:50px;"></div>
+        <div class="col l10 offset-l1 s12">
             <div class="col s12">
-                <h2 class="grey-text">BOOK YOUR TEST SEAT NOW</h2>
+                <h2 class="grey-text hide-on-small-only">BOOK YOUR TEST SEAT NOW</h2>
+                <h4 class="grey-text show-on-small-only hide-on-med-and-up">BOOK YOUR TEST SEAT NOW</h4>
             </div>
             <div class="col s12 card no-padd z-depth-0">
                 <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
@@ -45,31 +46,41 @@
                 <div class="divider"></div>
                 <br>
                 <% for(var i=0; i < tests.length; i++) { %>
-                    <div class="col s12">
+                    <div class="card col s12 no-padd">
+                        <div class="row"></div>
                         <form action="/user/scheduletest/<%= tests[i].id %>" class="col s12" method="POST">
-                            <div class="col s3">
+                            <div class="col l2 s6">
                                 <input type="text" placeholder="<%= tests[i].title %>" readonly>
                             </div>
-                            <div class="col s3">
+                            <div class="col l2 s6">
                                 <select name="job">
-                                    <option value="" disabled selected>Choose your role</option>
+                                    <option value="" disabled selected>Role</option>
                                     <% for(var j=0; j < tests[i].job.length; j++) { %>
                                         <option value="<%= tests[i].job[j] %>"><%= tests[i].job[j] %></option>
                                     <% } %>
                                 </select>
                             </div>
-                            <div class="col s3">
+                            <div class="col l2 s6">
 
                                 <input type="text" name="location" id="location" value="" placeholder="<%= tests[i].location %>" readonly>
 
                             </div>
-                            <div class="col s3">
+                            <div class="col l3 s6">
 
                                 <input type="text" name="date" id="date" value="" placeholder="<%= tests[i].date %>" readonly>
 
                             </div>
-                            <div class="col s3">
-                                <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+                            <div class="col l3 s12">
+                                    <div class="col s6" style="padding-top:10px;">
+                                            <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
+            
+                                    </div>
+                                    <div class="col s6"style="padding-top:15px;">
+                                           <small> (Just For Rs. 900/- )</small>
+            
+                                    </div>
+                                        
+                                           
                             </div>
                             <div class="row"></div>
                         </form>
