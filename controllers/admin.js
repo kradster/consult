@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var Job = require('../models/job');
+var BookTest = require('../models/bookTest');
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId
 var Test = require('../models/test');
@@ -103,6 +104,13 @@ module.exports.getusers = function(callback) {
     User.find({}).populate({ path: 'profile', populate: { path: 'experience', model: 'Experience', populate: { path: "experience" } } }).exec((err, users) => {
         if (err) return callback(err, null);
         return callback(null, users);
+    });
+}
+
+module.exports.getBookTests = function(callback) {
+    BookTest.find({}).populate('user').populate('test').populate('payment').exec((err, tests) => {
+        if (err) return callback(err, null);
+        return callback(null, tests);
     });
 }
 

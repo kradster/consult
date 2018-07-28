@@ -160,4 +160,29 @@ adminRouter.get('/viewusers', isauthenticated, (req, res) => {
 
 });
 
+adminRouter.get('/view-booked-tests', isauthenticated, (req, res) => {
+    let rolelist = User.schema.path('role').enumValues;
+    let dct = { title: "Booked Tests", tests: [] };
+    adminController.getBookTests((err, tests) => {
+        if (err) {
+            console.error(err);
+            res.locals.message.push(["Some error occurec", "red"]);
+            return res.redirect('/admin/dashboard')
+        }
+        console.log(tests);
+        for (let i = 0; i < tests.length; i++) {
+            dct.tests.push({
+                user: tests[i].user._id,
+                title: tests[i].test.title,
+                status: tests[i].status,
+                payment_done: tests[i].payment_done,
+                email: tests[i].user.email,
+                job: tests[i].job,
+            });
+        }
+        res.render('admin/bookedtests', dct);
+    });
+
+});
+
 module.exports = adminRouter;
