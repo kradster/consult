@@ -64,7 +64,7 @@
     <% include ../../partials/post_header %>
         <!-- NAVIGATION BAR END -->
         <div class="row" style="height:50px;"></div>
-            
+        <% include ../../partials/post_profile %>
         <div class="row">
 
             <form class="col l10 offset-l1 s12" action="/user/cvbuilder" method="post">
@@ -100,7 +100,7 @@
                         </div>
                         <div class="input-field col l6 s12">
                             <div>Enter your DOB here </div>
-                            <input type="text" class="datepicker" name="details_dob" id="details-dob" value="<%= profile.details.dob!=''?'01-01-2018':(new Date(profile.details.dob)).toISOString().slice(0,10) %>"style="padding:5px;">
+                            <input type="text" class="datepicker" name="details_dob" id="details-dob" placeholder="<%= (new Date(profile.details.dob)).toLocaleDateString() %>" style="padding:5px;">
                         </div>
                         
                         

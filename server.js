@@ -51,7 +51,7 @@ require('./passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 // Middlewares
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     if (!req.session.messages) {
         req.session.messages = [];
     }
@@ -62,8 +62,29 @@ app.use(function(req, res, next) {
     if (req.session.messages) {
         res.locals.messages = req.session.messages;
     }
+    let role, fullname, id, email, verified;
+    if (req.isAuthenticated()) {
+        role = (req.user) ? req.user.role : "USER";
+        fullname = (req.user) ? req.user.name.first + " " + req.user.name.last : "Guest";
+        id = (req.user) ? req.user.id : 1;
+        email = (req.user) ? req.user.email : "devesh";
+        verified = (req.user) ? req.user.verified : false;
+    }
+    else {
+        role = "USER";
+        fullname = null;
+        id = null;
+        email = null;
+    }
+    res.locals.user = {
+        fullname: fullname, 
+        id: id,
+        role: role,
+        email: email
+    }
     next();
 });
+
 // Routes
 app.use('/', mainRouter);
 app.use('/user', authRouter);
@@ -72,9 +93,10 @@ app.use('/payment', paymentRouter);
 app.use('/recruiter', recruiterRouter);
 // Routes
 
+
 // 404 Page redirect
 app.get('*', (req, res, next) => {
-    console.error(req.originalUrl)
+    console.error("404 ERROR", req.originalUrl)
     if (req.session.messages) {
         req.session.messages.push(["The page you are looking for doesn't exist", "red"])
     } else {

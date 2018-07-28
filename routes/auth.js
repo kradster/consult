@@ -59,7 +59,7 @@ authRouter.post('/signup', (req, res) => {
     })
 });
 
-authRouter.get('/profile', isauthenticated, (req, res) => {
+authRouter.get('/profile', isauthenticated, (req, res, next) => {
     let dct = { title: "Dashboard" };
     let data = new Object();
     data.fullname = req.user.fullname
@@ -84,6 +84,20 @@ authRouter.get('/profile', isauthenticated, (req, res) => {
 authRouter.post('/resume-upload', isauthenticated, function(req, res) {
     storageController.upload_file(req, res);
 });
+
+authRouter.get('/scheduletest', isauthenticated, (req, res) => {
+    let dct = { title: "Upcoming JL Tests | Schedule your JL test Now" };
+    userController.getAllTests((err, tests) => {
+        if (err) {
+            dct['tests'] = [];
+        } else {
+            if (tests) dct['tests'] = tests;
+            else dct['tests'] = [];
+        }
+        return res.render('auth/schedule', dct);
+    });
+});
+
 
 authRouter.post('/scheduletest/:id', isauthenticated, (req, res) => {
     data = req.body
@@ -143,7 +157,6 @@ authRouter.get('/editcv', isauthenticated, (req, res) => {
 
     let statelist = Profile.schema.path('address.state').enumValues;
     let dct = { title: "Edit Cv", user: req.user, profile: profile, statelist: statelist };
-    console.log(dct);
     return res.render("auth/makecv", dct);
 });
 

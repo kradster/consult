@@ -16,76 +16,12 @@
 
     <!-- NAVIGATION BAR START -->
     <% include ../../partials/post_header %>
-    <!-- NAVIGATION BAR END -->
-
-    <div class="row white-text blue darken-4">
-        <div class="col  s12">
-            <div class="row" style="height:50px;"></div>
-            <h1>
-                <b>SCHEDULE YOUR JL TEST NOW</b>
-            </h1>
-
-            <div class="row" style="height:50px;"></div>
-        </div>
-    </div>
-    <!-- HEADER END -->
+    
     <div class="row hide-on-small-only" style="height:40px;"></div>
-
+    <% include ../../partials/post_profile %>
     <!-- TEST SCHEDULE DETAILS PANEL START -->
     <div class="row">
         <div class="row hide-on-small-only" style="height:50px;"></div>
-
-        <div class="col s10 offset-s1">
-            <div class="grey-text text-darken-2" style="padding:20px 20px 10px 20px;">
-                <span style="font-size:1.7em">Book New Tests</span>
-            </div>
-            <div class="divider"></div>
-            <div class="divider"></div>
-            <br>
-            <% for(var i=0; i < all_tests.length; i++) { %>
-                <div class="col s12 no-padd card z-depth-2">
-                    <div class="row"></div>
-                    <form action="/user/scheduletest/<%= all_tests[i].id %>" class="col s12" method="POST">
-                        <div class="col l2 s6">
-                            <input type="text" placeholder="<%= all_tests[i].title %>" readonly>
-                        </div>
-                        <div class="col l2 s6">
-                            <select name="job">
-                                <option value="" disabled selected>Role</option>
-                                <% for(var j=0; j < all_tests[i].job.length; j++) { %>
-                                    <option value="<%= all_tests[i].job[j] %>"><%= all_tests[i].job[j] %></option>
-                                <% } %>
-                            </select>
-                        </div>
-                        <div class="col l2 s6">
-
-                            <input type="text" name="location" id="location" value="" placeholder="<%= all_tests[i].location %>" readonly>
-
-                        </div>
-                        <div class="col l3 s6">
-
-                            <input type="text" name="date" id="date" value="" placeholder="<%= all_tests[i].date %>" readonly>
-
-                        </div>
-                        <div class="col l3 s12">
-                        <div class="col s6" style="padding-top:10px;">
-                                <input class="btn blue accent-4 z-depth-0" type="submit" value="BOOK TEST">
-
-                        </div>
-                        <div class="col s6"style="padding-top:15px;">
-                               <small> (Just For Rs. 900/- )</small>
-
-                        </div>
-                            
-                               
-                        </div>
-                        <div class="row"></div>
-                    </form>
-                </div>
-            <% } %>
-            <div class="row" style="height:50px;"></div>
-
-        </div>
 
         <div class="col l10 offset-l1 s12">
             <div class="col s12 card no-padd z-depth-0">
@@ -121,7 +57,7 @@
                                             <small><b style="letter-spacing:5px;">VENUE AND DATE</b></small>
                                     </legend>
                                     <br>
-                                    <div><b>DELHI / 31/07/2018</b></div>
+                                    <div><b>DELHI / <%= (new Date(tests[i].test.test.date)).toLocaleDateString() %></b></div>
                                     <br>
                             </fieldset>
                             <fieldset>
