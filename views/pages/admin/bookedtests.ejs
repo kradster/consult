@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name='description' content="Find latest freshers jobs in India. Search for best suitable job vacancies in India's top companies and apply for IT, MBA, accounting, BPO, marketing and sales & other jobs in India.">
+    <% include ../../partials/pre_head %>
+        <title></title>
+</head>
+
+<body>
+    <!-- NAVIGATION BAR START -->
+    <% include ../../partials/admin_header %>
+        <!-- NAVIGATION BAR END -->
+
+    <div class="row" style="height:50px;"></div>
+        <div class="row">
+            <div class="col l10 offset-l1 s12">
+                <div class="col s12">
+                    <h3>
+                        <b>ALL Booked Tests</b>
+                    </h3>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col s9"></div>
+                        <div class="col s3">
+                            <input type="text" name="search" id="search" placeholder="Search users" oninput="search()"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="userlist">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Title</th>
+                                    <th>Test Status</th>
+                                    <th>Payment Done</th>
+                                    <th>Job</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <% for(var i=0; i < tests.length; i++) { %>
+                            <tr id="<%= tests[i].user %>">
+                                <td><%= tests[i].email %></td>
+                                <td><%= tests[i].title %></td>
+                                <td><%= tests[i].status %></td>
+                                <td><%= tests[i].payment_done %></td>
+                                <td><%= tests[i].job %></td>
+                                <td><a href="/admin/user/<%= tests[i].user %>" class="btn right modal-trigger">Open User</a></td>
+                            </tr>
+                            <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12" style="height:50px;"></div>
+        </div>
+
+        <!-- FOOTER START -->
+        <% include ../../partials/pre_footer %>
+            <!-- FOOTER END -->
+            <!-- <script>
+                arr=$('#userlist').children();
+                function search(){
+                    let term = $('#search').val().toLowerCase();
+                    $('#userlist').html(arr);
+                    if(term!=""){
+                        let userlist = document.getElementById('userlist').children;
+                        str="";
+                        for(let  i=0; i<userlist.length ; i++){
+                            if(userlist[i].id.toLowerCase().indexOf(term) > -1 )
+                                str+= userlist[i].innerHTML;
+                        }
+                        if(str)
+                            $('#userlist').html(str);
+                        else
+                            $('#userlist').html("<center>No users found</center>");
+                    }else{
+                        $('#userlist').html(arr);
+                    }
+                }
+            </script> -->
+            <!-- Compiled and minified JavaScript -->
+</body>
+
+</html>
