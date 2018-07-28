@@ -4,6 +4,7 @@ var adminRouter = express.Router();
 var adminController = require('../controllers/admin')
 var passport = require('passport');
 var sendEmail = require('../utils/email');
+let User = require('../models/user');
 
 // Middlewares
 function isauthenticated(req, res, next) {
@@ -61,7 +62,7 @@ adminRouter.post('/addtest', isauthenticated, (req, res) => {
     let data = req.body;
     let tmp = data.jobs;
     console.log(data);
-    if (!tmp || title == "" || date == "" || location == "") {
+    if (!tmp || data.title == "" || data.date == "" || data.location == "") {
         res.locals.messages.push(["You need to fill in all fields", "red"]);
         return res.redirect('/admin/addtest');
     }
@@ -139,7 +140,8 @@ adminRouter.post('/edit-info/:id', isauthenticated, (req, res) => {
 });
 
 adminRouter.get('/viewusers', isauthenticated, (req, res) => {
-    let dct = { title: "Users", users: [] };
+    let rolelist = User.schema.path('role').enumValues;
+    let dct = { title: "Users", users: [], rolelist: rolelist };
     adminController.getusers((err, users) => {
         if (err) console.error(err);
         for (let i = 0; i < users.length; i++) {

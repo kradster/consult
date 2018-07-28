@@ -61,15 +61,6 @@ app.use(function(req, res, next) {
         req.session.messages = [];
         res.locals.messages = [];
     };
-    res.locals.link = function(view, namespace) {
-        if (namespace) {
-            let url = "/" + namespace + "/" + view;
-            return url;
-        } else {
-            let url = "/" + view;
-            return url;
-        }
-    }
     if (req.session.messages) {
         res.locals.messages = req.session.messages;
     }
