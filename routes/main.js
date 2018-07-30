@@ -153,6 +153,10 @@ mainRouter.get('/syllabus', (req, res) => {
     let dct = { title: "Syllabus for JL Test" };
     res.render('main/syllabus', dct);
 });
+mainRouter.get('/buisness-development', (req, res) => {
+    let dct = { title: "Buisness Develpment" };
+    res.render('main/buisnessdev', dct);
+});
 
 mainRouter.get('/forgot-password', (req, res) => {
     let dct = { title: "Forgot password" };

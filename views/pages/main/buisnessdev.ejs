@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../../partials/pre_head %>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGKGPG3" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- NAVIGATION BAR START -->
+    <% include ../../partials/pre_header %>
+        <!-- NAVIGATION BAR END -->
+
+
+        <div class="row" style="height:50px;"></div>
+        <div class="row white-text blue darken-4">
+            <div class="col s12">
+                <div class="row" style="height:50px;"></div>
+
+                <h1><b>Buisness Develpment</b></h1>
+                <div class="row" style="height:50px;"></div>
+
+            </div>
+        </div>
+        <div class="row" style="height:50px;"></div>
+
+        <div class="row">
+            <div class="col s8 offset-s2">
+                    A business development executive/Associate is a manager tasked with the job of helping his or her business grow and therefore, they are high-level sales professionals. Their duties depend on how many people are on their staff. Some executives oversee general managers in different areas. In larger organizations, they may direct one area, such as marketing, finance, or legal services.A large part of an executive's job is developing relationships with people outside the organization. These people may be customers or contributors. One way associates/executives create relationships is by giving speeches at confrences. BDE or BDA may also serve on the boards of community groups. These activities promote the company and its leader.Requirement of each industry is different but product remains same, so a BDE/BDA present the product in a way it appears useful and profitable.                
+
+            </div>
+        </div>
+
+        <div class="row grey lighten-2">
+            <div class="col s12" style="height:50px;"></div>
+            <div class="col l8 offset-l2 s12 card" style="border-radius:5px;">
+                <div class="col s12">
+                    <h5><b>Roles And Responsibilities in Buisness Develpment</b></h5>
+                    <div class="divider"></div>
+                    <br><br>
+                    <div class="col s12">
+                        <li class="ui message">   
+                            Researching organisations and individuals to identify new leads and potential new markets
+                        </li>
+                        <li class="ui message">   
+                            Researching the needs of other companies and learning who makes decisions about purchasing
+                        </li>
+                        <li class="ui message">   
+                            Developing sales goals for the team and ensuring they are met
+                        </li>
+                        <li class="ui message">   
+                            Training personnel and helping team members develop their skills
+                        </li>
+                        <li class="ui message">   
+                            Contacting potential clients via email or phone to establish rapport and set up meetings
+                        </li>
+                        <li class="ui message">   
+                            Planning and overseeing new marketing initiatives
+                        </li>
+                        <li class="ui message">   
+                            Attending conferences, meetings, and industry events
+                        </li>
+                        
+                    </div>
+
+                </div>
+                <div class="col s12" style="height:50px;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <h3 class="col l8 offset-l2">Latest Jobs</h3>
+            <div id="joblistcon" class="col l8 offset-l2 s12">
+
+            </div>
+        </div>
+        <!-- FOOTER START -->
+        <div id="myfooter">
+        </div>
+        <!-- FOOTER END -->
+
+
+
+
+
+        <!-- FOOTER START -->
+        <% include ../../partials/pre_footer %>
+            <!-- FOOTER END -->
+            <script>
+                $(document).ready(function() {
+                    M.AutoInit();
+                    getJobList();
+                });
+            </script>
+            <script>
+                function getJobList() {
+                    $.ajax({
+                        url: window.location.origin + "/getjoblistings",
+                        method: "GET",
+                        dataType: "json",
+                        success: function(response) {
+                            let fulldata = response.data.filter(d => d.jobtitle == "buisnessdev").slice(0, 3);
+
+                            console.log(fulldata);
+                            joblistmaker(fulldata);
+                        },
+                        error: function(err) {
+                            console.log(err);
+                        }
+                    });
+                }
+
+                function joblistmaker(data) {
+                    console.log(data);
+                    let JOBLISTCON = $('#joblistcon ');
+                    JOBLISTCON.empty();
+                    for (d in data) {
+                        var EXP = expToMonth(data[d].experience);
+                        let template =
+                            `
+        <div class="col l4 s12 " style="cursor:pointer;">
+                    <div class="col s12 ui white card no-padd hoverable animated bounceIn" style="animation-delay:` + Math.random() * 1 + `s;border-radius:0px 0px 10px 10px;border-top:2px solid indigo">
+                        <div class="col s12">
+                            <h6 style="text-transform:uppercase;"><b>
+                                <i class="fas fa-building fa-1x grey-text lighten-2"></i>&nbsp;` + data[d].jobtitle + ` JOB</b>
+                                
+                            </h6>
+                            <small><i>` + data[d].companyname + `</i></small><br/>
+                            <div class="col s12 no-padd">
+                                <div class="col s12 no-padd">
+                                   <strong> EXP : ` + EXP + `</strong>
+                                </div>
+                                <div class="col s12 no-padd">
+                                    <strong>  SALARY : ` + data[d].salary + `LPA </strong>
+                                </div>
+                                <div class="col s12 no-padd">
+                                    <strong>  LOCATION : ` + data[d].location + `</strong> 
+                                </div>
+                            </div>
+                            <div class="col s12 no-padd">
+                                
+                            <a href="/company-info/` + data[d].jobid + `">Read More</a>
+                                
+    
+                            </div>
+                                <div class="col s12 no-padd">
+                                    <a href="/schedule" class="btn white indigo-text right accent-4 z-depth-0">
+                                        <b>APPLY</b>
+                                    </a>
+                                </div>
+                            
+                            </div>
+                            </div>
+                            <div class="row"></div>
+                </div>
+        `;
+                        template = template.replace(/null/gi, "Not Specified");
+                        JOBLISTCON.append(template);
+                        $(document).on('click', ".collapsible", function() {
+                            $(this).collapsible();
+                        });
+                    }
+
+                    function expToMonth(exp) {
+                        switch (exp) {
+                            case 'ef':
+                                return '>12 MONTH';
+                                break;
+                            case 'e12':
+                                return '+12 MONTH';
+                                break;
+                            case 'e24':
+                                return '+24 MONTH';
+                                break;
+                            case 'e24p':
+                                return '>24 MONTH';
+                                break;
+                        }
+                    }
+                }
+            </script>
+</body>
+
+</html>
