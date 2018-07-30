@@ -136,6 +136,21 @@
                 0px 0px 0px 0px rgba(0,0,0,0.0);
                 background-color:var(--bg-col);
             }
+
+            h1.center-align.indigo-text{
+                display:flex;
+                width:100%;
+                align-items:center;
+            }
+            h1.center-align.indigo-text::before,
+            h1.center-align.indigo-text::after{
+                content:"";
+                background:#ccc;
+                height:2px;
+                margin:.2em;
+                flex:1;
+            }
+
             
         </style>
 
@@ -152,15 +167,15 @@
     <% include ../../partials/pre_header %>
         <!-- NAVIGATION BAR END -->
         <!-- HEADER START -->
-        <div class="row body rowbody" style="height:100%;overflow: hidden;">
+        <div class="row body rowbody hide-on-small-only" style="height:100%;overflow: hidden;">
             <div style="width:100%;height:100%;display:flex;background:rgba(7, 116, 199, 0.581) !important;">
                 <div style="flex:1;margin:auto;height:100%;">
                     <div class="col l6 s12" style="height:100%;display:flex;">
                         <div style="flex:1;margin:auto;">
                                 <div class="col s12 no-padd">
                                         <center>
-                                            <p style="font-size:1.5em;" class="grey-text text-lighten-4" id="typec">Bringing Job Seekers closer to Recruiters</p>
-                                            <h1 style="font-size:6em;" class="hide-on-small-only white-text">
+                                            <h5 class="white-text" id="typec"><b>Bringing Job Seekers closer to Recruiters</b></h5>
+                                            <h1 style="font-size:6em;margin-top:-15px;" class="hide-on-small-only white-text">
                                                 <b>JobLana</b>
                                             </h1>
                                             <h1 class="hide-on-med-and-up show-on-small-only white-text">
@@ -180,7 +195,7 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="col l6 s12 hide-on-small-only"style="height:100%;display:flex;">
+                    <div class="col l6 s12"style="height:100%;display:flex;">
                             <div style="flex:1;margin:auto;">
                                     <div class="col s12 no-padd ">
                                             <div class="col l6 offset-l3 no-padd s12">
@@ -210,14 +225,75 @@
                                             </div>            
                                     </div>
                             </div>
+                    </div>                
+                </div>
+            </div>
+        </div>
+        <div class="row body rowbody hide-on-med-and-up show-on-small-only" style="height:auto;overflow: hidden;">
+            <div style="width:100%;height:100%;display:flex;background:rgba(7, 116, 199, 0.581) !important;">
+                <div style="flex:1;margin:auto;height:100%;">
+                    <div class="col l6 s12" style="height:100%;display:flex;">
+                        <div style="flex:1;margin:auto;">
+                                <div class="col s12 no-padd">
+                                        <center>
+                                            <br><br><br>
+                                            <h3 class="grey-text text-lighten-4" id="typec">Bringing Job Seekers closer to Recruiters</h3>
+                                            <h1 style="font-size:6em;" class="hide-on-small-only white-text">
+                                                <b>JobLana</b>
+                                            </h1>
+                                            <h1 class="hide-on-med-and-up show-on-small-only white-text">
+                                                <b>Job
+                                                <span class="white-text">Lana</span>
+                                            </b>
+                                            </h1>
+                                            <div class="col l4 offset-l4 s12">
+                                                <div class="col l12 s12">
+                                                    <center>
+                                                        <a href="/upcoming-jl-test" class="btn btn-large z-depth-0" style="background:#30f9c3;border-radius:50px;padding-left:8px;padding-right:8px;font-size:1em"><b>Book JL Test</b></a>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                            <div class="row"></div>
+                                        </center>
+                                </div>
+                        </div>
                     </div>
-                
-                
+                    <div class="col l6 s12"style="height:100%;display:flex;">
+                            <div style="flex:1;margin:auto;">
+                                    <div class="col s12 no-padd ">
+                                            <div class="col l6 offset-l3 no-padd s12">
+                                                <div class="col  s12">
+                                                <form class="col s12 no-padd" action="/subscribe" method="POST">
+                                                    <div class="card col no-padd s12 z-depth-5" style="padding:10px;border-radius:20px;overflow: hidden;">
+                                                        <div class="col s12 no-padd" style="height:200px;overflow: hidden;">
+                                                            <img style="width:100%;" src="/img/getstarted.jpg" alt="">
+                                                        </div>
+                                                        <div class="input-field col s10 offset-s1 no-padd">
+                                                            <input style="padding-left:10px;margin-left:-5px;" placeholder="Your name" id="name" name="name" type="text" class="blue-text cyan lighten-5" />
+                        
+                                                        </div>
+                                                        <div class="input-field col s10 offset-s1 no-padd">
+                                                            <input style="padding-left:10px;margin-left:-5px;" placeholder="Email" id="email" name="email" type="text" class="blue-text cyan lighten-5" />
+                                                        </div>
+                                                        <br>
+                                                        <div class="input-field col s12">
+                                                            <center>
+                                                                <input id="GetStarted" name="getstartsubmit" style="margin-top:0px;border-radius:50px;transition:all .3s ease-in-out;background:#646af2 " type="submit" class="col s8 offset-s2 btn btn-large  z-depth-2 white-text" value="Get Job Alerts">
+                                                            </center>
+                                                        </div>
+                        
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>            
+                                    </div>
+                            </div>
+                    </div>                
                 </div>
             </div>
         </div>
 
-        <div class="row body2 rowbody hide-on-med-and-up show-on-small-only" style="height:100%;overflow: hidden;margin-top:-20px">
+        <div class="row body2 hide rowbody hide-on-med-and-up show-on-small-only" style="height:auto;overflow: hidden;margin-top:-20px">
             <div style="width:100%;height:100%;display:flex;background:rgba(7, 116, 199, 0.581) !important;">
                 <div style="flex:1;margin:auto;">
                         <div class="col s12 no-padd ">
@@ -251,52 +327,36 @@
             </div>
         </div>
 
-        <div class="row grey lighten-5 rowbody" style="height:100%;overflow: hidden;margin-top:-20px">
-            <div style="width:100%;height:100%;display:flex;">
+        <div class="row white rowbody" style="height:auto;overflow: hidden;">
+            <div style="width:100%;height:auto;display:flex;">
                 <div style="flex:1;margin:auto;">
-                        <div class="col l8 offset-l2 s10 offset-s1 card z-depth-5" style="overflow: hidden;padding:10px;border-radius:10px;">
-                            <div class="col l6 s12 no-padd">
+                        <div class="col l8 offset-l2 s10 offset-s1" style="overflow: hidden;padding:10px;border-radius:10px;">
+                                <h1 class="hide-on-small-only center-align" style="font-size:2em;color: #646af2;">
+                                        <b>India's most Trusted skill Assessment Test for freshers job offering and recruitment</b>
+                                    </h1>
+                                <h6 class="hide-on-med-and-up show-on-small-only center-align" style="color: #646af2;">
+                                        <b>India's most Trusted skill Assessment Test for freshers job offering and recruitment</b>
+                                    </h6>
+                            <div class="col l8 offset-l2 s12 no-padd">
                                 <iframe class="col s12 no-padd hide-on-small-only" style="border:none;height:400px;overflow: hidden;" src="https://biteable.com/watch/embed/language-tutor-copy-1933615" allowfullscreen="true"></iframe>
                                 <iframe class="col s12 no-padd hide-on-med-and-up show-on-small-only" style="border:none;height:200px;overflow: hidden;" src="https://biteable.com/watch/embed/language-tutor-copy-1933615" allowfullscreen="true"></iframe>
                             </div>    
-                            <div class="col l6 s12">
-                                <div class="col s12">
-                                        <h1 class="hide-on-small-only" style="font-size:3em;color: #646af2;">
-                                            <b>India's most Trusted skill Assessment Test for freshers job offering and recruitment</b>
-                                        </h1>
-                                        <h1 class="no-padd hide-on-med-and-up show-on-small-only" style="font-size:1.2em;color: #646af2;">
-                                            <b>India's most Trusted skill Assessment Test for freshers job offering and recruitment</b>
-                                        </h1>
-                                        <!-- <form class="col s12">
-                                            <div class="input-field col s12 no-padd" style="padding:10px;">
-                                                    <input name="subscriptionemail" id="email_val" placeholder="Enter Email " type="text" class="" style="padding:5px;">
-                                            </div>
-                                            <div class="col s12 no-padd">
-    
-                                                    <input type="button" style="transition:all .3s ease-in-out;background-color:#646af2;" class="btn btn-large white-text " value="Get job alerts", id="email_submit">
-                                                
-                                                <br>
-                                            </div>
-                                        </form>
-                     -->
-                                </div>
-                            </div> 
                         </div>
                 </div>
             </div>
         </div>
 
-        <div class="row white rowbody" style="height:100%;overflow: hidden;margin-top:-20px">
+        <div class="row white rowbody" style="height:auto;overflow: hidden;">
                 <div style="width:100%;height:100%;display:flex;">
                     <div style="flex:1;margin:auto;">
                         <div class="col s12 no-padd">
 
                                     <h1 class="center-align indigo-text" style="font-size:3em; ">
-                                        What We Do
+                                        <b>What We Do</b>
                                     </h1>
                          </div>
                         <div class="col s12">
-                                    <div class="col l8 offset-l2 s12 card white z-depth-5">
+                                    <div class="col l8 offset-l2 s12 card white z-depth-0">
                                             <div class="col l6 s12">
                                                     <img style="width:100%;" src="img/image1.png " alt="What JobLana do?
                                                     What is JL test?
@@ -327,13 +387,13 @@
                 </div>
         </div>
 
-        <div class="row grey lighten-5 rowbody" style="height:100%;overflow: hidden;margin-top:-20px">
+        <div class="row white rowbody" style="height:auto;overflow: hidden;">
             <div style="width:100%;height:100%;display:flex;">
                 <div style="flex:1;margin:auto;">
                         <div class="col s12 no-padd">
 
-                                <h1 class="center-align black-text" style="font-size:3em; ">
-                                    What We have
+                                <h1 class="center-align indigo-text" style="font-size:3em; ">
+                                    <b>What We have</b>
                                 </h1>
                      </div>
                         <div class="col l10 offset-l1 s12">
@@ -341,7 +401,7 @@
                                     <div class="col l4 s12">
                                         <div class="col l10 offset-l1 s12">
                                         <center>
-                                            <div class="card indigo accent-4 z-depth-5" style="border-radius:10px;overflow: hidden;">
+                                            <div class="card indigo accent-4 z-depth-1" style="border-radius:10px;overflow: hidden;">
                                                 <div style="display:flex;overflow:hidden;height:250px;clip-path:polygon(0% 0% ,100% 0% ,100% 75%, 0% 90%);background-image:url('img/vacancies.jpg');background-size:cover;background-position:center;">
                                                     <!-- <div class="white" style="height:125px; width:125px;border-radius:100px;overflow:hidden;margin:auto;">
                                                         <img style="width:100%;"src="img/vacancies.jpg" alt=" IT jobs, sales & marketing jobs, BPO jobs , accounting jobs , digital marketing jobs, operation jobs, HR jobs, office support jobs, freshers jobs after 12th ,  freshers jobs after bba,  freshers jobs after bca,  freshers jobs after graduation,  freshers jobs after btech,  freshers jobs after b.com,  freshers jobs after m.com, ">
@@ -358,7 +418,7 @@
                                     <div class="col l4 s12">
                                         <div class="col l10 offset-l1 s12">
                                         <center>
-                                            <div class="card indigo accent-4 z-depth-5"style="border-radius:10px;overflow: hidden;">
+                                            <div class="card indigo accent-4 z-depth-1"style="border-radius:10px;overflow: hidden;">
                                                 <div style="display:flex;overflow:hidden;height:250px;clip-path:polygon(0% 0% ,100% 0% ,100% 75%, 0% 90%);background-image:url('img/jobseekers2.png');background-size:cover;background-position:center;">
                                                     <!-- <div class="white" style="height:125px; width:125px;border-radius:100px;overflow:hidden;margin:auto;">
                                                             <img style="width:100%;" src="img/jobseekers.png" alt="Sales and marketing Jobs in india IT jobs in india BPO jobs in india HR jobs in india Operation jobs in india  accounting jobs in india                                                            office support jobs in indiadigital marketing jobs in india">
@@ -375,7 +435,7 @@
                                     <div class="col l4 s12">
                                         <div class="col l10 offset-l1 s12">
                                         <center>
-                                            <div class="card indigo accent-4 z-depth-5"style="border-radius:10px;overflow: hidden;">
+                                            <div class="card indigo accent-4 z-depth-1"style="border-radius:10px;overflow: hidden;">
                                                 <div style="display:flex;overflow:hidden;height:250px;clip-path:polygon(0% 0% ,100% 0% ,100% 75%, 0% 90%);background-image:url('img/vida_hospitality_hotel_jobs_miami.png');background-size:cover;background-position:center;">
                                                     <!-- <div class="white" style="height:125px; width:125px;border-radius:100px;overflow:hidden;margin:auto;">
                                                         <img  style="width:100%;" src="img/vida_hospitality_hotel_jobs_miami.jpg" alt="Freshers jobs in India Freshers jobs in Delhi Freshers jobs in Bangalore Freshers jobs in Pune Freshers jobs in Mumbai                                        Freshers jobs in Chennai Job vacancy in indiarecruitment agency in india ">
@@ -396,11 +456,11 @@
             </div>
         </div>
 
-        <div class="row white rowbody" style="height:100%;overflow:hidden;margin-top:-20px;">
+        <div class="row white rowbody" style="height:auto;overflow:hidden;">
             <div style="width:100%;height:100%;display:flex;" class="body6">
                 <div style="flex:1;margin:auto;">
                     <div class="col s12 ">
-                        <h1 class="center-align " style="font-size:3em;">How It Works</h1>
+                        <h1 class="center-align indigo-text" style="font-size:3em;"><b>How It Works</b></h1>
                     </div>
                         <center>
                             <div style="border-radius:10px;" class="col s6 offset-s3 hide-on-small-only card z-depth-0"><img style="width:100%;" src="/img/howit.png" alt=""></div><br>
@@ -421,15 +481,15 @@
             </div>
         </div>
 
-        <div class="row grey lighten-5  rowbody" style="height:100%;overflow: hidden;margin-top:-20px">
+        <div class="row white  rowbody" style="height:auto;overflow: hidden;">
             <div style="width:100%;height:100%;display:flex;">
                 <div style="flex:1;margin:auto;">
-                    <div class="col l8 offset-l2 s12 no-padd card z-depth-5">
-                        <div class="col l8 offset-l2 s12 no-padd">
-                                <h1 class="center-align hide-on-small-only black-text" style="font-size:4em;">
+                    <div class="col l12 s12 no-padd card z-depth-0">
+                        <div class="col l12  s12 no-padd">
+                                <h1 class="center-align hide-on-small-only indigo-text" style="font-size:4em;">
                                     <b>What is JL TEST</b>
                                 </h1>
-                                <h1 class="center-align hide-on-med-and-up show-on-small-only" style="font-size:4em;">
+                                <h1 class="center-align hide-on-med-and-up show-on-small-only indigo-text" style="font-size:4em;">
                                     <b>What is <br> JL TEST</b>
                                 </h1>
                         </div>
@@ -455,18 +515,18 @@
             </div>
         </div>
 
-        <div class="row white rowbody" style="height:120%;overflow: hidden;margin-top:-20px">
+        <div class="row white rowbody" style="height:auto;overflow: hidden;">
             <div style="width:100%;height:100%;display:flex;">
                 <div style="flex:1;margin:auto;">
                         <div class="col s12 ">
-                                <h1 class="center-align grey-text" style="font-size:3em; ">
-                                    Reasons To Give JL TEST
+                                <h1 class="center-align indigo-text" style="font-size:3em; ">
+                                    <b>Reasons To Give JL TEST</b>
                                 </h1><br><br>
                             </div>
                             <div class="col l10 offset-l1 s12">
                                     <div class="col l3 s12">
                                             <center>
-                                                <div class="card z-depth-5 light-blue-text">
+                                                <div class="card z-depth-1 light-blue-text">
                                                     
                                                         <img style="width:100%;" src="img/card_offers.png" alt=" ">
                                                                                                            
@@ -481,7 +541,7 @@
                                         </div>
                                         <div class="col l3 s12">
                                             <center>
-                                                <div class="card z-depth-5 pink-text">
+                                                <div class="card z-depth-1 pink-text">
                                                     
                                                         <img style="width:100%; " src="img/card_salary.png" alt=" ">
                                                     
@@ -496,7 +556,7 @@
                                         <div class="col s12 hide" style="height:10px; "></div>
                                         <div class="col l3 s12">
                                             <center>
-                                                <div class="card z-depth-5">
+                                                <div class="card z-depth-1">
                                                     
                                                         <img style="width:100%; " src="img/card_dreamjob.jpg" alt=" ">
                                                     
@@ -511,7 +571,7 @@
                                         </div>
                                         <div class="col l3 s12">
                                             <center>
-                                                <div class="card z-depth-5">
+                                                <div class="card z-depth-1">
                                                    
                                                         <img style="width:100%;" src="img/card_highlight.png" alt=" ">
                                                     
@@ -529,12 +589,12 @@
             </div>
         </div>
 
-        <div class="row grey lighten-5  rowbody" style="height:100%;overflow: hidden;margin-top:-20px">
+        <div class="row white rowbody" style="height:auto;overflow: hidden;">
             <div style="width:100%;height:100%;display:flex;">
                 <div style="flex:1;margin:auto;">
                         <div class="col s12 ">
-                                <h1 class="center-align " style="font-size:3em; ">
-                                    Our Partners                            
+                                <h1 class="center-align indigo-text" style="font-size:3em; ">
+                                    <b>Our Partners</b>                            
                                 </h1><br><br>
                             </div>
                             <div class="col l8 offset-l2 s12">
